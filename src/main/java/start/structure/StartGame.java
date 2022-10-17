@@ -9,7 +9,7 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 
-public class HelloApplication extends Application {
+public class StartGame extends Application {
     private Scene s;
 
     @Override
@@ -46,11 +46,7 @@ public class HelloApplication extends Application {
                     p.directionBas(s.getHeight());
                     break;
                 case SPACE:
-                    try {
-                        p.jump();
-                    } catch (InterruptedException e) {
-                        System.out.println("jump stop");
-                    }
+                    p.jump();
                     break;
             }
         });
