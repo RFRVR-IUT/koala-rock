@@ -8,6 +8,7 @@ import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.util.ArrayList;
 
 public class HelloApplication extends Application {
     private Scene s;
@@ -15,26 +16,42 @@ public class HelloApplication extends Application {
     @Override
     public void start(Stage stage) throws IOException {
         BorderPane root = new BorderPane();
-        Mario mario = new Mario(20, 20, 20, 20);
+        Mario mario = new Mario(20, 0, 20, 20);
+        Echelle echelle1 = new Echelle(50, 100, 20, 50, 0);
+        Echelle echelle2 = new Echelle(200, 100, 20, 50, 0);
         mario.setLayoutX(20 * 10);
+        mario.setLayoutY(130);
 
         //panneau du jeu
         Pane jeu = new Pane();
         jeu.setPrefSize(640, 480);
+        jeu.getChildren().add(echelle1);
+        jeu.getChildren().add(echelle2);
         jeu.getChildren().add(mario);
+
+        System.out.println(echelle1.getLayoutX());
+
+        ArrayList<Echelle> echelles = new ArrayList<>();
+        ArrayList<Double> coordonneesEchelles = new ArrayList<>();
+        echelles.add(echelle1);
+        echelles.add(echelle2);
+
 
         root.setCenter(jeu);
         s = new Scene(root);
-        move(mario);
+        move(mario, echelles);
         stage.setScene(s);
         stage.show();
+
     }
 
-    private void move(Mario p) {
+    private void move(Mario p, ArrayList<Echelle> echelles) {
         s.setOnKeyPressed((KeyEvent event) -> {
             switch (event.getCode()) {
                 case UP:
-                    p.directionHaut();
+                    if(p.collisionEchelle(echelles)) {
+                        p.directionHaut();
+                    }
                     break;
                 case LEFT:
                     p.directionGauche();
@@ -43,7 +60,9 @@ public class HelloApplication extends Application {
                     p.directionDroite(s.getWidth());
                     break;
                 case DOWN:
-                    p.directionBas(s.getHeight());
+                    if(p.collisionEchelle(echelles)) {
+                        p.directionBas(s.getHeight());
+                    }
                     break;
                 case SPACE:
                     try {
@@ -53,6 +72,7 @@ public class HelloApplication extends Application {
                     }
                     break;
             }
+
         });
     }
 

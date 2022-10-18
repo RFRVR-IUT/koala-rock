@@ -1,18 +1,24 @@
 package start.structure;
 
 import javafx.scene.Group;
+import javafx.scene.paint.Paint;
 import javafx.scene.shape.Rectangle;
+
+import java.awt.geom.Point2D;
+import java.lang.reflect.Array;
+import java.util.ArrayList;
 
 import static java.lang.Thread.sleep;
 
 public class Mario extends Group {
     private Rectangle corps;
-    protected final static double LARGEUR_MOITIE_PERSONNAGE = 10;
+    protected final static double LARGEUR_MOITIE_PERSONNAGE = 5;
     protected final static double LARGEUR_PERSONNAGE = LARGEUR_MOITIE_PERSONNAGE * 2;
     private String direction;
 
     public Mario(int x, int y, int width, int height) {
         corps = new Rectangle(x, y, width, height);
+        corps.setFill(Paint.valueOf("red"));
         this.getChildren().add(corps);
         direction = "droite";
     }
@@ -89,5 +95,15 @@ public class Mario extends Group {
         if (!direction.equals("haut")) {
             direction = "haut";
         }
+    }
+
+    boolean collisionEchelle(ArrayList<Echelle> echelles) {
+        boolean v = false;
+        for(Echelle e : echelles){
+            v = this.getBoundsInParent().contains(e.getBoundsInParent())
+                    || e.getBoundsInParent().contains(this.getBoundsInParent());
+            if(v){break;}
+        }
+        return v;
     }
 }
