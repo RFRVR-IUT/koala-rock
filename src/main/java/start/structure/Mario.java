@@ -95,7 +95,7 @@ public class Mario extends Group {
             double y = getLayoutY();
             System.out.println("y = " + y);
             for (int i = 0; i < 3; i++) {
-                setLayoutY(getLayoutY() - LARGEUR_PERSONNAGE);
+                setLayoutY(getLayoutY() - (0.2*LARGEUR_PERSONNAGE));
                 System.out.println("en train de jump");
             }
             System.out.println(getLayoutY());
@@ -104,7 +104,7 @@ public class Mario extends Group {
 
     public void atterir(){
         while(getLayoutY() < ySave){
-            setLayoutY(getLayoutY() + LARGEUR_PERSONNAGE);
+            setLayoutY(getLayoutY() + (0.2*LARGEUR_PERSONNAGE));
         }
     }
 
