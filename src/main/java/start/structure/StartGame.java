@@ -1,5 +1,6 @@
 package start.structure;
 
+import javafx.animation.PauseTransition;
 import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.scene.input.KeyEvent;
@@ -67,13 +68,10 @@ public class StartGame extends Application {
                     }
                     break;
                 case SPACE:
+                    PauseTransition pause = new PauseTransition(javafx.util.Duration.seconds(0.5));
                     p.jump();
-                    try {
-                        sleep(1000);
-                    } catch (InterruptedException e) {
-                        throw new RuntimeException(e);
-                    }
-                    p.atterir();
+                    pause.play();
+                    pause.setOnFinished(event1 -> p.atterir());
                     break;
             }
 
