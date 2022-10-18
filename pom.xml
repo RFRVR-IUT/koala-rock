@@ -71,7 +71,7 @@
                     </execution>
                 </executions>
                 <configuration>
-                    <mainClass>start.structure.HelloApplication</mainClass>
+                    <mainClass>start.structure.StartGame</mainClass>
                     <cleanupDaemonThreads>false</cleanupDaemonThreads>
                 </configuration>
             </plugin>

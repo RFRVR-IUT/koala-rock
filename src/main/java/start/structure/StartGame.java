@@ -10,7 +10,7 @@ import javafx.stage.Stage;
 import java.io.IOException;
 import java.util.ArrayList;
 
-public class HelloApplication extends Application {
+public class StartGame extends Application {
     private Scene s;
 
     @Override
@@ -65,11 +65,7 @@ public class HelloApplication extends Application {
                     }
                     break;
                 case SPACE:
-                    try {
-                        p.jump();
-                    } catch (InterruptedException e) {
-                        System.out.println("jump stop");
-                    }
+                    p.jump();
                     break;
             }
 

@@ -82,18 +82,30 @@ public class Mario extends Group {
         }
     }
 
-    public void jump() throws InterruptedException {
+    public void jump() {
         //    *****
         //   *  |  *
         //  *   |   *
         //   *     *
         //    *****
         if (getLayoutY() >= LARGEUR_PERSONNAGE) {
-            setLayoutY(getLayoutY() - LARGEUR_PERSONNAGE);
-            setLayoutY(getLayoutY() + LARGEUR_PERSONNAGE);
-        }
-        if (!direction.equals("haut")) {
-            direction = "haut";
+            //making jump
+            double y = getLayoutY();
+            for (int i = 0; i < 3; i++) {
+                setLayoutY(getLayoutY() - LARGEUR_PERSONNAGE);
+                try {
+                    sleep(100);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+                System.out.println("en train de jump");
+            }
+            try {
+                sleep(200);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+            setLayoutY(y);
         }
     }
 
