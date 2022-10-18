@@ -10,6 +10,8 @@ import javafx.stage.Stage;
 import java.io.IOException;
 import java.util.ArrayList;
 
+import static java.lang.Thread.sleep;
+
 public class StartGame extends Application {
     private Scene s;
 
@@ -66,6 +68,12 @@ public class StartGame extends Application {
                     break;
                 case SPACE:
                     p.jump();
+                    try {
+                        sleep(1000);
+                    } catch (InterruptedException e) {
+                        throw new RuntimeException(e);
+                    }
+                    p.atterir();
                     break;
             }
 

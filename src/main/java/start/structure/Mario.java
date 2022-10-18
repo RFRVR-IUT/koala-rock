@@ -15,6 +15,7 @@ public class Mario extends Group {
     protected final static double LARGEUR_MOITIE_PERSONNAGE = 5;
     protected final static double LARGEUR_PERSONNAGE = LARGEUR_MOITIE_PERSONNAGE * 2;
     private String direction;
+    private double ySave;
 
     public Mario(int x, int y, int width, int height) {
         corps = new Rectangle(x, y, width, height);
@@ -88,25 +89,31 @@ public class Mario extends Group {
         //  *   |   *
         //   *     *
         //    *****
+        ySave = getLayoutY();
         if (getLayoutY() >= LARGEUR_PERSONNAGE) {
             //making jump
             double y = getLayoutY();
+            System.out.println("y = " + y);
             for (int i = 0; i < 3; i++) {
                 setLayoutY(getLayoutY() - LARGEUR_PERSONNAGE);
-                try {
-                    sleep(100);
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
-                }
                 System.out.println("en train de jump");
             }
-            try {
-                sleep(200);
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
-            setLayoutY(y);
+            System.out.println(getLayoutY());
         }
+    }
+
+    public void atterir(){
+        while(getLayoutY() < ySave){
+            setLayoutY(getLayoutY() + LARGEUR_PERSONNAGE);
+        }
+    }
+
+    public void setYSave(double y){
+        ySave = y;
+    }
+
+    public double getYSave(){
+        return ySave;
     }
 
     boolean collisionEchelle(ArrayList<Echelle> echelles) {
