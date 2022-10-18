@@ -125,4 +125,31 @@ public class Mario extends Group {
         }
         return v;
     }
+
+    public boolean estEn(ArrayList<ArrayList<Double>> tab){
+        for(ArrayList<Double> d : tab){
+            //System.out.println(d.get(0));
+            //System.out.println(getLayoutX());
+            if((Double.compare(getLayoutX(), d.get(0)) == 0
+                    || Double.compare(getLayoutX(), d.get(0)+10) == 0
+                    || Double.compare(getLayoutX(), d.get(0)-10) == 0)
+                    && Double.compare(getLayoutY(), d.get(1)) == 0){
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public boolean estDansEchelle(ArrayList<ArrayList<Double>> tab){
+        for(ArrayList<Double> d : tab){
+            if((Double.compare(getLayoutX(), d.get(0)) == 0
+                    || Double.compare(getLayoutX(), d.get(0)+10) == 0
+                    || Double.compare(getLayoutX(), d.get(0)-10) == 0)
+            && Double.compare(getLayoutY(), d.get(1)+50) < 0
+            && Double.compare(getLayoutY(), d.get(1)) > 0){
+                return true;
+            }
+        }
+        return false;
+    }
 }

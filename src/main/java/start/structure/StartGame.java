@@ -35,32 +35,47 @@ public class StartGame extends Application {
         System.out.println(echelle1.getLayoutX());
 
         ArrayList<Echelle> echelles = new ArrayList<>();
-        ArrayList<Double> coordonneesEchelles = new ArrayList<>();
         echelles.add(echelle1);
         echelles.add(echelle2);
+
+        ArrayList<ArrayList<Double>> coordonneesEchelles = new ArrayList<>();
+        ArrayList<Double> coordonneesEchelle1 = new ArrayList<>();
+        coordonneesEchelle1.add(180.0);
+        coordonneesEchelle1.add(80.0);
+        ArrayList<Double> coordonneesEchelle2 = new ArrayList<>();
+        coordonneesEchelle2.add(30.0);
+        coordonneesEchelle2.add(80.0);
+        coordonneesEchelles.add(coordonneesEchelle1);
+        coordonneesEchelles.add(coordonneesEchelle2);
 
 
         root.setCenter(jeu);
         s = new Scene(root);
-        move(mario, echelles);
+        move(mario, echelles, coordonneesEchelles);
         stage.setScene(s);
         stage.show();
 
     }
 
-    private void move(Mario p, ArrayList<Echelle> echelles) {
+    private void move(Mario p, ArrayList<Echelle> echelles, ArrayList<ArrayList<Double>> coordonneesEchelles) {
         s.setOnKeyPressed((KeyEvent event) -> {
             switch (event.getCode()) {
                 case UP:
-                    if(p.collisionEchelle(echelles)) {
+                    System.out.println("Y : " + p.getLayoutY());
+                    System.out.println("X : " + p.getLayoutX() + "\n");
+                    if(p.collisionEchelle(echelles) && !(p.estEn(coordonneesEchelles))) {
                         p.directionHaut();
                     }
                     break;
                 case LEFT:
-                    p.directionGauche();
+                    if(!p.estDansEchelle(coordonneesEchelles)){
+                        p.directionGauche();
+                    }
                     break;
                 case RIGHT:
-                    p.directionDroite(s.getWidth());
+                    if(!p.estDansEchelle(coordonneesEchelles)){
+                        p.directionDroite(s.getWidth());
+                    }
                     break;
                 case DOWN:
                     if(p.collisionEchelle(echelles)) {
@@ -77,6 +92,8 @@ public class StartGame extends Application {
 
         });
     }
+
+
 
     public static void main(String[] args) {
         launch();
