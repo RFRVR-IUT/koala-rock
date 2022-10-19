@@ -128,8 +128,6 @@ public class Mario extends Group {
 
     public boolean estEn(ArrayList<ArrayList<Double>> tab){
         for(ArrayList<Double> d : tab){
-            //System.out.println(d.get(0));
-            //System.out.println(getLayoutX());
             if((Double.compare(getLayoutX(), d.get(0)) == 0
                     || Double.compare(getLayoutX(), d.get(0)+10) == 0
                     || Double.compare(getLayoutX(), d.get(0)-10) == 0)
@@ -144,9 +142,18 @@ public class Mario extends Group {
         for(ArrayList<Double> d : tab){
             if((Double.compare(getLayoutX(), d.get(0)) == 0
                     || Double.compare(getLayoutX(), d.get(0)+10) == 0
-                    || Double.compare(getLayoutX(), d.get(0)-10) == 0)
-            && Double.compare(getLayoutY(), d.get(1)+50) < 0
-            && Double.compare(getLayoutY(), d.get(1)) > 0){
+                    || Double.compare(getLayoutX(), d.get(0)-10) == 0) //reste sur une lignée, ne sort pas sur le téco
+            && Double.compare(getLayoutY(), d.get(1)+50) < 0           //permet de passer par le bas même en étant sur la hitbox de l'échelle
+            && Double.compare(getLayoutY(), d.get(1)) > 0){            //pareil mais pour en haut (pour qu'il puisse sortir en gros)
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public boolean estDansBasEchelle(ArrayList<ArrayList<Double>> tab){
+        for(ArrayList<Double> d : tab){
+            if(Double.compare(getLayoutY(), d.get(1)+50) == 0){       //permet de pas aller + bas que l'échelle
                 return true;
             }
         }

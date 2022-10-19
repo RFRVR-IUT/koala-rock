@@ -78,7 +78,7 @@ public class StartGame extends Application {
                     }
                     break;
                 case DOWN:
-                    if(p.collisionEchelle(echelles)) {
+                    if(p.collisionEchelle(echelles) && !p.estDansBasEchelle(coordonneesEchelles)) {
                         p.directionBas(s.getHeight());
                     }
                     break;
