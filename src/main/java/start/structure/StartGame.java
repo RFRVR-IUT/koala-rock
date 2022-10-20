@@ -2,6 +2,7 @@ package start.structure;
 
 import javafx.animation.PauseTransition;
 import javafx.application.Application;
+import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.BorderPane;
@@ -11,13 +12,17 @@ import javafx.stage.Stage;
 import java.io.IOException;
 import java.util.ArrayList;
 
-import static java.lang.Thread.sleep;
-
 public class StartGame extends Application {
-    private Scene s;
+    private Scene Deplacement;
+
+    private Stage primaryStage;
 
     @Override
     public void start(Stage stage) throws IOException {
+        FXMLLoader loader = new FXMLLoader(StartGame.class.getResource("fond.fxml"));
+        Scene scene = new Scene(loader.load());
+
+
         BorderPane root = new BorderPane();
         Mario mario = new Mario(20, 0, 20, 20);
         Echelle echelle1 = new Echelle(50, 100, 20, 50, 0);
@@ -50,36 +55,45 @@ public class StartGame extends Application {
 
 
         root.setCenter(jeu);
-        s = new Scene(root);
+        Deplacement = new Scene(root);
         move(mario, echelles, coordonneesEchelles);
-        stage.setScene(s);
+
+        /*
+         * stage.setScene(scene); --> scene = fond.fxml
+         * stage.setScene(Deplacement); --> Deplacement =  mario
+         */
+
+        stage.setTitle("Donkey Kong");
+        stage.setScene(scene);
+        //stage.setScene(Deplacement);
         stage.show();
 
     }
 
+
     private void move(Mario p, ArrayList<Echelle> echelles, ArrayList<ArrayList<Double>> coordonneesEchelles) {
-        s.setOnKeyPressed((KeyEvent event) -> {
+        Deplacement.setOnKeyPressed((KeyEvent event) -> {
             switch (event.getCode()) {
                 case UP:
                     System.out.println("Y : " + p.getLayoutY());
                     System.out.println("X : " + p.getLayoutX() + "\n");
-                    if(p.collisionEchelle(echelles) && !(p.estEn(coordonneesEchelles))) {
+                    if (p.collisionEchelle(echelles) && !(p.estEn(coordonneesEchelles))) {
                         p.directionHaut();
                     }
                     break;
                 case LEFT:
-                    if(!p.estDansEchelle(coordonneesEchelles)){
+                    if (!p.estDansEchelle(coordonneesEchelles)) {
                         p.directionGauche();
                     }
                     break;
                 case RIGHT:
-                    if(!p.estDansEchelle(coordonneesEchelles)){
-                        p.directionDroite(s.getWidth());
+                    if (!p.estDansEchelle(coordonneesEchelles)) {
+                        p.directionDroite(Deplacement.getWidth());
                     }
                     break;
                 case DOWN:
-                    if(p.collisionEchelle(echelles)) {
-                        p.directionBas(s.getHeight());
+                    if (p.collisionEchelle(echelles)) {
+                        p.directionBas(Deplacement.getHeight());
                     }
                     break;
                 case SPACE:
@@ -92,8 +106,6 @@ public class StartGame extends Application {
 
         });
     }
-
-
 
     public static void main(String[] args) {
         launch();

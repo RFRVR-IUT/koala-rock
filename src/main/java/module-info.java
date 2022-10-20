@@ -5,5 +5,9 @@ module start.structure {
     requires javafx.fxml;
     requires java.desktop;
 
-    exports start.structure to javafx.graphics;
+
+    opens start.structure to javafx.fxml;
+    exports start.structure;
+
+    // to javafx.graphics
 }
