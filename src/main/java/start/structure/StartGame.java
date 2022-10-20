@@ -64,8 +64,8 @@ public class StartGame extends Application {
          */
 
         stage.setTitle("Donkey Kong");
-        stage.setScene(scene);
-        //stage.setScene(Deplacement);
+        //stage.setScene(scene);
+        stage.setScene(Deplacement);
         stage.show();
 
     }
@@ -93,7 +93,7 @@ public class StartGame extends Application {
                     break;
                 case DOWN:
                     if(p.collisionEchelle(echelles)) {
-                        p.directionBas(s.getHeight());
+                        p.directionBas(Deplacement.getHeight());
                     }
                     break;
                 case SPACE:
