@@ -20,6 +20,7 @@ public class Mario extends Group {
     protected final static double LARGEUR_PERSONNAGE = LARGEUR_MOITIE_PERSONNAGE * 2;
     private String direction;
     private double ySave;
+    private boolean estEnSaut=false;
 
     public Mario(int x, int y, int width, int height) {
         corps = new Rectangle(x, y, width, height);
@@ -112,6 +113,7 @@ public class Mario extends Group {
             }
             System.out.println(getLayoutY());
         }
+        this.estEnSaut = true;
         corps.setFill(new ImagePattern(new Image("mario-walk1.png")));
     }
 
@@ -119,6 +121,7 @@ public class Mario extends Group {
         while(getLayoutY() < ySave){
             setLayoutY(getLayoutY() + (0.2*LARGEUR_PERSONNAGE));
         }
+        this.estEnSaut = false;
         corps.setFill(new ImagePattern(new Image("mario-idle.png")));
     }
 
@@ -172,5 +175,9 @@ public class Mario extends Group {
             }
         }
         return false;
+    }
+
+    public boolean isEstEnSaut() {
+        return estEnSaut;
     }
 }

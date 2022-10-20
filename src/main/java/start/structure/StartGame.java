@@ -97,11 +97,13 @@ public class StartGame extends Application {
                     }
                     break;
                 case SPACE:
-                    PauseTransition pause = new PauseTransition(javafx.util.Duration.seconds(0.5));
-                    p.jump();
-                    pause.play();
-                    pause.setOnFinished(event1 -> p.atterir());
-                    break;
+                    if (!p.isEstEnSaut()) {
+                        PauseTransition pause = new PauseTransition(javafx.util.Duration.seconds(0.5));
+                        p.jump();
+                        pause.play();
+                        pause.setOnFinished(event1 -> p.atterir());
+                        break;
+                    }
             }
 
         });
