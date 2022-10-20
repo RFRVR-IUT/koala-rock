@@ -92,8 +92,8 @@ public class StartGame extends Application {
                     }
                     break;
                 case DOWN:
-                    if (p.collisionEchelle(echelles)) {
-                        p.directionBas(Deplacement.getHeight());
+                    if(p.collisionEchelle(echelles)) {
+                        p.directionBas(s.getHeight());
                     }
                     break;
                 case SPACE:
