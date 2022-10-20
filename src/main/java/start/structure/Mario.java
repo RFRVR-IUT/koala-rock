@@ -1,9 +1,13 @@
 package start.structure;
 
 import javafx.scene.Group;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
+import javafx.scene.paint.ImagePattern;
 import javafx.scene.paint.Paint;
 import javafx.scene.shape.Rectangle;
 
+import java.awt.*;
 import java.awt.geom.Point2D;
 import java.lang.reflect.Array;
 import java.util.ArrayList;
@@ -19,7 +23,9 @@ public class Mario extends Group {
 
     public Mario(int x, int y, int width, int height) {
         corps = new Rectangle(x, y, width, height);
-        corps.setFill(Paint.valueOf("red"));
+        //corps.setFill(Paint.valueOf("red"));
+        corps.setFill(new ImagePattern(new Image("mario-idle.png")));
+
         this.getChildren().add(corps);
         direction = "droite";
     }
@@ -38,6 +44,8 @@ public class Mario extends Group {
         if (!direction.equals("gauche")) {
             direction = "gauche";
         }
+        corps.setFill(new ImagePattern(new Image("mario-idle.png")));
+        corps.setScaleX(1);
     }
 
     public void directionDroite(double largeurJeu) {
@@ -53,6 +61,8 @@ public class Mario extends Group {
         if (!direction.equals("droite")) {
             direction = "droite";
         }
+        corps.setFill(new ImagePattern(new Image("mario-idle.png")));
+        corps.setScaleX(-1);
     }
 
     public void directionBas(double hauteurJeu) {
@@ -67,6 +77,7 @@ public class Mario extends Group {
         if (!direction.equals("bas")) {
             direction = "bas";
         }
+        corps.setFill(new ImagePattern(new Image("mario-climb.png")));
     }
 
     public void directionHaut() {
@@ -81,6 +92,7 @@ public class Mario extends Group {
         if (!direction.equals("haut")) {
             direction = "haut";
         }
+        corps.setFill(new ImagePattern(new Image("mario-climb.png")));
     }
 
     public void jump() {
@@ -100,12 +112,14 @@ public class Mario extends Group {
             }
             System.out.println(getLayoutY());
         }
+        corps.setFill(new ImagePattern(new Image("mario-walk1.png")));
     }
 
     public void atterir(){
         while(getLayoutY() < ySave){
             setLayoutY(getLayoutY() + (0.2*LARGEUR_PERSONNAGE));
         }
+        corps.setFill(new ImagePattern(new Image("mario-idle.png")));
     }
 
     public void setYSave(double y){
