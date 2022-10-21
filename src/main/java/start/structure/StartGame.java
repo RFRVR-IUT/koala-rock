@@ -23,7 +23,7 @@ public class StartGame extends Application {
         FXMLLoader loader = new FXMLLoader(StartGame.class.getResource("fond.fxml"));
         Scene scene = new Scene(loader.load());
 
-        //mainJeu = new Pane();
+        // mainJeu = new Pane();
         mainJeu = (Pane) loader.getNamespace().get("mainJeu");
 
         deplacement = new Deplacement();
@@ -35,7 +35,6 @@ public class StartGame extends Application {
         stage.show();
 
     }
-
 
     public static void main(String[] args) {
         launch();

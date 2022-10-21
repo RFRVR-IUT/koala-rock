@@ -11,17 +11,17 @@ import java.util.ArrayList;
 
 public class Deplacement extends Pane {
 
-    private HBox rootLayout;   //private BorderPane rootLayout;
-    private Pane Deplacement; //scene de jeu
+    private HBox rootLayout; // private BorderPane rootLayout;
+    private Pane Deplacement; // scene de jeu
 
     Mario mario = new Mario(20, 0, 20, 20);
     Echelle echelle1 = new Echelle(50, 100, 20, 50, 0);
     Echelle echelle2 = new Echelle(200, 100, 20, 50, 0);
+    Tonneaux tonneau1 = new Tonneaux(20, 130, 20, 20);
     ArrayList<Echelle> echelles = new ArrayList<>();
     ArrayList<ArrayList<Double>> coordonneesEchelles = new ArrayList<>();
 
     Pane jeu;
-
 
     public void mouvement() {
 
@@ -30,15 +30,15 @@ public class Deplacement extends Pane {
         mario.setLayoutX(20 * 10);
         mario.setLayoutY(130);
 
-        //panneau du jeu
+        // panneau du jeu
         Pane jeu = new Pane();
         jeu.setPrefSize(640, 480);
         jeu.getChildren().add(echelle1);
         jeu.getChildren().add(echelle2);
         jeu.getChildren().add(mario);
+        jeu.getChildren().add(tonneau1);
 
         System.out.println(echelle1.getLayoutX());
-
 
         echelles.add(echelle1);
         echelles.add(echelle2);
@@ -54,8 +54,18 @@ public class Deplacement extends Pane {
 
         move(mario, echelles, coordonneesEchelles);
 
-    }
+        // déplacer 1 tonneau vers la droite
+        PauseTransition pause = new PauseTransition();
+        pause.setDuration(javafx.util.Duration.seconds(0.1));
+        pause.setOnFinished(event -> {
+            if (tonneau1.getLayoutX() < 640) {
+                tonneau1.directionDroite(640);
+                pause.play();
+            }
+        });
+        pause.play();
 
+    }
 
     private void move(Mario p, ArrayList<Echelle> echelles, ArrayList<ArrayList<Double>> coordonneesEchelles) {
         this.setOnKeyPressed((KeyEvent event) -> {
@@ -92,7 +102,5 @@ public class Deplacement extends Pane {
 
         });
     }
-
-
 
 }
