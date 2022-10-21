@@ -58,7 +58,7 @@ public class Deplacement extends Pane {
 
 
     private void move(Mario p, ArrayList<Echelle> echelles, ArrayList<ArrayList<Double>> coordonneesEchelles) {
-        Deplacement.setOnKeyPressed((KeyEvent event) -> {
+        this.setOnKeyPressed((KeyEvent event) -> {
             switch (event.getCode()) {
                 case UP:
                     System.out.println("Y : " + p.getLayoutY());
