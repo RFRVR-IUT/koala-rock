@@ -11,6 +11,6 @@
                 <Image url="@fond.png" />
             </image>
         </ImageView>
-      <Pane fx:id="mainJeu" opacity="0.43" prefHeight="801.0" prefWidth="671.0" style="-fx-background-color: pink;" />
+      <Pane fx:id="mainJeu" opacity="0.43" prefHeight="801.0" prefWidth="671.0" style="-fx-background-color: transparent;" />
     </children>
 </Pane>
