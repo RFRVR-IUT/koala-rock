@@ -74,12 +74,12 @@ public class Deplacement extends Pane {
                     break;
                 case RIGHT:
                     if (!p.estDansEchelle(coordonneesEchelles)) {
-                        p.directionDroite(Deplacement.getWidth());
+                        p.directionDroite(jeu.getWidth());
                     }
                     break;
                 case DOWN:
-                    if (p.collisionEchelle(echelles)) {
-                        p.directionBas(Deplacement.getHeight());
+                    if (p.collisionEchelle(echelles) && !(p.estDansBasEchelle(coordonneesEchelles))) {
+                        p.directionBas(jeu.getHeight());
                     }
                     break;
                 case SPACE:
