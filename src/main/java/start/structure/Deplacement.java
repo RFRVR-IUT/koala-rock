@@ -23,7 +23,7 @@ public class Deplacement extends Pane {
 
     Pane jeu;
 
-    public void mouvement() {
+    public void mouvement(Pane jeu) {
 
         BorderPane root = new BorderPane();
 
@@ -31,7 +31,7 @@ public class Deplacement extends Pane {
         mario.setLayoutY(130);
 
         // panneau du jeu
-        Pane jeu = new Pane();
+        //Pane jeu = new Pane();
         jeu.setPrefSize(640, 480);
         jeu.getChildren().add(echelle1);
         jeu.getChildren().add(echelle2);

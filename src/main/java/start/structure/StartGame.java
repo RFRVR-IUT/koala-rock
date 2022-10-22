@@ -4,6 +4,8 @@ import javafx.application.Application;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 
@@ -15,7 +17,7 @@ public class StartGame extends Application {
     private Stage primaryStage;
     Deplacement deplacement;
 
-    @FXML
+    //@FXML
     Pane mainJeu;
 
     @Override
@@ -27,8 +29,10 @@ public class StartGame extends Application {
         mainJeu = (Pane) loader.getNamespace().get("mainJeu");
 
         deplacement = new Deplacement();
-        deplacement.mouvement();
-        mainJeu.getChildren().add(deplacement);
+        deplacement.mouvement(mainJeu);
+        //mainJeu.getChildren().add(deplacement);
+
+        //Scene scene = new Scene(mainJeu);
 
         stage.setTitle("Donkey Kong");
         stage.setScene(scene);
