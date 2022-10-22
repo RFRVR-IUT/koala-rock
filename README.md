@@ -36,7 +36,7 @@ $ cd DK-Project
 ```
 
 > **Note**
-> : Vous pour utiliser directement votre IDE pour cloner ce  [dépot](https://github.com/DK-Project-IUT/DK-Project).
+> : Vous pouvez utiliser directement votre IDE pour cloner ce  [dépot](https://github.com/DK-Project-IUT/DK-Project).
 
 
 ## Credits
