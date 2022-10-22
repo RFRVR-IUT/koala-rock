@@ -1,6 +1,6 @@
 <h1 align="center">
   <br>
-  <img src="/Users/valentin_vnh/Documents/School/BUT Info - A2/SAE - DK/DK-Project/src/main/resources/start/structure/README_PIC/DK_TOP.png" alt="Markdownify" width="200"></a>
+  <img src="src/main/resources/start/structure/README_PIC/DK_TOP.png" alt="Donkey-Kong" width="200"></a>
   <br>
   Projet - Donkey Kong
   <br>
@@ -10,13 +10,14 @@
 
 <p align="center">
   <a href="#le-projet">Le projet</a> •
-  <a href="#comment-l'utiliser">Comment l'utiliser</a> •
+  <a href="#comment-lutiliser">Comment l'utiliser</a> •
   <a href="#credits">Credits</a>
 </p>
 
-<div style="text-align: center;">
+<div align="center">
 
 ![screenshot](src/main/resources/start/structure/README_PIC/Mario_gif.gif)
+  
 
 </div>
 
@@ -35,7 +36,7 @@ $ cd DK-Project
 ```
 
 > **Note**
-> : Vous pour utiliser directement votre IDE pour cloner ce  [dépot](https://github.com/DK-Project-IUT/DK-Project).
+> : Vous pouvez utiliser directement votre IDE pour cloner ce  [dépot](https://github.com/DK-Project-IUT/DK-Project).
 
 
 ## Credits
@@ -45,9 +46,9 @@ $ cd DK-Project
 <b>Dev Team</b> : Killian Reiner, Simon Fraile, Célyan Ramirez
 
 
-<center>
-<img src="/Users/valentin_vnh/Documents/School/BUT Info - A2/SAE - DK/DK-Project/src/main/resources/start/structure/README_PIC/logoIUT.png" width="400" height="150" />
-</center>
+<div align="center">
+<img src="src/main/resources/start/structure/README_PIC/LogoIUT.png" alt="Logo_IUT" width="400" height="150" />
+</div>
 
 <!--
 * liste
