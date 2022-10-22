@@ -42,7 +42,7 @@ $ cd DK-Project
 ## Credits
 
 <b>Product Owner</b> : Valentin Vanhove\
-<b>Scrum Master</b> : Joris Rodrigue\
+<b>Scrum Master</b> : Joris Rodrigues\
 <b>Dev Team</b> : Killian Reiner, Simon Fraile, Célyan Ramirez
 
 
