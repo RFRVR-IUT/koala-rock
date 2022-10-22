@@ -4,13 +4,13 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.Pane?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="670.0" style="-fx-background-color: Black;" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="670.0" style="-fx-background-color: Black;" xmlns="http://javafx.com/javafx/17.0.2" xmlns:fx="http://javafx.com/fxml/1">
     <children>
         <ImageView fitHeight="750.0" fitWidth="658.0" layoutX="-20.0" layoutY="-30.0" x="26.0" y="35.0">
             <image>
                 <Image url="@fond.png" />
             </image>
         </ImageView>
-      <Pane fx:id="mainJeu" opacity="0.43" prefHeight="801.0" prefWidth="671.0" style="-fx-background-color: transparent;" />
+      <Pane fx:id="mainJeu" prefHeight="801.0" prefWidth="671.0" />
     </children>
 </Pane>
