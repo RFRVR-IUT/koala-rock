@@ -36,7 +36,7 @@ public class StartGame extends Application {
 
         stage.setTitle("Donkey Kong");
         stage.setScene(scene);
-        stage.show();
+        stage.show();;
 
     }
 
