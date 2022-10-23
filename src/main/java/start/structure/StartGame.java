@@ -22,6 +22,8 @@ public class StartGame extends Application {
         Echelle echelle1 = new Echelle(400, 485, 25, 80, 0);
         Echelle echelle2 = new Echelle(200, 408, 25, 80, 0);
         Echelle echelle3 = new Echelle(500, 331, 25, 80, 0);
+        Echelle echelle4 = new Echelle(100, 254, 25, 80, 0);
+        Echelle echelle5 = new Echelle(500, 177, 25, 80, 0);
         Fond fond = new Fond(0,0, 600, 600);
         Tonneaux tonneau1 = new Tonneaux(20, 130, 20, 20);
 
@@ -35,6 +37,8 @@ public class StartGame extends Application {
         jeu.getChildren().add(echelle1);
         jeu.getChildren().add(echelle2);
         jeu.getChildren().add(echelle3);
+        jeu.getChildren().add(echelle4);
+        jeu.getChildren().add(echelle5);
         jeu.getChildren().add(mario);
         jeu.getChildren().add(tonneau1);
 
@@ -45,6 +49,8 @@ public class StartGame extends Application {
         echelles.add(echelle1);
         echelles.add(echelle2);
         echelles.add(echelle3);
+        echelles.add(echelle4);
+        echelles.add(echelle5);
         ArrayList<ArrayList<Double>> coordonneesEchelles = new ArrayList<>();
         ArrayList<Double> coordonneesEchelle1 = new ArrayList<>();
         coordonneesEchelle1.add(380.0); //x
@@ -55,11 +61,18 @@ public class StartGame extends Application {
         ArrayList<Double> coordonneesEchelle3 = new ArrayList<>();
         coordonneesEchelle3.add(475.0);
         coordonneesEchelle3.add(314.0);
-
+        ArrayList<Double> coordonneesEchelle4 = new ArrayList<>();
+        coordonneesEchelle4.add(75.0);
+        coordonneesEchelle4.add(237.0);
+        ArrayList<Double> coordonneesEchelle5 = new ArrayList<>();
+        coordonneesEchelle5.add(475.0);
+        coordonneesEchelle5.add(160.0);
 
         coordonneesEchelles.add(coordonneesEchelle1);
         coordonneesEchelles.add(coordonneesEchelle2);
         coordonneesEchelles.add(coordonneesEchelle3);
+        coordonneesEchelles.add(coordonneesEchelle4);
+        coordonneesEchelles.add(coordonneesEchelle5);
 
         //Tonneaux (faudra penser à essayer de le foutre dans la classe Tonneaux nan ?)
         PauseTransition pause = new PauseTransition();
