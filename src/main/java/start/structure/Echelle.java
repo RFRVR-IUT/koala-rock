@@ -1,6 +1,8 @@
 package start.structure;
 
 import javafx.scene.Group;
+import javafx.scene.image.Image;
+import javafx.scene.paint.ImagePattern;
 import javafx.scene.paint.Paint;
 import javafx.scene.shape.Rectangle;
 
@@ -12,8 +14,9 @@ public class Echelle extends Group {
 
     public Echelle(int x, int y, int width, int height, int num) {
         this.echelle = new Rectangle(x, y, width, height);
-        this.collision = new Rectangle(x - 10, y - 20, (width + 20), (height + 20));
-        collision.setFill(Paint.valueOf("blue"));
+        this.collision = new Rectangle(x - 10, y - 35, (width + 20), (height + 35));
+        collision.setFill(Paint.valueOf("red"));
+        echelle.setFill(new ImagePattern(new Image("echelle.png")));
         collision.setOpacity(0.5);
         this.num = num;
         this.getChildren().add(echelle);
@@ -31,4 +34,6 @@ public class Echelle extends Group {
     public int getNum() {
         return num;
     }
+
+    public static int getLargeurCollision(){return 15;}
 }
