@@ -21,6 +21,7 @@ public class Mario extends Group {
     private String direction;
     private double ySave;
     private boolean estEnSaut=false;
+    private int change = 0;
 
     public Mario(int x, int y, int width, int height) {
         corps = new Rectangle(x, y, width, height);
@@ -93,7 +94,15 @@ public class Mario extends Group {
         if (!direction.equals("haut")) {
             direction = "haut";
         }
-        corps.setFill(new ImagePattern(new Image("mario-climb.png")));
+        if(change%2 == 0){
+            corps.setFill(new ImagePattern(new Image("mario-climb.png")));
+            change++;
+        }
+        else{
+            corps.setFill(new ImagePattern(new Image("mario-climb2.png")));
+            change++;
+        }
+
     }
 
     public void jump() {
