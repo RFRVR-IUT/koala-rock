@@ -23,4 +23,13 @@ public class Tonneaux extends Group {
     public void directionGauche() {
         setLayoutX(getLayoutX() - LARGEUR_TONNEAUX);
     }
+
+    public void directionBas(){
+        setLayoutY(getLayoutY() + LARGEUR_TONNEAUX/2);
+    }
+
+    public void tombe(){
+
+
+    }
 }

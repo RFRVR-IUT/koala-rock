@@ -80,6 +80,14 @@ public class Mario extends Group {
             direction = "bas";
         }
         corps.setFill(new ImagePattern(new Image("mario-climb.png")));
+        if(change%2 == 0){
+            corps.setScaleX(1);
+            change++;
+        }
+        else{
+            corps.setScaleX(-1);
+            change++;
+        }
     }
 
     public void directionHaut() {
@@ -94,12 +102,13 @@ public class Mario extends Group {
         if (!direction.equals("haut")) {
             direction = "haut";
         }
+        corps.setFill(new ImagePattern(new Image("mario-climb.png")));
         if(change%2 == 0){
-            corps.setFill(new ImagePattern(new Image("mario-climb.png")));
+            corps.setScaleX(1);
             change++;
         }
         else{
-            corps.setFill(new ImagePattern(new Image("mario-climb2.png")));
+            corps.setScaleX(-1);
             change++;
         }
 

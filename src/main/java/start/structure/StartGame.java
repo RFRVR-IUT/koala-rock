@@ -25,7 +25,7 @@ public class StartGame extends Application {
         Echelle echelle4 = new Echelle(100, 254, 25, 80, 0);
         Echelle echelle5 = new Echelle(500, 177, 25, 80, 0);
         Fond fond = new Fond(0,0, 600, 600);
-        Tonneaux tonneau1 = new Tonneaux(20, 130, 20, 20);
+        Tonneaux tonneau1 = new Tonneaux(20, 160, 20, 20);
 
         mario.setLayoutX(20 * 10);
         mario.setLayoutY(545);
@@ -75,15 +75,7 @@ public class StartGame extends Application {
         coordonneesEchelles.add(coordonneesEchelle5);
 
         //Tonneaux (faudra penser à essayer de le foutre dans la classe Tonneaux nan ?)
-        PauseTransition pause = new PauseTransition();
-        pause.setDuration(javafx.util.Duration.seconds(0.1));
-        pause.setOnFinished(event -> {
-            if (tonneau1.getLayoutX() < 640) {
-                tonneau1.directionDroite(640);
-                pause.play();
-            }
-        });
-        pause.play();
+        moveTonneaux(tonneau1);
 
         root.setCenter(jeu);
         s = new Scene(root);
@@ -129,6 +121,34 @@ public class StartGame extends Application {
 
         });
     }
+
+    private void moveTonneaux(Tonneaux t){
+        PauseTransition pause = new PauseTransition();
+        pause.setDuration(javafx.util.Duration.seconds(0.07));
+        pause.setOnFinished(event -> {
+            if((t.getLayoutX() < 530.0 && t.getLayoutY() == 0.0) //étage 1 (haut -> bas)
+            || (t.getLayoutX() < 530.0 && t.getLayoutY() == 155.0) //étage 3
+            || (t.getLayoutX() < 530.0 && t.getLayoutY() == 315.0)){  //étage 5
+                if (t.getLayoutX() < 640) {
+                    t.directionDroite(640);
+                    pause.play();
+                }
+            }
+            else if((t.getLayoutX() > 0.0  && t.getLayoutY() == 75.0) //étage 2
+            || (t.getLayoutX() > 0.0 && t.getLayoutY() == 235.0)      //étage 4
+            || (t.getLayoutX() > 0.0 && t.getLayoutY() == 390.0)){   //étage 6
+                t.directionGauche();
+                pause.play();
+            }
+            else{
+                System.out.println(t.getLayoutY());
+                t.directionBas();
+                pause.play();
+            }
+        });
+        pause.play();
+    }
+
     public static void main(String[] args) {
         launch();
     }
