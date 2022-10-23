@@ -21,6 +21,7 @@ public class StartGame extends Application {
         Mario mario = new Mario(20, -10, 30, 30);
         Echelle echelle1 = new Echelle(400, 485, 25, 80, 0);
         Echelle echelle2 = new Echelle(200, 408, 25, 80, 0);
+        Echelle echelle3 = new Echelle(500, 331, 25, 80, 0);
         Fond fond = new Fond(0,0, 600, 600);
         Tonneaux tonneau1 = new Tonneaux(20, 130, 20, 20);
 
@@ -33,6 +34,7 @@ public class StartGame extends Application {
         jeu.getChildren().add(fond);
         jeu.getChildren().add(echelle1);
         jeu.getChildren().add(echelle2);
+        jeu.getChildren().add(echelle3);
         jeu.getChildren().add(mario);
         jeu.getChildren().add(tonneau1);
 
@@ -42,15 +44,22 @@ public class StartGame extends Application {
         ArrayList<Echelle> echelles = new ArrayList<>();
         echelles.add(echelle1);
         echelles.add(echelle2);
+        echelles.add(echelle3);
         ArrayList<ArrayList<Double>> coordonneesEchelles = new ArrayList<>();
         ArrayList<Double> coordonneesEchelle1 = new ArrayList<>();
         coordonneesEchelle1.add(380.0); //x
-        coordonneesEchelle1.add(465.0);  //y
+        coordonneesEchelle1.add(468.0);  //y
         ArrayList<Double> coordonneesEchelle2 = new ArrayList<>();
         coordonneesEchelle2.add(180.0);
-        coordonneesEchelle2.add(385.0);
+        coordonneesEchelle2.add(391.0);
+        ArrayList<Double> coordonneesEchelle3 = new ArrayList<>();
+        coordonneesEchelle3.add(475.0);
+        coordonneesEchelle3.add(314.0);
+
+
         coordonneesEchelles.add(coordonneesEchelle1);
         coordonneesEchelles.add(coordonneesEchelle2);
+        coordonneesEchelles.add(coordonneesEchelle3);
 
         //Tonneaux (faudra penser à essayer de le foutre dans la classe Tonneaux nan ?)
         PauseTransition pause = new PauseTransition();

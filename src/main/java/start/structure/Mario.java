@@ -73,7 +73,7 @@ public class Mario extends Group {
         //   *  |  *
         //    *****
         if (getLayoutY() < hauteurJeu - LARGEUR_PERSONNAGE) {
-            setLayoutY(getLayoutY() + LARGEUR_PERSONNAGE);
+            setLayoutY(getLayoutY() + LARGEUR_PERSONNAGE+1);
         }
         if (!direction.equals("bas")) {
             direction = "bas";
@@ -88,7 +88,7 @@ public class Mario extends Group {
         //   *     *
         //    *****
         if (getLayoutY() >= LARGEUR_PERSONNAGE) {
-            setLayoutY(getLayoutY() - LARGEUR_PERSONNAGE);
+            setLayoutY(getLayoutY() - LARGEUR_PERSONNAGE-1);
         }
         if (!direction.equals("haut")) {
             direction = "haut";
@@ -164,7 +164,7 @@ public class Mario extends Group {
                     || Double.compare(getLayoutX(), d.get(0) + 10) == 0
                     || Double.compare(getLayoutX(), d.get(0) - 5) == 0
                     || Double.compare(getLayoutX(), d.get(0) - 10) == 0)//reste sur une lignée, ne sort pas sur le téco
-            && Double.compare(getLayoutY(), d.get(1)+80) < 0           //permet de passer par le bas même en étant sur la hitbox de l'échelle
+            && Double.compare(getLayoutY(), d.get(1)+77) < 0           //permet de passer par le bas même en étant sur la hitbox de l'échelle
             && Double.compare(getLayoutY(), d.get(1)) > 0){            //pareil mais pour en haut (pour qu'il puisse sortir en gros)
                 return true;
             }
@@ -174,7 +174,7 @@ public class Mario extends Group {
 
     public boolean estDansBasEchelle(ArrayList<ArrayList<Double>> tab){
         for(ArrayList<Double> d : tab){
-            if((Double.compare(getLayoutY(), d.get(1)+80) == 0) &&
+            if((Double.compare(getLayoutY(), d.get(1)+77) == 0) &&                      //77 = getLayout(Y) - Y de coordonnéesEchelles
                     (((Double.compare(getLayoutX(), d.get(0)) == 0))
                             ||(Double.compare(getLayoutX(), d.get(0)+10) == 0)
                             ||(Double.compare(getLayoutX(), d.get(0)+5) == 0)
