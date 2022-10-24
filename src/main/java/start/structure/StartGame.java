@@ -3,10 +3,13 @@ package start.structure;
 import javafx.animation.PauseTransition;
 import javafx.application.Application;
 import javafx.scene.Scene;
+import javafx.scene.image.Image;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.Pane;
+import javafx.scene.paint.ImagePattern;
 import javafx.stage.Stage;
+import javafx.util.Duration;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -20,9 +23,9 @@ public class StartGame extends Application {
     private TimerTask timerTask;
 
     @Override
-    public void start(Stage stage) throws IOException {
+    public void start(Stage stage) throws IOException, InterruptedException {
 
-        TimerT.tempsRestant();
+        //TimerT.tempsRestant();
 
         BorderPane root = new BorderPane();
         Mario mario = new Mario(20, -10, 30, 30);
@@ -31,6 +34,11 @@ public class StartGame extends Application {
         Echelle echelle3 = new Echelle(500, 331, 25, 80, 0);
         Echelle echelle4 = new Echelle(100, 255, 25, 80, 0);
         Echelle echelle5 = new Echelle(500, 177, 25, 80, 0);
+
+        EchelleBroken eb1 = new EchelleBroken(300, 331, 25, 80);
+        EchelleBroken eb2 = new EchelleBroken(240, 177, 25, 80);
+
+        DonkeyKong dk = new DonkeyKong(60, 80, 100, 100);
         Fond fond = new Fond(0, 0, 600, 600);
         Tonneaux tonneau1 = new Tonneaux(20, -10, 20, 20);
         tonneau1.setLayoutY(160);
@@ -49,7 +57,10 @@ public class StartGame extends Application {
         jeu.getChildren().add(echelle3);
         jeu.getChildren().add(echelle4);
         jeu.getChildren().add(echelle5);
+        jeu.getChildren().add(eb1);
+        jeu.getChildren().add(eb2);
         jeu.getChildren().add(mario);
+        jeu.getChildren().add(dk);
         jeu.getChildren().add(tonneau1);
 
         System.out.println(echelle1.getLayoutX());
@@ -85,7 +96,9 @@ public class StartGame extends Application {
         coordonneesEchelles.add(coordonneesEchelle5);
 
         // Tonneaux (faudra penser à essayer de le foutre dans la classe Tonneaux nan ?)
-        moveTonneaux(tonneau1, coordonneesEchelles);
+        moveTonneaux(tonneau1, coordonneesEchelles, dk);
+
+        //lance(tonneau1, dk);
 
         root.setCenter(jeu);
         s = new Scene(root);
@@ -132,7 +145,7 @@ public class StartGame extends Application {
         });
     }
 
-    private void moveTonneaux(Tonneaux t, ArrayList<ArrayList<Double>> coordonneesEchelles) {
+    private void moveTonneaux(Tonneaux t, ArrayList<ArrayList<Double>> coordonneesEchelles, DonkeyKong dk) {
         ArrayList<Double> coordonneesEchelle1 = new ArrayList<>();
         // coordonneesEchelle1.add(76.0);
         // coordonneesEchelle1.add(246.0);
@@ -143,7 +156,17 @@ public class StartGame extends Application {
             if ((t.collisionEchelleTonneau(coordonneesEchelles)) && (chanceTonneauxEchelle < 0.5)) {
                 t.directionBas();
                 pause.play();
-            } else if ((t.getLayoutX() < 530.0 && t.getLayoutY() == 170.0) // étage 1 (haut -> bas)
+
+            }
+
+            if(t.getLayoutX() < -30.0 && t.getLayoutY() == 556.0){
+                t.setLayoutY(170.0);
+                t.setLayoutX(20.0);
+                dk.lance(t);
+                moveTonneaux(t, coordonneesEchelles, dk);
+            }
+
+            else if ((t.getLayoutX() < 530.0 && t.getLayoutY() == 170.0) // étage 1 (haut -> bas)
                     || (t.getLayoutX() < 530.0 && t.getLayoutY() == 324.0) // étage 3
                     || (t.getLayoutX() < 530.0 && t.getLayoutY() == 478.0)) { // étage 5
                 if (t.getLayoutX() < 640) {
@@ -152,17 +175,19 @@ public class StartGame extends Application {
                 }
             } else if ((t.getLayoutX() > 0.0 && t.getLayoutY() == 248.0) // étage 2
                     || (t.getLayoutX() > 0.0 && t.getLayoutY() == 402.0) // étage 4
-                    || (t.getLayoutX() > 0.0 && t.getLayoutY() == 556.0)) { // étage 6
+                    || (t.getLayoutX() > -40.0 && t.getLayoutY() == 556.0)) { // étage 6
                 t.directionGauche();
                 pause.play();
             } else {
-                System.out.println(t.getLayoutY());
+                //System.out.println(t.getLayoutY());
                 t.directionBas();
                 pause.play();
             }
         });
         pause.play();
     }
+
+
 
     public static void main(String[] args) {
         launch();

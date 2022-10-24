@@ -4,6 +4,8 @@ import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 import javafx.scene.Group;
+import javafx.scene.image.Image;
+import javafx.scene.paint.ImagePattern;
 import javafx.scene.paint.Paint;
 import javafx.scene.shape.Rectangle;
 
@@ -15,6 +17,7 @@ public class Tonneaux extends Group {
     public Tonneaux(int x, int y, int width, int height) {
         corps = new Rectangle(x, y, width, height);
         corps.setFill(Paint.valueOf("brown"));
+        corps.setFill(new ImagePattern(new Image("tonneau1.png")));
 
         this.getChildren().add(corps);
     }
