@@ -29,10 +29,11 @@ public class StartGame extends Application {
         Echelle echelle1 = new Echelle(400, 485, 25, 80, 0);
         Echelle echelle2 = new Echelle(200, 408, 25, 80, 0);
         Echelle echelle3 = new Echelle(500, 331, 25, 80, 0);
-        Echelle echelle4 = new Echelle(100, 254, 25, 80, 0);
+        Echelle echelle4 = new Echelle(100, 255, 25, 80, 0);
         Echelle echelle5 = new Echelle(500, 177, 25, 80, 0);
         Fond fond = new Fond(0, 0, 600, 600);
-        Tonneaux tonneau1 = new Tonneaux(20, 160, 20, 20);
+        Tonneaux tonneau1 = new Tonneaux(20, -10, 20, 20);
+        tonneau1.setLayoutY(160);
         // décompte du temps
         // Tonneaux tonneau2 = new Tonneaux(20, 160, 20, 20);
 
@@ -84,7 +85,7 @@ public class StartGame extends Application {
         coordonneesEchelles.add(coordonneesEchelle5);
 
         // Tonneaux (faudra penser à essayer de le foutre dans la classe Tonneaux nan ?)
-        moveTonneaux(tonneau1);
+        moveTonneaux(tonneau1, coordonneesEchelles);
 
         root.setCenter(jeu);
         s = new Scene(root);
@@ -131,23 +132,27 @@ public class StartGame extends Application {
         });
     }
 
-    private void moveTonneaux(Tonneaux t) {
+    private void moveTonneaux(Tonneaux t, ArrayList<ArrayList<Double>> coordonneesEchelles) {
+        ArrayList<Double> coordonneesEchelle1 = new ArrayList<>();
+        // coordonneesEchelle1.add(76.0);
+        // coordonneesEchelle1.add(246.0);
         PauseTransition pause = new PauseTransition();
         pause.setDuration(javafx.util.Duration.seconds(0.005));
         pause.setOnFinished(event -> {
-            if ((t.getLayoutX() == 484.0 && t.getLayoutY() == 0.0)) {
+            double chanceTonneauxEchelle = Math.random();
+            if ((t.collisionEchelleTonneau(coordonneesEchelles)) && (chanceTonneauxEchelle < 0.5)) {
                 t.directionBas();
                 pause.play();
-            } else if ((t.getLayoutX() < 530.0 && t.getLayoutY() == 0.0) // étage 1 (haut -> bas)
-                    || (t.getLayoutX() < 530.0 && t.getLayoutY() == 154.0) // étage 3
-                    || (t.getLayoutX() < 530.0 && t.getLayoutY() == 310.0)) { // étage 5
+            } else if ((t.getLayoutX() < 530.0 && t.getLayoutY() == 170.0) // étage 1 (haut -> bas)
+                    || (t.getLayoutX() < 530.0 && t.getLayoutY() == 324.0) // étage 3
+                    || (t.getLayoutX() < 530.0 && t.getLayoutY() == 478.0)) { // étage 5
                 if (t.getLayoutX() < 640) {
                     t.directionDroite(640);
                     pause.play();
                 }
-            } else if ((t.getLayoutX() > 0.0 && t.getLayoutY() == 76.0) // étage 2
-                    || (t.getLayoutX() > 0.0 && t.getLayoutY() == 230.0) // étage 4
-                    || (t.getLayoutX() > 0.0 && t.getLayoutY() == 386.0)) { // étage 6
+            } else if ((t.getLayoutX() > 0.0 && t.getLayoutY() == 248.0) // étage 2
+                    || (t.getLayoutX() > 0.0 && t.getLayoutY() == 402.0) // étage 4
+                    || (t.getLayoutX() > 0.0 && t.getLayoutY() == 556.0)) { // étage 6
                 t.directionGauche();
                 pause.play();
             } else {
