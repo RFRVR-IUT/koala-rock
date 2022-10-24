@@ -26,6 +26,7 @@ public class StartGame extends Application {
         Echelle echelle5 = new Echelle(500, 177, 25, 80, 0);
         Fond fond = new Fond(0,0, 600, 600);
         Tonneaux tonneau1 = new Tonneaux(20, 160, 20, 20);
+        Tonneaux tonneau2 = new Tonneaux(20, 160, 20, 20);
 
         mario.setLayoutX(20 * 10);
         mario.setLayoutY(545);
@@ -41,6 +42,7 @@ public class StartGame extends Application {
         jeu.getChildren().add(echelle5);
         jeu.getChildren().add(mario);
         jeu.getChildren().add(tonneau1);
+        jeu.getChildren().add(tonneau2);
 
         System.out.println(echelle1.getLayoutX());
 
@@ -141,7 +143,7 @@ public class StartGame extends Application {
                 pause.play();
             }
             else{
-                System.out.println(t.getLayoutY());
+                //System.out.println(t.getLayoutY());
                 t.directionBas();
                 pause.play();
             }

@@ -25,7 +25,7 @@ public class Tonneaux extends Group {
     }
 
     public void directionBas(){
-        setLayoutY(getLayoutY() + LARGEUR_TONNEAUX/2);
+        setLayoutY(getLayoutY() + 1);
     }
 
     public void tombe(){
