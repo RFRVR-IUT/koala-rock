@@ -19,12 +19,10 @@ public class StartGame extends Application {
 
     private TimerTask timerTask;
 
-
     @Override
     public void start(Stage stage) throws IOException {
 
         TimerT.tempsRestant();
-
 
         BorderPane root = new BorderPane();
         Mario mario = new Mario(20, -10, 30, 30);
@@ -35,14 +33,13 @@ public class StartGame extends Application {
         Echelle echelle5 = new Echelle(500, 177, 25, 80, 0);
         Fond fond = new Fond(0, 0, 600, 600);
         Tonneaux tonneau1 = new Tonneaux(20, 160, 20, 20);
-        //décompte du temps
-        //Tonneaux tonneau2 = new Tonneaux(20, 160, 20, 20);
-
+        // décompte du temps
+        // Tonneaux tonneau2 = new Tonneaux(20, 160, 20, 20);
 
         mario.setLayoutX(20 * 10);
         mario.setLayoutY(545);
 
-        //panneau du jeu
+        // panneau du jeu
         Pane jeu = new Pane();
         jeu.setPrefSize(600, 600);
         jeu.getChildren().add(fond);
@@ -56,7 +53,7 @@ public class StartGame extends Application {
 
         System.out.println(echelle1.getLayoutX());
 
-        //Attribution des coordonnées etc des échelles
+        // Attribution des coordonnées etc des échelles
         ArrayList<Echelle> echelles = new ArrayList<>();
         echelles.add(echelle1);
         echelles.add(echelle2);
@@ -65,8 +62,8 @@ public class StartGame extends Application {
         echelles.add(echelle5);
         ArrayList<ArrayList<Double>> coordonneesEchelles = new ArrayList<>();
         ArrayList<Double> coordonneesEchelle1 = new ArrayList<>();
-        coordonneesEchelle1.add(380.0); //x
-        coordonneesEchelle1.add(468.0);  //y
+        coordonneesEchelle1.add(380.0); // x
+        coordonneesEchelle1.add(468.0); // y
         ArrayList<Double> coordonneesEchelle2 = new ArrayList<>();
         coordonneesEchelle2.add(180.0);
         coordonneesEchelle2.add(391.0);
@@ -86,9 +83,8 @@ public class StartGame extends Application {
         coordonneesEchelles.add(coordonneesEchelle4);
         coordonneesEchelles.add(coordonneesEchelle5);
 
-        //Tonneaux (faudra penser à essayer de le foutre dans la classe Tonneaux nan ?)
+        // Tonneaux (faudra penser à essayer de le foutre dans la classe Tonneaux nan ?)
         moveTonneaux(tonneau1);
-
 
         root.setCenter(jeu);
         s = new Scene(root);
@@ -137,18 +133,21 @@ public class StartGame extends Application {
 
     private void moveTonneaux(Tonneaux t) {
         PauseTransition pause = new PauseTransition();
-        pause.setDuration(javafx.util.Duration.seconds(0.07));
+        pause.setDuration(javafx.util.Duration.seconds(0.005));
         pause.setOnFinished(event -> {
-            if ((t.getLayoutX() < 530.0 && t.getLayoutY() == 0.0) //étage 1 (haut -> bas)
-                    || (t.getLayoutX() < 530.0 && t.getLayoutY() == 155.0) //étage 3
-                    || (t.getLayoutX() < 530.0 && t.getLayoutY() == 315.0)) {  //étage 5
+            if ((t.getLayoutX() == 484.0 && t.getLayoutY() == 0.0)) {
+                t.directionBas();
+                pause.play();
+            } else if ((t.getLayoutX() < 530.0 && t.getLayoutY() == 0.0) // étage 1 (haut -> bas)
+                    || (t.getLayoutX() < 530.0 && t.getLayoutY() == 154.0) // étage 3
+                    || (t.getLayoutX() < 530.0 && t.getLayoutY() == 310.0)) { // étage 5
                 if (t.getLayoutX() < 640) {
                     t.directionDroite(640);
                     pause.play();
                 }
-            } else if ((t.getLayoutX() > 0.0 && t.getLayoutY() == 75.0) //étage 2
-                    || (t.getLayoutX() > 0.0 && t.getLayoutY() == 235.0)      //étage 4
-                    || (t.getLayoutX() > 0.0 && t.getLayoutY() == 390.0)) {   //étage 6
+            } else if ((t.getLayoutX() > 0.0 && t.getLayoutY() == 76.0) // étage 2
+                    || (t.getLayoutX() > 0.0 && t.getLayoutY() == 230.0) // étage 4
+                    || (t.getLayoutX() > 0.0 && t.getLayoutY() == 386.0)) { // étage 6
                 t.directionGauche();
                 pause.play();
             } else {

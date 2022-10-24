@@ -17,19 +17,18 @@ public class Tonneaux extends Group {
     }
 
     public void directionDroite(double largeurJeu) {
-        setLayoutX(getLayoutX() + LARGEUR_TONNEAUX);
+        setLayoutX(getLayoutX() + LARGEUR_TONNEAUX / 5);
     }
 
     public void directionGauche() {
-        setLayoutX(getLayoutX() - LARGEUR_TONNEAUX);
+        setLayoutX(getLayoutX() - LARGEUR_TONNEAUX / 5);
     }
 
-    public void directionBas(){
-        setLayoutY(getLayoutY() + LARGEUR_TONNEAUX/2);
+    public void directionBas() {
+        setLayoutY(getLayoutY() + LARGEUR_TONNEAUX / 5);
     }
 
-    public void tombe(){
-
+    public void tombe() {
 
     }
 }
