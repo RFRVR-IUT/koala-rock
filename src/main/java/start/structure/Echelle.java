@@ -35,5 +35,7 @@ public class Echelle extends Group {
         return num;
     }
 
-    public static int getLargeurCollision(){return 15;}
+    public static int getLargeurCollision() {
+        return 15;
+    }
 }
