@@ -24,25 +24,33 @@ public class DonkeyKong extends Group{
     }
 
     public void lance(Tonneaux t) {
-        PauseTransition pause = new PauseTransition(Duration.seconds(1));
+        this.donkey.setFill(new ImagePattern(new Image("dk-lance.png")));
+        this.donkey.setScaleX(-1);
+        gauche();
+
+    }
+
+    public void gauche(){
+        PauseTransition pause = new PauseTransition(Duration.seconds(0.5));
+        pause.setOnFinished(event -> {
+            droite();
+
+        });
         pause.play();
+    }
+
+    public void droite(){
+        this.donkey.setScaleX(1);
+        PauseTransition pause = new PauseTransition(Duration.seconds(0.5));
         pause.setOnFinished(event -> {
-            this.donkey.setFill(new ImagePattern(new Image("dk-lance.png")));
-            this.donkey.setScaleX(-1);
+            idle();
 
         });
-        System.out.println("ATTEND");
+        pause.play();
 
-        PauseTransition pause2 = new PauseTransition(Duration.seconds(1));
-        pause2.play();
-        pause.setOnFinished(event -> {
-            this.donkey.setFill(new ImagePattern(new Image("dk-lance.png"))); //oui je le met 2 fois pour les tests, c'est pas parce que je suis con
-            this.donkey.setScaleX(1);
+    }
 
-        });
-        System.out.println("ATTEND");
+    public void idle(){
         this.donkey.setFill(new ImagePattern(new Image("dk-idle.png")));
-
-
     }
 }

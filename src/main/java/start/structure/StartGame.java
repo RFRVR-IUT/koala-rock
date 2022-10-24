@@ -159,10 +159,13 @@ public class StartGame extends Application {
 
             }
 
+            if(t.getLayoutX() == 70.0 && t.getLayoutY() == 556.0){
+                dk.lance(t);
+            }
+
             if(t.getLayoutX() < -30.0 && t.getLayoutY() == 556.0){
                 t.setLayoutY(170.0);
-                t.setLayoutX(20.0);
-                dk.lance(t);
+                t.setLayoutX(120.0);
                 moveTonneaux(t, coordonneesEchelles, dk);
             }
 
