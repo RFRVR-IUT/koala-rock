@@ -1,22 +1,31 @@
 package start.structure;
+
 import javafx.animation.PauseTransition;
 import javafx.application.Application;
-import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
+
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.TimerTask;
 
 public class StartGame extends Application {
     private Scene Deplacement;
     private Stage primaryStage;
     private Scene s;
 
+    private TimerTask timerTask;
+
+
     @Override
     public void start(Stage stage) throws IOException {
+
+        TimerT.tempsRestant();
+
+
         BorderPane root = new BorderPane();
         Mario mario = new Mario(20, -10, 30, 30);
         Echelle echelle1 = new Echelle(400, 485, 25, 80, 0);
@@ -24,8 +33,11 @@ public class StartGame extends Application {
         Echelle echelle3 = new Echelle(500, 331, 25, 80, 0);
         Echelle echelle4 = new Echelle(100, 254, 25, 80, 0);
         Echelle echelle5 = new Echelle(500, 177, 25, 80, 0);
-        Fond fond = new Fond(0,0, 600, 600);
+        Fond fond = new Fond(0, 0, 600, 600);
         Tonneaux tonneau1 = new Tonneaux(20, 160, 20, 20);
+        //décompte du temps
+        //Tonneaux tonneau2 = new Tonneaux(20, 160, 20, 20);
+
 
         mario.setLayoutX(20 * 10);
         mario.setLayoutY(545);
@@ -77,6 +89,7 @@ public class StartGame extends Application {
         //Tonneaux (faudra penser à essayer de le foutre dans la classe Tonneaux nan ?)
         moveTonneaux(tonneau1);
 
+
         root.setCenter(jeu);
         s = new Scene(root);
         move(mario, echelles, coordonneesEchelles);
@@ -105,42 +118,40 @@ public class StartGame extends Application {
                     }
                     break;
                 case DOWN:
-                    if(p.collisionEchelle(echelles) && !(p.estDansBasEchelle(coordonneesEchelles))) {
+                    if (p.collisionEchelle(echelles) && !(p.estDansBasEchelle(coordonneesEchelles))) {
                         p.directionBas(s.getHeight());
                     }
                     break;
                 case SPACE:
                     if (!p.isEstEnSaut()) {
-                    PauseTransition pause = new PauseTransition(javafx.util.Duration.seconds(0.5));
-                    p.jump();
-                    pause.play();
-                    pause.setOnFinished(event1 -> p.atterir());
-                    break;
-                }
+                        PauseTransition pause = new PauseTransition(javafx.util.Duration.seconds(0.5));
+                        p.jump();
+                        pause.play();
+                        pause.setOnFinished(event1 -> p.atterir());
+                        break;
+                    }
             }
 
         });
     }
 
-    private void moveTonneaux(Tonneaux t){
+    private void moveTonneaux(Tonneaux t) {
         PauseTransition pause = new PauseTransition();
         pause.setDuration(javafx.util.Duration.seconds(0.07));
         pause.setOnFinished(event -> {
-            if((t.getLayoutX() < 530.0 && t.getLayoutY() == 0.0) //étage 1 (haut -> bas)
-            || (t.getLayoutX() < 530.0 && t.getLayoutY() == 155.0) //étage 3
-            || (t.getLayoutX() < 530.0 && t.getLayoutY() == 315.0)){  //étage 5
+            if ((t.getLayoutX() < 530.0 && t.getLayoutY() == 0.0) //étage 1 (haut -> bas)
+                    || (t.getLayoutX() < 530.0 && t.getLayoutY() == 155.0) //étage 3
+                    || (t.getLayoutX() < 530.0 && t.getLayoutY() == 315.0)) {  //étage 5
                 if (t.getLayoutX() < 640) {
                     t.directionDroite(640);
                     pause.play();
                 }
-            }
-            else if((t.getLayoutX() > 0.0  && t.getLayoutY() == 75.0) //étage 2
-            || (t.getLayoutX() > 0.0 && t.getLayoutY() == 235.0)      //étage 4
-            || (t.getLayoutX() > 0.0 && t.getLayoutY() == 390.0)){   //étage 6
+            } else if ((t.getLayoutX() > 0.0 && t.getLayoutY() == 75.0) //étage 2
+                    || (t.getLayoutX() > 0.0 && t.getLayoutY() == 235.0)      //étage 4
+                    || (t.getLayoutX() > 0.0 && t.getLayoutY() == 390.0)) {   //étage 6
                 t.directionGauche();
                 pause.play();
-            }
-            else{
+            } else {
                 System.out.println(t.getLayoutY());
                 t.directionBas();
                 pause.play();
