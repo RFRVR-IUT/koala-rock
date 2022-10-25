@@ -6,12 +6,11 @@ import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Rectangle;
 
 public class Fond extends Group {
-    private Rectangle fond;
-
+    private final Rectangle fond;
     public Fond(int x, int y, int width, int height) {
         fond = new Rectangle(x, y, width, height);
         //corps.setFill(Paint.valueOf("red"));
-        fond.setFill(new ImagePattern(new Image("test.png")));
+        fond.setFill(new ImagePattern(new Image("fond.png")));
 
         this.getChildren().add(fond);
     }

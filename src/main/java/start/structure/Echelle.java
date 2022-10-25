@@ -12,6 +12,14 @@ public class Echelle extends Group {
     private final Rectangle collision;
     private final int num;
 
+    /**
+     * Constructeur de la classe Echelle
+     * @param x
+     * @param y
+     * @param width
+     * @param height
+     * @param num
+     */
     public Echelle(int x, int y, int width, int height, int num) {
         this.echelle = new Rectangle(x, y, width, height);
         this.collision = new Rectangle(x - 10, y - 35, (width + 20), (height + 35));
@@ -34,7 +42,6 @@ public class Echelle extends Group {
     public int getNum() {
         return num;
     }
-
     public static int getLargeurCollision() {
         return 15;
     }

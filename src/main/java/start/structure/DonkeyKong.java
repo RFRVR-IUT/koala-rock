@@ -4,15 +4,21 @@ import javafx.animation.PauseTransition;
 import javafx.scene.Group;
 import javafx.scene.image.Image;
 import javafx.scene.paint.ImagePattern;
-import javafx.scene.paint.Paint;
 import javafx.scene.shape.Rectangle;
 import javafx.util.Duration;
 
-public class DonkeyKong extends Group{
+public class DonkeyKong extends Group {
 
-    private Rectangle donkey;
+    private final Rectangle donkey;
 
-    public DonkeyKong(int x, int y, int width, int height){
+    /**
+     * Constructeur de la classe DonkeyKong
+     * @param x
+     * @param y
+     * @param width
+     * @param height
+     */
+    public DonkeyKong(int x, int y, int width, int height) {
         this.donkey = new Rectangle(x, y, width, height);
         donkey.setFill(new ImagePattern(new Image("dk-idle.png")));
         this.getChildren().add(donkey);
@@ -23,14 +29,21 @@ public class DonkeyKong extends Group{
         return donkey;
     }
 
-    public void lance(Tonneaux t) {
+    /**
+     * Lancement Tonneaux
+     * @param tonneaux
+     */
+    public void lance(Tonneaux tonneaux) {
         this.donkey.setFill(new ImagePattern(new Image("dk-lance.png")));
         this.donkey.setScaleX(-1);
         gauche();
 
     }
 
-    public void gauche(){
+    /**
+     * Animation Donkey Kong Gauche
+     */
+    public void gauche() {
         PauseTransition pause = new PauseTransition(Duration.seconds(0.5));
         pause.setOnFinished(event -> {
             droite();
@@ -38,8 +51,10 @@ public class DonkeyKong extends Group{
         });
         pause.play();
     }
-
-    public void droite(){
+    /**
+     * Animation Donkey Kong Droite
+     */
+    public void droite() {
         this.donkey.setScaleX(1);
         PauseTransition pause = new PauseTransition(Duration.seconds(0.5));
         pause.setOnFinished(event -> {
@@ -50,7 +65,10 @@ public class DonkeyKong extends Group{
 
     }
 
-    public void idle(){
+    /**
+     * Animation Donkey Kong Idle
+     */
+    public void idle() {
         this.donkey.setFill(new ImagePattern(new Image("dk-idle.png")));
     }
 }

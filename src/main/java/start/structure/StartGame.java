@@ -3,25 +3,28 @@ package start.structure;
 import javafx.animation.PauseTransition;
 import javafx.application.Application;
 import javafx.scene.Scene;
-import javafx.scene.image.Image;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.Pane;
-import javafx.scene.paint.ImagePattern;
 import javafx.stage.Stage;
-import javafx.util.Duration;
 
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.TimerTask;
 
 public class StartGame extends Application {
-    private Scene Deplacement;
+    private Scene Deplacement, s;
+
     private Stage primaryStage;
-    private Scene s;
 
     private TimerTask timerTask;
 
+    /**
+     * Starter du jeu
+     * @param stage
+     * @throws IOException
+     * @throws InterruptedException
+     */
     @Override
     public void start(Stage stage) throws IOException, InterruptedException {
 
@@ -107,37 +110,43 @@ public class StartGame extends Application {
         stage.show();
     }
 
-    private void move(Mario p, ArrayList<Echelle> echelles, ArrayList<ArrayList<Double>> coordonneesEchelles) {
+    /**
+     * Méthode qui permet le mouvement de Mario
+     * @param mario
+     * @param echelles
+     * @param coordonneesEchelles
+     */
+    private void move(Mario mario, ArrayList<Echelle> echelles, ArrayList<ArrayList<Double>> coordonneesEchelles) {
         s.setOnKeyPressed((KeyEvent event) -> {
             switch (event.getCode()) {
                 case UP:
-                    System.out.println("X : " + p.getLayoutX());
-                    System.out.println("Y : " + p.getLayoutY() + "\n");
-                    if (p.collisionEchelle(echelles) && !(p.estEn(coordonneesEchelles))) {
-                        p.directionHaut();
+                    System.out.println("X : " + mario.getLayoutX());
+                    System.out.println("Y : " + mario.getLayoutY() + "\n");
+                    if (mario.collisionEchelle(echelles) && !(mario.estEn(coordonneesEchelles))) {
+                        mario.directionHaut();
                     }
                     break;
                 case LEFT:
-                    if (!p.estDansEchelle(coordonneesEchelles)) {
-                        p.directionGauche();
+                    if (!mario.estDansEchelle(coordonneesEchelles)) {
+                        mario.directionGauche();
                     }
                     break;
                 case RIGHT:
-                    if (!p.estDansEchelle(coordonneesEchelles)) {
-                        p.directionDroite(s.getWidth());
+                    if (!mario.estDansEchelle(coordonneesEchelles)) {
+                        mario.directionDroite(s.getWidth());
                     }
                     break;
                 case DOWN:
-                    if (p.collisionEchelle(echelles) && !(p.estDansBasEchelle(coordonneesEchelles))) {
-                        p.directionBas(s.getHeight());
+                    if (mario.collisionEchelle(echelles) && !(mario.estDansBasEchelle(coordonneesEchelles))) {
+                        mario.directionBas(s.getHeight());
                     }
                     break;
                 case SPACE:
-                    if (!p.isEstEnSaut()) {
+                    if (!mario.isEstEnSaut()) {
                         PauseTransition pause = new PauseTransition(javafx.util.Duration.seconds(0.5));
-                        p.jump();
+                        mario.jump();
                         pause.play();
-                        pause.setOnFinished(event1 -> p.atterir());
+                        pause.setOnFinished(event1 -> mario.atterir());
                         break;
                     }
             }
@@ -145,7 +154,13 @@ public class StartGame extends Application {
         });
     }
 
-    private void moveTonneaux(Tonneaux t, ArrayList<ArrayList<Double>> coordonneesEchelles, DonkeyKong dk) {
+    /**
+     * Méthode qui permet le mouvement des tonneaux
+     * @param tonneaux
+     * @param coordonneesEchelles
+     * @param dk
+     */
+    private void moveTonneaux(Tonneaux tonneaux, ArrayList<ArrayList<Double>> coordonneesEchelles, DonkeyKong dk) {
         ArrayList<Double> coordonneesEchelle1 = new ArrayList<>();
         // coordonneesEchelle1.add(76.0);
         // coordonneesEchelle1.add(246.0);
@@ -153,43 +168,40 @@ public class StartGame extends Application {
         pause.setDuration(javafx.util.Duration.seconds(0.005));
         pause.setOnFinished(event -> {
             double chanceTonneauxEchelle = Math.random();
-            if ((t.collisionEchelleTonneau(coordonneesEchelles)) && (chanceTonneauxEchelle < 0.5)) {
-                t.directionBas();
+            if ((tonneaux.collisionEchelleTonneau(coordonneesEchelles)) && (chanceTonneauxEchelle < 0.5)) {
+                tonneaux.directionBas();
                 pause.play();
 
             }
-
-            if(t.getLayoutX() == 70.0 && t.getLayoutY() == 556.0){
-                dk.lance(t);
+            // quand le tonneau est en bas de l'échelle -> On relance le tonneau.
+            if (tonneaux.getLayoutX() == 70.0 && tonneaux.getLayoutY() == 556.0) {
+                dk.lance(tonneaux);
             }
 
-            if(t.getLayoutX() < -30.0 && t.getLayoutY() == 556.0){
-                t.setLayoutY(170.0);
-                t.setLayoutX(120.0);
-                moveTonneaux(t, coordonneesEchelles, dk);
-            }
-
-            else if ((t.getLayoutX() < 530.0 && t.getLayoutY() == 170.0) // étage 1 (haut -> bas)
-                    || (t.getLayoutX() < 530.0 && t.getLayoutY() == 324.0) // étage 3
-                    || (t.getLayoutX() < 530.0 && t.getLayoutY() == 478.0)) { // étage 5
-                if (t.getLayoutX() < 640) {
-                    t.directionDroite(640);
+            if (tonneaux.getLayoutX() < -30.0 && tonneaux.getLayoutY() == 556.0) {
+                tonneaux.setLayoutY(170.0);
+                tonneaux.setLayoutX(120.0);
+                moveTonneaux(tonneaux, coordonneesEchelles, dk);
+            } else if ((tonneaux.getLayoutX() < 530.0 && tonneaux.getLayoutY() == 170.0) // étage 1 (haut -> bas)
+                    || (tonneaux.getLayoutX() < 530.0 && tonneaux.getLayoutY() == 324.0) // étage 3
+                    || (tonneaux.getLayoutX() < 530.0 && tonneaux.getLayoutY() == 478.0)) { // étage 5
+                if (tonneaux.getLayoutX() < 640) {
+                    tonneaux.directionDroite(640);
                     pause.play();
                 }
-            } else if ((t.getLayoutX() > 0.0 && t.getLayoutY() == 248.0) // étage 2
-                    || (t.getLayoutX() > 0.0 && t.getLayoutY() == 402.0) // étage 4
-                    || (t.getLayoutX() > -40.0 && t.getLayoutY() == 556.0)) { // étage 6
-                t.directionGauche();
+            } else if ((tonneaux.getLayoutX() > 0.0 && tonneaux.getLayoutY() == 248.0) // étage 2
+                    || (tonneaux.getLayoutX() > 0.0 && tonneaux.getLayoutY() == 402.0) // étage 4
+                    || (tonneaux.getLayoutX() > -40.0 && tonneaux.getLayoutY() == 556.0)) { // étage 6
+                tonneaux.directionGauche();
                 pause.play();
             } else {
-                //System.out.println(t.getLayoutY());
-                t.directionBas();
+                //System.out.println(tonneaux.getLayoutY());
+                tonneaux.directionBas();
                 pause.play();
             }
         });
         pause.play();
     }
-
 
 
     public static void main(String[] args) {

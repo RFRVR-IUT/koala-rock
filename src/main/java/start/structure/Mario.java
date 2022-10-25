@@ -2,27 +2,28 @@ package start.structure;
 
 import javafx.scene.Group;
 import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
 import javafx.scene.paint.ImagePattern;
-import javafx.scene.paint.Paint;
 import javafx.scene.shape.Rectangle;
 
-import java.awt.*;
-import java.awt.geom.Point2D;
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 
-import static java.lang.Thread.sleep;
-
 public class Mario extends Group {
-    private Rectangle corps;
+    private final Rectangle corps;
     protected final static double LARGEUR_MOITIE_PERSONNAGE = 5;
     protected final static double LARGEUR_PERSONNAGE = LARGEUR_MOITIE_PERSONNAGE * 2;
     private String direction;
     private double ySave;
-    private boolean estEnSaut=false;
+    private boolean estEnSaut = false;
     private int change = 0;
 
+    /**
+     * Constructeur de la classe Mario
+     *
+     * @param x
+     * @param y
+     * @param width
+     * @param height
+     */
     public Mario(int x, int y, int width, int height) {
         corps = new Rectangle(x, y, width, height);
         //corps.setFill(Paint.valueOf("red"));
@@ -32,6 +33,9 @@ public class Mario extends Group {
         direction = "droite";
     }
 
+    /**
+     * Méthode qui permet de faire bouger le personnage vers la Gauche
+     */
     public void directionGauche() {
         //    ****
         //   *    *
@@ -50,6 +54,11 @@ public class Mario extends Group {
         corps.setScaleX(1);
     }
 
+    /**
+     * Méthode qui permet de faire bouger le personnage vers la Droite
+     *
+     * @param largeurJeu
+     */
     public void directionDroite(double largeurJeu) {
         //    ****
         //   *    *
@@ -67,6 +76,11 @@ public class Mario extends Group {
         corps.setScaleX(-1);
     }
 
+    /**
+     * Méthode qui permet de faire bouger le personnage vers le Bas
+     *
+     * @param hauteurJeu
+     */
     public void directionBas(double hauteurJeu) {
         //    *****
         //   *     *
@@ -74,22 +88,24 @@ public class Mario extends Group {
         //   *  |  *
         //    *****
         if (getLayoutY() < hauteurJeu - LARGEUR_PERSONNAGE) {
-            setLayoutY(getLayoutY() + LARGEUR_PERSONNAGE+1);
+            setLayoutY(getLayoutY() + LARGEUR_PERSONNAGE + 1);
         }
         if (!direction.equals("bas")) {
             direction = "bas";
         }
         corps.setFill(new ImagePattern(new Image("mario-climb.png")));
-        if(change%2 == 0){
+        if (change % 2 == 0) {
             corps.setScaleX(1);
             change++;
-        }
-        else{
+        } else {
             corps.setScaleX(-1);
             change++;
         }
     }
 
+    /**
+     * Méthode qui permet de faire bouger le personnage vers le Haut
+     */
     public void directionHaut() {
         //    *****
         //   *  |  *
@@ -97,23 +113,25 @@ public class Mario extends Group {
         //   *     *
         //    *****
         if (getLayoutY() >= LARGEUR_PERSONNAGE) {
-            setLayoutY(getLayoutY() - LARGEUR_PERSONNAGE-1);
+            setLayoutY(getLayoutY() - LARGEUR_PERSONNAGE - 1);
         }
         if (!direction.equals("haut")) {
             direction = "haut";
         }
         corps.setFill(new ImagePattern(new Image("mario-climb.png")));
-        if(change%2 == 0){
+        if (change % 2 == 0) {
             corps.setScaleX(1);
             change++;
-        }
-        else{
+        } else {
             corps.setScaleX(-1);
             change++;
         }
 
     }
 
+    /**
+     * Méthode qui permet de faire sauter le personnage
+     */
     public void jump() {
         //    *****
         //   *  |  *
@@ -126,7 +144,7 @@ public class Mario extends Group {
             double y = getLayoutY();
             System.out.println("y = " + y);
             for (int i = 0; i < 3; i++) {
-                setLayoutY(getLayoutY() - (0.5*LARGEUR_PERSONNAGE));
+                setLayoutY(getLayoutY() - (0.5 * LARGEUR_PERSONNAGE));
                 System.out.println("en train de jump");
             }
             System.out.println(getLayoutY());
@@ -135,75 +153,95 @@ public class Mario extends Group {
         corps.setFill(new ImagePattern(new Image("mario-walk1.png")));
     }
 
-    public void atterir(){
-        while(getLayoutY() < ySave){
-            setLayoutY(getLayoutY() + (0.5*LARGEUR_PERSONNAGE));
+    /**
+     * Méthode animation de faire atterir le personnage
+     */
+    public void atterir() {
+        while (getLayoutY() < ySave) {
+            setLayoutY(getLayoutY() + (0.5 * LARGEUR_PERSONNAGE));
         }
         this.estEnSaut = false;
         corps.setFill(new ImagePattern(new Image("mario-idle.png")));
     }
 
-    public void setYSave(double y){
+    public void setYSave(double y) {
         ySave = y;
     }
 
-    public double getYSave(){
+    public double getYSave() {
         return ySave;
     }
 
+    /**
+     * Méthode qui permet de savoir si le personnage est en collision avec une échelle
+     *
+     * @param echelles
+     * @return
+     */
     boolean collisionEchelle(ArrayList<Echelle> echelles) {
         boolean v = false;
-        for(Echelle e : echelles){
-            v = this.getBoundsInParent().contains(e.getBoundsInParent())
-                    || e.getBoundsInParent().contains(this.getBoundsInParent());
-            if(v){break;}
+        for (Echelle e : echelles) {
+            v = this.getBoundsInParent().contains(e.getBoundsInParent()) || e.getBoundsInParent().contains(this.getBoundsInParent());
+            if (v) {
+                break;
+            }
         }
         return v;
     }
 
-    public boolean estEn(ArrayList<ArrayList<Double>> tab){
-        for(ArrayList<Double> d : tab){
-            if((Double.compare(getLayoutX(), d.get(0)) == 0
-                    || Double.compare(getLayoutX(), d.get(0) + 10) == 0
-                    || Double.compare(getLayoutX(), d.get(0) + 5) == 0
-                    || Double.compare(getLayoutX(), d.get(0) - 5) == 0
-                    || Double.compare(getLayoutX(), d.get(0) - 10) == 0)
-                    && Double.compare(getLayoutY(), d.get(1)) == 0){
+    /**
+     * Méthode qui permet de savoir ou se trouve le personnage par rapport à une échelle
+     *
+     * @param tab
+     * @return
+     */
+    public boolean estEn(ArrayList<ArrayList<Double>> tab) {
+        for (ArrayList<Double> d : tab) {
+            if ((Double.compare(getLayoutX(), d.get(0)) == 0 || Double.compare(getLayoutX(), d.get(0) + 10) == 0 || Double.compare(getLayoutX(), d.get(0) + 5) == 0 || Double.compare(getLayoutX(), d.get(0) - 5) == 0 || Double.compare(getLayoutX(), d.get(0) - 10) == 0) && Double.compare(getLayoutY(), d.get(1)) == 0) {
                 return true;
             }
         }
         return false;
     }
 
-    public boolean estDansEchelle(ArrayList<ArrayList<Double>> tab){
-        for(ArrayList<Double> d : tab){
-            if((Double.compare(getLayoutX(), d.get(0)) == 0
-                    || Double.compare(getLayoutX(), d.get(0) + 5) == 0
-                    || Double.compare(getLayoutX(), d.get(0) + 10) == 0
-                    || Double.compare(getLayoutX(), d.get(0) - 5) == 0
-                    || Double.compare(getLayoutX(), d.get(0) - 10) == 0)//reste sur une lignée, ne sort pas sur le téco
-            && Double.compare(getLayoutY(), d.get(1)+77) < 0           //permet de passer par le bas même en étant sur la hitbox de l'échelle
-            && Double.compare(getLayoutY(), d.get(1)) > 0){            //pareil mais pour en haut (pour qu'il puisse sortir en gros)
+    /**
+     * Méthode qui permet de savoir si le personnage est sur une échelle
+     *
+     * @param tab
+     * @return
+     */
+    public boolean estDansEchelle(ArrayList<ArrayList<Double>> tab) {
+        for (ArrayList<Double> d : tab) {
+            if ((Double.compare(getLayoutX(), d.get(0)) == 0 || Double.compare(getLayoutX(), d.get(0) + 5) == 0 || Double.compare(getLayoutX(), d.get(0) + 10) == 0 || Double.compare(getLayoutX(), d.get(0) - 5) == 0 || Double.compare(getLayoutX(), d.get(0) - 10) == 0)//reste sur une lignée, ne sort pas sur le téco
+                    && Double.compare(getLayoutY(), d.get(1) + 77) < 0           //permet de passer par le bas même en étant sur la hitbox de l'échelle
+                    && Double.compare(getLayoutY(), d.get(1)) > 0) {            //pareil mais pour en haut (pour qu'il puisse sortir en gros)
                 return true;
             }
         }
         return false;
     }
 
-    public boolean estDansBasEchelle(ArrayList<ArrayList<Double>> tab){
-        for(ArrayList<Double> d : tab){
-            if((Double.compare(getLayoutY(), d.get(1)+77) == 0) &&                      //77 = getLayout(Y) - Y de coordonnéesEchelles
-                    (((Double.compare(getLayoutX(), d.get(0)) == 0))
-                            ||(Double.compare(getLayoutX(), d.get(0)+10) == 0)
-                            ||(Double.compare(getLayoutX(), d.get(0)+5) == 0)
-                            ||(Double.compare(getLayoutX(), d.get(0)-5) == 0)
-                            ||(Double.compare(getLayoutX(), d.get(0)-10) == 0))){       //permet de pas aller + bas que l'échelle
+    /**
+     * Méthode qui permet de savoir si le personnage est en bas de l'échelle
+     *
+     * @param tab
+     * @return
+     */
+    public boolean estDansBasEchelle(ArrayList<ArrayList<Double>> tab) {
+        for (ArrayList<Double> d : tab) {
+            if ((Double.compare(getLayoutY(), d.get(1) + 77) == 0) &&                      //77 = getLayout(Y) - Y de coordonnéesEchelles
+                    (((Double.compare(getLayoutX(), d.get(0)) == 0)) || (Double.compare(getLayoutX(), d.get(0) + 10) == 0) || (Double.compare(getLayoutX(), d.get(0) + 5) == 0) || (Double.compare(getLayoutX(), d.get(0) - 5) == 0) || (Double.compare(getLayoutX(), d.get(0) - 10) == 0))) {       //permet de pas aller + bas que l'échelle
                 return true;
             }
         }
         return false;
     }
 
+    /**
+     * Méthode qui permet de savoir si le personnage est en saut
+     *
+     * @return
+     */
     public boolean isEstEnSaut() {
         return estEnSaut;
     }
