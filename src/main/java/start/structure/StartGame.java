@@ -123,8 +123,11 @@ public class StartGame extends Application {
         tonneaux.add(tonneau3);
         tonneaux.add(tonneau4);
         tonneaux.add(tonneau5);
+        tonneau1.moveTonneaux(coordonneesEchelles, dk);
+        tonneau1.setLayoutY(160);
+        dk.lance(tonneau1);
         final IntegerProperty i = new SimpleIntegerProperty(0);
-        final int[] x = {0};
+        final int[] x = {1};
         Timeline timeline = new Timeline(
                 new KeyFrame(
                         Duration.seconds(6),
