@@ -54,7 +54,7 @@ public class StartGame extends Application {
         Tonneaux tonneau3 = new Tonneaux(20, -10, 20, 20);
         Tonneaux tonneau4 = new Tonneaux(20, -10, 20, 20);
         Tonneaux tonneau5 = new Tonneaux(20, -10, 20, 20);
-        tonneau1.setLayoutY(160);
+        tonneau1.setLayoutY(-30);
         tonneau2.setLayoutY(-30);
         tonneau3.setLayoutY(-30);
         tonneau4.setLayoutY(-30);
@@ -117,7 +117,6 @@ public class StartGame extends Application {
         coordonneesEchelles.add(coordonneesEchelle5);
 
         // Tonneaux (faudra penser à essayer de le foutre dans la classe Tonneaux nan ?)
-        tonneau1.moveTonneaux(coordonneesEchelles, dk);
         ArrayList<Tonneaux> tonneaux = new ArrayList<>();
         tonneaux.add(tonneau1);
         tonneaux.add(tonneau2);
@@ -125,18 +124,24 @@ public class StartGame extends Application {
         tonneaux.add(tonneau4);
         tonneaux.add(tonneau5);
         final IntegerProperty i = new SimpleIntegerProperty(0);
-        final int[] x = {1};
+        final int[] x = {0};
         Timeline timeline = new Timeline(
                 new KeyFrame(
                         Duration.seconds(6),
                         event -> {
                             i.set(i.get() + 1);
-                            tonneaux.get(x[0]).moveTonneaux(coordonneesEchelles, dk);
-                            tonneaux.get(x[0]).setLayoutY(160);
-                            dk.lance(tonneaux.get(x[0]));
-                            if(x[0] < 4){
+                            if(x[0] < 5){
+                                tonneaux.get(x[0]).moveTonneaux(coordonneesEchelles, dk);
+                                tonneaux.get(x[0]).setLayoutY(160);
+                                dk.lance(tonneaux.get(x[0]));
+                                System.out.println("dedans");
                                 x[0]++;
                             }
+                            else{
+                                System.out.println("plus dedans");
+
+                            }
+
                         }
                 )
         );

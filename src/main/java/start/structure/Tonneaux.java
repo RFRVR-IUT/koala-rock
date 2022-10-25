@@ -79,11 +79,13 @@ public class Tonneaux extends Group {
      * @param dk
      */
     public void moveTonneaux(ArrayList<ArrayList<Double>> coordonneesEchelles, DonkeyKong dk) {
+
         ArrayList<Double> coordonneesEchelle1 = new ArrayList<>();
         // coordonneesEchelle1.add(76.0);
         // coordonneesEchelle1.add(246.0);
         PauseTransition pause = new PauseTransition();
-        pause.setDuration(javafx.util.Duration.seconds(0.005));
+        pause.setDuration(javafx.util.Duration.seconds(0.01));
+        pause.play();
         pause.setOnFinished(event -> {
             double chanceTonneauxEchelle = Math.random();
             if ((this.collisionEchelleTonneau(coordonneesEchelles)) && (chanceTonneauxEchelle < 0.5)) {
@@ -118,7 +120,6 @@ public class Tonneaux extends Group {
                 pause.play();
             }
         });
-        pause.play();
     }
 
 
