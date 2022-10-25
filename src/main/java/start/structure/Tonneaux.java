@@ -1,5 +1,6 @@
 package start.structure;
 
+import javafx.animation.PauseTransition;
 import javafx.scene.Group;
 import javafx.scene.image.Image;
 import javafx.scene.paint.ImagePattern;
@@ -71,6 +72,55 @@ public class Tonneaux extends Group {
         }
         return false;
     }
+
+    /**
+     * Méthode qui permet le mouvement des tonneaux
+     * @param coordonneesEchelles
+     * @param dk
+     */
+    public void moveTonneaux(ArrayList<ArrayList<Double>> coordonneesEchelles, DonkeyKong dk) {
+        ArrayList<Double> coordonneesEchelle1 = new ArrayList<>();
+        // coordonneesEchelle1.add(76.0);
+        // coordonneesEchelle1.add(246.0);
+        PauseTransition pause = new PauseTransition();
+        pause.setDuration(javafx.util.Duration.seconds(0.005));
+        pause.setOnFinished(event -> {
+            double chanceTonneauxEchelle = Math.random();
+            if ((this.collisionEchelleTonneau(coordonneesEchelles)) && (chanceTonneauxEchelle < 0.5)) {
+                this.directionBas();
+                pause.play();
+
+            }
+            // quand le tonneau est en bas de l'échelle -> On relance le tonneau.
+            if (this.getLayoutX() == 70.0 && this.getLayoutY() == 556.0) {
+                dk.lance(this);
+            }
+
+            if (this.getLayoutX() < -30.0 && this.getLayoutY() == 556.0) {
+                this.setLayoutY(170.0);
+                this.setLayoutX(120.0);
+                moveTonneaux(coordonneesEchelles, dk);
+            } else if ((this.getLayoutX() < 530.0 && this.getLayoutY() == 170.0) // étage 1 (haut -> bas)
+                    || (this.getLayoutX() < 530.0 && this.getLayoutY() == 324.0) // étage 3
+                    || (this.getLayoutX() < 530.0 && this.getLayoutY() == 478.0)) { // étage 5
+                if (this.getLayoutX() < 640) {
+                    this.directionDroite(640);
+                    pause.play();
+                }
+            } else if ((this.getLayoutX() > 0.0 && this.getLayoutY() == 248.0) // étage 2
+                    || (this.getLayoutX() > 0.0 && this.getLayoutY() == 402.0) // étage 4
+                    || (this.getLayoutX() > -40.0 && this.getLayoutY() == 556.0)) { // étage 6
+                this.directionGauche();
+                pause.play();
+            } else {
+                //System.out.println(tonneaux.getLayoutY());
+                this.directionBas();
+                pause.play();
+            }
+        });
+        pause.play();
+    }
+
 
     public void tombe() {
 

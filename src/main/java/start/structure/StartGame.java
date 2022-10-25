@@ -1,12 +1,18 @@
 package start.structure;
 
+import javafx.animation.Animation;
+import javafx.animation.KeyFrame;
 import javafx.animation.PauseTransition;
+import javafx.animation.Timeline;
 import javafx.application.Application;
+import javafx.beans.property.IntegerProperty;
+import javafx.beans.property.SimpleIntegerProperty;
 import javafx.scene.Scene;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
+import javafx.util.Duration;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -44,7 +50,15 @@ public class StartGame extends Application {
         DonkeyKong dk = new DonkeyKong(60, 80, 100, 100);
         Fond fond = new Fond(0, 0, 600, 600);
         Tonneaux tonneau1 = new Tonneaux(20, -10, 20, 20);
+        Tonneaux tonneau2 = new Tonneaux(20, -10, 20, 20);
+        Tonneaux tonneau3 = new Tonneaux(20, -10, 20, 20);
+        Tonneaux tonneau4 = new Tonneaux(20, -10, 20, 20);
+        Tonneaux tonneau5 = new Tonneaux(20, -10, 20, 20);
         tonneau1.setLayoutY(160);
+        tonneau2.setLayoutY(-30);
+        tonneau3.setLayoutY(-30);
+        tonneau4.setLayoutY(-30);
+        tonneau5.setLayoutY(-30);
         // décompte du temps
         // Tonneaux tonneau2 = new Tonneaux(20, 160, 20, 20);
 
@@ -65,6 +79,10 @@ public class StartGame extends Application {
         jeu.getChildren().add(mario);
         jeu.getChildren().add(dk);
         jeu.getChildren().add(tonneau1);
+        jeu.getChildren().add(tonneau2);
+        jeu.getChildren().add(tonneau3);
+        jeu.getChildren().add(tonneau4);
+        jeu.getChildren().add(tonneau5);
 
         System.out.println(echelle1.getLayoutX());
 
@@ -99,7 +117,31 @@ public class StartGame extends Application {
         coordonneesEchelles.add(coordonneesEchelle5);
 
         // Tonneaux (faudra penser à essayer de le foutre dans la classe Tonneaux nan ?)
-        moveTonneaux(tonneau1, coordonneesEchelles, dk);
+        tonneau1.moveTonneaux(coordonneesEchelles, dk);
+        ArrayList<Tonneaux> tonneaux = new ArrayList<>();
+        tonneaux.add(tonneau1);
+        tonneaux.add(tonneau2);
+        tonneaux.add(tonneau3);
+        tonneaux.add(tonneau4);
+        tonneaux.add(tonneau5);
+        final IntegerProperty i = new SimpleIntegerProperty(0);
+        final int[] x = {1};
+        Timeline timeline = new Timeline(
+                new KeyFrame(
+                        Duration.seconds(6),
+                        event -> {
+                            i.set(i.get() + 1);
+                            tonneaux.get(x[0]).moveTonneaux(coordonneesEchelles, dk);
+                            tonneaux.get(x[0]).setLayoutY(160);
+                            dk.lance(tonneaux.get(x[0]));
+                            if(x[0] < 4){
+                                x[0]++;
+                            }
+                        }
+                )
+        );
+        timeline.setCycleCount(Animation.INDEFINITE);
+        timeline.play();
 
         //lance(tonneau1, dk);
 
@@ -154,54 +196,6 @@ public class StartGame extends Application {
         });
     }
 
-    /**
-     * Méthode qui permet le mouvement des tonneaux
-     * @param tonneaux
-     * @param coordonneesEchelles
-     * @param dk
-     */
-    private void moveTonneaux(Tonneaux tonneaux, ArrayList<ArrayList<Double>> coordonneesEchelles, DonkeyKong dk) {
-        ArrayList<Double> coordonneesEchelle1 = new ArrayList<>();
-        // coordonneesEchelle1.add(76.0);
-        // coordonneesEchelle1.add(246.0);
-        PauseTransition pause = new PauseTransition();
-        pause.setDuration(javafx.util.Duration.seconds(0.005));
-        pause.setOnFinished(event -> {
-            double chanceTonneauxEchelle = Math.random();
-            if ((tonneaux.collisionEchelleTonneau(coordonneesEchelles)) && (chanceTonneauxEchelle < 0.5)) {
-                tonneaux.directionBas();
-                pause.play();
-
-            }
-            // quand le tonneau est en bas de l'échelle -> On relance le tonneau.
-            if (tonneaux.getLayoutX() == 70.0 && tonneaux.getLayoutY() == 556.0) {
-                dk.lance(tonneaux);
-            }
-
-            if (tonneaux.getLayoutX() < -30.0 && tonneaux.getLayoutY() == 556.0) {
-                tonneaux.setLayoutY(170.0);
-                tonneaux.setLayoutX(120.0);
-                moveTonneaux(tonneaux, coordonneesEchelles, dk);
-            } else if ((tonneaux.getLayoutX() < 530.0 && tonneaux.getLayoutY() == 170.0) // étage 1 (haut -> bas)
-                    || (tonneaux.getLayoutX() < 530.0 && tonneaux.getLayoutY() == 324.0) // étage 3
-                    || (tonneaux.getLayoutX() < 530.0 && tonneaux.getLayoutY() == 478.0)) { // étage 5
-                if (tonneaux.getLayoutX() < 640) {
-                    tonneaux.directionDroite(640);
-                    pause.play();
-                }
-            } else if ((tonneaux.getLayoutX() > 0.0 && tonneaux.getLayoutY() == 248.0) // étage 2
-                    || (tonneaux.getLayoutX() > 0.0 && tonneaux.getLayoutY() == 402.0) // étage 4
-                    || (tonneaux.getLayoutX() > -40.0 && tonneaux.getLayoutY() == 556.0)) { // étage 6
-                tonneaux.directionGauche();
-                pause.play();
-            } else {
-                //System.out.println(tonneaux.getLayoutY());
-                tonneaux.directionBas();
-                pause.play();
-            }
-        });
-        pause.play();
-    }
 
 
     public static void main(String[] args) {
