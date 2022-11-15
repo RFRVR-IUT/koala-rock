@@ -13,6 +13,7 @@ public class EchelleBroken extends Group {
 
     /**
      * Constructeur de la classe EchelleBroken
+     * 
      * @param x
      * @param y
      * @param width

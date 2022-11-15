@@ -37,14 +37,14 @@ public class Mario extends Group {
      * Méthode qui permet de faire bouger le personnage vers la Gauche
      */
     public void directionGauche() {
-        //    ****
-        //   *    *
-        //  *---   *
-        //   *    *
-        //    ****
+        // ****
+        // * *
+        // *--- *
+        // * *
+        // ****
 
         // déplacement <----
-        if (getLayoutX() >= LARGEUR_PERSONNAGE) {
+        if (getLayoutX() > -20) {
             setLayoutX(getLayoutX() - LARGEUR_MOITIE_PERSONNAGE);
         }
         if (!direction.equals("gauche")) {
@@ -60,13 +60,13 @@ public class Mario extends Group {
      * @param largeurJeu
      */
     public void directionDroite(double largeurJeu) {
-        //    ****
-        //   *    *
-        //  *   ---*
-        //   *    *
-        //    ****
+        // ****
+        // * *
+        // * ---*
+        // * *
+        // ****
         // déplacement ---->
-        if (getLayoutX() < largeurJeu - LARGEUR_PERSONNAGE) {
+        if (getLayoutX() < 550.0) {
             setLayoutX(getLayoutX() + LARGEUR_MOITIE_PERSONNAGE);
         }
         if (!direction.equals("droite")) {
@@ -82,11 +82,11 @@ public class Mario extends Group {
      * @param hauteurJeu
      */
     public void directionBas(double hauteurJeu) {
-        //    *****
-        //   *     *
-        //  *   |   *
-        //   *  |  *
-        //    *****
+        // *****
+        // * *
+        // * | *
+        // * | *
+        // *****
         if (getLayoutY() < hauteurJeu - LARGEUR_PERSONNAGE) {
             setLayoutY(getLayoutY() + LARGEUR_PERSONNAGE + 1);
         }
@@ -133,11 +133,11 @@ public class Mario extends Group {
      * Méthode qui permet de faire sauter le personnage
      */
     public void jump() {
-        //    *****
-        //   *  |  *
-        //  *   |   *
-        //   *     *
-        //    *****
+        // *****
+        // * | *
+        // * | *
+        // * *
+        // *****
         ySave = getLayoutY();
         if (getLayoutY() >= LARGEUR_PERSONNAGE) {
             // making jump
@@ -284,7 +284,6 @@ public class Mario extends Group {
     public boolean isEstEnSaut() {
         return estEnSaut;
     }
-
 
     public void tomberEtage() {
         double[] étagesDroiteVide = { 468.0, 314.0, 160.0 };
