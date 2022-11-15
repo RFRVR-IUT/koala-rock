@@ -185,6 +185,7 @@ public class Mario extends Group {
             v = this.getBoundsInParent().contains(e.getBoundsInParent())
                     || e.getBoundsInParent().contains(this.getBoundsInParent());
             if (v) {
+                System.out.println("collide");
                 break;
             }
         }
@@ -196,18 +197,16 @@ public class Mario extends Group {
      * échelle
      *
      * @param tab
-     * @param val -> sert à définir la valeur que ne doit pas dépasser Mario. Si val
-     *            = 0, alors c'est une échelle normale. Sinon, c'est une échelle
-     *            cassée (il ne peut pas monter à partir du milieu de celle-ci)
      * @return
      */
-    public boolean estEn(ArrayList<ArrayList<Double>> tab, int val) {
+    public boolean estEn(ArrayList<ArrayList<Double>> tab) {
         for (ArrayList<Double> d : tab) {
+            System.out.println(d.toString());
             if ((Double.compare(getLayoutX(), d.get(0)) == 0 || Double.compare(getLayoutX(), d.get(0) + 10) == 0
                     || Double.compare(getLayoutX(), d.get(0) + 5) == 0
                     || Double.compare(getLayoutX(), d.get(0) - 5) == 0
                     || Double.compare(getLayoutX(), d.get(0) - 10) == 0)
-                    && Double.compare(getLayoutY(), d.get(1) + val) <= 0) {
+                    && Double.compare(getLayoutY(), d.get(1)) == 0) {
                 return true;
             }
         }
@@ -276,6 +275,20 @@ public class Mario extends Group {
         return v;
     }
 
+    public boolean estEnBroken(ArrayList<ArrayList<Double>> tab) {
+        for (ArrayList<Double> d : tab) {
+            System.out.println(d.toString());
+            if ((Double.compare(getLayoutX(), d.get(0)) == 0 || Double.compare(getLayoutX(), d.get(0) + 10) == 0
+                    || Double.compare(getLayoutX(), d.get(0) + 5) == 0
+                    || Double.compare(getLayoutX(), d.get(0) - 5) == 0
+                    || Double.compare(getLayoutX(), d.get(0) - 10) == 0)
+                    && Double.compare(getLayoutY(), d.get(1) + 60) <= 0) {
+                return true;
+            }
+        }
+        return false;
+    }
+
     /**
      * Méthode qui permet de savoir si le personnage est en saut
      *
@@ -288,7 +301,8 @@ public class Mario extends Group {
     public void tomberEtage() {
         double[] étagesDroiteVide = { 468.0, 314.0, 160.0 };
         double[] étagesGaucheVide = { 391.0, 237.0 };
-        if (this.getLayoutX() == 525.0) { // étage 1 & 3 & 5
+
+        if (this.getLayoutX() >= 525.0) { // étage 1 & 3 & 5
             for (double d : étagesDroiteVide) {
                 if (this.getLayoutY() == d) {
                     for (int i = 0; i < 77; i++) {

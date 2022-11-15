@@ -27,7 +27,7 @@ public class StartGame extends Application {
 
     /**
      * Starter du jeu
-     * 
+     *
      * @param stage
      * @throws IOException
      * @throws InterruptedException
@@ -178,7 +178,7 @@ public class StartGame extends Application {
 
     /**
      * Méthode qui permet le mouvement de Mario
-     * 
+     *
      * @param mario
      * @param echelles
      * @param echellesBrokens
@@ -192,10 +192,11 @@ public class StartGame extends Application {
                 case UP:
                     System.out.println("X : " + mario.getLayoutX());
                     System.out.println("Y : " + mario.getLayoutY() + "\n");
-                    if (mario.collisionEchelle(echelles) && !(mario.estEn(coordonneesEchelles, 0))) {
+                    if (mario.collisionEchelle(echelles) && !(mario.estEn(coordonneesEchelles))) {
+                        System.out.println("JSUIS LAAAA");
                         mario.directionHaut();
-                    } else if (mario.collisionEchelleBroken(echellesBrokens)
-                            && !(mario.estEn(coordonneesEchelles, 60))) {
+                    } if (mario.collisionEchelleBroken(echellesBrokens)
+                            && !(mario.estEnBroken(coordonneesEchelles))) {
                         mario.directionHaut();
                     }
                     break;
@@ -212,7 +213,7 @@ public class StartGame extends Application {
                 case DOWN:
                     if (mario.collisionEchelle(echelles) && !(mario.estDansBasEchelle(coordonneesEchelles))) {
                         mario.directionBas(s.getHeight());
-                    } else if (mario.collisionEchelleBroken(echellesBrokens)
+                    } if (mario.collisionEchelleBroken(echellesBrokens)
                             && !(mario.estDansBasEchelle(coordonneesEchelles))) {
                         mario.directionBas(s.getHeight());
                     }

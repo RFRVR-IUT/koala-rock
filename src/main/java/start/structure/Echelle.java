@@ -24,7 +24,7 @@ public class Echelle extends Group {
         this.collision = new Rectangle(x - 10, y - 35, (width + 20), (height + 35));
         collision.setFill(Paint.valueOf("red"));
         echelle.setFill(new ImagePattern(new Image("echelle.png")));
-        collision.setOpacity(0);
+        collision.setOpacity(0.5);
         this.getChildren().add(echelle);
         this.getChildren().add(collision);
     }
