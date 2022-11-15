@@ -10,7 +10,6 @@ public class Echelle extends Group {
 
     private Rectangle echelle;
     private final Rectangle collision;
-    private final int num;
 
     /**
      * Constructeur de la classe Echelle
@@ -18,15 +17,13 @@ public class Echelle extends Group {
      * @param y
      * @param width
      * @param height
-     * @param num
      */
-    public Echelle(int x, int y, int width, int height, int num) {
+    public Echelle(int x, int y, int width, int height) {
         this.echelle = new Rectangle(x, y, width, height);
         this.collision = new Rectangle(x - 10, y - 35, (width + 20), (height + 35));
         collision.setFill(Paint.valueOf("red"));
         echelle.setFill(new ImagePattern(new Image("echelle.png")));
         collision.setOpacity(0);
-        this.num = num;
         this.getChildren().add(echelle);
         this.getChildren().add(collision);
     }
@@ -39,9 +36,6 @@ public class Echelle extends Group {
         this.echelle = echelle;
     }
 
-    public int getNum() {
-        return num;
-    }
     public static int getLargeurCollision() {
         return 15;
     }

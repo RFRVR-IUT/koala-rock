@@ -38,11 +38,11 @@ public class StartGame extends Application {
 
         BorderPane root = new BorderPane();
         Mario mario = new Mario(20, -10, 30, 30);
-        Echelle echelle1 = new Echelle(400, 485, 25, 80, 0);
-        Echelle echelle2 = new Echelle(200, 408, 25, 80, 0);
-        Echelle echelle3 = new Echelle(500, 331, 25, 80, 0);
-        Echelle echelle4 = new Echelle(100, 255, 25, 80, 0);
-        Echelle echelle5 = new Echelle(500, 177, 25, 80, 0);
+        Echelle echelle1 = new Echelle(400, 485, 25, 80);
+        Echelle echelle2 = new Echelle(200, 408, 25, 80);
+        Echelle echelle3 = new Echelle(500, 331, 25, 80);
+        Echelle echelle4 = new Echelle(100, 255, 25, 80);
+        Echelle echelle5 = new Echelle(500, 177, 25, 80);
 
         EchelleBroken eb1 = new EchelleBroken(300, 331, 25, 80);
         EchelleBroken eb2 = new EchelleBroken(240, 177, 25, 80);
@@ -86,6 +86,7 @@ public class StartGame extends Application {
 
         System.out.println(echelle1.getLayoutX());
 
+        ////////////////////////Echelle
         // Attribution des coordonnées etc des échelles
         ArrayList<Echelle> echelles = new ArrayList<>();
         echelles.add(echelle1);
@@ -115,6 +116,24 @@ public class StartGame extends Application {
         coordonneesEchelles.add(coordonneesEchelle3);
         coordonneesEchelles.add(coordonneesEchelle4);
         coordonneesEchelles.add(coordonneesEchelle5);
+
+
+        ////////////////////////EchelleBroken
+        ArrayList<EchelleBroken> echellesBrokens = new ArrayList<>();
+        echellesBrokens.add(eb1);
+        echellesBrokens.add(eb2);
+
+        ArrayList<Double> coordonneesEchelleBroken1 = new ArrayList<>();
+        coordonneesEchelleBroken1.add(275.0);
+        coordonneesEchelleBroken1.add(314.0);
+        ArrayList<Double> coordonneesEchelleBroken2 = new ArrayList<>();
+        coordonneesEchelleBroken2.add(220.0);
+        coordonneesEchelleBroken2.add(160.0);
+
+        coordonneesEchelles.add(coordonneesEchelleBroken1);
+        coordonneesEchelles.add(coordonneesEchelleBroken2);
+
+        ////////////////////////////////////////////////
 
         // Tonneaux (faudra penser à essayer de le foutre dans la classe Tonneaux nan ?)
         ArrayList<Tonneaux> tonneaux = new ArrayList<>();
@@ -155,7 +174,7 @@ public class StartGame extends Application {
 
         root.setCenter(jeu);
         s = new Scene(root);
-        move(mario, echelles, coordonneesEchelles);
+        move(mario, echelles, echellesBrokens, coordonneesEchelles);
         stage.setScene(s);
         stage.show();
     }
@@ -164,15 +183,19 @@ public class StartGame extends Application {
      * Méthode qui permet le mouvement de Mario
      * @param mario
      * @param echelles
+     * @param echellesBrokens
      * @param coordonneesEchelles
      */
-    private void move(Mario mario, ArrayList<Echelle> echelles, ArrayList<ArrayList<Double>> coordonneesEchelles) {
+    private void move(Mario mario, ArrayList<Echelle> echelles, ArrayList<EchelleBroken> echellesBrokens, ArrayList<ArrayList<Double>> coordonneesEchelles) {
         s.setOnKeyPressed((KeyEvent event) -> {
             switch (event.getCode()) {
                 case UP:
                     System.out.println("X : " + mario.getLayoutX());
                     System.out.println("Y : " + mario.getLayoutY() + "\n");
-                    if (mario.collisionEchelle(echelles) && !(mario.estEn(coordonneesEchelles))) {
+                    if (mario.collisionEchelle(echelles) && !(mario.estEn(coordonneesEchelles,0))) {
+                        mario.directionHaut();
+                    }
+                    else if(mario.collisionEchelleBroken(echellesBrokens) && !(mario.estEn(coordonneesEchelles, 60))){
                         mario.directionHaut();
                     }
                     break;
@@ -188,6 +211,9 @@ public class StartGame extends Application {
                     break;
                 case DOWN:
                     if (mario.collisionEchelle(echelles) && !(mario.estDansBasEchelle(coordonneesEchelles))) {
+                        mario.directionBas(s.getHeight());
+                    }
+                    else if(mario.collisionEchelleBroken(echellesBrokens) && !(mario.estDansBasEchelle(coordonneesEchelles))){
                         mario.directionBas(s.getHeight());
                     }
                     break;

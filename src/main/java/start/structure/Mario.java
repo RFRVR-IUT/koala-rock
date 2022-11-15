@@ -193,11 +193,12 @@ public class Mario extends Group {
      * Méthode qui permet de savoir ou se trouve le personnage par rapport à une échelle
      *
      * @param tab
+     * @param val -> sert à définir la valeur que ne doit pas dépasser Mario. Si val = 0, alors c'est une échelle normale. Sinon, c'est une échelle cassée (il ne peut pas monter à partir du milieu de celle-ci)
      * @return
      */
-    public boolean estEn(ArrayList<ArrayList<Double>> tab) {
+    public boolean estEn(ArrayList<ArrayList<Double>> tab, int val) {
         for (ArrayList<Double> d : tab) {
-            if ((Double.compare(getLayoutX(), d.get(0)) == 0 || Double.compare(getLayoutX(), d.get(0) + 10) == 0 || Double.compare(getLayoutX(), d.get(0) + 5) == 0 || Double.compare(getLayoutX(), d.get(0) - 5) == 0 || Double.compare(getLayoutX(), d.get(0) - 10) == 0) && Double.compare(getLayoutY(), d.get(1)) == 0) {
+            if ((Double.compare(getLayoutX(), d.get(0)) == 0 || Double.compare(getLayoutX(), d.get(0) + 10) == 0 || Double.compare(getLayoutX(), d.get(0) + 5) == 0 || Double.compare(getLayoutX(), d.get(0) - 5) == 0 || Double.compare(getLayoutX(), d.get(0) - 10) == 0) && Double.compare(getLayoutY(), d.get(1) + val) <= 0) {
                 return true;
             }
         }
@@ -235,6 +236,24 @@ public class Mario extends Group {
             }
         }
         return false;
+    }
+
+
+    /**
+     * Méthode qui permet de savoir si le personnage est en collision avec une échelle cassée
+     *
+     * @param echelles
+     * @return
+     */
+    boolean collisionEchelleBroken(ArrayList<EchelleBroken> echelles) {
+        boolean v = false;
+        for (EchelleBroken eb : echelles) {
+            v = this.getBoundsInParent().contains(eb.getBoundsInParent()) || eb.getBoundsInParent().contains(this.getBoundsInParent());
+            if (v) {
+                break;
+            }
+        }
+        return v;
     }
 
     /**
