@@ -22,6 +22,7 @@ public class Tonneaux extends Group {
 
     /**
      * Constructeur de la classe Tonneaux
+     * 
      * @param x
      * @param y
      * @param width
@@ -37,6 +38,7 @@ public class Tonneaux extends Group {
 
     /**
      * Méthode qui permet tonneaux direction Droite
+     * 
      * @param largeurJeu
      */
     public void directionDroite(double largeurJeu) {
@@ -59,6 +61,7 @@ public class Tonneaux extends Group {
 
     /**
      * Méthode qui permet la collision echelle avec tonneaux
+     * 
      * @param coordonneesEchelles
      * @return
      */
@@ -81,12 +84,12 @@ public class Tonneaux extends Group {
 
     /**
      * Méthode qui permet le mouvement des tonneaux
+     * 
      * @param coordonneesEchelles
      * @param dk
      */
     public void moveTonneaux(ArrayList<ArrayList<Double>> coordonneesEchelles, DonkeyKong dk) {
 
-        ArrayList<Double> coordonneesEchelle1 = new ArrayList<>();
         // coordonneesEchelle1.add(76.0);
         // coordonneesEchelle1.add(246.0);
         PauseTransition pause = new PauseTransition();
@@ -121,15 +124,10 @@ public class Tonneaux extends Group {
                 this.directionGauche();
                 pause.play();
             } else {
-                //System.out.println(tonneaux.getLayoutY());
+                // System.out.println(tonneaux.getLayoutY());
                 this.directionBas();
                 pause.play();
             }
         });
-    }
-
-
-    public void tombe() {
-
     }
 }

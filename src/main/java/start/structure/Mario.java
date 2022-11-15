@@ -26,7 +26,7 @@ public class Mario extends Group {
      */
     public Mario(int x, int y, int width, int height) {
         corps = new Rectangle(x, y, width, height);
-        //corps.setFill(Paint.valueOf("red"));
+        // corps.setFill(Paint.valueOf("red"));
         corps.setFill(new ImagePattern(new Image("mario-idle.png")));
 
         this.getChildren().add(corps);
@@ -43,7 +43,7 @@ public class Mario extends Group {
         //   *    *
         //    ****
 
-        //déplacement <----
+        // déplacement <----
         if (getLayoutX() >= LARGEUR_PERSONNAGE) {
             setLayoutX(getLayoutX() - LARGEUR_MOITIE_PERSONNAGE);
         }
@@ -65,7 +65,7 @@ public class Mario extends Group {
         //  *   ---*
         //   *    *
         //    ****
-        //déplacement ---->
+        // déplacement ---->
         if (getLayoutX() < largeurJeu - LARGEUR_PERSONNAGE) {
             setLayoutX(getLayoutX() + LARGEUR_MOITIE_PERSONNAGE);
         }
@@ -107,11 +107,11 @@ public class Mario extends Group {
      * Méthode qui permet de faire bouger le personnage vers le Haut
      */
     public void directionHaut() {
-        //    *****
-        //   *  |  *
-        //  *   |   *
-        //   *     *
-        //    *****
+        // *****
+        // * | *
+        // * | *
+        // * *
+        // *****
         if (getLayoutY() >= LARGEUR_PERSONNAGE) {
             setLayoutY(getLayoutY() - LARGEUR_PERSONNAGE - 1);
         }
@@ -140,7 +140,7 @@ public class Mario extends Group {
         //    *****
         ySave = getLayoutY();
         if (getLayoutY() >= LARGEUR_PERSONNAGE) {
-            //making jump
+            // making jump
             double y = getLayoutY();
             System.out.println("y = " + y);
             for (int i = 0; i < 3; i++) {
@@ -173,7 +173,8 @@ public class Mario extends Group {
     }
 
     /**
-     * Méthode qui permet de savoir si le personnage est en collision avec une échelle
+     * Méthode qui permet de savoir si le personnage est en collision avec une
+     * échelle
      *
      * @param echelles
      * @return
@@ -181,7 +182,8 @@ public class Mario extends Group {
     boolean collisionEchelle(ArrayList<Echelle> echelles) {
         boolean v = false;
         for (Echelle e : echelles) {
-            v = this.getBoundsInParent().contains(e.getBoundsInParent()) || e.getBoundsInParent().contains(this.getBoundsInParent());
+            v = this.getBoundsInParent().contains(e.getBoundsInParent())
+                    || e.getBoundsInParent().contains(this.getBoundsInParent());
             if (v) {
                 break;
             }
@@ -190,15 +192,22 @@ public class Mario extends Group {
     }
 
     /**
-     * Méthode qui permet de savoir ou se trouve le personnage par rapport à une échelle
+     * Méthode qui permet de savoir ou se trouve le personnage par rapport à une
+     * échelle
      *
      * @param tab
-     * @param val -> sert à définir la valeur que ne doit pas dépasser Mario. Si val = 0, alors c'est une échelle normale. Sinon, c'est une échelle cassée (il ne peut pas monter à partir du milieu de celle-ci)
+     * @param val -> sert à définir la valeur que ne doit pas dépasser Mario. Si val
+     *            = 0, alors c'est une échelle normale. Sinon, c'est une échelle
+     *            cassée (il ne peut pas monter à partir du milieu de celle-ci)
      * @return
      */
     public boolean estEn(ArrayList<ArrayList<Double>> tab, int val) {
         for (ArrayList<Double> d : tab) {
-            if ((Double.compare(getLayoutX(), d.get(0)) == 0 || Double.compare(getLayoutX(), d.get(0) + 10) == 0 || Double.compare(getLayoutX(), d.get(0) + 5) == 0 || Double.compare(getLayoutX(), d.get(0) - 5) == 0 || Double.compare(getLayoutX(), d.get(0) - 10) == 0) && Double.compare(getLayoutY(), d.get(1) + val) <= 0) {
+            if ((Double.compare(getLayoutX(), d.get(0)) == 0 || Double.compare(getLayoutX(), d.get(0) + 10) == 0
+                    || Double.compare(getLayoutX(), d.get(0) + 5) == 0
+                    || Double.compare(getLayoutX(), d.get(0) - 5) == 0
+                    || Double.compare(getLayoutX(), d.get(0) - 10) == 0)
+                    && Double.compare(getLayoutY(), d.get(1) + val) <= 0) {
                 return true;
             }
         }
@@ -213,9 +222,14 @@ public class Mario extends Group {
      */
     public boolean estDansEchelle(ArrayList<ArrayList<Double>> tab) {
         for (ArrayList<Double> d : tab) {
-            if ((Double.compare(getLayoutX(), d.get(0)) == 0 || Double.compare(getLayoutX(), d.get(0) + 5) == 0 || Double.compare(getLayoutX(), d.get(0) + 10) == 0 || Double.compare(getLayoutX(), d.get(0) - 5) == 0 || Double.compare(getLayoutX(), d.get(0) - 10) == 0)//reste sur une lignée, ne sort pas sur le téco
-                    && Double.compare(getLayoutY(), d.get(1) + 77) < 0           //permet de passer par le bas même en étant sur la hitbox de l'échelle
-                    && Double.compare(getLayoutY(), d.get(1)) > 0) {            //pareil mais pour en haut (pour qu'il puisse sortir en gros)
+            if ((Double.compare(getLayoutX(), d.get(0)) == 0 || Double.compare(getLayoutX(), d.get(0) + 5) == 0
+                    || Double.compare(getLayoutX(), d.get(0) + 10) == 0
+                    || Double.compare(getLayoutX(), d.get(0) - 5) == 0
+                    || Double.compare(getLayoutX(), d.get(0) - 10) == 0)// reste sur une lignée, ne sort pas sur le téco
+                    && Double.compare(getLayoutY(), d.get(1) + 77) < 0 // permet de passer par le bas même en étant sur
+                                                                       // la hitbox de l'échelle
+                    && Double.compare(getLayoutY(), d.get(1)) > 0) { // pareil mais pour en haut (pour qu'il puisse
+                                                                     // sortir en gros)
                 return true;
             }
         }
@@ -230,17 +244,22 @@ public class Mario extends Group {
      */
     public boolean estDansBasEchelle(ArrayList<ArrayList<Double>> tab) {
         for (ArrayList<Double> d : tab) {
-            if ((Double.compare(getLayoutY(), d.get(1) + 77) == 0) &&                      //77 = getLayout(Y) - Y de coordonnéesEchelles
-                    (((Double.compare(getLayoutX(), d.get(0)) == 0)) || (Double.compare(getLayoutX(), d.get(0) + 10) == 0) || (Double.compare(getLayoutX(), d.get(0) + 5) == 0) || (Double.compare(getLayoutX(), d.get(0) - 5) == 0) || (Double.compare(getLayoutX(), d.get(0) - 10) == 0))) {       //permet de pas aller + bas que l'échelle
+            if ((Double.compare(getLayoutY(), d.get(1) + 77) == 0) && // 77 = getLayout(Y) - Y de coordonnéesEchelles
+                    (((Double.compare(getLayoutX(), d.get(0)) == 0))
+                            || (Double.compare(getLayoutX(), d.get(0) + 10) == 0)
+                            || (Double.compare(getLayoutX(), d.get(0) + 5) == 0)
+                            || (Double.compare(getLayoutX(), d.get(0) - 5) == 0)
+                            || (Double.compare(getLayoutX(), d.get(0) - 10) == 0))) { // permet de pas aller + bas que
+                                                                                      // l'échelle
                 return true;
             }
         }
         return false;
     }
 
-
     /**
-     * Méthode qui permet de savoir si le personnage est en collision avec une échelle cassée
+     * Méthode qui permet de savoir si le personnage est en collision avec une
+     * échelle cassée
      *
      * @param echelles
      * @return
@@ -248,7 +267,8 @@ public class Mario extends Group {
     boolean collisionEchelleBroken(ArrayList<EchelleBroken> echelles) {
         boolean v = false;
         for (EchelleBroken eb : echelles) {
-            v = this.getBoundsInParent().contains(eb.getBoundsInParent()) || eb.getBoundsInParent().contains(this.getBoundsInParent());
+            v = this.getBoundsInParent().contains(eb.getBoundsInParent())
+                    || eb.getBoundsInParent().contains(this.getBoundsInParent());
             if (v) {
                 break;
             }
@@ -263,5 +283,28 @@ public class Mario extends Group {
      */
     public boolean isEstEnSaut() {
         return estEnSaut;
+    }
+
+
+    public void tomberEtage() {
+        double[] étagesDroiteVide = { 468.0, 314.0, 160.0 };
+        double[] étagesGaucheVide = { 391.0, 237.0 };
+        if (this.getLayoutX() == 525.0) { // étage 1 & 3 & 5
+            for (double d : étagesDroiteVide) {
+                if (this.getLayoutY() == d) {
+                    for (int i = 0; i < 77; i++) {
+                        this.setLayoutY(this.getLayoutY() + 1);
+                    }
+                }
+            }
+        } else if (this.getLayoutX() == 0.0) { // étage 2 & 4
+            for (double d : étagesGaucheVide) {
+                if (this.getLayoutY() == d) {
+                    for (int i = 0; i < 77; i++) {
+                        this.setLayoutY(this.getLayoutY() + 1);
+                    }
+                }
+            }
+        }
     }
 }
