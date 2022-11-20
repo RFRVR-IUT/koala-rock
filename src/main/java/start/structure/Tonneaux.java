@@ -17,8 +17,11 @@ import java.util.ArrayList;
 
 public class Tonneaux extends Group {
     private final Rectangle corps;
+    private final Rectangle collision;
+    private final Rectangle collisionHaut;
     protected final static double LARGEUR_MOITIE_TONNEAUX = 5;
     protected final static double LARGEUR_TONNEAUX = LARGEUR_MOITIE_TONNEAUX * 2;
+    private boolean descendUneEchelle = false;
 
     /**
      * Constructeur de la classe Tonneaux
@@ -30,10 +33,34 @@ public class Tonneaux extends Group {
      */
     public Tonneaux(int x, int y, int width, int height) {
         corps = new Rectangle(x, y, width, height);
+        collision = new Rectangle(x, y, width, height);
+        collisionHaut = new Rectangle(x, y-30, width, height);
         corps.setFill(Paint.valueOf("brown"));
         corps.setFill(new ImagePattern(new Image("tonneau1.png")));
+        collision.setFill(Paint.valueOf("red"));
+        collisionHaut.setFill(Paint.valueOf("blue"));
+        collisionHaut.setOpacity(0.3);
+        collision.setOpacity(0.3);
 
         this.getChildren().add(corps);
+        this.getChildren().add(collision);
+        this.getChildren().add(collisionHaut);
+    }
+
+    public Rectangle getCollision() {
+        return collision;
+    }
+
+    public Rectangle getCollisionHaut() {
+        return collisionHaut;
+    }
+
+    public boolean getDescendUneEchelle() {
+        return descendUneEchelle;
+    }
+
+    public void setDescendUneEchelle(boolean descendUneEchelle) {
+        this.descendUneEchelle = descendUneEchelle;
     }
 
     /**
@@ -58,6 +85,7 @@ public class Tonneaux extends Group {
     public void directionBas() {
         setLayoutY(getLayoutY() + LARGEUR_TONNEAUX / 5);
     }
+
 
     /**
      * Méthode qui permet la collision echelle avec tonneaux
@@ -99,6 +127,7 @@ public class Tonneaux extends Group {
             double chanceTonneauxEchelle = Math.random();
             if ((this.collisionEchelleTonneau(coordonneesEchelles)) && (chanceTonneauxEchelle < 0.5)) {
                 this.directionBas();
+                this.descendUneEchelle = true;
                 pause.play();
 
             }
@@ -116,12 +145,14 @@ public class Tonneaux extends Group {
                     || (this.getLayoutX() < 530.0 && this.getLayoutY() == 478.0)) { // étage 5
                 if (this.getLayoutX() < 640) {
                     this.directionDroite(640);
+                    this.descendUneEchelle = false;
                     pause.play();
                 }
             } else if ((this.getLayoutX() > 0.0 && this.getLayoutY() == 248.0) // étage 2
                     || (this.getLayoutX() > 0.0 && this.getLayoutY() == 402.0) // étage 4
                     || (this.getLayoutX() > -40.0 && this.getLayoutY() == 556.0)) { // étage 6
                 this.directionGauche();
+                this.descendUneEchelle = false;
                 pause.play();
             } else {
                 // System.out.println(tonneaux.getLayoutY());
@@ -130,4 +161,6 @@ public class Tonneaux extends Group {
             }
         });
     }
+
+
 }

@@ -1,9 +1,6 @@
 package start.structure;
 
-import javafx.animation.Animation;
-import javafx.animation.KeyFrame;
-import javafx.animation.PauseTransition;
-import javafx.animation.Timeline;
+import javafx.animation.*;
 import javafx.application.Application;
 import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.SimpleIntegerProperty;
@@ -173,6 +170,19 @@ public class StartGame extends Application {
         timeline.setCycleCount(Animation.INDEFINITE);
         timeline.play();
 
+        AnimationTimer collisionTimer = new AnimationTimer() {
+            @Override
+            public void handle(long now) {
+                if(mario.collisionTonneaux(tonneaux) == -1){
+                    System.exit(0);
+                }
+                else if(mario.collisionTonneaux(tonneaux) == 1){
+                    System.out.println("+1");
+                }
+            }
+        };
+        collisionTimer.start();
+
         // lance(tonneau1, dk);
 
         root.setCenter(jeu);
@@ -198,20 +208,20 @@ public class StartGame extends Application {
      * @param echellesBrokens
      * @param coordonneesEchelles
      */
-    private void move(Mario mario, ArrayList<Echelle> echelles, ArrayList<EchelleBroken> echellesBrokens,
-            ArrayList<ArrayList<Double>> coordonneesEchelles) {
-        s.setOnKeyPressed((KeyEvent event) -> {
+    private void move(Mario mario, ArrayList<Echelle> echelles, ArrayList<EchelleBroken> echellesBrokens, ArrayList<ArrayList<Double>> coordonneesEchelles) {
+            s.setOnKeyPressed((KeyEvent event) -> {
             mario.tomberEtage();
             switch (event.getCode()) {
                 case UP:
-                    System.out.println("X : " + mario.getLayoutX());
-                    System.out.println("Y : " + mario.getLayoutY() + "\n");
+                    //System.out.println("X : " + mario.getLayoutX());
+                    //System.out.println("Y : " + mario.getLayoutY() + "\n");
                     if (mario.collisionEchelle(echelles) && !(mario.estEn(coordonneesEchelles))) {
-                        System.out.println("JSUIS LAAAA");
                         mario.directionHaut();
+                        mario.setEstSurEchelle(true);
                     } if (mario.collisionEchelleBroken(echellesBrokens)
                             && !(mario.estEnBroken(coordonneesEchelles))) {
                         mario.directionHaut();
+                        mario.setEstSurEchelle(true);
                     }
                     this.isWinning(mario);
                     if (aGagné) {
@@ -231,6 +241,7 @@ public class StartGame extends Application {
                 case LEFT:
                     if (!mario.estDansEchelle(coordonneesEchelles)) {
                         mario.directionGauche();
+                        mario.setEstSurEchelle(false);
                     }
                     this.isWinning(mario);
                     if (aGagné) {
@@ -251,6 +262,7 @@ public class StartGame extends Application {
                 case RIGHT:
                     if (!mario.estDansEchelle(coordonneesEchelles)) {
                         mario.directionDroite(s.getWidth());
+                        mario.setEstSurEchelle(false);
                     }
                     this.isWinning(mario);
                     if (aGagné) {
@@ -274,6 +286,7 @@ public class StartGame extends Application {
                             && !(mario.estDansBasEchelle(coordonneesEchelles))) {
                         mario.directionBas(s.getHeight());
                     }
+                    mario.setEstSurEchelle(false);
                     this.isWinning(mario);
                     if (aGagné) {
                         System.out.println("a gagné");
@@ -291,21 +304,26 @@ public class StartGame extends Application {
                     break;
                 case SPACE:
                     if (!mario.isEstEnSaut()) {
-                        PauseTransition pause = new PauseTransition(javafx.util.Duration.seconds(0.5));
+                        PauseTransition pause = new PauseTransition(javafx.util.Duration.seconds(0.6));
                         mario.jump();
+                        mario.setaEuSonScore(false);
                         pause.play();
                         pause.setOnFinished(event1 -> mario.atterir());
                         break;
                     }
+
                 case A:
                     System.out.println(mario.getLayoutX());
                     System.out.println(mario.getLayoutY());
+                    System.out.println(mario.getScore());
             }
 
         });
     }
 
+
     public static void main(String[] args) {
         launch();
+
     }
 }

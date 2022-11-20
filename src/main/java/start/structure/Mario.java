@@ -15,6 +15,9 @@ public class Mario extends Group {
     private double ySave;
     private boolean estEnSaut = false;
     private int change = 0;
+    private int score = 0;
+    private boolean aEuSonScore = false;
+    private boolean estSurEchelle = false;
 
     /**
      * Constructeur de la classe Mario
@@ -31,6 +34,18 @@ public class Mario extends Group {
 
         this.getChildren().add(corps);
         direction = "droite";
+    }
+
+    public int getScore() {
+        return score;
+    }
+
+    public void setaEuSonScore(boolean aEuSonScore) {
+        this.aEuSonScore = aEuSonScore;
+    }
+
+    public void setEstSurEchelle(boolean estSurEchelle) {
+        this.estSurEchelle = estSurEchelle;
     }
 
     /**
@@ -142,12 +157,12 @@ public class Mario extends Group {
         if (getLayoutY() >= LARGEUR_PERSONNAGE) {
             // making jump
             double y = getLayoutY();
-            System.out.println("y = " + y);
+            //System.out.println("y = " + y);
             for (int i = 0; i < 3; i++) {
                 setLayoutY(getLayoutY() - (0.7 * LARGEUR_PERSONNAGE));
-                System.out.println("en train de jump");
+                //System.out.println("en train de jump");
             }
-            System.out.println(getLayoutY());
+            //System.out.println(getLayoutY());
         }
         this.estEnSaut = true;
         corps.setFill(new ImagePattern(new Image("mario-walk1.png")));
@@ -185,7 +200,6 @@ public class Mario extends Group {
             v = this.getBoundsInParent().contains(e.getBoundsInParent())
                     || e.getBoundsInParent().contains(this.getBoundsInParent());
             if (v) {
-                System.out.println("collide");
                 break;
             }
         }
@@ -320,4 +334,31 @@ public class Mario extends Group {
             }
         }
     }
+
+    public int collisionTonneaux(ArrayList<Tonneaux> tonneaux){
+        int res = 0;
+        for(Tonneaux t : tonneaux){
+            if(this.getBoundsInParent().intersects(t.getBoundsInParent())){
+                System.out.println(t.getDescendUneEchelle());
+                if(this.isEstEnSaut() && !aEuSonScore){
+                    ajouterScore(1);
+                    res = 1;
+                    this.aEuSonScore = true;
+                    //aEuSonScore, s'il est true, permet d'avoir que +1 quand il touche la collision du haut.
+                    //Il se remet à false à chaque fois qu'on saute.
+                }
+                else if((!this.isEstEnSaut() && !estSurEchelle) || (estSurEchelle && t.getDescendUneEchelle())){
+                    System.out.println("Touche !");
+                    res = -1;
+                }
+            }
+        }
+        return res;
+    }
+
+    private void ajouterScore(int nb){
+        this.score += nb;
+    }
+
+
 }
