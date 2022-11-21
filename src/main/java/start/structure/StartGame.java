@@ -5,6 +5,7 @@ import javafx.application.Application;
 import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Label;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.BorderPane;
@@ -35,6 +36,14 @@ public class StartGame extends Application {
      */
     @Override
     public void start(Stage stage) throws IOException, InterruptedException {
+
+        //Alert
+
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle("Information");
+        alert.setHeaderText("GAME OVER");
+        alert.setContentText("Vous avez perdu, veuillez recommencer");
+
 
         // TimerT.tempsRestant();
 
@@ -135,7 +144,6 @@ public class StartGame extends Application {
         coordonneesEchelles.add(coordonneesEchelleBroken2);
 
 
-
         ////////////////////////////////////////////////
 
         // Tonneaux (faudra penser à essayer de le foutre dans la classe Tonneaux nan ?)
@@ -149,7 +157,7 @@ public class StartGame extends Application {
         tonneau1.setLayoutY(160);
         dk.lance(tonneau1);
         final IntegerProperty i = new SimpleIntegerProperty(0);
-        final int[] x = { 1 };
+        final int[] x = {1};
         Timeline timeline = new Timeline(
                 new KeyFrame(
                         Duration.seconds(6),
@@ -173,10 +181,13 @@ public class StartGame extends Application {
         AnimationTimer collisionTimer = new AnimationTimer() {
             @Override
             public void handle(long now) {
-                if(mario.collisionTonneaux(tonneaux) == -1){
-                    System.exit(0);
-                }
-                else if(mario.collisionTonneaux(tonneaux) == 1){
+                if (mario.collisionTonneaux(tonneaux) == -1) {
+                    alert.show();
+                    alert.setOnCloseRequest(e -> {
+                        System.exit(0);
+                    });
+
+                } else if (mario.collisionTonneaux(tonneaux) == 1) {
                     System.out.println("+1");
                 }
             }
@@ -192,10 +203,10 @@ public class StartGame extends Application {
         stage.show();
     }
 
-    private void isWinning(Mario mario){
-        if(mario.getLayoutY()==160 && mario.getLayoutX()==400){
+    private void isWinning(Mario mario) {
+        if (mario.getLayoutY() == 160 && mario.getLayoutX() == 400) {
             this.aGagné = true;
-        }else {
+        } else {
             this.aGagné = false;
         }
     }
@@ -209,7 +220,7 @@ public class StartGame extends Application {
      * @param coordonneesEchelles
      */
     private void move(Mario mario, ArrayList<Echelle> echelles, ArrayList<EchelleBroken> echellesBrokens, ArrayList<ArrayList<Double>> coordonneesEchelles) {
-            s.setOnKeyPressed((KeyEvent event) -> {
+        s.setOnKeyPressed((KeyEvent event) -> {
             mario.tomberEtage();
             switch (event.getCode()) {
                 case UP:
@@ -218,7 +229,8 @@ public class StartGame extends Application {
                     if (mario.collisionEchelle(echelles) && !(mario.estEn(coordonneesEchelles))) {
                         mario.directionHaut();
                         mario.setEstSurEchelle(true);
-                    } if (mario.collisionEchelleBroken(echellesBrokens)
+                    }
+                    if (mario.collisionEchelleBroken(echellesBrokens)
                             && !(mario.estEnBroken(coordonneesEchelles))) {
                         mario.directionHaut();
                         mario.setEstSurEchelle(true);
@@ -282,7 +294,8 @@ public class StartGame extends Application {
                 case DOWN:
                     if (mario.collisionEchelle(echelles) && !(mario.estDansBasEchelle(coordonneesEchelles))) {
                         mario.directionBas(s.getHeight());
-                    } if (mario.collisionEchelleBroken(echellesBrokens)
+                    }
+                    if (mario.collisionEchelleBroken(echellesBrokens)
                             && !(mario.estDansBasEchelle(coordonneesEchelles))) {
                         mario.directionBas(s.getHeight());
                     }
