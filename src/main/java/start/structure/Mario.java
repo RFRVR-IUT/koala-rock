@@ -8,9 +8,9 @@ import javafx.scene.shape.Rectangle;
 import java.util.ArrayList;
 
 public class Mario extends Group {
-    private final Rectangle corps;
     protected final static double LARGEUR_MOITIE_PERSONNAGE = 5;
     protected final static double LARGEUR_PERSONNAGE = LARGEUR_MOITIE_PERSONNAGE * 2;
+    private final Rectangle corps;
     private String direction;
     private double ySave;
     private boolean estEnSaut = false;
@@ -179,12 +179,12 @@ public class Mario extends Group {
         corps.setFill(new ImagePattern(new Image("mario-idle.png")));
     }
 
-    public void setYSave(double y) {
-        ySave = y;
-    }
-
     public double getYSave() {
         return ySave;
+    }
+
+    public void setYSave(double y) {
+        ySave = y;
     }
 
     /**
@@ -197,8 +197,7 @@ public class Mario extends Group {
     boolean collisionEchelle(ArrayList<Echelle> echelles) {
         boolean v = false;
         for (Echelle e : echelles) {
-            v = this.getBoundsInParent().contains(e.getBoundsInParent())
-                    || e.getBoundsInParent().contains(this.getBoundsInParent());
+            v = this.getBoundsInParent().contains(e.getBoundsInParent()) || e.getBoundsInParent().contains(this.getBoundsInParent());
             if (v) {
                 break;
             }
@@ -216,11 +215,7 @@ public class Mario extends Group {
     public boolean estEn(ArrayList<ArrayList<Double>> tab) {
         for (ArrayList<Double> d : tab) {
             System.out.println(d.toString());
-            if ((Double.compare(getLayoutX(), d.get(0)) == 0 || Double.compare(getLayoutX(), d.get(0) + 10) == 0
-                    || Double.compare(getLayoutX(), d.get(0) + 5) == 0
-                    || Double.compare(getLayoutX(), d.get(0) - 5) == 0
-                    || Double.compare(getLayoutX(), d.get(0) - 10) == 0)
-                    && Double.compare(getLayoutY(), d.get(1)) == 0) {
+            if ((Double.compare(getLayoutX(), d.get(0)) == 0 || Double.compare(getLayoutX(), d.get(0) + 10) == 0 || Double.compare(getLayoutX(), d.get(0) + 5) == 0 || Double.compare(getLayoutX(), d.get(0) - 5) == 0 || Double.compare(getLayoutX(), d.get(0) - 10) == 0) && Double.compare(getLayoutY(), d.get(1)) == 0) {
                 return true;
             }
         }
@@ -235,14 +230,11 @@ public class Mario extends Group {
      */
     public boolean estDansEchelle(ArrayList<ArrayList<Double>> tab) {
         for (ArrayList<Double> d : tab) {
-            if ((Double.compare(getLayoutX(), d.get(0)) == 0 || Double.compare(getLayoutX(), d.get(0) + 5) == 0
-                    || Double.compare(getLayoutX(), d.get(0) + 10) == 0
-                    || Double.compare(getLayoutX(), d.get(0) - 5) == 0
-                    || Double.compare(getLayoutX(), d.get(0) - 10) == 0)// reste sur une lignée, ne sort pas sur le téco
+            if ((Double.compare(getLayoutX(), d.get(0)) == 0 || Double.compare(getLayoutX(), d.get(0) + 5) == 0 || Double.compare(getLayoutX(), d.get(0) + 10) == 0 || Double.compare(getLayoutX(), d.get(0) - 5) == 0 || Double.compare(getLayoutX(), d.get(0) - 10) == 0)// reste sur une lignée, ne sort pas sur le téco
                     && Double.compare(getLayoutY(), d.get(1) + 77) < 0 // permet de passer par le bas même en étant sur
-                                                                       // la hitbox de l'échelle
+                    // la hitbox de l'échelle
                     && Double.compare(getLayoutY(), d.get(1)) > 0) { // pareil mais pour en haut (pour qu'il puisse
-                                                                     // sortir en gros)
+                // sortir en gros)
                 return true;
             }
         }
@@ -258,12 +250,8 @@ public class Mario extends Group {
     public boolean estDansBasEchelle(ArrayList<ArrayList<Double>> tab) {
         for (ArrayList<Double> d : tab) {
             if ((Double.compare(getLayoutY(), d.get(1) + 77) == 0) && // 77 = getLayout(Y) - Y de coordonnéesEchelles
-                    (((Double.compare(getLayoutX(), d.get(0)) == 0))
-                            || (Double.compare(getLayoutX(), d.get(0) + 10) == 0)
-                            || (Double.compare(getLayoutX(), d.get(0) + 5) == 0)
-                            || (Double.compare(getLayoutX(), d.get(0) - 5) == 0)
-                            || (Double.compare(getLayoutX(), d.get(0) - 10) == 0))) { // permet de pas aller + bas que
-                                                                                      // l'échelle
+                    (((Double.compare(getLayoutX(), d.get(0)) == 0)) || (Double.compare(getLayoutX(), d.get(0) + 10) == 0) || (Double.compare(getLayoutX(), d.get(0) + 5) == 0) || (Double.compare(getLayoutX(), d.get(0) - 5) == 0) || (Double.compare(getLayoutX(), d.get(0) - 10) == 0))) { // permet de pas aller + bas que
+                // l'échelle
                 return true;
             }
         }
@@ -280,8 +268,7 @@ public class Mario extends Group {
     boolean collisionEchelleBroken(ArrayList<EchelleBroken> echelles) {
         boolean v = false;
         for (EchelleBroken eb : echelles) {
-            v = this.getBoundsInParent().contains(eb.getBoundsInParent())
-                    || eb.getBoundsInParent().contains(this.getBoundsInParent());
+            v = this.getBoundsInParent().contains(eb.getBoundsInParent()) || eb.getBoundsInParent().contains(this.getBoundsInParent());
             if (v) {
                 break;
             }
@@ -292,11 +279,7 @@ public class Mario extends Group {
     public boolean estEnBroken(ArrayList<ArrayList<Double>> tab) {
         for (ArrayList<Double> d : tab) {
             System.out.println(d.toString());
-            if ((Double.compare(getLayoutX(), d.get(0)) == 0 || Double.compare(getLayoutX(), d.get(0) + 10) == 0
-                    || Double.compare(getLayoutX(), d.get(0) + 5) == 0
-                    || Double.compare(getLayoutX(), d.get(0) - 5) == 0
-                    || Double.compare(getLayoutX(), d.get(0) - 10) == 0)
-                    && Double.compare(getLayoutY(), d.get(1) + 60) <= 0) {
+            if ((Double.compare(getLayoutX(), d.get(0)) == 0 || Double.compare(getLayoutX(), d.get(0) + 10) == 0 || Double.compare(getLayoutX(), d.get(0) + 5) == 0 || Double.compare(getLayoutX(), d.get(0) - 5) == 0 || Double.compare(getLayoutX(), d.get(0) - 10) == 0) && Double.compare(getLayoutY(), d.get(1) + 60) <= 0) {
                 return true;
             }
         }
@@ -313,8 +296,8 @@ public class Mario extends Group {
     }
 
     public void tomberEtage() {
-        double[] étagesDroiteVide = { 468.0, 314.0, 160.0 };
-        double[] étagesGaucheVide = { 391.0, 237.0 };
+        double[] étagesDroiteVide = {468.0, 314.0, 160.0};
+        double[] étagesGaucheVide = {391.0, 237.0};
 
         if (this.getLayoutX() >= 525.0) { // étage 1 & 3 & 5
             for (double d : étagesDroiteVide) {
@@ -335,19 +318,18 @@ public class Mario extends Group {
         }
     }
 
-    public int collisionTonneaux(ArrayList<Tonneaux> tonneaux){
+    public int collisionTonneaux(ArrayList<Tonneaux> tonneaux) {
         int res = 0;
-        for(Tonneaux t : tonneaux){
-            if(this.getBoundsInParent().intersects(t.getBoundsInParent())){
+        for (Tonneaux t : tonneaux) {
+            if (this.getBoundsInParent().intersects(t.getBoundsInParent())) {
                 System.out.println(t.getDescendUneEchelle());
-                if(this.isEstEnSaut() && !aEuSonScore){
+                if (this.isEstEnSaut() && !aEuSonScore) {
                     ajouterScore(1);
                     res = 1;
                     this.aEuSonScore = true;
                     //aEuSonScore, s'il est true, permet d'avoir que +1 quand il touche la collision du haut.
                     //Il se remet à false à chaque fois qu'on saute.
-                }
-                else if((!this.isEstEnSaut() && !estSurEchelle) || (estSurEchelle && t.getDescendUneEchelle())){
+                } else if ((!this.isEstEnSaut() && !estSurEchelle) || (estSurEchelle && t.getDescendUneEchelle())) {
                     System.out.println("Touche !");
                     res = -1;
                 }
@@ -356,7 +338,7 @@ public class Mario extends Group {
         return res;
     }
 
-    private void ajouterScore(int nb){
+    private void ajouterScore(int nb) {
         this.score += nb;
     }
 

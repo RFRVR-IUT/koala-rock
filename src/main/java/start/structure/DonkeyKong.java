@@ -13,6 +13,7 @@ public class DonkeyKong extends Group {
 
     /**
      * Constructeur de la classe DonkeyKong
+     *
      * @param x
      * @param y
      * @param width
@@ -31,6 +32,7 @@ public class DonkeyKong extends Group {
 
     /**
      * Lancement Tonneaux
+     *
      * @param tonneaux
      */
     public void lance(Tonneaux tonneaux) {
@@ -51,6 +53,7 @@ public class DonkeyKong extends Group {
         });
         pause.play();
     }
+
     /**
      * Animation Donkey Kong Droite
      */

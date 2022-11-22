@@ -2,7 +2,6 @@ package start.structure;
 
 import javafx.animation.*;
 import javafx.application.Application;
-import javafx.application.Platform;
 import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.scene.Scene;
@@ -20,7 +19,6 @@ import javafx.util.Duration;
 
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Optional;
 import java.util.TimerTask;
 
 public class StartGame extends Application {
@@ -30,6 +28,11 @@ public class StartGame extends Application {
 
     private TimerTask timerTask;
     private boolean aGagné = false;
+
+    public static void main(String[] args) {
+        launch();
+
+    }
 
     /**
      * Starter du jeu
@@ -167,23 +170,20 @@ public class StartGame extends Application {
         dk.lance(tonneau1);
         final IntegerProperty i = new SimpleIntegerProperty(0);
         final int[] x = {1};
-        Timeline timeline = new Timeline(
-                new KeyFrame(
-                        Duration.seconds(6),
-                        event -> {
-                            i.set(i.get() + 1);
-                            if (x[0] < 5) {
-                                tonneaux.get(x[0]).moveTonneaux(coordonneesEchelles, dk);
-                                tonneaux.get(x[0]).setLayoutY(160);
-                                dk.lance(tonneaux.get(x[0]));
-                                System.out.println("dedans");
-                                x[0]++;
-                            } else {
-                                System.out.println("plus dedans");
+        Timeline timeline = new Timeline(new KeyFrame(Duration.seconds(6), event -> {
+            i.set(i.get() + 1);
+            if (x[0] < 5) {
+                tonneaux.get(x[0]).moveTonneaux(coordonneesEchelles, dk);
+                tonneaux.get(x[0]).setLayoutY(160);
+                dk.lance(tonneaux.get(x[0]));
+                System.out.println("dedans");
+                x[0]++;
+            } else {
+                System.out.println("plus dedans");
 
-                            }
+            }
 
-                        }));
+        }));
         timeline.setCycleCount(Animation.INDEFINITE);
         timeline.play();
 
@@ -213,11 +213,7 @@ public class StartGame extends Application {
     }
 
     private void isWinning(Mario mario) {
-        if (mario.getLayoutY() == 160 && mario.getLayoutX() == 400) {
-            this.aGagné = true;
-        } else {
-            this.aGagné = false;
-        }
+        this.aGagné = mario.getLayoutY() == 160 && mario.getLayoutX() == 400;
     }
 
     /**
@@ -239,8 +235,7 @@ public class StartGame extends Application {
                         mario.directionHaut();
                         mario.setEstSurEchelle(true);
                     }
-                    if (mario.collisionEchelleBroken(echellesBrokens)
-                            && !(mario.estEnBroken(coordonneesEchelles))) {
+                    if (mario.collisionEchelleBroken(echellesBrokens) && !(mario.estEnBroken(coordonneesEchelles))) {
                         mario.directionHaut();
                         mario.setEstSurEchelle(true);
                     }
@@ -304,8 +299,7 @@ public class StartGame extends Application {
                     if (mario.collisionEchelle(echelles) && !(mario.estDansBasEchelle(coordonneesEchelles))) {
                         mario.directionBas(s.getHeight());
                     }
-                    if (mario.collisionEchelleBroken(echellesBrokens)
-                            && !(mario.estDansBasEchelle(coordonneesEchelles))) {
+                    if (mario.collisionEchelleBroken(echellesBrokens) && !(mario.estDansBasEchelle(coordonneesEchelles))) {
                         mario.directionBas(s.getHeight());
                     }
                     mario.setEstSurEchelle(false);
@@ -341,11 +335,5 @@ public class StartGame extends Application {
             }
 
         });
-    }
-
-
-    public static void main(String[] args) {
-        launch();
-
     }
 }

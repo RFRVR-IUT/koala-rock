@@ -1,31 +1,25 @@
 package start.structure;
 
-import javafx.animation.Animation;
-import javafx.animation.KeyFrame;
 import javafx.animation.PauseTransition;
-import javafx.animation.Timeline;
-import javafx.beans.property.IntegerProperty;
-import javafx.beans.property.SimpleIntegerProperty;
 import javafx.scene.Group;
 import javafx.scene.image.Image;
 import javafx.scene.paint.ImagePattern;
 import javafx.scene.paint.Paint;
 import javafx.scene.shape.Rectangle;
-import javafx.util.Duration;
 
 import java.util.ArrayList;
 
 public class Tonneaux extends Group {
+    protected final static double LARGEUR_MOITIE_TONNEAUX = 5;
+    protected final static double LARGEUR_TONNEAUX = LARGEUR_MOITIE_TONNEAUX * 2;
     private final Rectangle corps;
     private final Rectangle collision;
     private final Rectangle collisionHaut;
-    protected final static double LARGEUR_MOITIE_TONNEAUX = 5;
-    protected final static double LARGEUR_TONNEAUX = LARGEUR_MOITIE_TONNEAUX * 2;
     private boolean descendUneEchelle = false;
 
     /**
      * Constructeur de la classe Tonneaux
-     * 
+     *
      * @param x
      * @param y
      * @param width
@@ -34,7 +28,7 @@ public class Tonneaux extends Group {
     public Tonneaux(int x, int y, int width, int height) {
         corps = new Rectangle(x, y, width, height);
         collision = new Rectangle(x, y, width, height);
-        collisionHaut = new Rectangle(x, y-30, width, height);
+        collisionHaut = new Rectangle(x, y - 30, width, height);
         corps.setFill(Paint.valueOf("brown"));
         corps.setFill(new ImagePattern(new Image("tonneau1.png")));
         collision.setFill(Paint.valueOf("red"));
@@ -65,7 +59,7 @@ public class Tonneaux extends Group {
 
     /**
      * Méthode qui permet tonneaux direction Droite
-     * 
+     *
      * @param largeurJeu
      */
     public void directionDroite(double largeurJeu) {
@@ -89,7 +83,7 @@ public class Tonneaux extends Group {
 
     /**
      * Méthode qui permet la collision echelle avec tonneaux
-     * 
+     *
      * @param coordonneesEchelles
      * @return
      */
@@ -112,7 +106,7 @@ public class Tonneaux extends Group {
 
     /**
      * Méthode qui permet le mouvement des tonneaux
-     * 
+     *
      * @param coordonneesEchelles
      * @param dk
      */

@@ -4,14 +4,14 @@ import java.util.TimerTask;
 
 public class TimerT {
 
-    public static int getRand() {
-        return rand;
-    }
-
     static int max = 5;
     static int min = 0;
     static int range = max - min + 1;
     static int rand = 0;
+
+    public static int getRand() {
+        return rand;
+    }
 
     public static int tempsRestant() {
         java.util.Timer timer = new java.util.Timer();
