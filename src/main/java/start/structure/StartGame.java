@@ -2,10 +2,13 @@ package start.structure;
 
 import javafx.animation.*;
 import javafx.application.Application;
+import javafx.application.Platform;
 import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
+import javafx.scene.control.ButtonBar;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.BorderPane;
@@ -17,6 +20,7 @@ import javafx.util.Duration;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Optional;
 import java.util.TimerTask;
 
 public class StartGame extends Application {
@@ -39,7 +43,12 @@ public class StartGame extends Application {
 
         //Alert
 
-        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        ButtonType recommencer = new ButtonType("Recommencer", ButtonBar.ButtonData.OK_DONE);
+
+        ButtonType quitter = new ButtonType("Quitter", ButtonBar.ButtonData.CANCEL_CLOSE);
+
+        Alert alert = new Alert(Alert.AlertType.WARNING, "Vous avez perdu !", recommencer, quitter);
+
         alert.setTitle("Information");
         alert.setHeaderText("GAME OVER");
         alert.setContentText("Vous avez perdu, veuillez recommencer");
