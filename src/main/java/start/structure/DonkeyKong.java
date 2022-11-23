@@ -13,6 +13,7 @@ public class DonkeyKong extends Group {
 
     /**
      * Constructeur de la classe DonkeyKong
+     *
      * @param x
      * @param y
      * @param width
@@ -20,7 +21,7 @@ public class DonkeyKong extends Group {
      */
     public DonkeyKong(int x, int y, int width, int height) {
         this.donkey = new Rectangle(x, y, width, height);
-        donkey.setFill(new ImagePattern(new Image("dk-idle.png")));
+        donkey.setFill(new ImagePattern(new Image("koala-DK.png")));
         this.getChildren().add(donkey);
 
     }
@@ -31,10 +32,11 @@ public class DonkeyKong extends Group {
 
     /**
      * Lancement Tonneaux
+     *
      * @param tonneaux
      */
     public void lance(Tonneaux tonneaux) {
-        this.donkey.setFill(new ImagePattern(new Image("dk-lance.png")));
+        this.donkey.setFill(new ImagePattern(new Image("koala-DK-2.png")));
         this.donkey.setScaleX(-1);
         gauche();
 
@@ -51,6 +53,7 @@ public class DonkeyKong extends Group {
         });
         pause.play();
     }
+
     /**
      * Animation Donkey Kong Droite
      */
@@ -69,6 +72,6 @@ public class DonkeyKong extends Group {
      * Animation Donkey Kong Idle
      */
     public void idle() {
-        this.donkey.setFill(new ImagePattern(new Image("dk-idle.png")));
+        this.donkey.setFill(new ImagePattern(new Image("koala-DK.png")));
     }
 }

@@ -8,12 +8,12 @@ import javafx.scene.shape.Rectangle;
 
 public class Echelle extends Group {
 
-    private Rectangle echelle;
     private final Rectangle collision;
+    private Rectangle echelle;
 
     /**
      * Constructeur de la classe Echelle
-     * 
+     *
      * @param x
      * @param y
      * @param width
@@ -30,15 +30,15 @@ public class Echelle extends Group {
         this.getChildren().add(collision);
     }
 
+    public static int getLargeurCollision() {
+        return 15;
+    }
+
     public Rectangle getEchelle() {
         return echelle;
     }
 
     public void setEchelle(Rectangle echelle) {
         this.echelle = echelle;
-    }
-
-    public static int getLargeurCollision() {
-        return 15;
     }
 }

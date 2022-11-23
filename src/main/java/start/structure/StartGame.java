@@ -6,44 +6,91 @@ import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
+import javafx.scene.control.ButtonBar;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyEvent;
+import javafx.scene.layout.BackgroundImage;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.stage.Stage;
 import javafx.util.Duration;
-
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.TimerTask;
 
 public class StartGame extends Application {
-    private Scene Deplacement, s;
-
+    private Scene s;
     private Stage primaryStage;
 
-    private TimerTask timerTask;
-    private boolean aGagné = false;
+    public static void main(String[] args) {
+        launch();
+    }
 
-    /**
-     * Starter du jeu
-     *
-     * @param stage
-     * @throws IOException
-     * @throws InterruptedException
-     */
     @Override
     public void start(Stage stage) throws IOException, InterruptedException {
 
-        //Alert
+        // Crer une scène avec un bouton commencer, quand se bouton est cliqué le jeu se
+        // lance
+        primaryStage = stage;
+        primaryStage.setTitle("Koala Rock");
+        primaryStage.setResizable(false);
+        BorderPane borderPane = new BorderPane();
+        Pane pane = new Pane();
+        borderPane.setCenter(pane);
+        Scene scene = new Scene(borderPane, 600, 600);
+        primaryStage.setScene(scene);
+        primaryStage.show();
 
-        Alert alert = new Alert(Alert.AlertType.INFORMATION);
-        alert.setTitle("Information");
-        alert.setHeaderText("GAME OVER");
-        alert.setContentText("Vous avez perdu, veuillez recommencer");
 
+        Label label = new Label("Koala Rock");
+        label.setFont(new Font("Arial", 50));
+        label.setTextFill(Color.BLACK);
+        label.setLayoutX(150);
+        label.setLayoutY(150);
+        pane.getChildren().add(label);
+
+        Label label2 = new Label("COMMENCER");
+        label2.setFont(new Font("Arial", 20));
+        label2.setTextFill(Color.BLACK);
+
+        label2.setLayoutX(150);
+        label2.setLayoutY(250);
+        pane.getChildren().add(label2);
+
+        label2.setOnMouseClicked(event -> {
+            try {
+                startGame(stage);
+            } catch (IOException e) {
+                e.printStackTrace();
+            } catch (InterruptedException e) {
+                // TODO Auto-generated catch block
+                e.printStackTrace();
+            }
+        });
+    }
+
+    // startGame
+
+    public void startGame(Stage stage) throws IOException, InterruptedException {
+
+        ButtonType recommencer = new ButtonType("Recommencer", ButtonBar.ButtonData.OK_DONE);
+
+        ButtonType quitter = new ButtonType("Quitter", ButtonBar.ButtonData.CANCEL_CLOSE);
+
+        Alert alertPerdu = new Alert(Alert.AlertType.WARNING, "Vous avez perdu !", recommencer, quitter);
+        Alert alertGagne = new Alert(Alert.AlertType.WARNING, "Vous avez gagné !", recommencer, quitter);
+
+        alertPerdu.setTitle("Information");
+        alertPerdu.setHeaderText("GAME OVER");
+        alertPerdu.setContentText("Vous avez perdu, veuillez recommencer");
+
+        alertGagne.setTitle("Information");
+        alertGagne.setHeaderText("YOU WIN");
+        alertGagne.setContentText("Vous avez gagné, veuillez quitter pour enregistrer votre score ou recommencer");
 
         // TimerT.tempsRestant();
 
@@ -143,7 +190,6 @@ public class StartGame extends Application {
         coordonneesEchelles.add(coordonneesEchelleBroken1);
         coordonneesEchelles.add(coordonneesEchelleBroken2);
 
-
         ////////////////////////////////////////////////
 
         // Tonneaux (faudra penser à essayer de le foutre dans la classe Tonneaux nan ?)
@@ -157,24 +203,21 @@ public class StartGame extends Application {
         tonneau1.setLayoutY(160);
         dk.lance(tonneau1);
         final IntegerProperty i = new SimpleIntegerProperty(0);
-        final int[] x = {1};
-        Timeline timeline = new Timeline(
-                new KeyFrame(
-                        Duration.seconds(6),
-                        event -> {
-                            i.set(i.get() + 1);
-                            if (x[0] < 5) {
-                                tonneaux.get(x[0]).moveTonneaux(coordonneesEchelles, dk);
-                                tonneaux.get(x[0]).setLayoutY(160);
-                                dk.lance(tonneaux.get(x[0]));
-                                System.out.println("dedans");
-                                x[0]++;
-                            } else {
-                                System.out.println("plus dedans");
+        final int[] x = { 1 };
+        Timeline timeline = new Timeline(new KeyFrame(Duration.seconds(6), event -> {
+            i.set(i.get() + 1);
+            if (x[0] < 5) {
+                tonneaux.get(x[0]).moveTonneaux(coordonneesEchelles, dk);
+                tonneaux.get(x[0]).setLayoutY(160);
+                dk.lance(tonneaux.get(x[0]));
+                System.out.println("dedans");
+                x[0]++;
+            } else {
+                System.out.println("plus dedans");
 
-                            }
+            }
 
-                        }));
+        }));
         timeline.setCycleCount(Animation.INDEFINITE);
         timeline.play();
 
@@ -182,13 +225,17 @@ public class StartGame extends Application {
             @Override
             public void handle(long now) {
                 if (mario.collisionTonneaux(tonneaux) == -1) {
-                    alert.show();
-                    alert.setOnCloseRequest(e -> {
-                        System.exit(0);
-                    });
+                    alertPerdu.show();
+                    alertPerdu.setOnCloseRequest(e -> System.exit(0));
 
                 } else if (mario.collisionTonneaux(tonneaux) == 1) {
                     System.out.println("+1");
+
+                }
+
+                if (mario.getLayoutX() == 400 && mario.getLayoutY() == 160) {
+                    alertGagne.show();
+                    alertGagne.setOnCloseRequest(e -> System.exit(0));
                 }
             }
         };
@@ -203,14 +250,6 @@ public class StartGame extends Application {
         stage.show();
     }
 
-    private void isWinning(Mario mario) {
-        if (mario.getLayoutY() == 160 && mario.getLayoutX() == 400) {
-            this.aGagné = true;
-        } else {
-            this.aGagné = false;
-        }
-    }
-
     /**
      * Méthode qui permet le mouvement de Mario
      *
@@ -219,35 +258,21 @@ public class StartGame extends Application {
      * @param echellesBrokens
      * @param coordonneesEchelles
      */
-    private void move(Mario mario, ArrayList<Echelle> echelles, ArrayList<EchelleBroken> echellesBrokens, ArrayList<ArrayList<Double>> coordonneesEchelles) {
+    private void move(Mario mario, ArrayList<Echelle> echelles, ArrayList<EchelleBroken> echellesBrokens,
+            ArrayList<ArrayList<Double>> coordonneesEchelles) {
         s.setOnKeyPressed((KeyEvent event) -> {
             mario.tomberEtage();
             switch (event.getCode()) {
                 case UP:
-                    //System.out.println("X : " + mario.getLayoutX());
-                    //System.out.println("Y : " + mario.getLayoutY() + "\n");
+                    // System.out.println("X : " + mario.getLayoutX());
+                    // System.out.println("Y : " + mario.getLayoutY() + "\n");
                     if (mario.collisionEchelle(echelles) && !(mario.estEn(coordonneesEchelles))) {
                         mario.directionHaut();
                         mario.setEstSurEchelle(true);
                     }
-                    if (mario.collisionEchelleBroken(echellesBrokens)
-                            && !(mario.estEnBroken(coordonneesEchelles))) {
+                    if (mario.collisionEchelleBroken(echellesBrokens) && !(mario.estEnBroken(coordonneesEchelles))) {
                         mario.directionHaut();
                         mario.setEstSurEchelle(true);
-                    }
-                    this.isWinning(mario);
-                    if (aGagné) {
-                        System.out.println("a gagné");
-                        System.exit(0);
-                        this.primaryStage.close();
-                        Label label = new Label("Vous avez gagné !");
-                        label.setFont(new Font("Arial", 50));
-                        label.setTextFill(Color.RED);
-                        label.setLayoutX(200);
-                        label.setLayoutY(200);
-                        Scene scene = new Scene(label);
-                        Stage stage = new Stage();
-                        stage.setScene(scene);
                     }
                     break;
                 case LEFT:
@@ -255,40 +280,11 @@ public class StartGame extends Application {
                         mario.directionGauche();
                         mario.setEstSurEchelle(false);
                     }
-                    this.isWinning(mario);
-                    if (aGagné) {
-                        System.out.println("a gagné");
-                        System.exit(0);
-                        this.primaryStage.close();
-                        Label label = new Label("Vous avez gagné !");
-                        label.setFont(new Font("Arial", 50));
-                        label.setTextFill(Color.RED);
-                        label.setLayoutX(200);
-                        label.setLayoutY(200);
-                        Scene scene = new Scene(label);
-                        Stage stage = new Stage();
-                        stage.setScene(scene);
-                        stage.show();
-                    }
                     break;
                 case RIGHT:
                     if (!mario.estDansEchelle(coordonneesEchelles)) {
                         mario.directionDroite(s.getWidth());
                         mario.setEstSurEchelle(false);
-                    }
-                    this.isWinning(mario);
-                    if (aGagné) {
-                        System.out.println("a gagné");
-                        System.exit(0);
-                        this.primaryStage.close();
-                        Label label = new Label("Vous avez gagné !");
-                        label.setFont(new Font("Arial", 50));
-                        label.setTextFill(Color.RED);
-                        label.setLayoutX(200);
-                        label.setLayoutY(200);
-                        Scene scene = new Scene(label);
-                        Stage stage = new Stage();
-                        stage.setScene(scene);
                     }
                     break;
                 case DOWN:
@@ -300,20 +296,6 @@ public class StartGame extends Application {
                         mario.directionBas(s.getHeight());
                     }
                     mario.setEstSurEchelle(false);
-                    this.isWinning(mario);
-                    if (aGagné) {
-                        System.out.println("a gagné");
-                        System.exit(0);
-                        this.primaryStage.close();
-                        Label label = new Label("Vous avez gagné !");
-                        label.setFont(new Font("Arial", 50));
-                        label.setTextFill(Color.RED);
-                        label.setLayoutX(200);
-                        label.setLayoutY(200);
-                        Scene scene = new Scene(label);
-                        Stage stage = new Stage();
-                        stage.setScene(scene);
-                    }
                     break;
                 case SPACE:
                     if (!mario.isEstEnSaut()) {
@@ -330,13 +312,6 @@ public class StartGame extends Application {
                     System.out.println(mario.getLayoutY());
                     System.out.println(mario.getScore());
             }
-
         });
-    }
-
-
-    public static void main(String[] args) {
-        launch();
-
     }
 }
