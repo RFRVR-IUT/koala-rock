@@ -74,4 +74,5 @@ public class DonkeyKong extends Group {
     public void idle() {
         this.donkey.setFill(new ImagePattern(new Image("koala-DK.png")));
     }
+
 }

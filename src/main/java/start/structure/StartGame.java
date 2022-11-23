@@ -73,24 +73,27 @@ public class StartGame extends Application {
         });
     }
 
-    // startGame
-
     public void startGame(Stage stage) throws IOException, InterruptedException {
 
-        ButtonType recommencer = new ButtonType("Recommencer", ButtonBar.ButtonData.OK_DONE);
+        // ButtonType recommencer = new ButtonType("Recommencer",
+        // ButtonBar.ButtonData.OK_DONE);
 
-        ButtonType quitter = new ButtonType("Quitter", ButtonBar.ButtonData.CANCEL_CLOSE);
+        // ButtonType quitter = new ButtonType("Quitter",
+        // ButtonBar.ButtonData.CANCEL_CLOSE);
 
-        Alert alertPerdu = new Alert(Alert.AlertType.WARNING, "Vous avez perdu !", recommencer, quitter);
-        Alert alertGagne = new Alert(Alert.AlertType.WARNING, "Vous avez gagné !", recommencer, quitter);
+        // Alert alertPerdu = new Alert(Alert.AlertType.WARNING, "Vous avez perdu !",
+        // recommencer, quitter);
+        // Alert alertGagne = new Alert(Alert.AlertType.WARNING, "Vous avez gagné !",
+        // recommencer, quitter);
 
-        alertPerdu.setTitle("Information");
-        alertPerdu.setHeaderText("GAME OVER");
-        alertPerdu.setContentText("Vous avez perdu, veuillez recommencer");
+        // alertPerdu.setTitle("Information");
+        // alertPerdu.setHeaderText("GAME OVER");
+        // alertPerdu.setContentText("Vous avez perdu, veuillez recommencer");
 
-        alertGagne.setTitle("Information");
-        alertGagne.setHeaderText("YOU WIN");
-        alertGagne.setContentText("Vous avez gagné, veuillez quitter pour enregistrer votre score ou recommencer");
+        // alertGagne.setTitle("Information");
+        // alertGagne.setHeaderText("YOU WIN");
+        // alertGagne.setContentText("Vous avez gagné, veuillez quitter pour enregistrer
+        // votre score ou recommencer");
 
         // TimerT.tempsRestant();
 
@@ -232,8 +235,13 @@ public class StartGame extends Application {
             @Override
             public void handle(long now) {
                 if (mario.collisionTonneaux(tonneaux) == -1) {
-                    alertPerdu.show();
-                    alertPerdu.setOnCloseRequest(e -> System.exit(0));
+                    // try {
+                    supprimerEléments(jeu, tonneaux, echelles, echellesBrokens, mario, dk);
+                    // restartGame(stage);
+                    // } catch (IOException | InterruptedException e) {
+                    // // TODO Auto-generated catch block
+                    // e.printStackTrace();
+                    // }
 
                 } else if (mario.collisionTonneaux(tonneaux) == 1) {
                     System.out.println("+1");
@@ -241,8 +249,12 @@ public class StartGame extends Application {
                 }
 
                 if (mario.getLayoutX() == 400 && mario.getLayoutY() == 160) {
-                    alertGagne.show();
-                    alertGagne.setOnCloseRequest(e -> System.exit(0));
+                    try {
+                        restartGame(stage);
+                    } catch (IOException | InterruptedException e) {
+                        // TODO Auto-generated catch block
+                        e.printStackTrace();
+                    }
                 }
             }
         };
@@ -255,6 +267,28 @@ public class StartGame extends Application {
         move(mario, echelles, echellesBrokens, coordonneesEchelles);
         stage.setScene(s);
         stage.show();
+    }
+
+    public void supprimerEléments(Pane jeu, ArrayList<Tonneaux> tonneaux, ArrayList<Echelle> echelles,
+            ArrayList<EchelleBroken> echellesBrokens, Mario mario, DonkeyKong dk) {
+        jeu.getChildren().removeAll(tonneaux);
+        jeu.getChildren().removeAll(echelles);
+        jeu.getChildren().removeAll(echellesBrokens);
+        jeu.getChildren().removeAll(mario);
+        jeu.getChildren().removeAll(dk);
+    }
+
+    public void restartGame(Stage stage) throws IOException, InterruptedException {
+        Pane root = new Pane();
+        Pane jeu = new Pane();
+        jeu.setPrefSize(600, 600);
+        jeu.setStyle("-fx-background-color: #000000;");
+        Scene s = new Scene(root);
+        stage.setScene(s);
+        stage.show();
+        jeu.getChildren().clear();
+        root.getChildren().clear();
+        start(stage);
     }
 
     /**

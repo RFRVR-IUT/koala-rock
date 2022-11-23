@@ -80,7 +80,6 @@ public class Tonneaux extends Group {
         setLayoutY(getLayoutY() + LARGEUR_TONNEAUX / 5);
     }
 
-
     /**
      * Méthode qui permet la collision echelle avec tonneaux
      *
@@ -156,5 +155,9 @@ public class Tonneaux extends Group {
         });
     }
 
+    // public void stop() {
+    // this.setLayoutY(170.0);
+    // this.setLayoutX(120.0);
+    // }
 
 }
