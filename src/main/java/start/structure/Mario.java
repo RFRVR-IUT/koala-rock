@@ -1,5 +1,7 @@
 package start.structure;
 
+import javafx.beans.property.IntegerProperty;
+import javafx.beans.property.SimpleIntegerProperty;
 import javafx.scene.Group;
 import javafx.scene.image.Image;
 import javafx.scene.paint.ImagePattern;
@@ -15,7 +17,7 @@ public class Mario extends Group {
     private double ySave;
     private boolean estEnSaut = false;
     private int change = 0;
-    private int score = 0;
+    private IntegerProperty score = new SimpleIntegerProperty();
     private boolean aEuSonScore = false;
     private boolean estSurEchelle = false;
 
@@ -28,6 +30,7 @@ public class Mario extends Group {
      * @param height
      */
     public Mario(int x, int y, int width, int height) {
+        score.set(0);
         corps = new Rectangle(x, y, width, height);
         // corps.setFill(Paint.valueOf("red"));
         corps.setFill(new ImagePattern(new Image("mario-idle.png")));
@@ -36,7 +39,7 @@ public class Mario extends Group {
         direction = "droite";
     }
 
-    public int getScore() {
+    public IntegerProperty getScore() {
         return score;
     }
 
@@ -338,7 +341,7 @@ public class Mario extends Group {
     }
 
     private void ajouterScore(int nb) {
-        this.score += nb;
+        this.score.set(this.score.getValue() + nb);
     }
 
 

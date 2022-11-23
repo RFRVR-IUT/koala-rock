@@ -4,6 +4,9 @@ import javafx.animation.*;
 import javafx.application.Application;
 import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.SimpleIntegerProperty;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
+import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -188,6 +191,21 @@ public class StartGame extends Application {
 
         coordonneesEchelles.add(coordonneesEchelleBroken1);
         coordonneesEchelles.add(coordonneesEchelleBroken2);
+
+        Label score = new Label("Score : 0");
+        score.setFont(new Font("Arial", 20));
+        score.setTextFill(Color.WHITE);
+        score.setLayoutY(200);
+        score.setLayoutX(200);
+        jeu.getChildren().add(score);
+
+        mario.getScore().addListener(new ChangeListener<Number>() {
+            @Override
+            public void changed(ObservableValue<? extends Number> observableValue, Number number, Number t1) {
+                score.setText("Score : " + mario.getScore().getValue().toString());
+            }
+        });
+
 
         ////////////////////////////////////////////////
 
