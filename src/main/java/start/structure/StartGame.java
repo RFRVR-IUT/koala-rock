@@ -8,39 +8,24 @@ import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonBar;
 import javafx.scene.control.ButtonType;
-import javafx.scene.control.Label;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.Pane;
-import javafx.scene.paint.Color;
-import javafx.scene.text.Font;
 import javafx.stage.Stage;
 import javafx.util.Duration;
-
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.TimerTask;
 
 public class StartGame extends Application {
-    private Scene Deplacement, s;
-
+    private Scene s;
     private Stage primaryStage;
-
-    private TimerTask timerTask;
-    private boolean aGagné = false;
 
     public static void main(String[] args) {
         launch();
 
     }
 
-    /**
-     * Starter du jeu
-     *
-     * @param stage
-     * @throws IOException
-     * @throws InterruptedException
-     */
+
     @Override
     public void start(Stage stage) throws IOException, InterruptedException {
 
@@ -50,11 +35,16 @@ public class StartGame extends Application {
 
         ButtonType quitter = new ButtonType("Quitter", ButtonBar.ButtonData.CANCEL_CLOSE);
 
-        Alert alert = new Alert(Alert.AlertType.WARNING, "Vous avez perdu !", recommencer, quitter);
+        Alert alertPerdu = new Alert(Alert.AlertType.WARNING, "Vous avez perdu !", recommencer, quitter);
+        Alert alertGagne = new Alert(Alert.AlertType.WARNING, "Vous avez gagné !", recommencer, quitter);
 
-        alert.setTitle("Information");
-        alert.setHeaderText("GAME OVER");
-        alert.setContentText("Vous avez perdu, veuillez recommencer");
+        alertPerdu.setTitle("Information");
+        alertPerdu.setHeaderText("GAME OVER");
+        alertPerdu.setContentText("Vous avez perdu, veuillez recommencer");
+
+        alertGagne.setTitle("Information");
+        alertGagne.setHeaderText("YOU WIN");
+        alertGagne.setContentText("Vous avez gagné, veuillez quitter pour enregistrer votre score ou recommencer");
 
 
         // TimerT.tempsRestant();
@@ -191,13 +181,16 @@ public class StartGame extends Application {
             @Override
             public void handle(long now) {
                 if (mario.collisionTonneaux(tonneaux) == -1) {
-                    alert.show();
-                    alert.setOnCloseRequest(e -> {
-                        System.exit(0);
-                    });
+                    alertPerdu.show();
+                    alertPerdu.setOnCloseRequest(e -> System.exit(0));
 
                 } else if (mario.collisionTonneaux(tonneaux) == 1) {
                     System.out.println("+1");
+                }
+
+                if(mario.getLayoutX()== 400 && mario.getLayoutY()== 160){
+                    alertGagne.show();
+                    alertGagne.setOnCloseRequest(e -> System.exit(0));
                 }
             }
         };
@@ -212,18 +205,7 @@ public class StartGame extends Application {
         stage.show();
     }
 
-    private void isWinning(Mario mario) {
-        this.aGagné = mario.getLayoutY() == 160 && mario.getLayoutX() == 400;
-    }
 
-    /**
-     * Méthode qui permet le mouvement de Mario
-     *
-     * @param mario
-     * @param echelles
-     * @param echellesBrokens
-     * @param coordonneesEchelles
-     */
     private void move(Mario mario, ArrayList<Echelle> echelles, ArrayList<EchelleBroken> echellesBrokens, ArrayList<ArrayList<Double>> coordonneesEchelles) {
         s.setOnKeyPressed((KeyEvent event) -> {
             mario.tomberEtage();
@@ -239,60 +221,17 @@ public class StartGame extends Application {
                         mario.directionHaut();
                         mario.setEstSurEchelle(true);
                     }
-                    this.isWinning(mario);
-                    if (aGagné) {
-                        System.out.println("a gagné");
-                        System.exit(0);
-                        this.primaryStage.close();
-                        Label label = new Label("Vous avez gagné !");
-                        label.setFont(new Font("Arial", 50));
-                        label.setTextFill(Color.RED);
-                        label.setLayoutX(200);
-                        label.setLayoutY(200);
-                        Scene scene = new Scene(label);
-                        Stage stage = new Stage();
-                        stage.setScene(scene);
-                    }
                     break;
                 case LEFT:
                     if (!mario.estDansEchelle(coordonneesEchelles)) {
                         mario.directionGauche();
                         mario.setEstSurEchelle(false);
                     }
-                    this.isWinning(mario);
-                    if (aGagné) {
-                        System.out.println("a gagné");
-                        System.exit(0);
-                        this.primaryStage.close();
-                        Label label = new Label("Vous avez gagné !");
-                        label.setFont(new Font("Arial", 50));
-                        label.setTextFill(Color.RED);
-                        label.setLayoutX(200);
-                        label.setLayoutY(200);
-                        Scene scene = new Scene(label);
-                        Stage stage = new Stage();
-                        stage.setScene(scene);
-                        stage.show();
-                    }
                     break;
                 case RIGHT:
                     if (!mario.estDansEchelle(coordonneesEchelles)) {
                         mario.directionDroite(s.getWidth());
                         mario.setEstSurEchelle(false);
-                    }
-                    this.isWinning(mario);
-                    if (aGagné) {
-                        System.out.println("a gagné");
-                        System.exit(0);
-                        this.primaryStage.close();
-                        Label label = new Label("Vous avez gagné !");
-                        label.setFont(new Font("Arial", 50));
-                        label.setTextFill(Color.RED);
-                        label.setLayoutX(200);
-                        label.setLayoutY(200);
-                        Scene scene = new Scene(label);
-                        Stage stage = new Stage();
-                        stage.setScene(scene);
                     }
                     break;
                 case DOWN:
@@ -303,20 +242,6 @@ public class StartGame extends Application {
                         mario.directionBas(s.getHeight());
                     }
                     mario.setEstSurEchelle(false);
-                    this.isWinning(mario);
-                    if (aGagné) {
-                        System.out.println("a gagné");
-                        System.exit(0);
-                        this.primaryStage.close();
-                        Label label = new Label("Vous avez gagné !");
-                        label.setFont(new Font("Arial", 50));
-                        label.setTextFill(Color.RED);
-                        label.setLayoutX(200);
-                        label.setLayoutY(200);
-                        Scene scene = new Scene(label);
-                        Stage stage = new Stage();
-                        stage.setScene(scene);
-                    }
                     break;
                 case SPACE:
                     if (!mario.isEstEnSaut()) {
