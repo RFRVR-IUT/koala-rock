@@ -83,6 +83,7 @@ public class StartGame extends Application {
         Echelle echelle3 = new Echelle(500, 331, 25, 80);
         Echelle echelle4 = new Echelle(100, 255, 25, 80);
         Echelle echelle5 = new Echelle(500, 177, 25, 80);
+        Echelle echelle6 = new Echelle(320, 100, 25, 80);
 
         EchelleBroken eb1 = new EchelleBroken(300, 331, 25, 80);
         EchelleBroken eb2 = new EchelleBroken(240, 177, 25, 80);
@@ -114,6 +115,7 @@ public class StartGame extends Application {
         jeu.getChildren().add(echelle3);
         jeu.getChildren().add(echelle4);
         jeu.getChildren().add(echelle5);
+        jeu.getChildren().add(echelle6);
         jeu.getChildren().add(eb1);
         jeu.getChildren().add(eb2);
         jeu.getChildren().add(mario);
@@ -134,6 +136,7 @@ public class StartGame extends Application {
         echelles.add(echelle3);
         echelles.add(echelle4);
         echelles.add(echelle5);
+        echelles.add(echelle6);
         ArrayList<ArrayList<Double>> coordonneesEchelles = new ArrayList<>();
         ArrayList<Double> coordonneesEchelle1 = new ArrayList<>();
         coordonneesEchelle1.add(380.0); // x
@@ -150,12 +153,16 @@ public class StartGame extends Application {
         ArrayList<Double> coordonneesEchelle5 = new ArrayList<>();
         coordonneesEchelle5.add(475.0);
         coordonneesEchelle5.add(160.0);
+        ArrayList<Double> coordonneesEchelle6 = new ArrayList<>();
+        coordonneesEchelle6.add(300.0);
+        coordonneesEchelle6.add(83.0);
 
         coordonneesEchelles.add(coordonneesEchelle1);
         coordonneesEchelles.add(coordonneesEchelle2);
         coordonneesEchelles.add(coordonneesEchelle3);
         coordonneesEchelles.add(coordonneesEchelle4);
         coordonneesEchelles.add(coordonneesEchelle5);
+        coordonneesEchelles.add(coordonneesEchelle6);
 
         //////////////////////// EchelleBroken
         ArrayList<EchelleBroken> echellesBrokens = new ArrayList<>();
@@ -273,8 +280,11 @@ public class StartGame extends Application {
             mario.tomberEtage();
             switch (event.getCode()) {
                 case UP:
-                    // System.out.println("X : " + mario.getLayoutX());
-                    // System.out.println("Y : " + mario.getLayoutY() + "\n");
+                    //mario.directionHaut();
+                    System.out.println("X : " + mario.getLayoutX());
+                    System.out.println("Y : " + mario.getLayoutY() + "\n");
+                    System.out.println(mario.collisionEchelle(echelles));
+                    System.out.println(echelles);
                     if (mario.collisionEchelle(echelles) && !(mario.estEn(coordonneesEchelles))) {
                         mario.directionHaut();
                         mario.setEstSurEchelle(true);

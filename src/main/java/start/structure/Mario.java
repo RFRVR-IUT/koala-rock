@@ -322,7 +322,6 @@ public class Mario extends Group {
         int res = 0;
         for (Tonneaux t : tonneaux) {
             if (this.getBoundsInParent().intersects(t.getBoundsInParent())) {
-                System.out.println(t.getDescendUneEchelle());
                 if (this.isEstEnSaut() && !aEuSonScore) {
                     ajouterScore(1);
                     res = 1;
@@ -330,7 +329,7 @@ public class Mario extends Group {
                     //aEuSonScore, s'il est true, permet d'avoir que +1 quand il touche la collision du haut.
                     //Il se remet à false à chaque fois qu'on saute.
                 } else if ((!this.isEstEnSaut() && !estSurEchelle) || (estSurEchelle && t.getDescendUneEchelle())) {
-                    System.out.println("Touche !");
+                    //System.out.println("Touche !");
                     res = -1;
                 }
             }

@@ -33,8 +33,8 @@ public class Tonneaux extends Group {
         corps.setFill(new ImagePattern(new Image("tonneau1.png")));
         collision.setFill(Paint.valueOf("red"));
         collisionHaut.setFill(Paint.valueOf("blue"));
-        collisionHaut.setOpacity(0.3);
-        collision.setOpacity(0.3);
+        collisionHaut.setOpacity(0);
+        collision.setOpacity(0);
 
         this.getChildren().add(corps);
         this.getChildren().add(collision);
