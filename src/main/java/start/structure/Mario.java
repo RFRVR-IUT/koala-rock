@@ -17,7 +17,7 @@ public class Mario extends Group {
     private double ySave;
     private boolean estEnSaut = false;
     private int change = 0;
-    private IntegerProperty score = new SimpleIntegerProperty();
+    private IntegerProperty score = new SimpleIntegerProperty(0);
     private boolean aEuSonScore = false;
     private boolean estSurEchelle = false;
 
@@ -30,7 +30,6 @@ public class Mario extends Group {
      * @param height
      */
     public Mario(int x, int y, int width, int height) {
-        score.set(0);
         corps = new Rectangle(x, y, width, height);
         // corps.setFill(Paint.valueOf("red"));
         corps.setFill(new ImagePattern(new Image("mario-idle.png")));
