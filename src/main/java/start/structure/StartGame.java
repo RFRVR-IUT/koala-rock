@@ -8,9 +8,12 @@ import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonBar;
 import javafx.scene.control.ButtonType;
+import javafx.scene.control.Label;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.Pane;
+import javafx.scene.paint.Color;
+import javafx.scene.text.Font;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 import java.io.IOException;
@@ -23,7 +26,6 @@ public class StartGame extends Application {
     public static void main(String[] args) {
         launch();
     }
-
 
     @Override
     public void start(Stage stage) throws IOException, InterruptedException {
@@ -227,7 +229,7 @@ public class StartGame extends Application {
 
                 }
 
-                if(mario.getLayoutX()== 400 && mario.getLayoutY()== 160){
+                if (mario.getLayoutX() == 400 && mario.getLayoutY() == 160) {
                     alertGagne.show();
                     alertGagne.setOnCloseRequest(e -> System.exit(0));
                 }
@@ -244,7 +246,6 @@ public class StartGame extends Application {
         stage.show();
     }
 
-
     /**
      * Méthode qui permet le mouvement de Mario
      *
@@ -253,7 +254,8 @@ public class StartGame extends Application {
      * @param echellesBrokens
      * @param coordonneesEchelles
      */
-    private void move(Mario mario, ArrayList<Echelle> echelles, ArrayList<EchelleBroken> echellesBrokens, ArrayList<ArrayList<Double>> coordonneesEchelles) {
+    private void move(Mario mario, ArrayList<Echelle> echelles, ArrayList<EchelleBroken> echellesBrokens,
+            ArrayList<ArrayList<Double>> coordonneesEchelles) {
         s.setOnKeyPressed((KeyEvent event) -> {
             mario.tomberEtage();
             switch (event.getCode()) {
