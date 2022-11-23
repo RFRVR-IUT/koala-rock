@@ -9,7 +9,10 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonBar;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyEvent;
+import javafx.scene.layout.BackgroundImage;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
@@ -41,6 +44,7 @@ public class StartGame extends Application {
         Scene scene = new Scene(borderPane, 600, 600);
         primaryStage.setScene(scene);
         primaryStage.show();
+
 
         Label label = new Label("Koala Rock");
         label.setFont(new Font("Arial", 50));
