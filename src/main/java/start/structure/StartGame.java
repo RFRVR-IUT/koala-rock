@@ -86,6 +86,7 @@ public class StartGame extends Application {
 
     public void demarrerJeu(Stage stage) throws IOException, InterruptedException {
 
+        Pane jeu = new Pane();
         BorderPane root = new BorderPane();
         Mario mario = new Mario(20, -10, 30, 30);
         Echelle echelle1 = new Echelle(400, 485, 25, 80);
@@ -116,8 +117,16 @@ public class StartGame extends Application {
         mario.setLayoutX(20 * 10);
         mario.setLayoutY(545);
 
+        Label score = new Label("Score : 0");
+        score.setFont(new Font("Arial", 20));
+        score.setTextFill(Color.WHITE);
+        score.setLayoutX(500);
+        score.setLayoutY(30);
+
+        
+
         // panneau du jeu
-        Pane jeu = new Pane();
+
         jeu.setPrefSize(600, 600);
         jeu.getChildren().add(fond);
         jeu.getChildren().add(echelle1);
@@ -135,6 +144,7 @@ public class StartGame extends Application {
         jeu.getChildren().add(tonneau3);
         jeu.getChildren().add(tonneau4);
         jeu.getChildren().add(tonneau5);
+        jeu.getChildren().add(score);
 
         System.out.println(echelle1.getLayoutX());
 
