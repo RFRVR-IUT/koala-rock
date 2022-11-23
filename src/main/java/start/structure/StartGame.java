@@ -2,8 +2,11 @@ package start.structure;
 
 import javafx.animation.*;
 import javafx.application.Application;
+import javafx.beans.Observable;
 import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.SimpleIntegerProperty;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -123,7 +126,13 @@ public class StartGame extends Application {
         score.setLayoutX(500);
         score.setLayoutY(30);
 
-        
+        // listener on mario.score to update score label
+        mario.scoreProperty().addListener(new ChangeListener<Number>() {
+            @Override
+            public void changed(ObservableValue<? extends Number> observableValue, Number number, Number t1) {
+                System.out.println("score changé");
+            }
+        });
 
         // panneau du jeu
 
