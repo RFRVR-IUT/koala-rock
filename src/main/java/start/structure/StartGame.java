@@ -8,8 +8,10 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyEvent;
-import javafx.scene.layout.*;
+import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.stage.Stage;
@@ -37,33 +39,41 @@ public class StartGame extends Application {
         BorderPane borderPane = new BorderPane();
         Pane pane = new Pane();
         borderPane.setCenter(pane);
-        borderPane.setStyle("-fx-background-radius: 30;");
-        Image backgroundImg = new Image("src/main/resources/menuScreen.png");
-        borderPane.setBackground(new Background(new BackgroundImage(backgroundImg, BackgroundRepeat.NO_REPEAT,
-                BackgroundRepeat.NO_REPEAT,
-                BackgroundPosition.CENTER,
-                null)));
-        Scene scene = new Scene(borderPane, 600, 600);
+
+        pane.setStyle("-fx-border-color: green ;");
+        borderPane.setStyle("-fx-background-color: transparent ;");
+
+
+        Scene scene = new Scene(borderPane, 1084, 610);
         primaryStage.setScene(scene);
         primaryStage.show();
 
 
-        Label label = new Label("Koala Rock");
-        label.setFont(new Font("Arial", 50));
-        label.setTextFill(Color.BLACK);
-        label.setLayoutX(150);
-        label.setLayoutY(150);
-        pane.getChildren().add(label);
+        Label nameGame = new Label("Koala Kong");
+        nameGame.setFont(new Font("Arial", 100));
+        nameGame.setTextFill(Color.WHITE);
+        nameGame.setLayoutX(283);
+        nameGame.setLayoutY(80);
 
         Button demarrerPartie = new Button("Commencer");
 
         demarrerPartie.setFont(new Font("Arial", 20));
         demarrerPartie.setTextFill(Color.BLACK);
         demarrerPartie.setStyle("-fx-background-radius: 30;");
-        demarrerPartie.setLayoutX(250);
-        demarrerPartie.setLayoutY(250);
+        demarrerPartie.setLayoutX(456);
+        demarrerPartie.setLayoutY(480);
+
+        // add image to nameGame
+        Label menuScreen = new Label();
+        Image image = new Image("file:src/main/resources/menuScreen.png");
+        ImageView imageView = new ImageView(image);
+        imageView.setFitHeight(610);
+        imageView.setFitWidth(1084);
+        menuScreen.setGraphic(imageView);
+        pane.getChildren().add(menuScreen);
 
         pane.getChildren().add(demarrerPartie);
+        pane.getChildren().add(nameGame);
 
         demarrerPartie.setOnMouseClicked(event -> {
             try {
