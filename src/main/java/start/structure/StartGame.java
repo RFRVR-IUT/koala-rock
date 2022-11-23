@@ -5,20 +5,16 @@ import javafx.application.Application;
 import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.scene.Scene;
-import javafx.scene.control.Alert;
-import javafx.scene.control.ButtonBar;
-import javafx.scene.control.ButtonType;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyEvent;
-import javafx.scene.layout.BackgroundImage;
-import javafx.scene.layout.BorderPane;
-import javafx.scene.layout.Pane;
+import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.stage.Stage;
 import javafx.util.Duration;
+
 import java.io.IOException;
 import java.util.ArrayList;
 
@@ -33,7 +29,7 @@ public class StartGame extends Application {
     @Override
     public void start(Stage stage) throws IOException, InterruptedException {
 
-        // Crer une scène avec un bouton commencer, quand se bouton est cliqué le jeu se
+        // Creer une scène avec un bouton commencer, quand se bouton est cliqué le jeu se
         // lance
         primaryStage = stage;
         primaryStage.setTitle("Koala Rock");
@@ -41,6 +37,12 @@ public class StartGame extends Application {
         BorderPane borderPane = new BorderPane();
         Pane pane = new Pane();
         borderPane.setCenter(pane);
+        borderPane.setStyle("-fx-background-radius: 30;");
+        Image backgroundImg = new Image("src/main/resources/menuScreen.png");
+        borderPane.setBackground(new Background(new BackgroundImage(backgroundImg, BackgroundRepeat.NO_REPEAT,
+                BackgroundRepeat.NO_REPEAT,
+                BackgroundPosition.CENTER,
+                null)));
         Scene scene = new Scene(borderPane, 600, 600);
         primaryStage.setScene(scene);
         primaryStage.show();
@@ -53,49 +55,26 @@ public class StartGame extends Application {
         label.setLayoutY(150);
         pane.getChildren().add(label);
 
-        Label label2 = new Label("COMMENCER");
-        label2.setFont(new Font("Arial", 20));
-        label2.setTextFill(Color.BLACK);
+        Button demarrerPartie = new Button("Commencer");
 
-        label2.setLayoutX(150);
-        label2.setLayoutY(250);
-        pane.getChildren().add(label2);
+        demarrerPartie.setFont(new Font("Arial", 20));
+        demarrerPartie.setTextFill(Color.BLACK);
+        demarrerPartie.setStyle("-fx-background-radius: 30;");
+        demarrerPartie.setLayoutX(250);
+        demarrerPartie.setLayoutY(250);
 
-        label2.setOnMouseClicked(event -> {
+        pane.getChildren().add(demarrerPartie);
+
+        demarrerPartie.setOnMouseClicked(event -> {
             try {
-                startGame(stage);
-            } catch (IOException e) {
-                e.printStackTrace();
-            } catch (InterruptedException e) {
-                // TODO Auto-generated catch block
+                demarrerJeu(stage);
+            } catch (IOException | InterruptedException e) {
                 e.printStackTrace();
             }
         });
     }
 
-    public void startGame(Stage stage) throws IOException, InterruptedException {
-
-        // ButtonType recommencer = new ButtonType("Recommencer",
-        // ButtonBar.ButtonData.OK_DONE);
-
-        // ButtonType quitter = new ButtonType("Quitter",
-        // ButtonBar.ButtonData.CANCEL_CLOSE);
-
-        // Alert alertPerdu = new Alert(Alert.AlertType.WARNING, "Vous avez perdu !",
-        // recommencer, quitter);
-        // Alert alertGagne = new Alert(Alert.AlertType.WARNING, "Vous avez gagné !",
-        // recommencer, quitter);
-
-        // alertPerdu.setTitle("Information");
-        // alertPerdu.setHeaderText("GAME OVER");
-        // alertPerdu.setContentText("Vous avez perdu, veuillez recommencer");
-
-        // alertGagne.setTitle("Information");
-        // alertGagne.setHeaderText("YOU WIN");
-        // alertGagne.setContentText("Vous avez gagné, veuillez quitter pour enregistrer
-        // votre score ou recommencer");
-
-        // TimerT.tempsRestant();
+    public void demarrerJeu(Stage stage) throws IOException, InterruptedException {
 
         BorderPane root = new BorderPane();
         Mario mario = new Mario(20, -10, 30, 30);
@@ -206,7 +185,7 @@ public class StartGame extends Application {
         tonneau1.setLayoutY(160);
         dk.lance(tonneau1);
         final IntegerProperty i = new SimpleIntegerProperty(0);
-        final int[] x = { 1 };
+        final int[] x = {1};
         Timeline timeline = new Timeline(new KeyFrame(Duration.seconds(6), event -> {
             i.set(i.get() + 1);
             if (x[0] < 5) {
@@ -251,10 +230,8 @@ public class StartGame extends Application {
                 }
             }
         };
+        // Fin Start Game //
         collisionTimer.start();
-
-        // lance(tonneau1, dk);
-
         root.setCenter(jeu);
         s = new Scene(root);
         move(mario, echelles, echellesBrokens, coordonneesEchelles);
@@ -262,8 +239,7 @@ public class StartGame extends Application {
         stage.show();
     }
 
-    public void supprimerEléments(Pane jeu, ArrayList<Tonneaux> tonneaux, ArrayList<Echelle> echelles,
-            ArrayList<EchelleBroken> echellesBrokens, Mario mario, DonkeyKong dk) {
+    public void supprimerEléments(Pane jeu, ArrayList<Tonneaux> tonneaux, ArrayList<Echelle> echelles, ArrayList<EchelleBroken> echellesBrokens, Mario mario, DonkeyKong dk) {
         jeu.getChildren().removeAll(tonneaux);
         jeu.getChildren().removeAll(echelles);
         jeu.getChildren().removeAll(echellesBrokens);
@@ -292,8 +268,7 @@ public class StartGame extends Application {
      * @param echellesBrokens
      * @param coordonneesEchelles
      */
-    private void move(Mario mario, ArrayList<Echelle> echelles, ArrayList<EchelleBroken> echellesBrokens,
-            ArrayList<ArrayList<Double>> coordonneesEchelles) {
+    private void move(Mario mario, ArrayList<Echelle> echelles, ArrayList<EchelleBroken> echellesBrokens, ArrayList<ArrayList<Double>> coordonneesEchelles) {
         s.setOnKeyPressed((KeyEvent event) -> {
             mario.tomberEtage();
             switch (event.getCode()) {
@@ -325,8 +300,7 @@ public class StartGame extends Application {
                     if (mario.collisionEchelle(echelles) && !(mario.estDansBasEchelle(coordonneesEchelles))) {
                         mario.directionBas(s.getHeight());
                     }
-                    if (mario.collisionEchelleBroken(echellesBrokens)
-                            && !(mario.estDansBasEchelle(coordonneesEchelles))) {
+                    if (mario.collisionEchelleBroken(echellesBrokens) && !(mario.estDansBasEchelle(coordonneesEchelles))) {
                         mario.directionBas(s.getHeight());
                     }
                     mario.setEstSurEchelle(false);
