@@ -257,7 +257,7 @@ public class StartGame extends Application {
 
                 }
 
-                if (mario.getLayoutX() == 400 && mario.getLayoutY() == 160) {
+                if (mario.getLayoutX() == 295 && mario.getLayoutY() == 94) {
                     try {
                         restartGame(stage);
                     } catch (IOException | InterruptedException e) {
@@ -347,7 +347,7 @@ public class StartGame extends Application {
                     break;
                 case SPACE:
                     if (!mario.isEstEnSaut()) {
-                        PauseTransition pause = new PauseTransition(javafx.util.Duration.seconds(0.6));
+                        PauseTransition pause = new PauseTransition(javafx.util.Duration.seconds(0.8));
                         mario.jump();
                         mario.setaEuSonScore(false);
                         pause.play();
