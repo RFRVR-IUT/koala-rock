@@ -30,7 +30,7 @@ public class Tonneaux extends Group {
         collision = new Rectangle(x, y, width, height);
         collisionHaut = new Rectangle(x, y - 30, width, height);
         corps.setFill(Paint.valueOf("brown"));
-        corps.setFill(new ImagePattern(new Image("tonneau1.png")));
+        corps.setFill(new ImagePattern(new Image("Rocher.png")));
         collision.setFill(Paint.valueOf("red"));
         collisionHaut.setFill(Paint.valueOf("blue"));
         collisionHaut.setOpacity(0);

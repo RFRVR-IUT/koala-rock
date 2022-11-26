@@ -10,7 +10,7 @@ public class Fond extends Group {
 
     public Fond(int x, int y, int width, int height) {
         fond = new Rectangle(x, y, width, height);
-        fond.setFill(new ImagePattern(new Image("fond-NEW.png")));
+        fond.setFill(new ImagePattern(new Image("fond.png")));
 
 
         this.getChildren().add(fond);
