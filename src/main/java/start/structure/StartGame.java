@@ -290,6 +290,7 @@ public class StartGame extends Application {
                     mario.setLayoutX(20 * 10);
                     mario.setLayoutY(545);
                     supprimerEléments(jeu, tonneaux, echelles, echellesBrokens, mario, dk);
+                    primaryStage.close();
                     creerEcranMort();
                 } else if (mario.collisionTonneaux(tonneaux) == 1) {
                     System.out.println("+1");
