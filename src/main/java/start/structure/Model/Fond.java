@@ -1,4 +1,4 @@
-package start.structure;
+package start.structure.Model;
 
 import javafx.scene.Group;
 import javafx.scene.image.Image;

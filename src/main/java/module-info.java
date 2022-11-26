@@ -1,4 +1,4 @@
-module start.structure {
+module start.structure.Client {
     requires javafx.base;
     requires javafx.controls;
     requires javafx.graphics;
@@ -6,8 +6,12 @@ module start.structure {
     requires java.desktop;
 
 
-    opens start.structure to javafx.fxml;
-    exports start.structure;
-
-    // to javafx.graphics
+    opens start.structure.Client to javafx.fxml;
+    exports start.structure.Client;
+    exports start.structure.Controller;
+    opens start.structure.Controller to javafx.fxml;
+    exports start.structure.Model;
+    opens start.structure.Model to javafx.fxml;
+    exports start.structure.View;
+    opens start.structure.View to javafx.fxml;
 }

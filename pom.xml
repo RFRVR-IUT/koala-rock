@@ -60,7 +60,7 @@
                         <!-- Default configuration for running with: mvn clean javafx:run -->
                         <id>default-cli</id>
                         <configuration>
-                            <mainClass>start.structure/start.structure.StartGame</mainClass>
+                            <mainClass>start.structure/start.structure.Client.StartGame</mainClass>
                             <launcher>app</launcher>
                             <jlinkZipName>app</jlinkZipName>
                             <jlinkImageName>app</jlinkImageName>

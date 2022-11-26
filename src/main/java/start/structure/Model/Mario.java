@@ -1,4 +1,4 @@
-package start.structure;
+package start.structure.Model;
 
 import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.SimpleIntegerProperty;
@@ -195,7 +195,7 @@ public class Mario extends Group {
      * @param echelles
      * @return
      */
-    boolean collisionEchelle(ArrayList<Echelle> echelles) {
+    public boolean collisionEchelle(ArrayList<Echelle> echelles) {
         boolean v = false;
         for (Echelle e : echelles) {
             v = this.getBoundsInParent().contains(e.getBoundsInParent()) || e.getBoundsInParent().contains(this.getBoundsInParent());
@@ -266,7 +266,7 @@ public class Mario extends Group {
      * @param echelles
      * @return
      */
-    boolean collisionEchelleBroken(ArrayList<EchelleBroken> echelles) {
+    public boolean collisionEchelleBroken(ArrayList<EchelleBroken> echelles) {
         boolean v = false;
         for (EchelleBroken eb : echelles) {
             v = this.getBoundsInParent().contains(eb.getBoundsInParent()) || eb.getBoundsInParent().contains(this.getBoundsInParent());

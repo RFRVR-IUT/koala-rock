@@ -1,4 +1,4 @@
-package start.structure;
+package start.structure.Model;
 
 import javafx.animation.PauseTransition;
 import javafx.scene.Group;

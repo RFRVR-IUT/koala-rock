@@ -1,16 +1,12 @@
-package start.structure;
+package start.structure.View;
 
 import javafx.animation.*;
-import javafx.application.Application;
 import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.Pane;
@@ -18,6 +14,7 @@ import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.stage.Stage;
 import javafx.util.Duration;
+import start.structure.Model.*;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -25,7 +22,7 @@ import java.util.Arrays;
 
 import static java.lang.Thread.sleep;
 
-public class StartGame extends Application {
+public class VuesJeu {
     ArrayList<Echelle> echelles;
     ArrayList<EchelleBroken> echellesBrokens;
     ArrayList<Tonneaux> tonneaux;
@@ -34,187 +31,14 @@ public class StartGame extends Application {
     private Stage primaryStage;
     private DonkeyKong dk;
     private Pane jeu;
-
-    public static void main(String[] args) {
-        launch();
-    }
-
-    public void screenStart() {
-        Stage stage = new Stage();
-        primaryStage = stage;
-        primaryStage.setTitle("Koala Rock");
-        primaryStage.setResizable(false);
-        BorderPane borderPane = new BorderPane();
-        Pane pane = new Pane();
-        borderPane.setCenter(pane);
-
-        pane.setStyle("-fx-border-color: green ;");
-        borderPane.setStyle("-fx-background-color: transparent ;");
+    private VuesGagne vuesGagne = new VuesGagne();
+    private VuesPerdre vuesPerdu = new VuesPerdre();
 
 
-        Scene scene = new Scene(borderPane, 1084, 610);
-        primaryStage.setScene(scene);
-        primaryStage.show();
-
-
-        Label nameGame = new Label("Koala Kong");
-        nameGame.setFont(new Font("Arial", 100));
-        nameGame.setTextFill(Color.WHITE);
-        nameGame.setLayoutX(283);
-        nameGame.setLayoutY(80);
-
-        Button demarrerPartie = new Button("Commencer");
-
-        demarrerPartie.setFont(new Font("Arial", 20));
-        demarrerPartie.setTextFill(Color.BLACK);
-        demarrerPartie.setStyle("-fx-background-radius: 30;");
-        demarrerPartie.setLayoutX(456);
-        demarrerPartie.setLayoutY(480);
-
-        Label menuScreen = new Label();
-        Image image = new Image("file:src/main/resources/ImageMenu.png");
-        ImageView imageView = new ImageView(image);
-        imageView.setFitHeight(610);
-        imageView.setFitWidth(1084);
-        menuScreen.setGraphic(imageView);
-        pane.getChildren().add(menuScreen);
-
-        pane.getChildren().add(demarrerPartie);
-        pane.getChildren().add(nameGame);
-
-        demarrerPartie.setOnMouseClicked(event -> {
-            try {
-                demarrerJeu(stage);
-            } catch (IOException | InterruptedException e) {
-                e.printStackTrace();
-            }
-        });
-    }
-
-    public void screenWin() {
-        Stage stage = new Stage();
-        primaryStage = stage;
-        primaryStage.setTitle("Koala Kong");
-        primaryStage.setResizable(false);
-        BorderPane borderPane = new BorderPane();
-        Pane pane = new Pane();
-        borderPane.setCenter(pane);
-
-        Scene scene = new Scene(borderPane, 1084, 610);
-        primaryStage.setScene(scene);
-        primaryStage.show();
-
-        Label nameGame = new Label("You win");
-        nameGame.setFont(new Font("Arial", 70));
-        nameGame.setTextFill(Color.WHITE);
-        nameGame.setLayoutX(420);
-        nameGame.setLayoutY(80);
-
-        Button recommencer = new Button("Recommencer");
-        recommencer.setFont(new Font("Arial", 20));
-        recommencer.setTextFill(Color.BLACK);
-        recommencer.setStyle("-fx-background-radius: 30;");
-        recommencer.setLayoutX(415);
-        recommencer.setLayoutY(480);
-
-        Button quitter = new Button("Quitter");
-        quitter.setFont(new Font("Arial", 20));
-        quitter.setTextFill(Color.BLACK);
-        quitter.setStyle("-fx-background-radius: 30;");
-        quitter.setLayoutX(585);
-        quitter.setLayoutY(480);
-
-        Label menuScreen = new Label();
-        Image image = new Image("file:src/main/resources/ImageMenu.png");
-        ImageView imageView = new ImageView(image);
-        imageView.setFitHeight(610);
-        imageView.setFitWidth(1084);
-        menuScreen.setGraphic(imageView);
-        pane.getChildren().add(menuScreen);
-
-        pane.getChildren().add(recommencer);
-        pane.getChildren().add(quitter);
-        pane.getChildren().add(nameGame);
-
-        recommencer.setOnMouseClicked(event -> {
-            try {
-                demarrerJeu(stage);
-            } catch (IOException | InterruptedException e) {
-                e.printStackTrace();
-            }
-        });
-        quitter.setOnMouseClicked(event -> {
-            primaryStage.close();
-            System.exit(0);
-        });
-    }
-
-    public void screenLose() {
-        Stage stage = new Stage();
-        primaryStage = stage;
-        primaryStage.setTitle("Koala Kong");
-        primaryStage.setResizable(false);
-        BorderPane borderPane = new BorderPane();
-        Pane pane = new Pane();
-        borderPane.setCenter(pane);
-
-        Scene scene = new Scene(borderPane, 1084, 610);
-        primaryStage.setScene(scene);
-        primaryStage.show();
-
-        Label nameGame = new Label("Vous avez perdu");
-        nameGame.setFont(new Font("Arial", 70));
-        nameGame.setTextFill(Color.WHITE);
-        nameGame.setLayoutX(282);
-        nameGame.setLayoutY(80);
-
-        Button recommencer = new Button("Recommencer");
-        recommencer.setFont(new Font("Arial", 20));
-        recommencer.setTextFill(Color.BLACK);
-        recommencer.setStyle("-fx-background-radius: 30;");
-        recommencer.setLayoutX(415);
-        recommencer.setLayoutY(480);
-
-        Button quitter = new Button("Quitter");
-        quitter.setFont(new Font("Arial", 20));
-        quitter.setTextFill(Color.BLACK);
-        quitter.setStyle("-fx-background-radius: 30;");
-        quitter.setLayoutX(585);
-        quitter.setLayoutY(480);
-
-        Label deadScreen = new Label();
-        Image image = new Image("file:src/main/resources/ImageMenu.png");
-        ImageView imageView = new ImageView(image);
-        imageView.setFitHeight(610);
-        imageView.setFitWidth(1084);
-        deadScreen.setGraphic(imageView);
-        pane.getChildren().add(deadScreen);
-
-        pane.getChildren().add(recommencer);
-        pane.getChildren().add(quitter);
-        pane.getChildren().add(nameGame);
-
-        recommencer.setOnMouseClicked(event -> {
-            try {
-                demarrerJeu(stage);
-            } catch (IOException | InterruptedException e) {
-                e.printStackTrace();
-            }
-        });
-        quitter.setOnMouseClicked(event -> {
-            primaryStage.close();
-            System.exit(0);
-        });
-
-    }
-
-    @Override
-    public void start(Stage stage) throws IOException, InterruptedException {
-        screenStart();
-    }
 
     public void demarrerJeu(Stage stage) throws IOException, InterruptedException {
 
+        primaryStage = stage;
         jeu = new Pane();
         BorderPane root = new BorderPane();
         mario = new Mario(20, -10, 30, 30);
@@ -348,7 +172,7 @@ public class StartGame extends Application {
                     mario.setLayoutY(545);
                     supprimerElements(jeu, tonneaux, echelles, echellesBrokens, mario, dk);
                     primaryStage.close();
-                    screenLose();
+                    vuesPerdu.screenLose();
                 } else if (mario.collisionTonneaux(tonneaux) == 1) {
                     System.out.println("+1");
 
@@ -359,7 +183,7 @@ public class StartGame extends Application {
                     mario.setLayoutY(545);
                     supprimerElements(jeu, tonneaux, echelles, echellesBrokens, mario, dk);
                     primaryStage.close();
-                    screenWin();
+                    vuesGagne.screenWin();
                 }
             }
         };
@@ -372,13 +196,6 @@ public class StartGame extends Application {
         stage.show();
     }
 
-    public void supprimerElements(Pane jeu, ArrayList<Tonneaux> tonneaux, ArrayList<Echelle> echelles, ArrayList<EchelleBroken> echellesBrokens, Mario mario, DonkeyKong dk) {
-        jeu.getChildren().removeAll(tonneaux);
-        jeu.getChildren().removeAll(echelles);
-        jeu.getChildren().removeAll(echellesBrokens);
-        jeu.getChildren().removeAll(mario,dk);
-    }
-
     public void restartGame(Stage stage) throws IOException, InterruptedException {
         System.out.println("restart");
         stage.close();
@@ -386,7 +203,16 @@ public class StartGame extends Application {
         mario.setLayoutX(20 * 10);
         mario.setLayoutY(545);
         sleep(1000);
-        start(new Stage());
+        //start(new Stage());
+    }
+
+
+
+    public void supprimerElements(Pane jeu, ArrayList<Tonneaux> tonneaux, ArrayList<Echelle> echelles, ArrayList<EchelleBroken> echellesBrokens, Mario mario, DonkeyKong dk) {
+        jeu.getChildren().removeAll(tonneaux);
+        jeu.getChildren().removeAll(echelles);
+        jeu.getChildren().removeAll(echellesBrokens);
+        jeu.getChildren().removeAll(mario,dk);
     }
 
     /**
