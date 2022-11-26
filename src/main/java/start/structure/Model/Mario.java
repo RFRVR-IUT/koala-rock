@@ -31,7 +31,7 @@ public class Mario extends Group {
      */
     public Mario(int x, int y, int width, int height) {
         corps = new Rectangle(x, y, width, height);
-        corps.setFill(new ImagePattern(new Image("mario-idle.png")));
+        corps.setFill(new ImagePattern(new Image("Panda_idle.png")));
 
         this.getChildren().add(corps);
         direction = "droite";
@@ -66,7 +66,7 @@ public class Mario extends Group {
         if (!direction.equals("gauche")) {
             direction = "gauche";
         }
-        corps.setFill(new ImagePattern(new Image("mario-idle.png")));
+        corps.setFill(new ImagePattern(new Image("Panda_idle.png")));
         corps.setScaleX(1);
     }
 
@@ -88,7 +88,7 @@ public class Mario extends Group {
         if (!direction.equals("droite")) {
             direction = "droite";
         }
-        corps.setFill(new ImagePattern(new Image("mario-idle.png")));
+        corps.setFill(new ImagePattern(new Image("Panda_idle.png")));
         corps.setScaleX(-1);
     }
 
@@ -109,7 +109,7 @@ public class Mario extends Group {
         if (!direction.equals("bas")) {
             direction = "bas";
         }
-        corps.setFill(new ImagePattern(new Image("mario-climb.png")));
+        corps.setFill(new ImagePattern(new Image("Panda_Climb.png")));
         if (change % 2 == 0) {
             corps.setScaleX(1);
             change++;
@@ -134,7 +134,7 @@ public class Mario extends Group {
         if (!direction.equals("haut")) {
             direction = "haut";
         }
-        corps.setFill(new ImagePattern(new Image("mario-climb.png")));
+        corps.setFill(new ImagePattern(new Image("Panda_Climb.png")));
         if (change % 2 == 0) {
             corps.setScaleX(1);
             change++;
@@ -166,7 +166,7 @@ public class Mario extends Group {
             //System.out.println(getLayoutY());
         }
         this.estEnSaut = true;
-        corps.setFill(new ImagePattern(new Image("mario-walk1.png")));
+        corps.setFill(new ImagePattern(new Image("Panda_idle.png")));
     }
 
     /**
@@ -177,7 +177,7 @@ public class Mario extends Group {
             setLayoutY(getLayoutY() + (0.7 * LARGEUR_PERSONNAGE));
         }
         this.estEnSaut = false;
-        corps.setFill(new ImagePattern(new Image("mario-idle.png")));
+        corps.setFill(new ImagePattern(new Image("Panda_idle.png")));
     }
 
     public double getYSave() {
