@@ -92,6 +92,39 @@ public class StartGame extends Application {
         });
     }
 
+
+   public void creerEcranMort(){
+       Stage stage = new Stage();
+       primaryStage = stage;
+       primaryStage.setTitle("You died");
+       primaryStage.setResizable(false);
+       BorderPane borderPane = new BorderPane();
+       Pane pane = new Pane();
+       borderPane.setCenter(pane);
+
+       Scene scene = new Scene(borderPane, 1084, 610);
+       primaryStage.setScene(scene);
+       primaryStage.show();
+
+       Button recommencer = new Button("Recommencer");
+       Button quitter = new Button("Quitter");
+
+       pane.getChildren().add(recommencer);
+       pane.getChildren().add(quitter);
+
+       recommencer.setOnMouseClicked(event -> {
+           try {
+               demarrerJeu(stage);
+           } catch (IOException | InterruptedException e) {
+               e.printStackTrace();
+           }
+       });
+       quitter.setOnMouseClicked(event ->{
+           primaryStage.close();
+           creerEcranDebut();
+       });
+
+   }
     @Override
     public void start(Stage stage) throws IOException, InterruptedException {
         creerEcranDebut();
@@ -254,14 +287,10 @@ public class StartGame extends Application {
             @Override
             public void handle(long now) {
                 if (mario.collisionTonneaux(tonneaux) == -1) {
-                    // try {
+                    mario.setLayoutX(20 * 10);
+                    mario.setLayoutY(545);
                     supprimerEléments(jeu, tonneaux, echelles, echellesBrokens, mario, dk);
-                    // restartGame(stage);
-                    // } catch (IOException | InterruptedException e) {
-                    // // TODO Auto-generated catch block
-                    // e.printStackTrace();
-                    // }
-
+                    creerEcranMort();
                 } else if (mario.collisionTonneaux(tonneaux) == 1) {
                     System.out.println("+1");
 
