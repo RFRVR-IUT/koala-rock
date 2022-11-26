@@ -38,7 +38,7 @@ public class StartGame extends Application {
         launch();
     }
 
-    public void creerEcranDebut(){
+    public void screenStart() {
         Stage stage = new Stage();
         primaryStage = stage;
         primaryStage.setTitle("Koala Rock");
@@ -70,9 +70,8 @@ public class StartGame extends Application {
         demarrerPartie.setLayoutX(456);
         demarrerPartie.setLayoutY(480);
 
-        // add image to nameGame
         Label menuScreen = new Label();
-        Image image = new Image("file:src/main/resources/menuScreen.png");
+        Image image = new Image("file:src/main/resources/ImageMenu.png");
         ImageView imageView = new ImageView(image);
         imageView.setFitHeight(610);
         imageView.setFitWidth(1084);
@@ -91,10 +90,10 @@ public class StartGame extends Application {
         });
     }
 
-    public void creerEcranWin(){
+    public void screenWin() {
         Stage stage = new Stage();
         primaryStage = stage;
-        primaryStage.setTitle("You win");
+        primaryStage.setTitle("Koala Kong");
         primaryStage.setResizable(false);
         BorderPane borderPane = new BorderPane();
         Pane pane = new Pane();
@@ -105,17 +104,36 @@ public class StartGame extends Application {
         primaryStage.show();
 
         Label nameGame = new Label("You win");
-        nameGame.setFont(new Font("Arial", 100));
+        nameGame.setFont(new Font("Arial", 70));
         nameGame.setTextFill(Color.WHITE);
-        nameGame.setLayoutX(283);
+        nameGame.setLayoutX(420);
         nameGame.setLayoutY(80);
 
         Button recommencer = new Button("Recommencer");
+        recommencer.setFont(new Font("Arial", 20));
+        recommencer.setTextFill(Color.BLACK);
+        recommencer.setStyle("-fx-background-radius: 30;");
+        recommencer.setLayoutX(415);
+        recommencer.setLayoutY(480);
+
         Button quitter = new Button("Quitter");
+        quitter.setFont(new Font("Arial", 20));
+        quitter.setTextFill(Color.BLACK);
+        quitter.setStyle("-fx-background-radius: 30;");
+        quitter.setLayoutX(585);
+        quitter.setLayoutY(480);
+
+        Label menuScreen = new Label();
+        Image image = new Image("file:src/main/resources/ImageMenu.png");
+        ImageView imageView = new ImageView(image);
+        imageView.setFitHeight(610);
+        imageView.setFitWidth(1084);
+        menuScreen.setGraphic(imageView);
+        pane.getChildren().add(menuScreen);
 
         pane.getChildren().add(recommencer);
         pane.getChildren().add(quitter);
-        borderPane.setTop(nameGame);
+        pane.getChildren().add(nameGame);
 
         recommencer.setOnMouseClicked(event -> {
             try {
@@ -124,54 +142,74 @@ public class StartGame extends Application {
                 e.printStackTrace();
             }
         });
-        quitter.setOnMouseClicked(event ->{
+        quitter.setOnMouseClicked(event -> {
             primaryStage.close();
             System.exit(0);
         });
     }
 
-   public void creerEcranMort(){
-       Stage stage = new Stage();
-       primaryStage = stage;
-       primaryStage.setTitle("You died");
-       primaryStage.setResizable(false);
-       BorderPane borderPane = new BorderPane();
-       Pane pane = new Pane();
-       borderPane.setCenter(pane);
+    public void screenLose() {
+        Stage stage = new Stage();
+        primaryStage = stage;
+        primaryStage.setTitle("Koala Kong");
+        primaryStage.setResizable(false);
+        BorderPane borderPane = new BorderPane();
+        Pane pane = new Pane();
+        borderPane.setCenter(pane);
 
-       Scene scene = new Scene(borderPane, 1084, 610);
-       primaryStage.setScene(scene);
-       primaryStage.show();
+        Scene scene = new Scene(borderPane, 1084, 610);
+        primaryStage.setScene(scene);
+        primaryStage.show();
 
-       Label nameGame = new Label("You died");
-       nameGame.setFont(new Font("Arial", 100));
-       nameGame.setTextFill(Color.WHITE);
-       nameGame.setLayoutX(283);
-       nameGame.setLayoutY(80);
+        Label nameGame = new Label("Vous avez perdu");
+        nameGame.setFont(new Font("Arial", 70));
+        nameGame.setTextFill(Color.WHITE);
+        nameGame.setLayoutX(282);
+        nameGame.setLayoutY(80);
 
-       Button recommencer = new Button("Recommencer");
-       Button quitter = new Button("Quitter");
+        Button recommencer = new Button("Recommencer");
+        recommencer.setFont(new Font("Arial", 20));
+        recommencer.setTextFill(Color.BLACK);
+        recommencer.setStyle("-fx-background-radius: 30;");
+        recommencer.setLayoutX(415);
+        recommencer.setLayoutY(480);
 
-       pane.getChildren().add(recommencer);
-       pane.getChildren().add(quitter);
-       borderPane.setTop(nameGame);
+        Button quitter = new Button("Quitter");
+        quitter.setFont(new Font("Arial", 20));
+        quitter.setTextFill(Color.BLACK);
+        quitter.setStyle("-fx-background-radius: 30;");
+        quitter.setLayoutX(585);
+        quitter.setLayoutY(480);
 
-       recommencer.setOnMouseClicked(event -> {
-           try {
-               demarrerJeu(stage);
-           } catch (IOException | InterruptedException e) {
-               e.printStackTrace();
-           }
-       });
-       quitter.setOnMouseClicked(event ->{
-           primaryStage.close();
-           System.exit(0);
-       });
+        Label deadScreen = new Label();
+        Image image = new Image("file:src/main/resources/ImageMenu.png");
+        ImageView imageView = new ImageView(image);
+        imageView.setFitHeight(610);
+        imageView.setFitWidth(1084);
+        deadScreen.setGraphic(imageView);
+        pane.getChildren().add(deadScreen);
 
-   }
+        pane.getChildren().add(recommencer);
+        pane.getChildren().add(quitter);
+        pane.getChildren().add(nameGame);
+
+        recommencer.setOnMouseClicked(event -> {
+            try {
+                demarrerJeu(stage);
+            } catch (IOException | InterruptedException e) {
+                e.printStackTrace();
+            }
+        });
+        quitter.setOnMouseClicked(event -> {
+            primaryStage.close();
+            System.exit(0);
+        });
+
+    }
+
     @Override
     public void start(Stage stage) throws IOException, InterruptedException {
-        creerEcranDebut();
+         screenStart();
     }
 
     public void demarrerJeu(Stage stage) throws IOException, InterruptedException {
@@ -294,8 +332,6 @@ public class StartGame extends Application {
         coordonneesEchelles.add(coordonneesEchelleBroken2);
 
 
-
-
         ////////////////////////////////////////////////
 
         // Tonneaux (faudra penser à essayer de le foutre dans la classe Tonneaux nan ?)
@@ -335,7 +371,7 @@ public class StartGame extends Application {
                     mario.setLayoutY(545);
                     supprimerElements(jeu, tonneaux, echelles, echellesBrokens, mario, dk);
                     primaryStage.close();
-                    creerEcranMort();
+                    screenLose();
                 } else if (mario.collisionTonneaux(tonneaux) == 1) {
                     System.out.println("+1");
 
@@ -346,7 +382,7 @@ public class StartGame extends Application {
                     mario.setLayoutY(545);
                     supprimerElements(jeu, tonneaux, echelles, echellesBrokens, mario, dk);
                     primaryStage.close();
-                    creerEcranWin();
+                    screenWin();
                 }
             }
         };
