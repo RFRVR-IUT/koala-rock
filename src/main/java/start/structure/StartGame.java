@@ -6,7 +6,6 @@ import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
-import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -92,6 +91,44 @@ public class StartGame extends Application {
         });
     }
 
+    public void creerEcranWin(){
+        Stage stage = new Stage();
+        primaryStage = stage;
+        primaryStage.setTitle("You win");
+        primaryStage.setResizable(false);
+        BorderPane borderPane = new BorderPane();
+        Pane pane = new Pane();
+        borderPane.setCenter(pane);
+
+        Scene scene = new Scene(borderPane, 1084, 610);
+        primaryStage.setScene(scene);
+        primaryStage.show();
+
+        Label nameGame = new Label("You win");
+        nameGame.setFont(new Font("Arial", 100));
+        nameGame.setTextFill(Color.WHITE);
+        nameGame.setLayoutX(283);
+        nameGame.setLayoutY(80);
+
+        Button recommencer = new Button("Recommencer");
+        Button quitter = new Button("Quitter");
+
+        pane.getChildren().add(recommencer);
+        pane.getChildren().add(quitter);
+        borderPane.setTop(nameGame);
+
+        recommencer.setOnMouseClicked(event -> {
+            try {
+                demarrerJeu(stage);
+            } catch (IOException | InterruptedException e) {
+                e.printStackTrace();
+            }
+        });
+        quitter.setOnMouseClicked(event ->{
+            primaryStage.close();
+            System.exit(0);
+        });
+    }
 
    public void creerEcranMort(){
        Stage stage = new Stage();
@@ -106,11 +143,18 @@ public class StartGame extends Application {
        primaryStage.setScene(scene);
        primaryStage.show();
 
+       Label nameGame = new Label("You died");
+       nameGame.setFont(new Font("Arial", 100));
+       nameGame.setTextFill(Color.WHITE);
+       nameGame.setLayoutX(283);
+       nameGame.setLayoutY(80);
+
        Button recommencer = new Button("Recommencer");
        Button quitter = new Button("Quitter");
 
        pane.getChildren().add(recommencer);
        pane.getChildren().add(quitter);
+       borderPane.setTop(nameGame);
 
        recommencer.setOnMouseClicked(event -> {
            try {
@@ -121,7 +165,7 @@ public class StartGame extends Application {
        });
        quitter.setOnMouseClicked(event ->{
            primaryStage.close();
-           creerEcranDebut();
+           System.exit(0);
        });
 
    }
@@ -289,7 +333,7 @@ public class StartGame extends Application {
                 if (mario.collisionTonneaux(tonneaux) == -1) {
                     mario.setLayoutX(20 * 10);
                     mario.setLayoutY(545);
-                    supprimerEléments(jeu, tonneaux, echelles, echellesBrokens, mario, dk);
+                    supprimerElements(jeu, tonneaux, echelles, echellesBrokens, mario, dk);
                     primaryStage.close();
                     creerEcranMort();
                 } else if (mario.collisionTonneaux(tonneaux) == 1) {
@@ -298,12 +342,11 @@ public class StartGame extends Application {
                 }
 
                 if (mario.getLayoutX() == 300 && mario.getLayoutY() == 94) {
-                    try {
-                        restartGame(stage);
-                    } catch (IOException | InterruptedException e) {
-                        // TODO Auto-generated catch block
-                        e.printStackTrace();
-                    }
+                    mario.setLayoutX(20 * 10);
+                    mario.setLayoutY(545);
+                    supprimerElements(jeu, tonneaux, echelles, echellesBrokens, mario, dk);
+                    primaryStage.close();
+                    creerEcranWin();
                 }
             }
         };
@@ -316,7 +359,7 @@ public class StartGame extends Application {
         stage.show();
     }
 
-    public void supprimerEléments(Pane jeu, ArrayList<Tonneaux> tonneaux, ArrayList<Echelle> echelles, ArrayList<EchelleBroken> echellesBrokens, Mario mario, DonkeyKong dk) {
+    public void supprimerElements(Pane jeu, ArrayList<Tonneaux> tonneaux, ArrayList<Echelle> echelles, ArrayList<EchelleBroken> echellesBrokens, Mario mario, DonkeyKong dk) {
         jeu.getChildren().removeAll(tonneaux);
         jeu.getChildren().removeAll(echelles);
         jeu.getChildren().removeAll(echellesBrokens);
@@ -327,7 +370,7 @@ public class StartGame extends Application {
     public void restartGame(Stage stage) throws IOException, InterruptedException {
         System.out.println("restart");
         stage.close();
-        supprimerEléments(jeu, tonneaux, echelles, echellesBrokens, mario, dk);
+        supprimerElements(jeu, tonneaux, echelles, echellesBrokens, mario, dk);
         mario.setLayoutX(20 * 10);
         mario.setLayoutY(545);
         sleep(1000);
