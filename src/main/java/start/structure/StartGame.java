@@ -21,18 +21,19 @@ import javafx.util.Duration;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Arrays;
 
 import static java.lang.Thread.sleep;
 
 public class StartGame extends Application {
-    private Scene s;
-    private Stage primaryStage;
-    private DonkeyKong dk;
-    private Pane jeu;
     ArrayList<Echelle> echelles;
     ArrayList<EchelleBroken> echellesBrokens;
     ArrayList<Tonneaux> tonneaux;
     Mario mario;
+    private Scene s;
+    private Stage primaryStage;
+    private DonkeyKong dk;
+    private Pane jeu;
 
     public static void main(String[] args) {
         launch();
@@ -209,7 +210,7 @@ public class StartGame extends Application {
 
     @Override
     public void start(Stage stage) throws IOException, InterruptedException {
-         screenStart();
+        screenStart();
     }
 
     public void demarrerJeu(Stage stage) throws IOException, InterruptedException {
@@ -224,8 +225,8 @@ public class StartGame extends Application {
         Echelle echelle5 = new Echelle(500, 177, 25, 80);
         Echelle echelle6 = new Echelle(320, 100, 25, 80);
 
-        EchelleBroken eb1 = new EchelleBroken(300, 331, 25, 80);
-        EchelleBroken eb2 = new EchelleBroken(240, 177, 25, 80);
+        EchelleBroken echelleBroken1 = new EchelleBroken(300, 331, 25, 80);
+        EchelleBroken echelleBroken2 = new EchelleBroken(240, 177, 25, 80);
 
         DonkeyKong dk = new DonkeyKong(60, 80, 100, 100);
         Fond fond = new Fond(0, 0, 600, 600);
@@ -239,8 +240,7 @@ public class StartGame extends Application {
         tonneau3.setLayoutY(-30);
         tonneau4.setLayoutY(-30);
         tonneau5.setLayoutY(-30);
-        // décompte du temps
-        // Tonneaux tonneau2 = new Tonneaux(20, 160, 20, 20);
+
 
         mario.setLayoutX(20 * 10);
         mario.setLayoutY(545);
@@ -260,22 +260,17 @@ public class StartGame extends Application {
 
         // panneau du jeu
         jeu.setPrefSize(600, 600);
+        // Fond
         jeu.getChildren().add(fond);
-        jeu.getChildren().add(echelle1);
-        jeu.getChildren().add(echelle2);
-        jeu.getChildren().add(echelle3);
-        jeu.getChildren().add(echelle4);
-        jeu.getChildren().add(echelle5);
-        jeu.getChildren().add(echelle6);
-        jeu.getChildren().add(eb1);
-        jeu.getChildren().add(eb2);
-        jeu.getChildren().add(mario);
-        jeu.getChildren().add(dk);
-        jeu.getChildren().add(tonneau1);
-        jeu.getChildren().add(tonneau2);
-        jeu.getChildren().add(tonneau3);
-        jeu.getChildren().add(tonneau4);
-        jeu.getChildren().add(tonneau5);
+        // Echelle
+        jeu.getChildren().addAll(echelle1, echelle2, echelle3, echelle4, echelle5, echelle6);
+        // EchelleBroken
+        jeu.getChildren().addAll(echelleBroken1, echelleBroken2);
+        // Perso
+        jeu.getChildren().addAll(mario, dk);
+        // Tonneaux
+        jeu.getChildren().addAll(tonneau1, tonneau2, tonneau3, tonneau5);
+        // Score
         jeu.getChildren().add(score);
 
         System.out.println(echelle1.getLayoutX());
@@ -283,13 +278,9 @@ public class StartGame extends Application {
         //////////////////////// Echelle
         // Attribution des coordonnées etc des échelles
         echelles = new ArrayList<>();
-        echelles.add(echelle1);
-        echelles.add(echelle2);
-        echelles.add(echelle3);
-        echelles.add(echelle4);
-        echelles.add(echelle5);
-        echelles.add(echelle6);
-        ArrayList<ArrayList<Double>> coordonneesEchelles = new ArrayList<>();
+        echelles.addAll(Arrays.asList(echelle1, echelle2, echelle3, echelle4, echelle5, echelle6));
+
+        // Attribution des coordonnées des echelles
         ArrayList<Double> coordonneesEchelle1 = new ArrayList<>();
         coordonneesEchelle1.add(380.0); // x
         coordonneesEchelle1.add(468.0); // y
@@ -309,17 +300,10 @@ public class StartGame extends Application {
         coordonneesEchelle6.add(300.0);
         coordonneesEchelle6.add(83.0);
 
-        coordonneesEchelles.add(coordonneesEchelle1);
-        coordonneesEchelles.add(coordonneesEchelle2);
-        coordonneesEchelles.add(coordonneesEchelle3);
-        coordonneesEchelles.add(coordonneesEchelle4);
-        coordonneesEchelles.add(coordonneesEchelle5);
-        coordonneesEchelles.add(coordonneesEchelle6);
+        ArrayList<ArrayList<Double>> coordonneesEchelles = new ArrayList<>(Arrays.asList(coordonneesEchelle1, coordonneesEchelle2, coordonneesEchelle3, coordonneesEchelle4, coordonneesEchelle5, coordonneesEchelle6));
 
         //////////////////////// EchelleBroken
-        echellesBrokens = new ArrayList<>();
-        echellesBrokens.add(eb1);
-        echellesBrokens.add(eb2);
+        echellesBrokens = new ArrayList<>(Arrays.asList(echelleBroken1, echelleBroken2));
 
         ArrayList<Double> coordonneesEchelleBroken1 = new ArrayList<>();
         coordonneesEchelleBroken1.add(275.0);
@@ -328,19 +312,12 @@ public class StartGame extends Application {
         coordonneesEchelleBroken2.add(220.0);
         coordonneesEchelleBroken2.add(160.0);
 
-        coordonneesEchelles.add(coordonneesEchelleBroken1);
-        coordonneesEchelles.add(coordonneesEchelleBroken2);
-
+        coordonneesEchelles.addAll(Arrays.asList(coordonneesEchelleBroken1, coordonneesEchelleBroken2));
 
         ////////////////////////////////////////////////
 
         // Tonneaux (faudra penser à essayer de le foutre dans la classe Tonneaux nan ?)
-        tonneaux = new ArrayList<>();
-        tonneaux.add(tonneau1);
-        tonneaux.add(tonneau2);
-        tonneaux.add(tonneau3);
-        tonneaux.add(tonneau4);
-        tonneaux.add(tonneau5);
+        tonneaux = new ArrayList<>( Arrays.asList(tonneau1, tonneau2, tonneau3, tonneau4, tonneau5) );
         tonneau1.moveTonneaux(coordonneesEchelles, dk);
         tonneau1.setLayoutY(160);
         dk.lance(tonneau1);
@@ -399,8 +376,7 @@ public class StartGame extends Application {
         jeu.getChildren().removeAll(tonneaux);
         jeu.getChildren().removeAll(echelles);
         jeu.getChildren().removeAll(echellesBrokens);
-        jeu.getChildren().removeAll(mario);
-        jeu.getChildren().removeAll(dk);
+        jeu.getChildren().removeAll(mario,dk);
     }
 
     public void restartGame(Stage stage) throws IOException, InterruptedException {

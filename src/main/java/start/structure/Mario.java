@@ -31,7 +31,6 @@ public class Mario extends Group {
      */
     public Mario(int x, int y, int width, int height) {
         corps = new Rectangle(x, y, width, height);
-        // corps.setFill(Paint.valueOf("red"));
         corps.setFill(new ImagePattern(new Image("mario-idle.png")));
 
         this.getChildren().add(corps);

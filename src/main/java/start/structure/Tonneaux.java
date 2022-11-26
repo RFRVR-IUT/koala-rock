@@ -110,9 +110,6 @@ public class Tonneaux extends Group {
      * @param dk
      */
     public void moveTonneaux(ArrayList<ArrayList<Double>> coordonneesEchelles, DonkeyKong dk) {
-
-        // coordonneesEchelle1.add(76.0);
-        // coordonneesEchelle1.add(246.0);
         PauseTransition pause = new PauseTransition();
         pause.setDuration(javafx.util.Duration.seconds(0.01));
         pause.play();
@@ -124,7 +121,6 @@ public class Tonneaux extends Group {
                 pause.play();
 
             }
-            // quand le tonneau est en bas de l'échelle -> On relance le tonneau.
             if (this.getLayoutX() == 70.0 && this.getLayoutY() == 556.0) {
                 dk.lance(this);
             }
@@ -148,16 +144,9 @@ public class Tonneaux extends Group {
                 this.descendUneEchelle = false;
                 pause.play();
             } else {
-                // System.out.println(tonneaux.getLayoutY());
                 this.directionBas();
                 pause.play();
             }
         });
     }
-
-    // public void stop() {
-    // this.setLayoutY(170.0);
-    // this.setLayoutX(120.0);
-    // }
-
 }
