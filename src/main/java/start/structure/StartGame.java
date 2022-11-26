@@ -23,19 +23,24 @@ import javafx.util.Duration;
 import java.io.IOException;
 import java.util.ArrayList;
 
+import static java.lang.Thread.sleep;
+
 public class StartGame extends Application {
     private Scene s;
     private Stage primaryStage;
+    private DonkeyKong dk;
+    private Pane jeu;
+    ArrayList<Echelle> echelles;
+    ArrayList<EchelleBroken> echellesBrokens;
+    ArrayList<Tonneaux> tonneaux;
+    Mario mario;
 
     public static void main(String[] args) {
         launch();
     }
 
-    @Override
-    public void start(Stage stage) throws IOException, InterruptedException {
-
-        // Creer une scène avec un bouton commencer, quand se bouton est cliqué le jeu se
-        // lance
+    public void creerEcranDebut(){
+        Stage stage = new Stage();
         primaryStage = stage;
         primaryStage.setTitle("Koala Rock");
         primaryStage.setResizable(false);
@@ -87,11 +92,16 @@ public class StartGame extends Application {
         });
     }
 
+    @Override
+    public void start(Stage stage) throws IOException, InterruptedException {
+        creerEcranDebut();
+    }
+
     public void demarrerJeu(Stage stage) throws IOException, InterruptedException {
 
-        Pane jeu = new Pane();
+        jeu = new Pane();
         BorderPane root = new BorderPane();
-        Mario mario = new Mario(20, -10, 30, 30);
+        mario = new Mario(20, -10, 30, 30);
         Echelle echelle1 = new Echelle(400, 485, 25, 80);
         Echelle echelle2 = new Echelle(200, 408, 25, 80);
         Echelle echelle3 = new Echelle(500, 331, 25, 80);
@@ -157,7 +167,7 @@ public class StartGame extends Application {
 
         //////////////////////// Echelle
         // Attribution des coordonnées etc des échelles
-        ArrayList<Echelle> echelles = new ArrayList<>();
+        echelles = new ArrayList<>();
         echelles.add(echelle1);
         echelles.add(echelle2);
         echelles.add(echelle3);
@@ -192,7 +202,7 @@ public class StartGame extends Application {
         coordonneesEchelles.add(coordonneesEchelle6);
 
         //////////////////////// EchelleBroken
-        ArrayList<EchelleBroken> echellesBrokens = new ArrayList<>();
+        echellesBrokens = new ArrayList<>();
         echellesBrokens.add(eb1);
         echellesBrokens.add(eb2);
 
@@ -212,7 +222,7 @@ public class StartGame extends Application {
         ////////////////////////////////////////////////
 
         // Tonneaux (faudra penser à essayer de le foutre dans la classe Tonneaux nan ?)
-        ArrayList<Tonneaux> tonneaux = new ArrayList<>();
+        tonneaux = new ArrayList<>();
         tonneaux.add(tonneau1);
         tonneaux.add(tonneau2);
         tonneaux.add(tonneau3);
@@ -257,7 +267,7 @@ public class StartGame extends Application {
 
                 }
 
-                if (mario.getLayoutX() == 295 && mario.getLayoutY() == 94) {
+                if (mario.getLayoutX() == 300 && mario.getLayoutY() == 94) {
                     try {
                         restartGame(stage);
                     } catch (IOException | InterruptedException e) {
@@ -285,16 +295,13 @@ public class StartGame extends Application {
     }
 
     public void restartGame(Stage stage) throws IOException, InterruptedException {
-        Pane root = new Pane();
-        Pane jeu = new Pane();
-        jeu.setPrefSize(600, 600);
-        jeu.setStyle("-fx-background-color: #000000;");
-        Scene s = new Scene(root);
-        stage.setScene(s);
-        stage.show();
-        jeu.getChildren().clear();
-        root.getChildren().clear();
-        start(stage);
+        System.out.println("restart");
+        stage.close();
+        supprimerEléments(jeu, tonneaux, echelles, echellesBrokens, mario, dk);
+        mario.setLayoutX(20 * 10);
+        mario.setLayoutY(545);
+        sleep(1000);
+        start(new Stage());
     }
 
     /**
