@@ -94,7 +94,7 @@ public class VuesJeu {
         // Perso
         jeu.getChildren().addAll(mario, dk);
         // Tonneaux
-        jeu.getChildren().addAll(tonneau1, tonneau2, tonneau3, tonneau5);
+        jeu.getChildren().addAll(tonneau1, tonneau2, tonneau3, tonneau4, tonneau5);
         // Score
         jeu.getChildren().add(score);
 
