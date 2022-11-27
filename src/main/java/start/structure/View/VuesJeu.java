@@ -143,12 +143,15 @@ public class VuesJeu {
 
         // Tonneaux
         tonneaux = new ArrayList<>( Arrays.asList(tonneau1, tonneau2, tonneau3, tonneau4, tonneau5) );
-        tonneau1.moveTonneaux(coordonneesEchelles, dk);
-        tonneau1.setLayoutY(160);
-        dk.lance(tonneau1);
+        if(!isPause){
+            System.out.println("je lance le premier tonneau !");
+            tonneau1.moveTonneaux(coordonneesEchelles, dk);
+            tonneau1.setLayoutY(160);
+            dk.lance(tonneau1);
+        }
         final IntegerProperty i = new SimpleIntegerProperty(0);
         final int[] x = {1};
-        Timeline timeline = new Timeline(new KeyFrame(Duration.seconds(1), event -> {
+        Timeline timeline = new Timeline(new KeyFrame(Duration.seconds(10000), event -> {
             i.set(i.get() + 1);
             if (x[0] < 5) {
                 tonneaux.get(x[0]).moveTonneaux(coordonneesEchelles, dk);
@@ -169,7 +172,6 @@ public class VuesJeu {
         AnimationTimer collisionTimer = new AnimationTimer() {
             @Override
             public void handle(long now) {
-                System.out.println("Test isPause : " + isPause);
                 if (mario.collisionTonneaux(tonneaux) == -1 && !isPause) {
                     isPause = true;
                     System.out.println(isPause);
@@ -190,7 +192,8 @@ public class VuesJeu {
 
                 }
 
-                if (mario.getLayoutX() == 300 && mario.getLayoutY() == 94) {
+                if (mario.getLayoutX() == 305 && mario.getLayoutY() == 94|| mario.getLayoutX() == 300 && mario.getLayoutY() == 94|| mario.getLayoutX() == 295 && mario.getLayoutY() == 94|| mario.getLayoutX() == 290 && mario.getLayoutY() == 94) {
+                    isPause = true;
                     mario.setLayoutX(20 * 10);
                     mario.setLayoutY(545);
                     supprimerElements(jeu, tonneaux, echelles, echellesBrokens, mario, dk);
