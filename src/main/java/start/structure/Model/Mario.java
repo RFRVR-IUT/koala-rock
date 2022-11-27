@@ -216,7 +216,7 @@ public class Mario extends Group {
      */
     public boolean estEn(ArrayList<ArrayList<Double>> tab) {
         for (ArrayList<Double> d : tab) {
-            System.out.println(d.toString());
+            //System.out.println(d.toString());
             if ((Double.compare(getLayoutX(), d.get(0)) == 0 || Double.compare(getLayoutX(), d.get(0) + 10) == 0 || Double.compare(getLayoutX(), d.get(0) + 5) == 0 || Double.compare(getLayoutX(), d.get(0) - 5) == 0 || Double.compare(getLayoutX(), d.get(0) - 10) == 0) && Double.compare(getLayoutY(), d.get(1)) == 0) {
                 return true;
             }
@@ -280,7 +280,7 @@ public class Mario extends Group {
 
     public boolean estEnBroken(ArrayList<ArrayList<Double>> tab) {
         for (ArrayList<Double> d : tab) {
-            System.out.println(d.toString());
+            //System.out.println(d.toString());
             if ((Double.compare(getLayoutX(), d.get(0)) == 0 || Double.compare(getLayoutX(), d.get(0) + 10) == 0 || Double.compare(getLayoutX(), d.get(0) + 5) == 0 || Double.compare(getLayoutX(), d.get(0) - 5) == 0 || Double.compare(getLayoutX(), d.get(0) - 10) == 0) && Double.compare(getLayoutY(), d.get(1) + 60) <= 0) {
                 return true;
             }

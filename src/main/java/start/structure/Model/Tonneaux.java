@@ -178,6 +178,7 @@ public class Tonneaux extends Group {
                 this.directionBas();
                 pause.play();
             }
+            //System.out.println("x = " + this.getLayoutX() + "\ny = " + this.getLayoutY());
         });
     }
 }

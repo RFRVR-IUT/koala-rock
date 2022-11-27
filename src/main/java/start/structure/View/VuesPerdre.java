@@ -23,7 +23,6 @@ public class VuesPerdre {
         if (vuesJeu == null) {
             vuesJeu = new VuesJeu();
         }
-
         Stage stage = new Stage();
         stage = stage;
         stage.setTitle("Koala Kong");

@@ -24,6 +24,7 @@ import java.util.Arrays;
 import static java.lang.Thread.sleep;
 
 public class VuesJeu {
+    private boolean isPause = false;
     ArrayList<Echelle> echelles;
     ArrayList<EchelleBroken> echellesBrokens;
     ArrayList<Tonneaux> tonneaux;
@@ -34,7 +35,6 @@ public class VuesJeu {
     private Pane jeu;
     private VuesGagne vuesGagne = new VuesGagne();
     private VuesPerdre vuesPerdu = new VuesPerdre();
-
 
 
     public void demarrerJeu(Stage stage) throws IOException, InterruptedException {
@@ -141,11 +141,11 @@ public class VuesJeu {
 
         ////////////////////////////////////////////////
 
-        // Tonneaux (faudra penser à essayer de le foutre dans la classe Tonneaux nan ?)
+        // Tonneaux
         tonneaux = new ArrayList<>( Arrays.asList(tonneau1, tonneau2, tonneau3, tonneau4, tonneau5) );
-        tonneau1.moveTonneaux(coordonneesEchelles, dk);
+        /*tonneau1.moveTonneaux(coordonneesEchelles, dk);
         tonneau1.setLayoutY(160);
-        dk.lance(tonneau1);
+        dk.lance(tonneau1);*/
         final IntegerProperty i = new SimpleIntegerProperty(0);
         final int[] x = {1};
         Timeline timeline = new Timeline(new KeyFrame(Duration.seconds(6), event -> {
@@ -154,24 +154,35 @@ public class VuesJeu {
                 tonneaux.get(x[0]).moveTonneaux(coordonneesEchelles, dk);
                 tonneaux.get(x[0]).setLayoutY(160);
                 dk.lance(tonneaux.get(x[0]));
-                System.out.println("dedans");
+                //System.out.println("dedans");
                 x[0]++;
             } else {
-                System.out.println("plus dedans");
-
+                //System.out.println("plus dedans");
             }
 
         }));
         timeline.setCycleCount(Animation.INDEFINITE);
         timeline.play();
 
+        //replacer les tonneaux
+        //empecher le jeu de continuer
         AnimationTimer collisionTimer = new AnimationTimer() {
             @Override
             public void handle(long now) {
-                if (mario.collisionTonneaux(tonneaux) == -1) {
+                System.out.println("Test isPause : " + isPause);
+                if (mario.collisionTonneaux(tonneaux) == -1 && !isPause) {
+                    isPause = true;
+                    System.out.println(isPause);
                     mario.setLayoutX(20 * 10);
                     mario.setLayoutY(545);
+                    //replacer les tonneaux
+                    for (Tonneaux tonneau : tonneaux) {
+                        tonneau.setLayoutX(0);
+                        tonneau.setLayoutY(-30);
+                    }
                     supprimerElements(jeu, tonneaux, echelles, echellesBrokens, mario, dk);
+                    //empecher le jeu de continuer
+                    timeline.stop();
                     primaryStage.close();
                     vuesPerdu.screenLose();
                 } else if (mario.collisionTonneaux(tonneaux) == 1) {
@@ -210,10 +221,12 @@ public class VuesJeu {
 
 
     public void supprimerElements(Pane jeu, ArrayList<Tonneaux> tonneaux, ArrayList<Echelle> echelles, ArrayList<EchelleBroken> echellesBrokens, Mario mario, DonkeyKong dk) {
-        jeu.getChildren().removeAll(tonneaux);
-        jeu.getChildren().removeAll(echelles);
-        jeu.getChildren().removeAll(echellesBrokens);
-        jeu.getChildren().removeAll(mario,dk);
+        tonneaux = null;
+        echelles = null;
+        echellesBrokens = null;
+        mario = null;
+        dk = null;
+        jeu = null;
     }
 
     /**
@@ -230,10 +243,10 @@ public class VuesJeu {
             switch (event.getCode()) {
                 case UP:
                     //mario.directionHaut();
-                    System.out.println("X : " + mario.getLayoutX());
-                    System.out.println("Y : " + mario.getLayoutY() + "\n");
-                    System.out.println(mario.collisionEchelle(echelles));
-                    System.out.println(echelles);
+                    //System.out.println("X : " + mario.getLayoutX());
+                    //System.out.println("Y : " + mario.getLayoutY() + "\n");
+                    //System.out.println(mario.collisionEchelle(echelles));
+                    //System.out.println(echelles);
                     if (mario.collisionEchelle(echelles) && !(mario.estEn(coordonneesEchelles))) {
                         mario.directionHaut();
                         mario.setEstSurEchelle(true);
