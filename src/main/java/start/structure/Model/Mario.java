@@ -38,6 +38,14 @@ public class Mario extends Group {
         direction = "droite";
     }
 
+    public Mario() {
+        corps = new Rectangle(0, 0, 0, 0);
+        corps.setFill(new ImagePattern(new Image("Panda_idle.png")));
+
+        this.getChildren().add(corps);
+        direction = "droite";
+    }
+
     public IntegerProperty getScore() {
         return score;
     }

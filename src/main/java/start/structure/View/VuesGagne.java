@@ -1,5 +1,6 @@
 package start.structure.View;
 
+import javafx.beans.property.IntegerProperty;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -17,7 +18,7 @@ public class VuesGagne {
 
     private VuesJeu vuesJeu;
 
-    public void screenWin() {
+    public void screenWin(IntegerProperty scoreProperty) {
 
         if (vuesJeu == null) {
             vuesJeu = new VuesJeu();
@@ -63,6 +64,13 @@ public class VuesGagne {
         menuScreen.setGraphic(imageView);
         pane.getChildren().add(menuScreen);
 
+        Label scoreLabel = new Label("Score : " + scoreProperty.getValue());
+        scoreLabel.setFont(new Font("Arial", 40));
+        scoreLabel.setTextFill(Color.WHITE);
+        scoreLabel.setLayoutX(445);
+        scoreLabel.setLayoutY(200);
+
+        pane.getChildren().add(scoreLabel);
         pane.getChildren().add(recommencer);
         pane.getChildren().add(quitter);
         pane.getChildren().add(nameGame);

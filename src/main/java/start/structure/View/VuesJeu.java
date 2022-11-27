@@ -28,7 +28,7 @@ public class VuesJeu {
     ArrayList<Echelle> echelles;
     ArrayList<EchelleBroken> echellesBrokens;
     ArrayList<Tonneaux> tonneaux;
-    Mario mario;
+    Mario mario = new Mario();
     private Scene s;
     private Stage primaryStage;
     private DonkeyKong dk;
@@ -36,6 +36,10 @@ public class VuesJeu {
     private VuesGagne vuesGagne = new VuesGagne();
     private VuesPerdre vuesPerdu = new VuesPerdre();
 
+
+    public IntegerProperty getScore(){
+        return mario.getScore();
+    }
 
     public void demarrerJeu(Stage stage) throws IOException, InterruptedException {
 
@@ -151,7 +155,7 @@ public class VuesJeu {
         }
         final IntegerProperty i = new SimpleIntegerProperty(0);
         final int[] x = {1};
-        Timeline timeline = new Timeline(new KeyFrame(Duration.seconds(10000), event -> {
+        Timeline timeline = new Timeline(new KeyFrame(Duration.seconds(6), event -> {
             i.set(i.get() + 1);
             if (x[0] < 5) {
                 tonneaux.get(x[0]).moveTonneaux(coordonneesEchelles, dk);
@@ -192,13 +196,15 @@ public class VuesJeu {
 
                 }
 
+                //mario.getLayoutX()==235 && mario.getLayoutY()==545
+                //mario.getLayoutX() == 305 && mario.getLayoutY() == 94|| mario.getLayoutX() == 300 && mario.getLayoutY() == 94|| mario.getLayoutX() == 295 && mario.getLayoutY() == 94|| mario.getLayoutX() == 290 && mario.getLayoutY() == 94
                 if (mario.getLayoutX() == 305 && mario.getLayoutY() == 94|| mario.getLayoutX() == 300 && mario.getLayoutY() == 94|| mario.getLayoutX() == 295 && mario.getLayoutY() == 94|| mario.getLayoutX() == 290 && mario.getLayoutY() == 94) {
                     isPause = true;
                     mario.setLayoutX(20 * 10);
                     mario.setLayoutY(545);
                     supprimerElements(jeu, tonneaux, echelles, echellesBrokens, mario, dk);
                     primaryStage.close();
-                    vuesGagne.screenWin();
+                    vuesGagne.screenWin(mario.getScore());
                 }
             }
         };
