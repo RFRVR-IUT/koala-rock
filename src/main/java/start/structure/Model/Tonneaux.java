@@ -38,8 +38,8 @@ public class Tonneaux extends Group {
         corps.setFill(new ImagePattern(new Image("Rocher.png")));
         collision.setFill(Paint.valueOf("red"));
         collisionHaut.setFill(Paint.valueOf("blue"));
-        collisionHaut.setOpacity(0.5);
-        collision.setOpacity(0.5);
+        collisionHaut.setOpacity(0);
+        collision.setOpacity(0);
 
         this.getChildren().add(corps);
         this.getChildren().add(collision);
