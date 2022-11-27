@@ -5,7 +5,6 @@ import javafx.scene.Scene;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 import start.structure.Model.*;
-import start.structure.View.EcranDemarrage;
 import start.structure.View.VueDemarrage;
 import start.structure.View.VuesJeu;
 

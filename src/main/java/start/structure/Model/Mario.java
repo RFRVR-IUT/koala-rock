@@ -6,6 +6,7 @@ import javafx.scene.Group;
 import javafx.scene.image.Image;
 import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Rectangle;
+import start.structure.Sound.Son;
 
 import java.util.ArrayList;
 
@@ -325,6 +326,7 @@ public class Mario extends Group {
             if (this.getBoundsInParent().intersects(t.getBoundsInParent())) {
                 if (this.isEstEnSaut() && !aEuSonScore) {
                     ajouterScore(1);
+                    Son.point();
                     res = 1;
                     this.aEuSonScore = true;
                     //aEuSonScore, s'il est true, permet d'avoir que +1 quand il touche la collision du haut.

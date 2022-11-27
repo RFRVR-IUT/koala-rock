@@ -8,8 +8,6 @@ module start.structure.Client {
 
     opens start.structure.Client to javafx.fxml;
     exports start.structure.Client;
-    exports start.structure.Controller;
-    opens start.structure.Controller to javafx.fxml;
     exports start.structure.Model;
     opens start.structure.Model to javafx.fxml;
     exports start.structure.View;

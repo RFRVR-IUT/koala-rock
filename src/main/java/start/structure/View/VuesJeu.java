@@ -15,6 +15,7 @@ import javafx.scene.text.Font;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 import start.structure.Model.*;
+import start.structure.Sound.Son;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -265,6 +266,7 @@ public class VuesJeu {
                     break;
                 case SPACE:
                     if (!mario.isEstEnSaut()) {
+                        Son.jump();
                         PauseTransition pause = new PauseTransition(javafx.util.Duration.seconds(0.8));
                         mario.jump();
                         mario.setaEuSonScore(false);

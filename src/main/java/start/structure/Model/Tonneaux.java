@@ -1,11 +1,14 @@
 package start.structure.Model;
 
 import javafx.animation.PauseTransition;
+import javafx.animation.RotateTransition;
 import javafx.scene.Group;
 import javafx.scene.image.Image;
 import javafx.scene.paint.ImagePattern;
 import javafx.scene.paint.Paint;
 import javafx.scene.shape.Rectangle;
+import javafx.scene.transform.Rotate;
+import javafx.util.Duration;
 
 import java.util.ArrayList;
 
@@ -15,6 +18,8 @@ public class Tonneaux extends Group {
     private final Rectangle corps;
     private final Rectangle collision;
     private final Rectangle collisionHaut;
+    private boolean isRotationGauche = false;
+    private boolean isRotationDroite = false;
     private boolean descendUneEchelle = false;
 
     /**
@@ -28,13 +33,13 @@ public class Tonneaux extends Group {
     public Tonneaux(int x, int y, int width, int height) {
         corps = new Rectangle(x, y, width, height);
         collision = new Rectangle(x, y, width, height);
-        collisionHaut = new Rectangle(x, y - 30, width, height);
+        collisionHaut = new Rectangle(x, y - 20, width, height-10);
         corps.setFill(Paint.valueOf("brown"));
         corps.setFill(new ImagePattern(new Image("Rocher.png")));
         collision.setFill(Paint.valueOf("red"));
         collisionHaut.setFill(Paint.valueOf("blue"));
-        collisionHaut.setOpacity(0);
-        collision.setOpacity(0);
+        collisionHaut.setOpacity(0.5);
+        collision.setOpacity(0.5);
 
         this.getChildren().add(corps);
         this.getChildren().add(collision);
@@ -64,6 +69,13 @@ public class Tonneaux extends Group {
      */
     public void directionDroite(double largeurJeu) {
         setLayoutX(getLayoutX() + LARGEUR_TONNEAUX / 5);
+        if(!isRotationDroite){
+            this.getChildren().add(collisionHaut);
+            rotation(360);
+            isRotationDroite = true;
+            isRotationGauche = false;
+        }
+
     }
 
     /**
@@ -71,6 +83,13 @@ public class Tonneaux extends Group {
      */
     public void directionGauche() {
         setLayoutX(getLayoutX() - LARGEUR_TONNEAUX / 5);
+        if(!isRotationGauche){
+            this.getChildren().add(collisionHaut);
+            rotation(-360);
+            isRotationGauche = true;
+            isRotationDroite = false;
+        }
+
     }
 
     /**
@@ -78,6 +97,17 @@ public class Tonneaux extends Group {
      */
     public void directionBas() {
         setLayoutY(getLayoutY() + LARGEUR_TONNEAUX / 5);
+        this.getChildren().remove(collisionHaut);
+    }
+
+    public void rotation(int d){
+        RotateTransition rotate = new RotateTransition();
+        rotate.setAxis(Rotate.Z_AXIS);
+        rotate.setByAngle(d);
+        rotate.setCycleCount(500);
+        rotate.setDuration(Duration.millis(1000));
+        rotate.setNode(this.corps);
+        rotate.play();
     }
 
     /**
@@ -122,6 +152,7 @@ public class Tonneaux extends Group {
 
             }
             if (this.getLayoutX() == 70.0 && this.getLayoutY() == 556.0) {
+                this.getChildren().remove(collisionHaut);
                 dk.lance(this);
             }
 
