@@ -15,11 +15,8 @@ import java.io.IOException;
 
 public class VueDemarrage {
 
-    private VuesJeu vuesJeu = new VuesJeu();
+    private VueJeu vueJeu = new VueJeu();
 
-    public void setJeu(VuesJeu vuesJeu) {
-        this.vuesJeu = vuesJeu;
-    }
 
     public void screenStart() {
         Stage stage = new Stage();
@@ -63,12 +60,14 @@ public class VueDemarrage {
         pane.getChildren().add(demarrerPartie);
         pane.getChildren().add(nameGame);
 
+
         demarrerPartie.setOnMouseClicked(event -> {
             try {
-                vuesJeu.demarrerJeu(stage);
+                vueJeu.demarrerJeu(stage);
             } catch (IOException | InterruptedException e) {
                 e.printStackTrace();
             }
         });
+
     }
 }

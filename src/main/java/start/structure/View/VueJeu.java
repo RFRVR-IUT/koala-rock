@@ -23,21 +23,21 @@ import java.util.Arrays;
 
 import static java.lang.Thread.sleep;
 
-public class VuesJeu {
-    private boolean isPause = false;
+public class VueJeu {
     ArrayList<Echelle> echelles;
     ArrayList<EchelleBroken> echellesBrokens;
     ArrayList<Tonneaux> tonneaux;
     Mario mario = new Mario();
+    private boolean isPause = false;
     private Scene s;
     private Stage primaryStage;
     private DonkeyKong dk;
     private Pane jeu;
-    private VuesGagne vuesGagne = new VuesGagne();
-    private VuesPerdre vuesPerdu = new VuesPerdre();
+    private VueGagne vueGagne = new VueGagne();
+    private VuePerdre vuesPerdu = new VuePerdre();
 
 
-    public IntegerProperty getScore(){
+    public IntegerProperty getScore() {
         return mario.getScore();
     }
 
@@ -146,8 +146,8 @@ public class VuesJeu {
         ////////////////////////////////////////////////
 
         // Tonneaux
-        tonneaux = new ArrayList<>( Arrays.asList(tonneau1, tonneau2, tonneau3, tonneau4, tonneau5) );
-        if(!isPause){
+        tonneaux = new ArrayList<>(Arrays.asList(tonneau1, tonneau2, tonneau3, tonneau4, tonneau5));
+        if (!isPause) {
             System.out.println("je lance le premier tonneau !");
             tonneau1.moveTonneaux(coordonneesEchelles, dk);
             tonneau1.setLayoutY(160);
@@ -198,13 +198,13 @@ public class VuesJeu {
 
                 //mario.getLayoutX()==235 && mario.getLayoutY()==545
                 //mario.getLayoutX() == 305 && mario.getLayoutY() == 94|| mario.getLayoutX() == 300 && mario.getLayoutY() == 94|| mario.getLayoutX() == 295 && mario.getLayoutY() == 94|| mario.getLayoutX() == 290 && mario.getLayoutY() == 94
-                if (mario.getLayoutX() == 305 && mario.getLayoutY() == 94|| mario.getLayoutX() == 300 && mario.getLayoutY() == 94|| mario.getLayoutX() == 295 && mario.getLayoutY() == 94|| mario.getLayoutX() == 290 && mario.getLayoutY() == 94) {
+                if (mario.getLayoutX() == 305 && mario.getLayoutY() == 94 || mario.getLayoutX() == 300 && mario.getLayoutY() == 94 || mario.getLayoutX() == 295 && mario.getLayoutY() == 94 || mario.getLayoutX() == 290 && mario.getLayoutY() == 94) {
                     isPause = true;
                     mario.setLayoutX(20 * 10);
                     mario.setLayoutY(545);
                     supprimerElements(jeu, tonneaux, echelles, echellesBrokens, mario, dk);
                     primaryStage.close();
-                    vuesGagne.screenWin(mario.getScore());
+                    vueGagne.screenWin(mario.getScore());
                 }
             }
         };
@@ -226,7 +226,6 @@ public class VuesJeu {
         sleep(1000);
         //start(new Stage());
     }
-
 
 
     public void supprimerElements(Pane jeu, ArrayList<Tonneaux> tonneaux, ArrayList<Echelle> echelles, ArrayList<EchelleBroken> echellesBrokens, Mario mario, DonkeyKong dk) {

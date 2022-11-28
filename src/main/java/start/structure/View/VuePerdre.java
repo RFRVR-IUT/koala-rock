@@ -1,6 +1,5 @@
 package start.structure.View;
 
-import javafx.beans.property.IntegerProperty;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -14,16 +13,16 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 
-public class VuesGagne {
+public class VuePerdre {
 
-    private VuesJeu vuesJeu;
+    private VueJeu vueJeu;
 
-    public void screenWin(IntegerProperty scoreProperty) {
 
-        if (vuesJeu == null) {
-            vuesJeu = new VuesJeu();
+    public void screenLose() {
+
+        if (vueJeu == null) {
+            vueJeu = new VueJeu();
         }
-
         Stage stage = new Stage();
         stage = stage;
         stage.setTitle("Koala Kong");
@@ -36,10 +35,10 @@ public class VuesGagne {
         stage.setScene(scene);
         stage.show();
 
-        Label nameGame = new Label("You win");
+        Label nameGame = new Label("Vous avez perdu");
         nameGame.setFont(new Font("Arial", 70));
         nameGame.setTextFill(Color.WHITE);
-        nameGame.setLayoutX(420);
+        nameGame.setLayoutX(282);
         nameGame.setLayoutY(80);
 
         Button recommencer = new Button("Recommencer");
@@ -56,30 +55,22 @@ public class VuesGagne {
         quitter.setLayoutX(585);
         quitter.setLayoutY(480);
 
-        Label menuScreen = new Label();
+        Label deadScreen = new Label();
         Image image = new Image("file:src/main/resources/ImageMenu.png");
         ImageView imageView = new ImageView(image);
         imageView.setFitHeight(610);
         imageView.setFitWidth(1084);
-        menuScreen.setGraphic(imageView);
-        pane.getChildren().add(menuScreen);
+        deadScreen.setGraphic(imageView);
+        pane.getChildren().add(deadScreen);
 
-        Label scoreLabel = new Label("Score : " + scoreProperty.getValue());
-        scoreLabel.setFont(new Font("Arial", 40));
-        scoreLabel.setTextFill(Color.WHITE);
-        scoreLabel.setLayoutX(445);
-        scoreLabel.setLayoutY(200);
-
-        pane.getChildren().add(scoreLabel);
         pane.getChildren().add(recommencer);
         pane.getChildren().add(quitter);
         pane.getChildren().add(nameGame);
 
-
         Stage finalStage = stage;
         recommencer.setOnMouseClicked(event -> {
             try {
-                vuesJeu.demarrerJeu(finalStage);
+                vueJeu.demarrerJeu(finalStage);
             } catch (IOException | InterruptedException e) {
                 e.printStackTrace();
             }
@@ -88,5 +79,6 @@ public class VuesGagne {
             finalStage.close();
             System.exit(0);
         });
+
     }
 }

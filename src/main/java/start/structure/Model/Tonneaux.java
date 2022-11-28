@@ -33,7 +33,7 @@ public class Tonneaux extends Group {
     public Tonneaux(int x, int y, int width, int height) {
         corps = new Rectangle(x, y, width, height);
         collision = new Rectangle(x, y, width, height);
-        collisionHaut = new Rectangle(x, y - 20, width, height-10);
+        collisionHaut = new Rectangle(x, y - 20, width, height - 10);
         corps.setFill(Paint.valueOf("brown"));
         corps.setFill(new ImagePattern(new Image("Rocher.png")));
         collision.setFill(Paint.valueOf("red"));
@@ -69,7 +69,7 @@ public class Tonneaux extends Group {
      */
     public void directionDroite(double largeurJeu) {
         setLayoutX(getLayoutX() + LARGEUR_TONNEAUX / 5);
-        if(!isRotationDroite){
+        if (!isRotationDroite) {
             this.getChildren().add(collisionHaut);
             rotation(360);
             isRotationDroite = true;
@@ -83,7 +83,7 @@ public class Tonneaux extends Group {
      */
     public void directionGauche() {
         setLayoutX(getLayoutX() - LARGEUR_TONNEAUX / 5);
-        if(!isRotationGauche){
+        if (!isRotationGauche) {
             this.getChildren().add(collisionHaut);
             rotation(-360);
             isRotationGauche = true;
@@ -100,7 +100,7 @@ public class Tonneaux extends Group {
         this.getChildren().remove(collisionHaut);
     }
 
-    public void rotation(int d){
+    public void rotation(int d) {
         RotateTransition rotate = new RotateTransition();
         rotate.setAxis(Rotate.Z_AXIS);
         rotate.setByAngle(d);
