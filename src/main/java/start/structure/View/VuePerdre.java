@@ -70,7 +70,7 @@ public class VuePerdre {
         Stage finalStage = stage;
         recommencer.setOnMouseClicked(event -> {
             try {
-                vueJeu.demarrerJeu(finalStage, vueJeu.getMode());
+                vueJeu.demarrerJeu(finalStage);
             } catch (IOException | InterruptedException e) {
                 e.printStackTrace();
             }
