@@ -3,8 +3,6 @@ package start.structure.View;
 import javafx.animation.*;
 import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.SimpleIntegerProperty;
-import javafx.beans.value.ChangeListener;
-import javafx.beans.value.ObservableValue;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.input.KeyEvent;
@@ -77,17 +75,22 @@ public class VueJeu {
         mario.setLayoutY(545);
 
         Label score = new Label("Score : 0");
-        score.setFont(new Font("Arial", 20));
-        score.setTextFill(Color.WHITE);
-        score.setLayoutX(500);
-        score.setLayoutY(30);
+        score.getStyleClass().add("Score_Vie");
+        score.setLayoutX(1110);
+        score.setLayoutY(17);
 
-        mario.getScore().addListener(new ChangeListener<Number>() {
-            @Override
-            public void changed(ObservableValue<? extends Number> observableValue, Number number, Number t1) {
-                score.setText("Score : " + mario.getScore().getValue().toString());
-            }
-        });
+        Label vie = new Label("Vie : 3");
+        vie.getStyleClass().add("Score_Vie");
+        vie.setLayoutX(20);
+        vie.setLayoutY(17);
+
+        Label nomJeu = new Label("Koala Rock");
+        nomJeu.getStyleClass().add("nomJeu");
+        nomJeu.setLayoutX(500);
+        nomJeu.setLayoutY(17);
+
+
+        mario.getScore().addListener((observableValue, number, t1) -> score.setText("Score : " + mario.getScore().getValue().toString()));
 
         // panneau du jeu
         jeu.setPrefSize(600, 600);
@@ -102,16 +105,19 @@ public class VueJeu {
         // Tonneaux
         jeu.getChildren().addAll(tonneau1, tonneau2, tonneau3, tonneau4, tonneau5);
         // Score
-        jeu.getChildren().add(score);
         // Placement du jeu dans le panneau
         jeu.setLayoutX(340);
-        jeu.setLayoutY(60);
+        jeu.setLayoutY(110);
 
-        // panneau de l'interface jeu
+        // Interface jeu
         interfaceJeu.setPrefSize(1280, 720);
         interfaceJeu.getChildren().add(jeu);
+        // Couleur Interface
+        interfaceJeu.setStyle("-fx-background-color: #000000;");
 
-        //certer jeu dans l'interface
+        interfaceJeu.getChildren().add(score);
+        interfaceJeu.getChildren().add(vie);
+        interfaceJeu.getChildren().add(nomJeu);
 
 
         System.out.println(echelle1.getLayoutX());
@@ -224,6 +230,7 @@ public class VueJeu {
         collisionTimer.start();
         root.setCenter(interfaceJeu);
         s = new Scene(root);
+        s.getStylesheets().add("file:src/main/resources/css/style.css");
         move(mario, echelles, echellesBrokens, coordonneesEchelles);
         stage.setScene(s);
         stage.show();

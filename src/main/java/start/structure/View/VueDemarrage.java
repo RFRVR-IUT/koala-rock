@@ -35,7 +35,7 @@ public class VueDemarrage {
         stage.show();
 
 
-        Label nameGame = new Label("Koala Kong");
+        Label nameGame = new Label("Koala Rock");
         nameGame.setFont(new Font("Arial", 90));
         nameGame.setTextFill(Color.WHITE);
         nameGame.setLayoutX(407);
