@@ -19,6 +19,7 @@ public class Mario extends Group {
     private boolean estEnSaut = false;
     private int change = 0;
     private IntegerProperty score = new SimpleIntegerProperty(0);
+    private IntegerProperty vie = new SimpleIntegerProperty(0);
     private boolean aEuSonScore = false;
     private boolean estSurEchelle = false;
 
@@ -48,6 +49,9 @@ public class Mario extends Group {
 
     public IntegerProperty getScore() {
         return score;
+    }
+    public IntegerProperty getVie() {
+        return vie;
     }
 
     public void setaEuSonScore(boolean aEuSonScore) {
