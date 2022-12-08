@@ -11,7 +11,6 @@ import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.stage.Stage;
-
 import java.io.IOException;
 
 public class VueGagne {
@@ -25,7 +24,6 @@ public class VueGagne {
         }
 
         Stage stage = new Stage();
-        stage = stage;
         stage.setTitle("Koala Rock");
         stage.setResizable(false);
         BorderPane borderPane = new BorderPane();
@@ -33,28 +31,24 @@ public class VueGagne {
         borderPane.setCenter(pane);
 
         Scene scene = new Scene(borderPane, 1280, 720);
+        scene.getStylesheets().add("file:src/main/resources/css/style.css");
         stage.setScene(scene);
         stage.show();
 
         Label nameGame = new Label("Vous avez gagné");
-        nameGame.setFont(new Font("Arial", 70));
-        nameGame.setTextFill(Color.WHITE);
-        nameGame.setLayoutX(420);
+        nameGame.getStyleClass().add("nameGame");
+        nameGame.setLayoutX(226);
         nameGame.setLayoutY(80);
 
         Button recommencer = new Button("Recommencer");
-        recommencer.setFont(new Font("Arial", 20));
-        recommencer.setTextFill(Color.BLACK);
-        recommencer.setStyle("-fx-background-radius: 30;");
-        recommencer.setLayoutX(480);
-        recommencer.setLayoutY(590);
+        recommencer.getStyleClass().add("buttonEcran");
+        recommencer.setLayoutX(475);
+        recommencer.setLayoutY(570);
 
         Button quitter = new Button("Quitter");
-        quitter.setFont(new Font("Arial", 20));
-        quitter.setTextFill(Color.BLACK);
-        quitter.setStyle("-fx-background-radius: 30;");
-        quitter.setLayoutX(670);
-        quitter.setLayoutY(590);
+        quitter.getStyleClass().add("buttonEcran");
+        quitter.setLayoutX(695);
+        quitter.setLayoutY(570);
 
         Label menuScreen = new Label();
         Image image = new Image("file:src/main/resources/ImageMenu.png");
@@ -65,9 +59,8 @@ public class VueGagne {
         pane.getChildren().add(menuScreen);
 
         Label scoreLabel = new Label("Score : " + scoreProperty.getValue());
-        scoreLabel.setFont(new Font("Arial", 40));
-        scoreLabel.setTextFill(Color.WHITE);
-        scoreLabel.setLayoutX(445);
+        scoreLabel.getStyleClass().add("Score_Vie");
+        scoreLabel.setLayoutX(565);
         scoreLabel.setLayoutY(200);
 
         pane.getChildren().add(scoreLabel);
