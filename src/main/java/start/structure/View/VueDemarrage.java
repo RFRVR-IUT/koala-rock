@@ -7,8 +7,6 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.Pane;
-import javafx.scene.paint.Color;
-import javafx.scene.text.Font;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -41,18 +39,15 @@ public class VueDemarrage {
         nameGame.setLayoutX(355);
         nameGame.setLayoutY(100);
 
-        Button demarrerPartie = new Button("Commencer");
+        Button demarrerPartie = new Button("Mode Classic");
         demarrerPartie.getStyleClass().add("buttonEcran");
         demarrerPartie.setLayoutX(541);
-        demarrerPartie.setLayoutY(570);
+        demarrerPartie.setLayoutY(370);
 
-        Button demarrerInfinit = new Button("Commencer en mode infini");
-
-        demarrerInfinit.setFont(new Font("Arial", 20));
-        demarrerInfinit.setTextFill(Color.BLACK);
-        demarrerInfinit.setStyle("-fx-background-radius: 30;");
-        demarrerInfinit.setLayoutX(482);
-        demarrerInfinit.setLayoutY(530);
+        Button demarrerInfinit = new Button("Mode Infini");
+        demarrerInfinit.getStyleClass().add("buttonEcran");
+        demarrerInfinit.setLayoutX(554);
+        demarrerInfinit.setLayoutY(450);
 
         Label menuScreen = new Label();
         Image image = new Image("file:src/main/resources/ImageMenu.png");
