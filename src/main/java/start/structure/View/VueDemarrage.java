@@ -77,5 +77,13 @@ public class VueDemarrage {
             }
         });
 
+        demarrerInfinit.setOnMouseClicked(event -> {
+            try {
+                vueJeu.demarrerJeu(stage,"Infini");
+            } catch (IOException | InterruptedException e) {
+                e.printStackTrace();
+            }
+        });
+
     }
 }

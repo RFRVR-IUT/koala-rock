@@ -21,7 +21,7 @@ public class Mario extends Group {
     private IntegerProperty score = new SimpleIntegerProperty(0);
     private boolean aEuSonScore = false;
     private boolean estSurEchelle = false;
-    private IntegerProperty vie = new SimpleIntegerProperty(3);
+    private IntegerProperty vie = new SimpleIntegerProperty(0);
 
     /**
      * Constructeur de la classe Mario

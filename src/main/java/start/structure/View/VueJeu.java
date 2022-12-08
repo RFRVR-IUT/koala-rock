@@ -45,7 +45,10 @@ public class VueJeu {
         return mario.getVie();
     }
 
-    public void demarrerJeu(Stage stage, String mode) throws IOException, InterruptedException {
+    public void demarrerJeu(Stage stage, String modeJeu) throws IOException, InterruptedException {
+
+        System.out.println("Mode de jeu : " + modeJeu);
+        System.out.println(getVie().get());
 
         primaryStage = stage;
         jeu = new Pane();
@@ -81,12 +84,13 @@ public class VueJeu {
         Label score = new Label("Score : 0");
         score.setFont(new Font("Arial", 20));
         score.setTextFill(Color.WHITE);
-        score.setLayoutX(500);
+        score.setLayoutX(450);
         score.setLayoutY(30);
 
-        Label vie = new Label("Vie : 3");
+        Label vie = new Label("Vie : "+getVie().get());
+        vie.setFont(new Font("Arial", 20));
         vie.setTextFill(Color.WHITE);
-        vie.setLayoutX(500);
+        vie.setLayoutX(450);
         vie.setLayoutY(50);
         mario.getVie().addListener(new ChangeListener<Number>() {
             @Override
@@ -101,6 +105,14 @@ public class VueJeu {
                 score.setText("Score : " + mario.getScore().getValue().toString());
             }
         });
+
+        if(modeJeu.equals("Normal")) {
+            this.mode = "Normal";
+            getVie().set(1);
+        } else if (modeJeu.equals("Infini")) {
+            this.mode = "Infini";
+            getVie().set(3);
+        }
 
         // panneau du jeu
         jeu.setPrefSize(600, 600);
@@ -333,6 +345,7 @@ public class VueJeu {
                     System.out.println(mario.getLayoutX());
                     System.out.println(mario.getLayoutY());
                     System.out.println(mario.getScore());
+                    break;
             }
         });
     }
