@@ -35,13 +35,14 @@ public class VueJeu {
     private Pane jeu;
     private VueGagne vueGagne = new VueGagne();
     private VuePerdre vuesPerdu = new VuePerdre();
+    private String mode = "Normal";
 
 
     public IntegerProperty getScore() {
         return mario.getScore();
     }
 
-    public void demarrerJeu(Stage stage) throws IOException, InterruptedException {
+    public void demarrerJeu(Stage stage, String mode) throws IOException, InterruptedException {
 
         primaryStage = stage;
         jeu = new Pane();
@@ -302,5 +303,9 @@ public class VueJeu {
                     System.out.println(mario.getScore());
             }
         });
+    }
+
+    public String getMode() {
+        return mode;
     }
 }

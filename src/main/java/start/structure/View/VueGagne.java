@@ -79,7 +79,7 @@ public class VueGagne {
         Stage finalStage = stage;
         recommencer.setOnMouseClicked(event -> {
             try {
-                vueJeu.demarrerJeu(finalStage);
+                vueJeu.demarrerJeu(finalStage,"Normal");
             } catch (IOException | InterruptedException e) {
                 e.printStackTrace();
             }

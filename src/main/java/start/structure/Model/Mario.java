@@ -21,6 +21,7 @@ public class Mario extends Group {
     private IntegerProperty score = new SimpleIntegerProperty(0);
     private boolean aEuSonScore = false;
     private boolean estSurEchelle = false;
+    private int vie = 3;
 
     /**
      * Constructeur de la classe Mario
@@ -352,5 +353,11 @@ public class Mario extends Group {
         this.score.set(this.score.getValue() + nb);
     }
 
+    public int getVie() {
+        return vie;
+    }
 
+    public void setVie(int vie) {
+        this.vie = vie;
+    }
 }
