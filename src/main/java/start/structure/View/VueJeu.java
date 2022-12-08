@@ -10,8 +10,6 @@ import javafx.scene.control.Label;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.Pane;
-import javafx.scene.paint.Color;
-import javafx.scene.text.Font;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 import start.structure.Model.*;
@@ -34,19 +32,20 @@ public class VueJeu {
     private DonkeyKong dk;
     private Pane interfaceJeu;
     private Pane jeu;
-    private VueGagne vueGagne = new VueGagne();
-    private VuePerdre vuesPerdu = new VuePerdre();
-    private VueFinInfiniPartie vueFinInfiniPartie = new VueFinInfiniPartie();
+    private final VueGagne vueGagne = new VueGagne();
+    private final VuePerdre vuesPerdu = new VuePerdre();
+    private final VueFinInfiniPartie vueFinInfiniPartie = new VueFinInfiniPartie();
     private String mode = "Normal";
-    //private long time = 0;
-    private LongProperty time = new SimpleLongProperty(0);
+    private final LongProperty time = new SimpleLongProperty(0);
 
     public IntegerProperty getScore() {
         return mario.getScore();
     }
+
     public String getMode() {
         return mode;
     }
+
     public IntegerProperty getVie() {
         return mario.getVie();
     }
@@ -87,7 +86,7 @@ public class VueJeu {
 
         Label score = new Label("Score : 0");
         score.getStyleClass().add("Score_Vie");
-        score.setLayoutX(1010);
+        score.setLayoutX(1110);
         score.setLayoutY(17);
 
         Label vie = new Label("Vie : 0");
@@ -100,10 +99,10 @@ public class VueJeu {
         nomJeu.setLayoutX(500);
         nomJeu.setLayoutY(17);
 
-        Label chrono = new Label("Chrono : 0");
-        chrono.getStyleClass().add("Score_Vie");
+        Label chrono = new Label("Chrono : 0s");
+        chrono.getStyleClass().add("Chrono");
         chrono.setLayoutX(20);
-        chrono.setLayoutY(37);
+        chrono.setLayoutY(50);
 
         AnimationTimer timer = new AnimationTimer() {
             private long timestamp;
@@ -131,7 +130,6 @@ public class VueJeu {
                     time.set(time.get() + deltaT);
                     timestamp += 1000 * deltaT;
                     System.out.println(time);
-                    //interfaceJeu.getChildren().add(new Label(Long.toString(time)));
                 }
             }
         };
@@ -140,9 +138,9 @@ public class VueJeu {
         mario.getScore().addListener((observableValue, number, t1) -> score.setText("Score : " + mario.getScore().getValue().toString()));
         mario.getVie().addListener((observableValue, number, t1) -> vie.setText("Vie : " + mario.getVie().getValue().toString()));
 
-        time.addListener((observableValue, number, t1) -> chrono.setText("Chrono : " + time.getValue().toString()));
+        time.addListener((observableValue, number, t1) -> chrono.setText("Chrono : " + time.getValue().toString() + "s"));
 
-        if(modeJeu.equals("Normal")){
+        if (modeJeu.equals("Normal")) {
             mode = "Normal";
             getVie().setValue(1);
         } else if (modeJeu.equals("Infini")) {
@@ -255,11 +253,11 @@ public class VueJeu {
             @Override
             public void handle(long now) {
                 if (mario.collisionTonneaux(tonneaux) == -1 && !isPause) {
-                    if(getVie().getValue()>1){
+                    if (getVie().getValue() > 1) {
                         mario.setLayoutX(20 * 10);
                         mario.setLayoutY(545);
-                        getVie().setValue(getVie().getValue()-1);
-                    }else{
+                        getVie().setValue(getVie().getValue() - 1);
+                    } else {
                         timer.stop();
                         isPause = true;
                         System.out.println(isPause);
@@ -275,9 +273,9 @@ public class VueJeu {
                         //empecher le jeu de continuer
                         timeline.stop();
                         primaryStage.close();
-                        if(mode.equals("Infini")){
-                           vueFinInfiniPartie.screenLose(saveScore);
-                        }else {
+                        if (mode.equals("Infini")) {
+                            vueFinInfiniPartie.screenLose(saveScore);
+                        } else {
                             vuesPerdu.screenLose();
                         }
                     }
@@ -289,11 +287,11 @@ public class VueJeu {
                 //mario.getLayoutX()==235 && mario.getLayoutY()==545
                 //mario.getLayoutX() == 305 && mario.getLayoutY() == 94|| mario.getLayoutX() == 300 && mario.getLayoutY() == 94|| mario.getLayoutX() == 295 && mario.getLayoutY() == 94|| mario.getLayoutX() == 290 && mario.getLayoutY() == 94
                 if (mario.getLayoutX() == 305 && mario.getLayoutY() == 94 || mario.getLayoutX() == 300 && mario.getLayoutY() == 94 || mario.getLayoutX() == 295 && mario.getLayoutY() == 94 || mario.getLayoutX() == 290 && mario.getLayoutY() == 94) {
-                    if(getVie().getValue()>1){
+                    if (getVie().getValue() > 1) {
                         mario.setLayoutX(20 * 10);
                         mario.setLayoutY(545);
                         getScore().setValue(getScore().getValue() + 1000);
-                    }else{
+                    } else {
                         isPause = true;
                         mario.setLayoutX(20 * 10);
                         mario.setLayoutY(545);

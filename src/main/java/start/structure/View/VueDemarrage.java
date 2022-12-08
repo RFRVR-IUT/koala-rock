@@ -64,7 +64,7 @@ public class VueDemarrage {
 
         demarrerPartie.setOnMouseClicked(event -> {
             try {
-                vueJeu.demarrerJeu(stage,"Normal");
+                vueJeu.demarrerJeu(stage, "Normal");
             } catch (IOException | InterruptedException e) {
                 e.printStackTrace();
             }
@@ -72,7 +72,7 @@ public class VueDemarrage {
 
         demarrerInfinit.setOnMouseClicked(event -> {
             try {
-                vueJeu.demarrerJeu(stage,"Infini");
+                vueJeu.demarrerJeu(stage, "Infini");
             } catch (IOException | InterruptedException e) {
                 e.printStackTrace();
             }
