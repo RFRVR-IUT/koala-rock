@@ -7,9 +7,32 @@ import java.io.File;
 
 public class Son {
 
+
+
+    public static void playMusic() {
+        try {
+            File musicPath;
+            if (OsCheck.getOperatingSystemType() == OsCheck.OSType.MacOS) {
+                musicPath = new File("src/main/java/start/structure/Sound/Fond.wav");
+            } else {
+                musicPath = new File("src\\main\\java\\start\\structure\\Sound\\Fond.wav");
+            }
+            if (musicPath.exists()) {
+                AudioInputStream audioInput = AudioSystem.getAudioInputStream(musicPath);
+                Clip clip = AudioSystem.getClip();
+                clip.open(audioInput);
+                clip.start();
+                clip.loop(Clip.LOOP_CONTINUOUSLY);
+            } else {
+                System.out.println("Can't find file");
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
     public static void jump() {
         File soundFile;
-
         if (OsCheck.getOperatingSystemType() == OsCheck.OSType.MacOS) {
             soundFile = new File("src/main/java/start/structure/Sound/jump.wav");
         } else {
