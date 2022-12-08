@@ -34,13 +34,20 @@ public class VueJeu {
     private Pane jeu;
     private VueGagne vueGagne = new VueGagne();
     private VuePerdre vuesPerdu = new VuePerdre();
+    private String mode = "Normal";
 
 
     public IntegerProperty getScore() {
         return mario.getScore();
     }
+    public String getMode() {
+        return mode;
+    }
+    public IntegerProperty getVie() {
+        return mario.getVie();
+    }
 
-    public void demarrerJeu(Stage stage) throws IOException, InterruptedException {
+    public void demarrerJeu(Stage stage, String modeJeu) throws IOException, InterruptedException {
 
         primaryStage = stage;
         interfaceJeu = new Pane();
@@ -79,7 +86,7 @@ public class VueJeu {
         score.setLayoutX(1110);
         score.setLayoutY(17);
 
-        Label vie = new Label("Vie : 3");
+        Label vie = new Label("Vie : 0");
         vie.getStyleClass().add("Score_Vie");
         vie.setLayoutX(20);
         vie.setLayoutY(17);
@@ -91,6 +98,15 @@ public class VueJeu {
 
 
         mario.getScore().addListener((observableValue, number, t1) -> score.setText("Score : " + mario.getScore().getValue().toString()));
+        mario.getVie().addListener((observableValue, number, t1) -> vie.setText("Vie : " + mario.getVie().getValue().toString()));
+
+        if(modeJeu.equals("Normal")){
+            mode = "Normal";
+            getVie().setValue(1);
+        } else if (modeJeu.equals("Infini")) {
+            mode = "Infini";
+            getVie().setValue(3);
+        }
 
         // panneau du jeu
         jeu.setPrefSize(600, 600);

@@ -49,6 +49,14 @@ public class VueDemarrage {
         demarrerPartie.setLayoutX(552);
         demarrerPartie.setLayoutY(590);
 
+        Button demarrerInfinit = new Button("Commencer en mode infini");
+
+        demarrerInfinit.setFont(new Font("Arial", 20));
+        demarrerInfinit.setTextFill(Color.BLACK);
+        demarrerInfinit.setStyle("-fx-background-radius: 30;");
+        demarrerInfinit.setLayoutX(482);
+        demarrerInfinit.setLayoutY(530);
+
         Label menuScreen = new Label();
         Image image = new Image("file:src/main/resources/ImageMenu.png");
         ImageView imageView = new ImageView(image);
@@ -58,12 +66,21 @@ public class VueDemarrage {
         pane.getChildren().add(menuScreen);
 
         pane.getChildren().add(demarrerPartie);
+        pane.getChildren().add(demarrerInfinit);
         pane.getChildren().add(nameGame);
 
 
         demarrerPartie.setOnMouseClicked(event -> {
             try {
-                vueJeu.demarrerJeu(stage);
+                vueJeu.demarrerJeu(stage,"Normal");
+            } catch (IOException | InterruptedException e) {
+                e.printStackTrace();
+            }
+        });
+
+        demarrerInfinit.setOnMouseClicked(event -> {
+            try {
+                vueJeu.demarrerJeu(stage,"Infini");
             } catch (IOException | InterruptedException e) {
                 e.printStackTrace();
             }
