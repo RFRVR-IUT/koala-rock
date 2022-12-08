@@ -36,6 +36,7 @@ public class VueJeu {
     private Pane jeu;
     private VueGagne vueGagne = new VueGagne();
     private VuePerdre vuesPerdu = new VuePerdre();
+    private VueFinInfiniPartie vueFinInfiniPartie = new VueFinInfiniPartie();
     private String mode = "Normal";
     //private long time = 0;
     private LongProperty time = new SimpleLongProperty(0);
@@ -269,11 +270,16 @@ public class VueJeu {
                             tonneau.setLayoutX(0);
                             tonneau.setLayoutY(-30);
                         }
+                        int saveScore = getScore().getValue();
                         supprimerElements(jeu, tonneaux, echelles, echellesBrokens, mario, dk);
                         //empecher le jeu de continuer
                         timeline.stop();
                         primaryStage.close();
-                        vuesPerdu.screenLose();
+                        if(mode.equals("Infini")){
+                           vueFinInfiniPartie.screenLose(saveScore);
+                        }else {
+                            vuesPerdu.screenLose();
+                        }
                     }
                 } else if (mario.collisionTonneaux(tonneaux) == 1) {
                     System.out.println("+1");
