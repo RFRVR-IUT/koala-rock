@@ -41,6 +41,9 @@ public class VueJeu {
     public IntegerProperty getScore() {
         return mario.getScore();
     }
+    public IntegerProperty getVie() {
+        return mario.getVie();
+    }
 
     public void demarrerJeu(Stage stage, String mode) throws IOException, InterruptedException {
 
@@ -81,6 +84,17 @@ public class VueJeu {
         score.setLayoutX(500);
         score.setLayoutY(30);
 
+        Label vie = new Label("Vie : 3");
+        vie.setTextFill(Color.WHITE);
+        vie.setLayoutX(500);
+        vie.setLayoutY(50);
+        mario.getVie().addListener(new ChangeListener<Number>() {
+            @Override
+            public void changed(ObservableValue<? extends Number> observableValue, Number number, Number t1) {
+                vie.setText("Vie : " + mario.getVie().getValue());
+            }
+        });
+
         mario.getScore().addListener(new ChangeListener<Number>() {
             @Override
             public void changed(ObservableValue<? extends Number> observableValue, Number number, Number t1) {
@@ -102,6 +116,8 @@ public class VueJeu {
         jeu.getChildren().addAll(tonneau1, tonneau2, tonneau3, tonneau4, tonneau5);
         // Score
         jeu.getChildren().add(score);
+        // Vie
+        jeu.getChildren().add(vie);
 
         System.out.println(echelle1.getLayoutX());
 
@@ -178,20 +194,29 @@ public class VueJeu {
             @Override
             public void handle(long now) {
                 if (mario.collisionTonneaux(tonneaux) == -1 && !isPause) {
-                    isPause = true;
-                    System.out.println(isPause);
-                    mario.setLayoutX(20 * 10);
-                    mario.setLayoutY(545);
-                    //replacer les tonneaux
-                    for (Tonneaux tonneau : tonneaux) {
-                        tonneau.setLayoutX(0);
-                        tonneau.setLayoutY(-30);
+                    if(mario.getVie().getValue() > 1){
+                        isPause = true;
+                        System.out.println(isPause);
+                        mario.setLayoutX(20 * 10);
+                        mario.setLayoutY(545);
+                        isPause = false;
+                        getVie().setValue(getVie().getValue() - 1);
+                    }else{
+                        for (Tonneaux tonneau : tonneaux) {
+                            tonneau.setLayoutX(0);
+                            tonneau.setLayoutY(-30);
+                            getScore().setValue(0);
+                        }
+                        isPause = true;
+                        System.out.println(isPause);
+                        mario.setLayoutX(20 * 10);
+                        mario.setLayoutY(545);
+                        supprimerElements(jeu, tonneaux, echelles, echellesBrokens, mario, dk);
+                        //empecher le jeu de continuer
+                        timeline.stop();
+                        primaryStage.close();
+                        vuesPerdu.screenLose();
                     }
-                    supprimerElements(jeu, tonneaux, echelles, echellesBrokens, mario, dk);
-                    //empecher le jeu de continuer
-                    timeline.stop();
-                    primaryStage.close();
-                    vuesPerdu.screenLose();
                 } else if (mario.collisionTonneaux(tonneaux) == 1) {
                     System.out.println("+1");
 
@@ -200,12 +225,19 @@ public class VueJeu {
                 //mario.getLayoutX()==235 && mario.getLayoutY()==545
                 //mario.getLayoutX() == 305 && mario.getLayoutY() == 94|| mario.getLayoutX() == 300 && mario.getLayoutY() == 94|| mario.getLayoutX() == 295 && mario.getLayoutY() == 94|| mario.getLayoutX() == 290 && mario.getLayoutY() == 94
                 if (mario.getLayoutX() == 305 && mario.getLayoutY() == 94 || mario.getLayoutX() == 300 && mario.getLayoutY() == 94 || mario.getLayoutX() == 295 && mario.getLayoutY() == 94 || mario.getLayoutX() == 290 && mario.getLayoutY() == 94) {
-                    isPause = true;
-                    mario.setLayoutX(20 * 10);
-                    mario.setLayoutY(545);
-                    supprimerElements(jeu, tonneaux, echelles, echellesBrokens, mario, dk);
-                    primaryStage.close();
-                    vueGagne.screenWin(mario.getScore());
+                    if (mario.getVie().getValue() > 1){
+                        mario.setLayoutX(20 * 10);
+                        mario.setLayoutY(545);
+                        getScore().setValue(getScore().getValue() + 1000);
+
+                    }else{
+                        isPause = true;
+                        mario.setLayoutX(20 * 10);
+                        mario.setLayoutY(545);
+                        supprimerElements(jeu, tonneaux, echelles, echellesBrokens, mario, dk);
+                        primaryStage.close();
+                        vueGagne.screenWin(mario.getScore());
+                    }
                 }
             }
         };
