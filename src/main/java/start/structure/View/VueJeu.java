@@ -32,6 +32,7 @@ public class VueJeu {
     private Scene s;
     private Stage primaryStage;
     private DonkeyKong dk;
+    private Pane interfaceJeu;
     private Pane jeu;
     private VueGagne vueGagne = new VueGagne();
     private VuePerdre vuesPerdu = new VuePerdre();
@@ -44,6 +45,7 @@ public class VueJeu {
     public void demarrerJeu(Stage stage) throws IOException, InterruptedException {
 
         primaryStage = stage;
+        interfaceJeu = new Pane();
         jeu = new Pane();
         BorderPane root = new BorderPane();
         mario = new Mario(20, -10, 30, 30);
@@ -101,6 +103,16 @@ public class VueJeu {
         jeu.getChildren().addAll(tonneau1, tonneau2, tonneau3, tonneau4, tonneau5);
         // Score
         jeu.getChildren().add(score);
+        // Placement du jeu dans le panneau
+        jeu.setLayoutX(340);
+        jeu.setLayoutY(60);
+
+        // panneau de l'interface jeu
+        interfaceJeu.setPrefSize(1280, 720);
+        interfaceJeu.getChildren().add(jeu);
+
+        //certer jeu dans l'interface
+
 
         System.out.println(echelle1.getLayoutX());
 
@@ -210,7 +222,7 @@ public class VueJeu {
         };
         // Fin Start Game //
         collisionTimer.start();
-        root.setCenter(jeu);
+        root.setCenter(interfaceJeu);
         s = new Scene(root);
         move(mario, echelles, echellesBrokens, coordonneesEchelles);
         stage.setScene(s);
