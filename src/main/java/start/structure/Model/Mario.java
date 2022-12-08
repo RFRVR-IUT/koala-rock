@@ -21,6 +21,7 @@ public class Mario extends Group {
     private IntegerProperty score = new SimpleIntegerProperty(0);
     private boolean aEuSonScore = false;
     private boolean estSurEchelle = false;
+    private IntegerProperty vie = new SimpleIntegerProperty(0);
 
     /**
      * Constructeur de la classe Mario
@@ -48,6 +49,10 @@ public class Mario extends Group {
 
     public IntegerProperty getScore() {
         return score;
+    }
+
+    public IntegerProperty getVie() {
+        return vie;
     }
 
     public void setaEuSonScore(boolean aEuSonScore) {
@@ -351,6 +356,4 @@ public class Mario extends Group {
     private void ajouterScore(int nb) {
         this.score.set(this.score.getValue() + nb);
     }
-
-
 }
