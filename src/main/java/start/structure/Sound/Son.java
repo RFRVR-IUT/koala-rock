@@ -8,29 +8,37 @@ import java.io.File;
 public class Son {
 
     public static void jump() {
-        File src = new File("src\\main\\java\\start\\structure\\Sound\\jump.wav");
+        File soundFile;
+
+        if (OsCheck.getOperatingSystemType() == OsCheck.OSType.MacOS) {
+            soundFile = new File("src/main/java/start/structure/Sound/jump.wav");
+        } else {
+            soundFile = new File("src\\main\\java\\start\\structure\\Sound\\jump.wav");
+        }
         try {
-            AudioInputStream jump = AudioSystem.getAudioInputStream(src);
+            AudioInputStream audioIn = AudioSystem.getAudioInputStream(soundFile);
             Clip clip = AudioSystem.getClip();
-            clip.open(jump);
+            clip.open(audioIn);
             clip.start();
         } catch (Exception e) {
-            System.out.println(e);
+            e.printStackTrace();
         }
-
     }
 
     public static void point() {
-        File src = new File("src\\main\\java\\start\\structure\\Sound\\point.wav");
+        File soundFile;
+        if (OsCheck.getOperatingSystemType() == OsCheck.OSType.MacOS) {
+            soundFile = new File("src/main/java/start/structure/Sound/point.wav");
+        } else {
+            soundFile = new File("src\\main\\java\\start\\structure\\Sound\\point.wav");
+        }
         try {
-            AudioInputStream jump = AudioSystem.getAudioInputStream(src);
+            AudioInputStream audioIn = AudioSystem.getAudioInputStream(soundFile);
             Clip clip = AudioSystem.getClip();
-            clip.open(jump);
+            clip.open(audioIn);
             clip.start();
         } catch (Exception e) {
-            System.out.println(e);
+            e.printStackTrace();
         }
     }
-
-
 }
