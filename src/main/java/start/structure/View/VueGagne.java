@@ -87,6 +87,7 @@ public class VueGagne {
         quitter.setOnMouseClicked(event -> {
             finalStage.close();
             System.exit(0);
+
         });
     }
 }
