@@ -30,16 +30,16 @@ public class VueDemarrage {
         borderPane.setStyle("-fx-background-color: transparent ;");
 
 
-        Scene scene = new Scene(borderPane, 1084, 610);
+        Scene scene = new Scene(borderPane, 1280, 720);
         stage.setScene(scene);
         stage.show();
 
 
-        Label nameGame = new Label("Koala Kong");
-        nameGame.setFont(new Font("Arial", 100));
+        Label nameGame = new Label("Koala Rock");
+        nameGame.setFont(new Font("Arial", 90));
         nameGame.setTextFill(Color.WHITE);
-        nameGame.setLayoutX(283);
-        nameGame.setLayoutY(80);
+        nameGame.setLayoutX(407);
+        nameGame.setLayoutY(100);
 
         Button demarrerPartie = new Button("Commencer");
         Button demarrerInfinit = new Button("Commencer en mode infini");
@@ -47,8 +47,8 @@ public class VueDemarrage {
         demarrerPartie.setFont(new Font("Arial", 20));
         demarrerPartie.setTextFill(Color.BLACK);
         demarrerPartie.setStyle("-fx-background-radius: 30;");
-        demarrerPartie.setLayoutX(456);
-        demarrerPartie.setLayoutY(480);
+        demarrerPartie.setLayoutX(552);
+        demarrerPartie.setLayoutY(590);
 
         demarrerInfinit.setFont(new Font("Arial", 20));
         demarrerInfinit.setTextFill(Color.BLACK);
@@ -59,8 +59,8 @@ public class VueDemarrage {
         Label menuScreen = new Label();
         Image image = new Image("file:src/main/resources/ImageMenu.png");
         ImageView imageView = new ImageView(image);
-        imageView.setFitHeight(610);
-        imageView.setFitWidth(1084);
+        imageView.setFitHeight(720);
+        imageView.setFitWidth(1280);
         menuScreen.setGraphic(imageView);
         pane.getChildren().add(menuScreen);
 

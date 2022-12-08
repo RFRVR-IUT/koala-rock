@@ -25,41 +25,41 @@ public class VuePerdre {
         }
         Stage stage = new Stage();
         stage = stage;
-        stage.setTitle("Koala Kong");
+        stage.setTitle("Koala Rock");
         stage.setResizable(false);
         BorderPane borderPane = new BorderPane();
         Pane pane = new Pane();
         borderPane.setCenter(pane);
 
-        Scene scene = new Scene(borderPane, 1084, 610);
+        Scene scene = new Scene(borderPane, 1280, 720);
         stage.setScene(scene);
         stage.show();
 
         Label nameGame = new Label("Vous avez perdu");
         nameGame.setFont(new Font("Arial", 70));
         nameGame.setTextFill(Color.WHITE);
-        nameGame.setLayoutX(282);
-        nameGame.setLayoutY(80);
+        nameGame.setLayoutX(390);
+        nameGame.setLayoutY(100);
 
         Button recommencer = new Button("Recommencer");
         recommencer.setFont(new Font("Arial", 20));
         recommencer.setTextFill(Color.BLACK);
         recommencer.setStyle("-fx-background-radius: 30;");
-        recommencer.setLayoutX(415);
-        recommencer.setLayoutY(480);
+        recommencer.setLayoutX(480);
+        recommencer.setLayoutY(590);
 
         Button quitter = new Button("Quitter");
         quitter.setFont(new Font("Arial", 20));
         quitter.setTextFill(Color.BLACK);
         quitter.setStyle("-fx-background-radius: 30;");
-        quitter.setLayoutX(585);
-        quitter.setLayoutY(480);
+        quitter.setLayoutX(670);
+        quitter.setLayoutY(590);
 
         Label deadScreen = new Label();
         Image image = new Image("file:src/main/resources/ImageMenu.png");
         ImageView imageView = new ImageView(image);
-        imageView.setFitHeight(610);
-        imageView.setFitWidth(1084);
+        imageView.setFitHeight(720);
+        imageView.setFitWidth(1280);
         deadScreen.setGraphic(imageView);
         pane.getChildren().add(deadScreen);
 
