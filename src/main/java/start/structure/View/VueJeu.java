@@ -2,7 +2,9 @@ package start.structure.View;
 
 import javafx.animation.*;
 import javafx.beans.property.IntegerProperty;
+import javafx.beans.property.LongProperty;
 import javafx.beans.property.SimpleIntegerProperty;
+import javafx.beans.property.SimpleLongProperty;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.input.KeyEvent;
@@ -35,7 +37,8 @@ public class VueJeu {
     private VueGagne vueGagne = new VueGagne();
     private VuePerdre vuesPerdu = new VuePerdre();
     private String mode = "Normal";
-
+    //private long time = 0;
+    private LongProperty time = new SimpleLongProperty(0);
 
     public IntegerProperty getScore() {
         return mario.getScore();
@@ -83,7 +86,7 @@ public class VueJeu {
 
         Label score = new Label("Score : 0");
         score.getStyleClass().add("Score_Vie");
-        score.setLayoutX(1110);
+        score.setLayoutX(1010);
         score.setLayoutY(17);
 
         Label vie = new Label("Vie : 0");
@@ -96,9 +99,47 @@ public class VueJeu {
         nomJeu.setLayoutX(500);
         nomJeu.setLayoutY(17);
 
+        Label chrono = new Label("Chrono : 0");
+        chrono.getStyleClass().add("Score_Vie");
+        chrono.setLayoutX(20);
+        chrono.setLayoutY(37);
+
+        AnimationTimer timer = new AnimationTimer() {
+            private long timestamp;
+            private long fraction = 0;
+
+            @Override
+            public void start() {
+                // current time adjusted by remaining time from last run
+                timestamp = System.currentTimeMillis() - fraction;
+                super.start();
+            }
+
+            @Override
+            public void stop() {
+                super.stop();
+                // save leftover time not handled with the last update
+                fraction = System.currentTimeMillis() - timestamp;
+            }
+
+            @Override
+            public void handle(long now) {
+                long newTime = System.currentTimeMillis();
+                if (timestamp + 1000 <= newTime) {
+                    long deltaT = (newTime - timestamp) / 1000;
+                    time.set(time.get() + deltaT);
+                    timestamp += 1000 * deltaT;
+                    System.out.println(time);
+                    //interfaceJeu.getChildren().add(new Label(Long.toString(time)));
+                }
+            }
+        };
+
 
         mario.getScore().addListener((observableValue, number, t1) -> score.setText("Score : " + mario.getScore().getValue().toString()));
         mario.getVie().addListener((observableValue, number, t1) -> vie.setText("Vie : " + mario.getVie().getValue().toString()));
+
+        time.addListener((observableValue, number, t1) -> chrono.setText("Chrono : " + time.getValue().toString()));
 
         if(modeJeu.equals("Normal")){
             mode = "Normal";
@@ -134,6 +175,7 @@ public class VueJeu {
         interfaceJeu.getChildren().add(score);
         interfaceJeu.getChildren().add(vie);
         interfaceJeu.getChildren().add(nomJeu);
+        interfaceJeu.getChildren().add(chrono);
 
 
         System.out.println(echelle1.getLayoutX());
@@ -204,6 +246,7 @@ public class VueJeu {
         }));
         timeline.setCycleCount(Animation.INDEFINITE);
         timeline.play();
+        timer.start();
 
         //replacer les tonneaux
         //empecher le jeu de continuer
@@ -216,6 +259,7 @@ public class VueJeu {
                         mario.setLayoutY(545);
                         getVie().setValue(getVie().getValue()-1);
                     }else{
+                        timer.stop();
                         isPause = true;
                         System.out.println(isPause);
                         mario.setLayoutX(20 * 10);
