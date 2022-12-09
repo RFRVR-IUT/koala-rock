@@ -337,7 +337,7 @@ public class Mario extends Group {
         for (Tonneaux t : tonneaux) {
             if (this.getBoundsInParent().intersects(t.getBoundsInParent())) {
                 if (this.isEstEnSaut() && !aEuSonScore) {
-                    ajouterScore(1);
+                    ajouterScore(100);
                     Son.point();
                     res = 1;
                     this.aEuSonScore = true;

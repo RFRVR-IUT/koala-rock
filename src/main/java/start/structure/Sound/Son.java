@@ -12,7 +12,7 @@ public class Son {
     public static void playMusic() {
         try {
             File musicPath;
-            if (OsCheck.getOperatingSystemType() == OsCheck.OSType.MacOS) {
+            if (OsCheck.getOperatingSystemType() == OsCheck.OSType.MacOS || OsCheck.getOperatingSystemType() == OsCheck.OSType.Linux) {
                 musicPath = new File("src/main/java/start/structure/Sound/Fond.wav");
             } else {
                 musicPath = new File("src\\main\\java\\start\\structure\\Sound\\Fond.wav");
@@ -33,7 +33,7 @@ public class Son {
 
     public static void jump() {
         File soundFile;
-        if (OsCheck.getOperatingSystemType() == OsCheck.OSType.MacOS) {
+        if (OsCheck.getOperatingSystemType() == OsCheck.OSType.MacOS || OsCheck.getOperatingSystemType() == OsCheck.OSType.Linux) {
             soundFile = new File("src/main/java/start/structure/Sound/jump.wav");
         } else {
             soundFile = new File("src\\main\\java\\start\\structure\\Sound\\jump.wav");
@@ -50,7 +50,7 @@ public class Son {
 
     public static void point() {
         File soundFile;
-        if (OsCheck.getOperatingSystemType() == OsCheck.OSType.MacOS) {
+        if (OsCheck.getOperatingSystemType() == OsCheck.OSType.MacOS || OsCheck.getOperatingSystemType() == OsCheck.OSType.Linux) {
             soundFile = new File("src/main/java/start/structure/Sound/point.wav");
         } else {
             soundFile = new File("src\\main\\java\\start\\structure\\Sound\\point.wav");
