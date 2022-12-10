@@ -115,8 +115,8 @@ public class VueJeu {
         image_Bas.setFitWidth(50);
         button_Bas.setGraphic(image_Bas);
         button_Bas.getStyleClass().add("button_Action");
-        button_Bas.setLayoutX(225);
-        button_Bas.setLayoutY(480);
+        button_Bas.setLayoutX(150);
+        button_Bas.setLayoutY(530);
 
         Button button_Haut = new Button();
         ImageView image_Haut = new ImageView("file:src/main/resources/Button/Button_haut.png");
@@ -124,8 +124,8 @@ public class VueJeu {
         image_Haut.setFitWidth(50);
         button_Haut.setGraphic(image_Haut);
         button_Haut.getStyleClass().add("button_Action");
-        button_Haut.setLayoutX(225);
-        button_Haut.setLayoutY(415);
+        button_Haut.setLayoutX(150);
+        button_Haut.setLayoutY(465);
 
         Button button_Gauche = new Button();
         ImageView image_Gauche = new ImageView("file:src/main/resources/Button/Button_gauche.png");
@@ -133,8 +133,8 @@ public class VueJeu {
         image_Gauche.setFitWidth(50);
         button_Gauche.setGraphic(image_Gauche);
         button_Gauche.getStyleClass().add("button_Action");
-        button_Gauche.setLayoutX(155);
-        button_Gauche.setLayoutY(480);
+        button_Gauche.setLayoutX(80);
+        button_Gauche.setLayoutY(530);
 
         Button button_Droite = new Button();
         ImageView image_Droite = new ImageView("file:src/main/resources/Button/Button_droite.png");
@@ -142,8 +142,8 @@ public class VueJeu {
         image_Droite.setFitWidth(50);
         button_Droite.setGraphic(image_Droite);
         button_Droite.getStyleClass().add("button_Action");
-        button_Droite.setLayoutX(296);
-        button_Droite.setLayoutY(480);
+        button_Droite.setLayoutX(221);
+        button_Droite.setLayoutY(530);
 
         Button button_Espace = new Button();
         ImageView image_Espace = new ImageView("file:src/main/resources/Button/Button_espace.png");
@@ -151,8 +151,8 @@ public class VueJeu {
         image_Espace.setFitWidth(200);
         button_Espace.setGraphic(image_Espace);
         button_Espace.getStyleClass().add("button_Action");
-        button_Espace.setLayoutX(150);
-        button_Espace.setLayoutY(550);
+        button_Espace.setLayoutX(75);
+        button_Espace.setLayoutY(600);
 
         //////////////// End Button ///////////////////////
 

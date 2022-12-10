@@ -57,7 +57,7 @@ public class VueDemarrage {
         menuScreen.setGraphic(imageView);
 
         //////////////// Button ///////////////////////
-
+/*
         Button button_Bas = new Button();
         ImageView image_Bas = new ImageView("file:src/main/resources/Button/Button_bas.png");
         image_Bas.setFitHeight(50);
@@ -102,7 +102,7 @@ public class VueDemarrage {
         button_Espace.getStyleClass().add("button_Action");
         button_Espace.setLayoutX(150);
         button_Espace.setLayoutY(550);
-
+*/
         //////////////// End Button ///////////////////////
 
 
@@ -110,7 +110,7 @@ public class VueDemarrage {
         pane.getChildren().add(demarrerPartie);
         pane.getChildren().add(demarrerInfinit);
         pane.getChildren().add(nameGame);
-        pane.getChildren().addAll(button_Bas, button_Haut, button_Gauche, button_Droite, button_Espace);
+     //   pane.getChildren().addAll(button_Bas, button_Haut, button_Gauche, button_Droite, button_Espace);
 
 
         demarrerPartie.setOnMouseClicked(event -> {
