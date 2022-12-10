@@ -380,9 +380,9 @@ public class PersonnePrincipale extends Group {
         }
     }
 
-    public int collisionTonneaux(ArrayList<Tonneaux> tonneaux) {
+    public int collisionTonneaux(ArrayList<Objet_Attaque> tonneaus) {
         int res = 0;
-        for (Tonneaux t : tonneaux) {
+        for (Objet_Attaque t : tonneaus) {
             if (this.getBoundsInParent().intersects(t.getBoundsInParent())) {
                 if (this.isEstEnSaut() && !aEuSonScore) {
                     ajouterScore(100);

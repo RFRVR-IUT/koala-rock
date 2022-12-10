@@ -12,7 +12,7 @@ import javafx.util.Duration;
 
 import java.util.ArrayList;
 
-public class Tonneaux extends Group {
+public class Objet_Attaque extends Group {
     protected final static double LARGEUR_MOITIE_TONNEAUX = 5;
     protected final static double LARGEUR_TONNEAUX = LARGEUR_MOITIE_TONNEAUX * 2;
     private final Rectangle corps;
@@ -22,6 +22,23 @@ public class Tonneaux extends Group {
     private boolean isRotationDroite = false;
     private boolean descendUneEchelle = false;
 
+    /////////////////////////// Choix personnage ///////////////////////////
+    private final String choixPersonnage = "SHURIKANE";
+    /**
+     * Permet de changer l'image du personnage en fonction du choix du joueur
+     * @param choixPersonnage
+     * @return
+     */
+    public Paint setChoixObjet(String choixPersonnage) {
+        if (choixPersonnage.equals("ROCHER")) {
+            return new ImagePattern(new Image("Rocher.png"));
+        } else if (choixPersonnage.equals("SHURIKANE")) {
+            return new ImagePattern(new Image("Shurikane.png"));
+        }
+        return null;
+    }
+    /////////////////////////////////////////////////////////////////////////
+
     /**
      * Constructeur de la classe Tonneaux
      *
@@ -30,12 +47,12 @@ public class Tonneaux extends Group {
      * @param width
      * @param height
      */
-    public Tonneaux(int x, int y, int width, int height) {
+    public Objet_Attaque(int x, int y, int width, int height) {
         corps = new Rectangle(x, y, width, height);
         collision = new Rectangle(x, y, width, height);
         collisionHaut = new Rectangle(x, y - 20, width, height - 10);
         corps.setFill(Paint.valueOf("brown"));
-        corps.setFill(new ImagePattern(new Image("Rocher.png")));
+        corps.setFill(setChoixObjet(choixPersonnage));
         collision.setFill(Paint.valueOf("red"));
         collisionHaut.setFill(Paint.valueOf("blue"));
         collisionHaut.setOpacity(0);

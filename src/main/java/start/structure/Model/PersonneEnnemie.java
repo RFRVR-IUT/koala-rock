@@ -62,9 +62,9 @@ public class PersonneEnnemie extends Group {
     /**
      * Lancement Tonneaux
      *
-     * @param tonneaux
+     * @param objetAttaque
      */
-    public void lance(Tonneaux tonneaux) {
+    public void lance(Objet_Attaque objetAttaque) {
         this.donkey.setFill(setChoixPersonnage_LANCE(choixPersonnage));
         this.donkey.setScaleX(-1);
         gauche();
