@@ -14,10 +14,13 @@ public class VueParametre extends Stage {
         scene.getStylesheets().add("file:src/main/resources/css/style.css");
 
         // button to hide
-        Button buttonHide = new Button("Hide");
+        Button buttonHide = new Button("quitter et sauvegarder");
         buttonHide.getStyleClass().add("buttonEcran");
-        buttonHide.setLayoutX(10);
-        buttonHide.setLayoutY(10);
+        buttonHide.setStyle("-fx-font-size: 12px; -fx-pref-width: 200px; -fx-pref-height: 30px;");
+
+
+        buttonHide.setLayoutX(170);
+        buttonHide.setLayoutY(580);
         buttonHide.setOnAction(event -> {
             this.hide();
         });
@@ -27,7 +30,10 @@ public class VueParametre extends Stage {
         setTitle("Paramètre");
         setResizable(false);
         setScene(scene);
-        pane.setStyle("-fx-background-color: black ;");
+
+        pane.setStyle("-fx-border-color: white ; -fx-border-width: 10px ; -fx-background-color: black ; -fx-background-radius: 10px ;");
+
+
     }
 
 
