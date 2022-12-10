@@ -1,14 +1,17 @@
 package start.structure.View;
 
 import javafx.scene.Scene;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 import javafx.scene.control.Button;
+import start.structure.Model.PersonnePrincipale;
 
 public class VueParametre extends Stage {
 
+    PersonnePrincipale personnePrincipale = new PersonnePrincipale();
 
     public VueParametre() {
         Pane pane = new Pane();
@@ -17,9 +20,24 @@ public class VueParametre extends Stage {
 
         /////////// PARAMETRE SCENE ///////////
 
-        // TODO: 2020-11-30  Ajouter les paramètres de selection de scene !
+        ComboBox<String> comboBoxJoueurPrincipale = new ComboBox<>();
+        comboBoxJoueurPrincipale.getItems().addAll("Panda", "Samurai");
+        comboBoxJoueurPrincipale.setValue("Panda");
 
-        ///////////////////// BOUTON EN JEU /////////////////////
+        comboBoxJoueurPrincipale.setLayoutX(400);
+        comboBoxJoueurPrincipale.setLayoutY(300);
+
+        ComboBox<String> comboBoxPersonnageEnnemie = new ComboBox<>();
+        comboBoxPersonnageEnnemie.getItems().addAll("Koala", "Ninja");
+        comboBoxPersonnageEnnemie.setValue("Koala");
+
+        comboBoxPersonnageEnnemie.setLayoutX(500);
+        comboBoxPersonnageEnnemie.setLayoutY(300);
+
+        if(comboBoxJoueurPrincipale.getValue().equals("koala")) {
+            personnePrincipale.setChoixPersonnage("PANDA");
+        }
+
 
         ////////////////////////////Bouton////////////////////////////
         Label button_Bas = new Label();
@@ -107,10 +125,12 @@ public class VueParametre extends Stage {
         buttonHide.setLayoutY(580);
         buttonHide.setOnAction(event -> {
             this.hide();
+            System.out.println("Personnage : " + personnePrincipale.getChoixPersonnage());
         });
         pane.getChildren().add(buttonHide);
         pane.getChildren().addAll(button_Bas, button_Haut, button_Gauche, button_Droite, button_Espace);
         pane.getChildren().addAll(texte_Bas, texte_Haut, texte_Gauche, texte_Droite, texte_Espace);
+        pane.getChildren().addAll(comboBoxPersonnageEnnemie, comboBoxJoueurPrincipale);
 
 
         setTitle("Paramètre");
@@ -121,10 +141,4 @@ public class VueParametre extends Stage {
 
 
     }
-
-
-
-
-
-
 }

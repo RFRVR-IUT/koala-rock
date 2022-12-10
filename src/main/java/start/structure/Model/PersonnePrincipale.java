@@ -25,13 +25,25 @@ public class PersonnePrincipale extends Group {
     private boolean estSurEchelle = false;
 
     /////////////////////////// Choix personnage ///////////////////////////
-    private final String choixPersonnage = "SAMURAI";
+    private String choixPersonnage = "KOALA";
+
+    public void setChoixPersonnage(String choixPersonnage) {
+        this.choixPersonnage = choixPersonnage;
+        System.out.println("Choix personnage : " + choixPersonnage);
+    }
+
+    public String getChoixPersonnage() {
+        return choixPersonnage;
+    }
+
     /**
      * Permet de changer l'image du personnage en fonction du choix du joueur
+     *
      * @param choixPersonnage
      * @return
      */
     public Paint setChoixPersonnage_IDLE(String choixPersonnage) {
+        System.out.println("Choix personnage : " + getChoixPersonnage());
         if (choixPersonnage.equals("KOALA")) {
             return new ImagePattern(new Image("Panda_idle.png"));
         } else if (choixPersonnage.equals("SAMURAI")) {
