@@ -4,12 +4,41 @@ import javafx.animation.PauseTransition;
 import javafx.scene.Group;
 import javafx.scene.image.Image;
 import javafx.scene.paint.ImagePattern;
+import javafx.scene.paint.Paint;
 import javafx.scene.shape.Rectangle;
 import javafx.util.Duration;
 
 public class PersonneEnnemie extends Group {
 
     private final Rectangle donkey;
+
+    /////////////////////////// Choix personnage ///////////////////////////
+    private final String choixPersonnage = "NINJA";
+    /**
+     * Permet de changer l'image du personnage en fonction du choix du joueur
+     * @param choixPersonnage
+     * @return
+     */
+    public Paint setChoixPersonnage_IDLE(String choixPersonnage) {
+        if (choixPersonnage.equals("KOALA")) {
+            return new ImagePattern(new Image("koala.png"));
+        } else if (choixPersonnage.equals("NINJA")) {
+            return new ImagePattern(new Image("Ninja.png"));
+        }
+        return null;
+    }
+
+    public Paint setChoixPersonnage_LANCE(String choixPersonnage) {
+        if (choixPersonnage.equals("KOALA")) {
+            return new ImagePattern(new Image("koala-2.png"));
+        } else if (choixPersonnage.equals("NINJA")) {
+            return new ImagePattern(new Image("Ninja-2.png"));
+        }
+        return null;
+    }
+/////////////////////////////////////////////////////////////////////////
+
+
 
     /**
      * Constructeur de la classe DonkeyKong
@@ -21,7 +50,7 @@ public class PersonneEnnemie extends Group {
      */
     public PersonneEnnemie(int x, int y, int width, int height) {
         this.donkey = new Rectangle(x, y, width, height);
-        donkey.setFill(new ImagePattern(new Image("koala.png")));
+        donkey.setFill(setChoixPersonnage_IDLE(choixPersonnage));
         this.getChildren().add(donkey);
 
     }
@@ -36,7 +65,7 @@ public class PersonneEnnemie extends Group {
      * @param tonneaux
      */
     public void lance(Tonneaux tonneaux) {
-        this.donkey.setFill(new ImagePattern(new Image("koala-2.png")));
+        this.donkey.setFill(setChoixPersonnage_LANCE(choixPersonnage));
         this.donkey.setScaleX(-1);
         gauche();
 
@@ -72,7 +101,7 @@ public class PersonneEnnemie extends Group {
      * Animation Donkey Kong Idle
      */
     public void idle() {
-        this.donkey.setFill(new ImagePattern(new Image("koala.png")));
+        this.donkey.setFill(setChoixPersonnage_IDLE(choixPersonnage));
     }
 
 }
