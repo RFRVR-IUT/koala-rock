@@ -15,11 +15,9 @@ import javafx.stage.Stage;
 import javafx.util.Duration;
 import start.structure.Model.*;
 import start.structure.Sound.Son;
-
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
-
 import static java.lang.Thread.sleep;
 
 public class VueJeu {
@@ -31,7 +29,6 @@ public class VueJeu {
     private Scene scene;
     private Stage primaryStage;
     private DonkeyKong dk;
-    private Pane interfaceJeu;
     private Pane jeu;
     private final VueGagne vueGagne = new VueGagne();
     private final VuePerdre vuesPerdu = new VuePerdre();
@@ -56,7 +53,7 @@ public class VueJeu {
     public void demarrerJeu(Stage stage, String modeJeu) throws IOException, InterruptedException {
 
         primaryStage = stage;
-        interfaceJeu = new Pane();
+        Pane interfaceJeu = new Pane();
         jeu = new Pane();
         BorderPane root = new BorderPane();
         mario = new Mario(20, -10, 30, 30);
@@ -230,7 +227,7 @@ public class VueJeu {
 
         System.out.println(echelle1.getLayoutX());
 
-        //////////////////////// Echelle
+        //////////////////////// Echelle ////////////////////////
         // Attribution des coordonnées etc des échelles
         echelles = new ArrayList<>();
         echelles.addAll(Arrays.asList(echelle1, echelle2, echelle3, echelle4, echelle5, echelle6));
@@ -257,7 +254,7 @@ public class VueJeu {
 
         ArrayList<ArrayList<Double>> coordonneesEchelles = new ArrayList<>(Arrays.asList(coordonneesEchelle1, coordonneesEchelle2, coordonneesEchelle3, coordonneesEchelle4, coordonneesEchelle5, coordonneesEchelle6));
 
-        //////////////////////// EchelleBroken
+        //////////////////////// EchelleBroken ////////////////////////
         echellesBrokens = new ArrayList<>(Arrays.asList(echelleBroken1, echelleBroken2));
 
         ArrayList<Double> coordonneesEchelleBroken1 = new ArrayList<>();
@@ -334,9 +331,6 @@ public class VueJeu {
                     System.out.println("+1");
 
                 }
-
-                //mario.getLayoutX()==235 && mario.getLayoutY()==545
-                //mario.getLayoutX() == 305 && mario.getLayoutY() == 94|| mario.getLayoutX() == 300 && mario.getLayoutY() == 94|| mario.getLayoutX() == 295 && mario.getLayoutY() == 94|| mario.getLayoutX() == 290 && mario.getLayoutY() == 94
                 if (mario.getLayoutX() == 305 && mario.getLayoutY() == 94 || mario.getLayoutX() == 300 && mario.getLayoutY() == 94 || mario.getLayoutX() == 295 && mario.getLayoutY() == 94 || mario.getLayoutX() == 290 && mario.getLayoutY() == 94) {
                     if (getVie().getValue() > 1) {
                         mario.setLayoutX(20 * 10);
@@ -370,7 +364,6 @@ public class VueJeu {
         mario.setLayoutX(20 * 10);
         mario.setLayoutY(545);
         sleep(1000);
-        //start(new Stage());
     }
 
 

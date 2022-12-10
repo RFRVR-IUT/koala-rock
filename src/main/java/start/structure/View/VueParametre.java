@@ -1,6 +1,8 @@
 package start.structure.View;
 
 import javafx.scene.Scene;
+import javafx.scene.control.Label;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 import javafx.scene.control.Button;
@@ -10,21 +12,105 @@ public class VueParametre extends Stage {
 
     public VueParametre() {
         Pane pane = new Pane();
-        Scene scene = new Scene(pane, 550, 650);
+        Scene scene = new Scene(pane, 950, 650);
         scene.getStylesheets().add("file:src/main/resources/css/style.css");
 
-        // button to hide
+        /////////// PARAMETRE SCENE ///////////
+
+        // TODO: 2020-11-30  Ajouter les paramètres de selection de scene !
+
+        ///////////////////// BOUTON EN JEU /////////////////////
+
+        ////////////////////////////Bouton////////////////////////////
+        Label button_Bas = new Label();
+        ImageView image_Bas = new ImageView("file:src/main/resources/Button/Button_bas.png");
+        image_Bas.setFitHeight(50);
+        image_Bas.setFitWidth(50);
+        button_Bas.setGraphic(image_Bas);
+        button_Bas.getStyleClass().add("button_Action");
+        button_Bas.setLayoutX(200);
+        button_Bas.setLayoutY(485);
+
+        Label button_Haut = new Label();
+        ImageView image_Haut = new ImageView("file:src/main/resources/Button/Button_haut.png");
+        image_Haut.setFitHeight(50);
+        image_Haut.setFitWidth(50);
+        button_Haut.setGraphic(image_Haut);
+        button_Haut.getStyleClass().add("button_Action");
+        button_Haut.setLayoutX(200);
+        button_Haut.setLayoutY(400);
+
+        Label button_Gauche = new Label();
+        ImageView image_Gauche = new ImageView("file:src/main/resources/Button/Button_gauche.png");
+        image_Gauche.setFitHeight(50);
+        image_Gauche.setFitWidth(50);
+        button_Gauche.setGraphic(image_Gauche);
+        button_Gauche.getStyleClass().add("button_Action");
+        button_Gauche.setLayoutX(110);
+        button_Gauche.setLayoutY(485);
+
+        Label button_Droite = new Label();
+        ImageView image_Droite = new ImageView("file:src/main/resources/Button/Button_droite.png");
+        image_Droite.setFitHeight(50);
+        image_Droite.setFitWidth(50);
+        button_Droite.setGraphic(image_Droite);
+        button_Droite.getStyleClass().add("button_Action");
+        button_Droite.setLayoutX(285);
+        button_Droite.setLayoutY(485);
+
+        Label button_Espace = new Label();
+        ImageView image_Espace = new ImageView("file:src/main/resources/Button/Button_espace.png");
+        image_Espace.setFitHeight(50);
+        image_Espace.setFitWidth(200);
+        button_Espace.setGraphic(image_Espace);
+        button_Espace.getStyleClass().add("button_Action");
+        button_Espace.setLayoutX(600);
+        button_Espace.setLayoutY(485);
+        ////////////////////////////End Bouton////////////////////////////
+
+        ////////////////////////////Texte////////////////////////////
+
+        Label texte_Bas = new Label("Bas");
+        texte_Bas.getStyleClass().add("LabelUnderButton");
+        texte_Bas.setLayoutX(206);
+        texte_Bas.setLayoutY(540);
+
+        Label texte_Haut = new Label("Haut");
+        texte_Haut.getStyleClass().add("LabelUnderButton");
+        texte_Haut.setLayoutX(204);
+        texte_Haut.setLayoutY(455);
+
+        Label texte_Gauche = new Label("Gauche");
+        texte_Gauche.getStyleClass().add("LabelUnderButton");
+        texte_Gauche.setLayoutX(104);
+        texte_Gauche.setLayoutY(540);
+
+        Label texte_Droite = new Label("Droite");
+        texte_Droite.getStyleClass().add("LabelUnderButton");
+        texte_Droite.setLayoutX(282);
+        texte_Droite.setLayoutY(540);
+
+        Label texte_Espace = new Label("Espace");
+        texte_Espace.getStyleClass().add("LabelUnderButton");
+        texte_Espace.setLayoutX(670);
+        texte_Espace.setLayoutY(540);
+
+        ////////////////////////////End Texte////////////////////////////
+
+
         Button buttonHide = new Button("quitter et sauvegarder");
         buttonHide.getStyleClass().add("buttonEcran");
         buttonHide.setStyle("-fx-font-size: 12px; -fx-pref-width: 200px; -fx-pref-height: 30px;");
 
 
-        buttonHide.setLayoutX(170);
+        buttonHide.setLayoutX(350);
         buttonHide.setLayoutY(580);
         buttonHide.setOnAction(event -> {
             this.hide();
         });
         pane.getChildren().add(buttonHide);
+        pane.getChildren().addAll(button_Bas, button_Haut, button_Gauche, button_Droite, button_Espace);
+        pane.getChildren().addAll(texte_Bas, texte_Haut, texte_Gauche, texte_Droite, texte_Espace);
 
 
         setTitle("Paramètre");

@@ -66,7 +66,10 @@
     -fx-effect: dropshadow(gaussian, #a30000, 0, 0, 0, 2);
 }
 
-.button_Action{
-    -fx-font-size: 10px;
-    -fx-padding: -3;
+.LabelUnderButton {
+    -fx-text-fill: white;
+    -fx-font-family: 'Goldman', sans-serif;
+    -fx-font-weight: bold;
+    -fx-font-size: 15px;
 }
+
