@@ -24,11 +24,11 @@ public class VueJeu {
     ArrayList<Echelle> echelles;
     ArrayList<EchelleBroken> echellesBrokens;
     ArrayList<Tonneaux> tonneaux;
-    Mario mario = new Mario();
+    PersonnePrincipale personnePrincipale = new PersonnePrincipale();
     private boolean isPause = false;
     private Scene scene;
     private Stage primaryStage;
-    private DonkeyKong dk;
+    private PersonneEnnemie dk;
     private Pane jeu;
     private final VueGagne vueGagne = new VueGagne();
     private final VuePerdre vuesPerdu = new VuePerdre();
@@ -39,7 +39,7 @@ public class VueJeu {
     private ImageView image_Bas, image_Haut, image_Gauche, image_Droite, image_Espace;
 
     public IntegerProperty getScore() {
-        return mario.getScore();
+        return personnePrincipale.getScore();
     }
 
     public String getMode() {
@@ -47,7 +47,7 @@ public class VueJeu {
     }
 
     public IntegerProperty getVie() {
-        return mario.getVie();
+        return personnePrincipale.getVie();
     }
 
     public void demarrerJeu(Stage stage, String modeJeu) throws IOException, InterruptedException {
@@ -56,7 +56,7 @@ public class VueJeu {
         Pane interfaceJeu = new Pane();
         jeu = new Pane();
         BorderPane root = new BorderPane();
-        mario = new Mario(20, -10, 30, 30);
+        personnePrincipale = new PersonnePrincipale(20, -10, 30, 30);
         Echelle echelle1 = new Echelle(400, 485, 25, 80);
         Echelle echelle2 = new Echelle(200, 408, 25, 80);
         Echelle echelle3 = new Echelle(500, 331, 25, 80);
@@ -67,7 +67,7 @@ public class VueJeu {
         EchelleBroken echelleBroken1 = new EchelleBroken(300, 331, 25, 80);
         EchelleBroken echelleBroken2 = new EchelleBroken(240, 177, 25, 80);
 
-        DonkeyKong dk = new DonkeyKong(60, 80, 100, 100);
+        PersonneEnnemie dk = new PersonneEnnemie(60, 80, 100, 100);
         Fond fond = new Fond(0, 0, 600, 600);
         Tonneaux tonneau1 = new Tonneaux(20, -10, 20, 20);
         Tonneaux tonneau2 = new Tonneaux(20, -10, 20, 20);
@@ -80,8 +80,8 @@ public class VueJeu {
         tonneau4.setLayoutY(-30);
         tonneau5.setLayoutY(-30);
 
-        mario.setLayoutX(20 * 10);
-        mario.setLayoutY(545);
+        personnePrincipale.setLayoutX(20 * 10);
+        personnePrincipale.setLayoutY(545);
 
         //////////////// Label ///////////////////////
         Label score = new Label("Score : 0");
@@ -186,8 +186,8 @@ public class VueJeu {
         };
 
 
-        mario.getScore().addListener((observableValue, number, t1) -> score.setText("Score : " + mario.getScore().getValue().toString()));
-        mario.getVie().addListener((observableValue, number, t1) -> vie.setText("Vie : " + mario.getVie().getValue().toString()));
+        personnePrincipale.getScore().addListener((observableValue, number, t1) -> score.setText("Score : " + personnePrincipale.getScore().getValue().toString()));
+        personnePrincipale.getVie().addListener((observableValue, number, t1) -> vie.setText("Vie : " + personnePrincipale.getVie().getValue().toString()));
 
         time.addListener((observableValue, number, t1) -> chrono.setText("Chrono : " + time.getValue().toString() + "s"));
 
@@ -208,7 +208,7 @@ public class VueJeu {
         // EchelleBroken
         jeu.getChildren().addAll(echelleBroken1, echelleBroken2);
         // Perso
-        jeu.getChildren().addAll(mario, dk);
+        jeu.getChildren().addAll(personnePrincipale, dk);
         // Tonneaux
         jeu.getChildren().addAll(tonneau1, tonneau2, tonneau3, tonneau4, tonneau5);
         // Score
@@ -300,24 +300,24 @@ public class VueJeu {
         AnimationTimer collisionTimer = new AnimationTimer() {
             @Override
             public void handle(long now) {
-                if (mario.collisionTonneaux(tonneaux) == -1 && !isPause) {
+                if (personnePrincipale.collisionTonneaux(tonneaux) == -1 && !isPause) {
                     if (getVie().getValue() > 1) {
-                        mario.setLayoutX(20 * 10);
-                        mario.setLayoutY(545);
+                        personnePrincipale.setLayoutX(20 * 10);
+                        personnePrincipale.setLayoutY(545);
                         getVie().setValue(getVie().getValue() - 1);
                     } else {
                         timer.stop();
                         isPause = true;
                         System.out.println(isPause);
-                        mario.setLayoutX(20 * 10);
-                        mario.setLayoutY(545);
+                        personnePrincipale.setLayoutX(20 * 10);
+                        personnePrincipale.setLayoutY(545);
                         //replacer les tonneaux
                         for (Tonneaux tonneau : tonneaux) {
                             tonneau.setLayoutX(0);
                             tonneau.setLayoutY(-30);
                         }
                         int saveScore = getScore().getValue();
-                        supprimerElements(jeu, tonneaux, echelles, echellesBrokens, mario, dk);
+                        supprimerElements(jeu, tonneaux, echelles, echellesBrokens, personnePrincipale, dk);
                         //empecher le jeu de continuer
                         timeline.stop();
                         primaryStage.close();
@@ -327,22 +327,22 @@ public class VueJeu {
                             vuesPerdu.screenLose();
                         }
                     }
-                } else if (mario.collisionTonneaux(tonneaux) == 1) {
+                } else if (personnePrincipale.collisionTonneaux(tonneaux) == 1) {
                     System.out.println("+1");
 
                 }
-                if (mario.getLayoutX() == 305 && mario.getLayoutY() == 94 || mario.getLayoutX() == 300 && mario.getLayoutY() == 94 || mario.getLayoutX() == 295 && mario.getLayoutY() == 94 || mario.getLayoutX() == 290 && mario.getLayoutY() == 94) {
+                if (personnePrincipale.getLayoutX() == 305 && personnePrincipale.getLayoutY() == 94 || personnePrincipale.getLayoutX() == 300 && personnePrincipale.getLayoutY() == 94 || personnePrincipale.getLayoutX() == 295 && personnePrincipale.getLayoutY() == 94 || personnePrincipale.getLayoutX() == 290 && personnePrincipale.getLayoutY() == 94) {
                     if (getVie().getValue() > 1) {
-                        mario.setLayoutX(20 * 10);
-                        mario.setLayoutY(545);
+                        personnePrincipale.setLayoutX(20 * 10);
+                        personnePrincipale.setLayoutY(545);
                         getScore().setValue(getScore().getValue() + 1000);
                     } else {
                         isPause = true;
-                        mario.setLayoutX(20 * 10);
-                        mario.setLayoutY(545);
-                        supprimerElements(jeu, tonneaux, echelles, echellesBrokens, mario, dk);
+                        personnePrincipale.setLayoutX(20 * 10);
+                        personnePrincipale.setLayoutY(545);
+                        supprimerElements(jeu, tonneaux, echelles, echellesBrokens, personnePrincipale, dk);
                         primaryStage.close();
-                        vueGagne.screenWin(mario.getScore());
+                        vueGagne.screenWin(personnePrincipale.getScore());
                     }
                 }
             }
@@ -352,7 +352,7 @@ public class VueJeu {
         root.setCenter(interfaceJeu);
         scene = new Scene(root);
         scene.getStylesheets().add("file:src/main/resources/css/style.css");
-        move(mario, echelles, echellesBrokens, coordonneesEchelles);
+        move(personnePrincipale, echelles, echellesBrokens, coordonneesEchelles);
         stage.setScene(scene);
         stage.show();
     }
@@ -360,18 +360,18 @@ public class VueJeu {
     public void restartGame(Stage stage) throws IOException, InterruptedException {
         System.out.println("restart");
         stage.close();
-        supprimerElements(jeu, tonneaux, echelles, echellesBrokens, mario, dk);
-        mario.setLayoutX(20 * 10);
-        mario.setLayoutY(545);
+        supprimerElements(jeu, tonneaux, echelles, echellesBrokens, personnePrincipale, dk);
+        personnePrincipale.setLayoutX(20 * 10);
+        personnePrincipale.setLayoutY(545);
         sleep(1000);
     }
 
 
-    public void supprimerElements(Pane jeu, ArrayList<Tonneaux> tonneaux, ArrayList<Echelle> echelles, ArrayList<EchelleBroken> echellesBrokens, Mario mario, DonkeyKong dk) {
+    public void supprimerElements(Pane jeu, ArrayList<Tonneaux> tonneaux, ArrayList<Echelle> echelles, ArrayList<EchelleBroken> echellesBrokens, PersonnePrincipale personnePrincipale, PersonneEnnemie dk) {
         tonneaux = null;
         echelles = null;
         echellesBrokens = null;
-        mario = null;
+        personnePrincipale = null;
         dk = null;
         jeu = null;
     }
@@ -379,12 +379,12 @@ public class VueJeu {
     /**
      * Méthode qui permet le mouvement de Mario
      *
-     * @param mario
+     * @param personnePrincipale
      * @param echelles
      * @param echellesBrokens
      * @param coordonneesEchelles
      */
-    private void move(Mario mario, ArrayList<Echelle> echelles, ArrayList<EchelleBroken> echellesBrokens, ArrayList<ArrayList<Double>> coordonneesEchelles) {
+    private void move(PersonnePrincipale personnePrincipale, ArrayList<Echelle> echelles, ArrayList<EchelleBroken> echellesBrokens, ArrayList<ArrayList<Double>> coordonneesEchelles) {
         ImageView image_Haut_Click = new ImageView("file:src/main/resources/Button/Button_Haut_Click.png");
         image_Haut_Click.setFitHeight(50);
         image_Haut_Click.setFitWidth(50);
@@ -407,7 +407,7 @@ public class VueJeu {
 
 
         scene.setOnKeyPressed((KeyEvent event) -> {
-            mario.tomberEtage();
+            personnePrincipale.tomberEtage();
             switch (event.getCode()) {
                 case UP:
                     button_Haut.setGraphic(image_Haut_Click);
@@ -415,13 +415,13 @@ public class VueJeu {
                     button_Gauche.setGraphic(image_Gauche);
                     button_Droite.setGraphic(image_Droite);
                     button_Espace.setGraphic(image_Espace);
-                    if (mario.collisionEchelle(echelles) && !(mario.estEn(coordonneesEchelles))) {
-                        mario.directionHaut();
-                        mario.setEstSurEchelle(true);
+                    if (personnePrincipale.collisionEchelle(echelles) && !(personnePrincipale.estEn(coordonneesEchelles))) {
+                        personnePrincipale.directionHaut();
+                        personnePrincipale.setEstSurEchelle(true);
                     }
-                    if (mario.collisionEchelleBroken(echellesBrokens) && !(mario.estEnBroken(coordonneesEchelles))) {
-                        mario.directionHaut();
-                        mario.setEstSurEchelle(true);
+                    if (personnePrincipale.collisionEchelleBroken(echellesBrokens) && !(personnePrincipale.estEnBroken(coordonneesEchelles))) {
+                        personnePrincipale.directionHaut();
+                        personnePrincipale.setEstSurEchelle(true);
                     }
                     break;
                 case LEFT:
@@ -430,9 +430,9 @@ public class VueJeu {
                     button_Gauche.setGraphic(image_Gauche_Click);
                     button_Droite.setGraphic(image_Droite);
                     button_Espace.setGraphic(image_Espace);
-                    if (!mario.estDansEchelle(coordonneesEchelles)) {
-                        mario.directionGauche();
-                        mario.setEstSurEchelle(false);
+                    if (!personnePrincipale.estDansEchelle(coordonneesEchelles)) {
+                        personnePrincipale.directionGauche();
+                        personnePrincipale.setEstSurEchelle(false);
                     }
                     break;
                 case RIGHT:
@@ -441,9 +441,9 @@ public class VueJeu {
                     button_Gauche.setGraphic(image_Gauche);
                     button_Droite.setGraphic(image_Droite_Click);
                     button_Espace.setGraphic(image_Espace);
-                    if (!mario.estDansEchelle(coordonneesEchelles)) {
-                        mario.directionDroite(scene.getWidth());
-                        mario.setEstSurEchelle(false);
+                    if (!personnePrincipale.estDansEchelle(coordonneesEchelles)) {
+                        personnePrincipale.directionDroite(scene.getWidth());
+                        personnePrincipale.setEstSurEchelle(false);
                     }
                     break;
                 case DOWN:
@@ -452,13 +452,13 @@ public class VueJeu {
                     button_Gauche.setGraphic(image_Gauche);
                     button_Droite.setGraphic(image_Droite);
                     button_Espace.setGraphic(image_Espace);
-                    if (mario.collisionEchelle(echelles) && !(mario.estDansBasEchelle(coordonneesEchelles))) {
-                        mario.directionBas(scene.getHeight());
+                    if (personnePrincipale.collisionEchelle(echelles) && !(personnePrincipale.estDansBasEchelle(coordonneesEchelles))) {
+                        personnePrincipale.directionBas(scene.getHeight());
                     }
-                    if (mario.collisionEchelleBroken(echellesBrokens) && !(mario.estDansBasEchelle(coordonneesEchelles))) {
-                        mario.directionBas(scene.getHeight());
+                    if (personnePrincipale.collisionEchelleBroken(echellesBrokens) && !(personnePrincipale.estDansBasEchelle(coordonneesEchelles))) {
+                        personnePrincipale.directionBas(scene.getHeight());
                     }
-                    mario.setEstSurEchelle(false);
+                    personnePrincipale.setEstSurEchelle(false);
                     break;
                 case SPACE:
                     button_Haut.setGraphic(image_Haut);
@@ -466,19 +466,19 @@ public class VueJeu {
                     button_Gauche.setGraphic(image_Gauche);
                     button_Droite.setGraphic(image_Droite);
                     button_Espace.setGraphic(image_Espace_Click);
-                    if (!mario.isEstEnSaut()) {
+                    if (!personnePrincipale.isEstEnSaut()) {
                         Son.jump();
                         PauseTransition pause = new PauseTransition(javafx.util.Duration.seconds(0.8));
-                        mario.jump();
-                        mario.setaEuSonScore(false);
+                        personnePrincipale.jump();
+                        personnePrincipale.setaEuSonScore(false);
                         pause.play();
-                        pause.setOnFinished(event1 -> mario.atterir());
+                        pause.setOnFinished(event1 -> personnePrincipale.atterir());
                         break;
                     }
                 case A:
-                    System.out.println(mario.getLayoutX());
-                    System.out.println(mario.getLayoutY());
-                    System.out.println(mario.getScore());
+                    System.out.println(personnePrincipale.getLayoutX());
+                    System.out.println(personnePrincipale.getLayoutY());
+                    System.out.println(personnePrincipale.getScore());
             }
         });
     }

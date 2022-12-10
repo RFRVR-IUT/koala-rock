@@ -7,7 +7,7 @@ import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Rectangle;
 import javafx.util.Duration;
 
-public class DonkeyKong extends Group {
+public class PersonneEnnemie extends Group {
 
     private final Rectangle donkey;
 
@@ -19,9 +19,9 @@ public class DonkeyKong extends Group {
      * @param width
      * @param height
      */
-    public DonkeyKong(int x, int y, int width, int height) {
+    public PersonneEnnemie(int x, int y, int width, int height) {
         this.donkey = new Rectangle(x, y, width, height);
-        donkey.setFill(new ImagePattern(new Image("koala-DK.png")));
+        donkey.setFill(new ImagePattern(new Image("koala.png")));
         this.getChildren().add(donkey);
 
     }
@@ -36,7 +36,7 @@ public class DonkeyKong extends Group {
      * @param tonneaux
      */
     public void lance(Tonneaux tonneaux) {
-        this.donkey.setFill(new ImagePattern(new Image("koala-DK-2.png")));
+        this.donkey.setFill(new ImagePattern(new Image("koala-2.png")));
         this.donkey.setScaleX(-1);
         gauche();
 
@@ -72,7 +72,7 @@ public class DonkeyKong extends Group {
      * Animation Donkey Kong Idle
      */
     public void idle() {
-        this.donkey.setFill(new ImagePattern(new Image("koala-DK.png")));
+        this.donkey.setFill(new ImagePattern(new Image("koala.png")));
     }
 
 }

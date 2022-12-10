@@ -5,12 +5,13 @@ import javafx.beans.property.SimpleIntegerProperty;
 import javafx.scene.Group;
 import javafx.scene.image.Image;
 import javafx.scene.paint.ImagePattern;
+import javafx.scene.paint.Paint;
 import javafx.scene.shape.Rectangle;
 import start.structure.Sound.Son;
 
 import java.util.ArrayList;
 
-public class Mario extends Group {
+public class PersonnePrincipale extends Group {
     protected final static double LARGEUR_MOITIE_PERSONNAGE = 5;
     protected final static double LARGEUR_PERSONNAGE = LARGEUR_MOITIE_PERSONNAGE * 2;
     private final Rectangle corps;
@@ -18,10 +19,54 @@ public class Mario extends Group {
     private double ySave;
     private boolean estEnSaut = false;
     private int change = 0;
-    private IntegerProperty score = new SimpleIntegerProperty(0);
-    private IntegerProperty vie = new SimpleIntegerProperty(0);
+    private final IntegerProperty score = new SimpleIntegerProperty(0);
+    private final IntegerProperty vie = new SimpleIntegerProperty(0);
     private boolean aEuSonScore = false;
     private boolean estSurEchelle = false;
+
+    /////////////////////////// Choix personnage ///////////////////////////
+    private final String choixPersonnage = "SAMURAI";
+    /**
+     * Permet de changer l'image du personnage en fonction du choix du joueur
+     * @param choixPersonnage
+     * @return
+     */
+    public Paint setChoixPersonnage_IDLE(String choixPersonnage) {
+        if (choixPersonnage.equals("KOALA")) {
+            return new ImagePattern(new Image("Panda_idle.png"));
+        } else if (choixPersonnage.equals("SAMURAI")) {
+            return new ImagePattern(new Image("Samurai_IDLE.png"));
+        }
+        return null;
+    }
+
+    public Paint setChoixPersonnage_RUN(String choixPersonnage) {
+        if (choixPersonnage.equals("KOALA")) {
+            return new ImagePattern(new Image("Panda_idle.png"));
+        } else if (choixPersonnage.equals("SAMURAI")) {
+            return new ImagePattern(new Image("Samurai_RUN.png"));
+        }
+        return null;
+    }
+
+    public Paint setChoixPersonnage_JUMP(String choixPersonnage) {
+        if (choixPersonnage.equals("KOALA")) {
+            return new ImagePattern(new Image("Panda_idle.png"));
+        } else if (choixPersonnage.equals("SAMURAI")) {
+            return new ImagePattern(new Image("Samurai_RUN2.png"));
+        }
+        return null;
+    }
+
+    public Paint setChoixPersonnage_CLIMB(String choixPersonnage) {
+        if (choixPersonnage.equals("KOALA")) {
+            return new ImagePattern(new Image("Panda_CLimb.png"));
+        } else if (choixPersonnage.equals("SAMURAI")) {
+            return new ImagePattern(new Image("Samurai_Climb.png"));
+        }
+        return null;
+    }
+//////////////////////////////////////////////////////////////////////////
 
     /**
      * Constructeur de la classe Mario
@@ -31,17 +76,18 @@ public class Mario extends Group {
      * @param width
      * @param height
      */
-    public Mario(int x, int y, int width, int height) {
+    public PersonnePrincipale(int x, int y, int width, int height) {
         corps = new Rectangle(x, y, width, height);
-        corps.setFill(new ImagePattern(new Image("Panda_idle.png")));
+        corps.setFill(setChoixPersonnage_IDLE(choixPersonnage));
+
 
         this.getChildren().add(corps);
         direction = "droite";
     }
 
-    public Mario() {
+    public PersonnePrincipale() {
         corps = new Rectangle(0, 0, 0, 0);
-        corps.setFill(new ImagePattern(new Image("Panda_idle.png")));
+        corps.setFill(setChoixPersonnage_IDLE(choixPersonnage));
 
         this.getChildren().add(corps);
         direction = "droite";
@@ -50,6 +96,7 @@ public class Mario extends Group {
     public IntegerProperty getScore() {
         return score;
     }
+
     public IntegerProperty getVie() {
         return vie;
     }
@@ -66,6 +113,7 @@ public class Mario extends Group {
      * Méthode qui permet de faire bouger le personnage vers la Gauche
      */
     public void directionGauche() {
+
         // ****
         // * *
         // *--- *
@@ -79,8 +127,10 @@ public class Mario extends Group {
         if (!direction.equals("gauche")) {
             direction = "gauche";
         }
-        corps.setFill(new ImagePattern(new Image("Panda_idle.png")));
+
+        corps.setFill(setChoixPersonnage_RUN(choixPersonnage));
         corps.setScaleX(1);
+
     }
 
     /**
@@ -101,7 +151,7 @@ public class Mario extends Group {
         if (!direction.equals("droite")) {
             direction = "droite";
         }
-        corps.setFill(new ImagePattern(new Image("Panda_idle.png")));
+        corps.setFill(setChoixPersonnage_RUN(choixPersonnage));
         corps.setScaleX(-1);
     }
 
@@ -122,7 +172,7 @@ public class Mario extends Group {
         if (!direction.equals("bas")) {
             direction = "bas";
         }
-        corps.setFill(new ImagePattern(new Image("Panda_Climb.png")));
+        corps.setFill(setChoixPersonnage_CLIMB(choixPersonnage));
         if (change % 2 == 0) {
             corps.setScaleX(1);
             change++;
@@ -147,7 +197,7 @@ public class Mario extends Group {
         if (!direction.equals("haut")) {
             direction = "haut";
         }
-        corps.setFill(new ImagePattern(new Image("Panda_Climb.png")));
+        corps.setFill(setChoixPersonnage_CLIMB(choixPersonnage));
         if (change % 2 == 0) {
             corps.setScaleX(1);
             change++;
@@ -174,12 +224,11 @@ public class Mario extends Group {
             //System.out.println("y = " + y);
             for (int i = 0; i < 3; i++) {
                 setLayoutY(getLayoutY() - (0.7 * LARGEUR_PERSONNAGE));
-                //System.out.println("en train de jump");
             }
-            //System.out.println(getLayoutY());
         }
         this.estEnSaut = true;
-        corps.setFill(new ImagePattern(new Image("Panda_idle.png")));
+        corps.setFill(setChoixPersonnage_JUMP(choixPersonnage));
+
     }
 
     /**
@@ -190,7 +239,7 @@ public class Mario extends Group {
             setLayoutY(getLayoutY() + (0.7 * LARGEUR_PERSONNAGE));
         }
         this.estEnSaut = false;
-        corps.setFill(new ImagePattern(new Image("Panda_idle.png")));
+        corps.setFill(setChoixPersonnage_IDLE(choixPersonnage));
     }
 
     public double getYSave() {
@@ -228,7 +277,6 @@ public class Mario extends Group {
      */
     public boolean estEn(ArrayList<ArrayList<Double>> tab) {
         for (ArrayList<Double> d : tab) {
-            //System.out.println(d.toString());
             if ((Double.compare(getLayoutX(), d.get(0)) == 0 || Double.compare(getLayoutX(), d.get(0) + 10) == 0 || Double.compare(getLayoutX(), d.get(0) + 5) == 0 || Double.compare(getLayoutX(), d.get(0) - 5) == 0 || Double.compare(getLayoutX(), d.get(0) - 10) == 0) && Double.compare(getLayoutY(), d.get(1)) == 0) {
                 return true;
             }
