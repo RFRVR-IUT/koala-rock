@@ -6,9 +6,9 @@ import javafx.beans.property.LongProperty;
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleLongProperty;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.Pane;
@@ -29,7 +29,7 @@ public class VueJeu {
     ArrayList<Tonneaux> tonneaux;
     Mario mario = new Mario();
     private boolean isPause = false;
-    private Scene s;
+    private Scene scene;
     private Stage primaryStage;
     private DonkeyKong dk;
     private Pane interfaceJeu;
@@ -39,6 +39,8 @@ public class VueJeu {
     private final VueFinInfiniPartie vueFinInfiniPartie = new VueFinInfiniPartie();
     private String mode = "Normal";
     private final LongProperty time = new SimpleLongProperty(0);
+    private Label button_Bas, button_Haut, button_Gauche, button_Droite, button_Espace;
+    private ImageView image_Bas, image_Haut, image_Gauche, image_Droite, image_Espace;
 
     public IntegerProperty getScore() {
         return mario.getScore();
@@ -109,8 +111,8 @@ public class VueJeu {
 
         //////////////// Button ///////////////////////
 
-        Label button_Bas = new Label();
-        ImageView image_Bas = new ImageView("file:src/main/resources/Button/Button_bas.png");
+        button_Bas = new Label();
+        image_Bas = new ImageView("file:src/main/resources/Button/Button_bas.png");
         image_Bas.setFitHeight(50);
         image_Bas.setFitWidth(50);
         button_Bas.setGraphic(image_Bas);
@@ -118,8 +120,8 @@ public class VueJeu {
         button_Bas.setLayoutX(150);
         button_Bas.setLayoutY(530);
 
-        Label button_Haut = new Label();
-        ImageView image_Haut = new ImageView("file:src/main/resources/Button/Button_haut.png");
+        button_Haut = new Label();
+        image_Haut = new ImageView("file:src/main/resources/Button/Button_haut.png");
         image_Haut.setFitHeight(50);
         image_Haut.setFitWidth(50);
         button_Haut.setGraphic(image_Haut);
@@ -127,8 +129,8 @@ public class VueJeu {
         button_Haut.setLayoutX(150);
         button_Haut.setLayoutY(465);
 
-        Label button_Gauche = new Label();
-        ImageView image_Gauche = new ImageView("file:src/main/resources/Button/Button_gauche.png");
+        button_Gauche = new Label();
+        image_Gauche = new ImageView("file:src/main/resources/Button/Button_gauche.png");
         image_Gauche.setFitHeight(50);
         image_Gauche.setFitWidth(50);
         button_Gauche.setGraphic(image_Gauche);
@@ -136,8 +138,8 @@ public class VueJeu {
         button_Gauche.setLayoutX(80);
         button_Gauche.setLayoutY(530);
 
-        Label button_Droite = new Label();
-        ImageView image_Droite = new ImageView("file:src/main/resources/Button/Button_droite.png");
+        button_Droite = new Label();
+        image_Droite = new ImageView("file:src/main/resources/Button/Button_droite.png");
         image_Droite.setFitHeight(50);
         image_Droite.setFitWidth(50);
         button_Droite.setGraphic(image_Droite);
@@ -145,8 +147,8 @@ public class VueJeu {
         button_Droite.setLayoutX(221);
         button_Droite.setLayoutY(530);
 
-        Label button_Espace = new Label();
-        ImageView image_Espace = new ImageView("file:src/main/resources/Button/Button_espace.png");
+        button_Espace = new Label();
+        image_Espace = new ImageView("file:src/main/resources/Button/Button_espace.png");
         image_Espace.setFitHeight(50);
         image_Espace.setFitWidth(200);
         button_Espace.setGraphic(image_Espace);
@@ -355,10 +357,10 @@ public class VueJeu {
         // Fin Start Game //
         collisionTimer.start();
         root.setCenter(interfaceJeu);
-        s = new Scene(root);
-        s.getStylesheets().add("file:src/main/resources/css/style.css");
+        scene = new Scene(root);
+        scene.getStylesheets().add("file:src/main/resources/css/style.css");
         move(mario, echelles, echellesBrokens, coordonneesEchelles);
-        stage.setScene(s);
+        stage.setScene(scene);
         stage.show();
     }
 
@@ -391,15 +393,36 @@ public class VueJeu {
      * @param coordonneesEchelles
      */
     private void move(Mario mario, ArrayList<Echelle> echelles, ArrayList<EchelleBroken> echellesBrokens, ArrayList<ArrayList<Double>> coordonneesEchelles) {
-        s.setOnKeyPressed((KeyEvent event) -> {
+        ImageView image_Haut_Click = new ImageView("file:src/main/resources/Button/Button_Haut_Click.png");
+        image_Haut_Click.setFitHeight(50);
+        image_Haut_Click.setFitWidth(50);
+
+        ImageView image_Bas_Click = new ImageView("file:src/main/resources/Button/Button_Bas_Click.png");
+        image_Bas_Click.setFitHeight(50);
+        image_Bas_Click.setFitWidth(50);
+
+        ImageView image_Gauche_Click = new ImageView("file:src/main/resources/Button/Button_Gauche_Click.png");
+        image_Gauche_Click.setFitHeight(50);
+        image_Gauche_Click.setFitWidth(50);
+
+        ImageView image_Droite_Click = new ImageView("file:src/main/resources/Button/Button_Droite_Click.png");
+        image_Droite_Click.setFitHeight(50);
+        image_Droite_Click.setFitWidth(50);
+
+        ImageView image_Espace_Click = new ImageView("file:src/main/resources/Button/Button_Espace_Click.png");
+        image_Espace_Click.setFitHeight(50);
+        image_Espace_Click.setFitWidth(200);
+
+
+        scene.setOnKeyPressed((KeyEvent event) -> {
             mario.tomberEtage();
             switch (event.getCode()) {
                 case UP:
-                    //mario.directionHaut();
-                    //System.out.println("X : " + mario.getLayoutX());
-                    //System.out.println("Y : " + mario.getLayoutY() + "\n");
-                    //System.out.println(mario.collisionEchelle(echelles));
-                    //System.out.println(echelles);
+                    button_Haut.setGraphic(image_Haut_Click);
+                    button_Bas.setGraphic(image_Bas);
+                    button_Gauche.setGraphic(image_Gauche);
+                    button_Droite.setGraphic(image_Droite);
+                    button_Espace.setGraphic(image_Espace);
                     if (mario.collisionEchelle(echelles) && !(mario.estEn(coordonneesEchelles))) {
                         mario.directionHaut();
                         mario.setEstSurEchelle(true);
@@ -410,27 +433,47 @@ public class VueJeu {
                     }
                     break;
                 case LEFT:
+                    button_Haut.setGraphic(image_Haut);
+                    button_Bas.setGraphic(image_Bas);
+                    button_Gauche.setGraphic(image_Gauche_Click);
+                    button_Droite.setGraphic(image_Droite);
+                    button_Espace.setGraphic(image_Espace);
                     if (!mario.estDansEchelle(coordonneesEchelles)) {
                         mario.directionGauche();
                         mario.setEstSurEchelle(false);
                     }
                     break;
                 case RIGHT:
+                    button_Haut.setGraphic(image_Haut);
+                    button_Bas.setGraphic(image_Bas);
+                    button_Gauche.setGraphic(image_Gauche);
+                    button_Droite.setGraphic(image_Droite_Click);
+                    button_Espace.setGraphic(image_Espace);
                     if (!mario.estDansEchelle(coordonneesEchelles)) {
-                        mario.directionDroite(s.getWidth());
+                        mario.directionDroite(scene.getWidth());
                         mario.setEstSurEchelle(false);
                     }
                     break;
                 case DOWN:
+                    button_Haut.setGraphic(image_Haut);
+                    button_Bas.setGraphic(image_Bas_Click);
+                    button_Gauche.setGraphic(image_Gauche);
+                    button_Droite.setGraphic(image_Droite);
+                    button_Espace.setGraphic(image_Espace);
                     if (mario.collisionEchelle(echelles) && !(mario.estDansBasEchelle(coordonneesEchelles))) {
-                        mario.directionBas(s.getHeight());
+                        mario.directionBas(scene.getHeight());
                     }
                     if (mario.collisionEchelleBroken(echellesBrokens) && !(mario.estDansBasEchelle(coordonneesEchelles))) {
-                        mario.directionBas(s.getHeight());
+                        mario.directionBas(scene.getHeight());
                     }
                     mario.setEstSurEchelle(false);
                     break;
                 case SPACE:
+                    button_Haut.setGraphic(image_Haut);
+                    button_Bas.setGraphic(image_Bas);
+                    button_Gauche.setGraphic(image_Gauche);
+                    button_Droite.setGraphic(image_Droite);
+                    button_Espace.setGraphic(image_Espace_Click);
                     if (!mario.isEstEnSaut()) {
                         Son.jump();
                         PauseTransition pause = new PauseTransition(javafx.util.Duration.seconds(0.8));
@@ -440,7 +483,6 @@ public class VueJeu {
                         pause.setOnFinished(event1 -> mario.atterir());
                         break;
                     }
-
                 case A:
                     System.out.println(mario.getLayoutX());
                     System.out.println(mario.getLayoutY());
