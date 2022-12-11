@@ -23,7 +23,7 @@ import static java.lang.Thread.sleep;
 public class VueJeu {
     ArrayList<Echelle> echelles;
     ArrayList<EchelleBroken> echellesBrokens;
-    ArrayList<Objet_Attaque> tonneaus;
+    ArrayList<Objet_Attaque> tonneaux;
     PersonnePrincipale personnePrincipale = new PersonnePrincipale();
     private boolean isPause = false;
     private Scene scene;
@@ -37,6 +37,9 @@ public class VueJeu {
     private final LongProperty time = new SimpleLongProperty(0);
     private Label button_Bas, button_Haut, button_Gauche, button_Droite, button_Espace;
     private ImageView image_Bas, image_Haut, image_Gauche, image_Droite, image_Espace;
+    private Objet_Attaque tonneau1,tonneau2,tonneau3,tonneau4,tonneau5;
+    private AnimationTimer timer;
+    private Timeline timelineTonneaux = new Timeline();
 
     public IntegerProperty getScore() {
         return personnePrincipale.getScore();
@@ -69,16 +72,7 @@ public class VueJeu {
 
         PersonneEnnemie dk = new PersonneEnnemie(60, 80, 100, 100);
         Fond fond = new Fond(0, 0, 600, 600);
-        Objet_Attaque tonneau1 = new Objet_Attaque(20, -10, 20, 20);
-        Objet_Attaque tonneau2 = new Objet_Attaque(20, -10, 20, 20);
-        Objet_Attaque tonneau3 = new Objet_Attaque(20, -10, 20, 20);
-        Objet_Attaque tonneau4 = new Objet_Attaque(20, -10, 20, 20);
-        Objet_Attaque tonneau5 = new Objet_Attaque(20, -10, 20, 20);
-        tonneau1.setLayoutY(-30);
-        tonneau2.setLayoutY(-30);
-        tonneau3.setLayoutY(-30);
-        tonneau4.setLayoutY(-30);
-        tonneau5.setLayoutY(-30);
+
 
         personnePrincipale.setLayoutX(20 * 10);
         personnePrincipale.setLayoutY(545);
@@ -155,7 +149,8 @@ public class VueJeu {
         //////////////// End Button ///////////////////////
 
 
-        AnimationTimer timer = new AnimationTimer() {
+        //////////////// Chronometre ///////////////////////
+        timer = new AnimationTimer() {
             private long timestamp;
             private long fraction = 0;
 
@@ -185,11 +180,12 @@ public class VueJeu {
             }
         };
 
+        //////////////// Listener score,vie,chrono ///////////////////////
 
         personnePrincipale.getScore().addListener((observableValue, number, t1) -> score.setText("Score : " + personnePrincipale.getScore().getValue().toString()));
         personnePrincipale.getVie().addListener((observableValue, number, t1) -> vie.setText("Vie : " + personnePrincipale.getVie().getValue().toString()));
-
         time.addListener((observableValue, number, t1) -> chrono.setText("Chrono : " + time.getValue().toString() + "s"));
+
 
         if (modeJeu.equals("Normal")) {
             mode = "Normal";
@@ -210,7 +206,7 @@ public class VueJeu {
         // Perso
         jeu.getChildren().addAll(personnePrincipale, dk);
         // Tonneaux
-        jeu.getChildren().addAll(tonneau1, tonneau2, tonneau3, tonneau4, tonneau5);
+
         // Score
         // Placement du jeu dans le panneau
         jeu.setLayoutX(340);
@@ -269,42 +265,21 @@ public class VueJeu {
         ////////////////////////////////////////////////
 
         // Tonneaux
-        tonneaus = new ArrayList<>(Arrays.asList(tonneau1, tonneau2, tonneau3, tonneau4, tonneau5));
-        if (!isPause) {
-            System.out.println("je lance le premier tonneau !");
-            tonneau1.moveTonneaux(coordonneesEchelles, dk);
-            tonneau1.setLayoutY(160);
-            dk.lance(tonneau1);
-        }
-        final IntegerProperty i = new SimpleIntegerProperty(0);
-        final int[] x = {1};
-        Timeline timeline = new Timeline(new KeyFrame(Duration.seconds(6), event -> {
-            i.set(i.get() + 1);
-            if (x[0] < 5) {
-                tonneaus.get(x[0]).moveTonneaux(coordonneesEchelles, dk);
-                tonneaus.get(x[0]).setLayoutY(160);
-                dk.lance(tonneaus.get(x[0]));
-                //System.out.println("dedans");
-                x[0]++;
-            } else {
-                //System.out.println("plus dedans");
-            }
-
-        }));
-        timeline.setCycleCount(Animation.INDEFINITE);
-        timeline.play();
-        timer.start();
+        creerTonneaux(coordonneesEchelles,dk);
 
         //replacer les tonneaux
         //empecher le jeu de continuer
         AnimationTimer collisionTimer = new AnimationTimer() {
             @Override
             public void handle(long now) {
-                if (personnePrincipale.collisionTonneaux(tonneaus) == -1 && !isPause) {
+                if (personnePrincipale.collisionTonneaux(tonneaux) == -1 && !isPause) {
+                    System.out.println("here");
                     if (getVie().getValue() > 1) {
                         personnePrincipale.setLayoutX(20 * 10);
                         personnePrincipale.setLayoutY(545);
                         getVie().setValue(getVie().getValue() - 1);
+                        supprimerTonneaux(tonneaux);
+                        creerTonneaux(coordonneesEchelles,dk);
                     } else {
                         timer.stop();
                         isPause = true;
@@ -312,14 +287,14 @@ public class VueJeu {
                         personnePrincipale.setLayoutX(20 * 10);
                         personnePrincipale.setLayoutY(545);
                         //replacer les tonneaux
-                        for (Objet_Attaque tonneau : tonneaus) {
+                        for (Objet_Attaque tonneau : tonneaux) {
                             tonneau.setLayoutX(0);
                             tonneau.setLayoutY(-30);
                         }
                         int saveScore = getScore().getValue();
-                        supprimerElements(jeu, tonneaus, echelles, echellesBrokens, personnePrincipale, dk);
+                        supprimerElements(jeu, tonneaux, echelles, echellesBrokens, personnePrincipale, dk);
                         //empecher le jeu de continuer
-                        timeline.stop();
+                        timelineTonneaux.stop();
                         primaryStage.close();
                         if (mode.equals("Infini")) {
                             vueFinInfiniPartie.screenLose(saveScore);
@@ -327,7 +302,7 @@ public class VueJeu {
                             vuesPerdu.screenLose();
                         }
                     }
-                } else if (personnePrincipale.collisionTonneaux(tonneaus) == 1) {
+                } else if (personnePrincipale.collisionTonneaux(tonneaux) == 1) {
                     System.out.println("+1");
 
                 }
@@ -336,11 +311,13 @@ public class VueJeu {
                         personnePrincipale.setLayoutX(20 * 10);
                         personnePrincipale.setLayoutY(545);
                         getScore().setValue(getScore().getValue() + 1000);
+                        supprimerTonneaux(tonneaux);
+                        creerTonneaux(coordonneesEchelles,dk);
                     } else {
                         isPause = true;
                         personnePrincipale.setLayoutX(20 * 10);
                         personnePrincipale.setLayoutY(545);
-                        supprimerElements(jeu, tonneaus, echelles, echellesBrokens, personnePrincipale, dk);
+                        supprimerElements(jeu, tonneaux, echelles, echellesBrokens, personnePrincipale, dk);
                         primaryStage.close();
                         vueGagne.screenWin(personnePrincipale.getScore());
                     }
@@ -360,20 +337,69 @@ public class VueJeu {
     public void restartGame(Stage stage) throws IOException, InterruptedException {
         System.out.println("restart");
         stage.close();
-        supprimerElements(jeu, tonneaus, echelles, echellesBrokens, personnePrincipale, dk);
+        supprimerElements(jeu, tonneaux, echelles, echellesBrokens, personnePrincipale, dk);
         personnePrincipale.setLayoutX(20 * 10);
         personnePrincipale.setLayoutY(545);
         sleep(1000);
     }
 
 
-    public void supprimerElements(Pane jeu, ArrayList<Objet_Attaque> tonneaus, ArrayList<Echelle> echelles, ArrayList<EchelleBroken> echellesBrokens, PersonnePrincipale personnePrincipale, PersonneEnnemie dk) {
-        tonneaus = null;
+    public void supprimerElements(Pane jeu, ArrayList<Objet_Attaque> tonneaux, ArrayList<Echelle> echelles, ArrayList<EchelleBroken> echellesBrokens, PersonnePrincipale personnePrincipale, PersonneEnnemie dk) {
+        supprimerTonneaux(tonneaux);
         echelles = null;
         echellesBrokens = null;
         personnePrincipale = null;
         dk = null;
         jeu = null;
+    }
+
+    public void supprimerTonneaux(ArrayList<Objet_Attaque> tonneaux) {
+        for (Objet_Attaque tonneau : tonneaux) {
+            jeu.getChildren().remove(tonneau);
+        }
+        timelineTonneaux.stop();
+        timer.stop();
+    }
+
+    public void creerTonneaux(ArrayList<ArrayList<Double>> coordonneesEchelles, PersonneEnnemie dk) {
+        tonneau1 = new Objet_Attaque(20, -10, 20, 20);
+        tonneau2 = new Objet_Attaque(20, -10, 20, 20);
+        tonneau3 = new Objet_Attaque(20, -10, 20, 20);
+        tonneau4 = new Objet_Attaque(20, -10, 20, 20);
+        tonneau5 = new Objet_Attaque(20, -10, 20, 20);
+        tonneau1.setLayoutY(-30);
+        tonneau2.setLayoutY(-30);
+        tonneau3.setLayoutY(-30);
+        tonneau4.setLayoutY(-30);
+        tonneau5.setLayoutY(-30);
+
+        jeu.getChildren().addAll(tonneau1, tonneau2, tonneau3, tonneau4, tonneau5);
+
+        tonneaux = new ArrayList<>(Arrays.asList(tonneau1, tonneau2, tonneau3, tonneau4, tonneau5));
+        if (!isPause) {
+            System.out.println("je lance le premier tonneau !");
+            tonneau1.moveTonneaux(coordonneesEchelles, dk);
+            tonneau1.setLayoutY(160);
+            dk.lance(tonneau1);
+        }
+        final IntegerProperty i = new SimpleIntegerProperty(0);
+        final int[] x = {1};
+        timelineTonneaux = new Timeline(new KeyFrame(Duration.seconds(6), event -> {
+            i.set(i.get() + 1);
+            if (x[0] < 5) {
+                tonneaux.get(x[0]).moveTonneaux(coordonneesEchelles, dk);
+                tonneaux.get(x[0]).setLayoutY(160);
+                dk.lance(tonneaux.get(x[0]));
+                //System.out.println("dedans");
+                x[0]++;
+            } else {
+                //System.out.println("plus dedans");
+            }
+
+        }));
+        timelineTonneaux.setCycleCount(Animation.INDEFINITE);
+        timelineTonneaux.play();
+        timer.start();
     }
 
     /**
