@@ -8,8 +8,8 @@ import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 import javafx.scene.control.Button;
 import start.structure.Model.PersonnePrincipale;
-
 public class VueParametre extends Stage {
+
 
     PersonnePrincipale personnePrincipale = new PersonnePrincipale();
 

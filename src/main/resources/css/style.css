@@ -73,3 +73,49 @@
     -fx-font-size: 15px;
 }
 
+.field{
+    -fx-text-fill: black;
+    -fx-font-family: 'Goldman', sans-serif;
+    -fx-font-weight: bold;
+    -fx-font-size: 20px;
+}
+
+.labelConnexion{
+    -fx-text-fill: white;
+    -fx-font-family: 'Goldman', sans-serif;
+    -fx-font-weight: bold;
+    -fx-font-size: 50px;
+}
+
+.LabelConnexionField{
+    -fx-text-fill: white;
+    -fx-font-family: 'Goldman', sans-serif;
+    -fx-font-size: 20px;
+}
+
+.buttonConnexion{
+    -fx-padding: 8 15 15 15;
+    -fx-background-insets: 0, 0 0 5 0, 0 0 6 0, 0 0 7 0;
+    -fx-background-radius: 8;
+    -fx-background-color: linear-gradient(from 0% 93% to 0% 100%, #9b9d9e 0%, #7a7c7d 100%),
+    #7a7c7d,
+    #9b9d9e,
+    radial-gradient(center 50% 50%, radius 100%, white, #9b9d9e);
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.75), 4, 0, 0, 1);
+    /* -fx-font-weight: bold;*/
+    -fx-font-size: 1.25em;
+    -fx-font-family: 'Goldman', sans-serif;
+}
+.buttonConnexionRetour{
+    -fx-padding: 8 15 15 15;
+    -fx-background-insets: 0, 0 0 5 0, 0 0 6 0, 0 0 7 0;
+    -fx-background-radius: 8;
+    -fx-background-color: linear-gradient(from 0% 93% to 0% 100%, #a20202 0%, #7e0202 100%),
+    #830202,
+    #980101,
+    radial-gradient(center 50% 50%, radius 100%, #f13838, #a10202);
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.75), 4, 0, 0, 1);
+    /* -fx-font-weight: bold;*/
+    -fx-font-size: 1.25em;
+    -fx-font-family: 'Goldman', sans-serif;
+}

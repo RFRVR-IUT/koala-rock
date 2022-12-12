@@ -16,6 +16,8 @@ public class VueDemarrage {
     private final VueJeu vueJeu = new VueJeu();
     private final VueParametre vueParametre = new VueParametre();
 
+    private final VueConnexion vueConnexion = new VueConnexion();
+
 
     public void screenStart() {
         Stage stage = new Stage();
@@ -50,6 +52,11 @@ public class VueDemarrage {
         demarrerInfinit.setLayoutX(554);
         demarrerInfinit.setLayoutY(430);
 
+        Button connexionRegister = new Button("Connexion/Inscription");
+        connexionRegister.getStyleClass().add("buttonEcran");
+        connexionRegister.setLayoutX(900);
+        connexionRegister.setLayoutY(580);
+
         Button parametre = new Button("Paramètre");
         parametre.getStyleClass().add("buttonEcran");
         parametre.setLayoutX(555);
@@ -67,6 +74,7 @@ public class VueDemarrage {
         pane.getChildren().add(demarrerInfinit);
         pane.getChildren().add(parametre);
         pane.getChildren().add(nameGame);
+        pane.getChildren().add(connexionRegister);
 
         demarrerPartie.setOnMouseClicked(event -> {
             try {
@@ -86,6 +94,10 @@ public class VueDemarrage {
 
         parametre.setOnMouseClicked(event -> {
             vueParametre.show();
+        });
+
+        connexionRegister.setOnMouseClicked(event -> {
+            vueConnexion.show();
         });
 
     }
