@@ -17,6 +17,7 @@ public class VueDemarrage {
     private final VueParametre vueParametre = new VueParametre();
 
     private final VueConnexion vueConnexion = new VueConnexion();
+    private final VueMeilleurScore vueMeilleurScore = new VueMeilleurScore();
 
 
     public void screenStart() {
@@ -57,7 +58,12 @@ public class VueDemarrage {
         connexionRegister.setLayoutX(900);
         connexionRegister.setLayoutY(580);
 
-        Button parametre = new Button("Paramètre");
+        Button meilleurScore = new Button("Meilleur Score");
+        meilleurScore.getStyleClass().add("buttonEcran");
+        meilleurScore.setLayoutX(900);
+        meilleurScore.setLayoutY(510);
+
+        Button parametre = new Button("Paramètres");
         parametre.getStyleClass().add("buttonEcran");
         parametre.setLayoutX(555);
         parametre.setLayoutY(540);
@@ -75,6 +81,7 @@ public class VueDemarrage {
         pane.getChildren().add(parametre);
         pane.getChildren().add(nameGame);
         pane.getChildren().add(connexionRegister);
+        pane.getChildren().add(meilleurScore);
 
         demarrerPartie.setOnMouseClicked(event -> {
             try {
@@ -98,6 +105,10 @@ public class VueDemarrage {
 
         connexionRegister.setOnMouseClicked(event -> {
             vueConnexion.show();
+        });
+
+        meilleurScore.setOnMouseClicked(event -> {
+            vueMeilleurScore.show();
         });
 
     }

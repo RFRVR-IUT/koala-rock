@@ -39,6 +39,8 @@ public class ScoreManager {
 
     public Score getHighScoreByLogin(String login) { return stockage.getHighScore(login); }
 
+    //public List<Score> getHighScores() { return stockage.get10HighScore(); }
+
     public Score getScoreById(int id) {
         return stockage.getById(id);
     }

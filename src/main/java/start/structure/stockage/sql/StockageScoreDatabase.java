@@ -121,6 +121,33 @@ public class StockageScoreDatabase {
         return score;
     }
 
+//    public List<Score> get10HighScore() {
+//        List<Score> scoreList = new ArrayList<>();
+//        SQLUtils utils = SQLUtils.getInstance();
+//        Connection connection = utils.getConnection();
+//        String req = "SELECT * FROM SCORES WHERE codeJeu = ? ORDER BY score DESC LIMIT 10";
+//        try (
+//                PreparedStatement st = connection.prepareStatement(req);
+//        ) {
+//            st.setString(1, Score.getGameCode());
+//            try (ResultSet result = st.executeQuery();) {
+//                while (result.next()) {
+//                    int id = result.getInt("codeScore");
+//                    int scoreValue = result.getInt("score");
+//                    Timestamp time = result.getTimestamp("horodatage");
+//                    String login = result.getString("login");
+//                    Score score = new Score(scoreValue, time);
+//                    score.setId(id);
+//                    score.setLogin(login);
+//                    scoreList.add(score);
+//                }
+//            }
+//        } catch (SQLException e) {
+//            e.printStackTrace();
+//        }
+//        return scoreList;
+//    }
+
     /**
      * Renvoie l'historique des scores sur votre jeu.
      * @param login
@@ -161,7 +188,7 @@ public class StockageScoreDatabase {
         List<Score> scoreList = new ArrayList<>();
         SQLUtils utils = SQLUtils.getInstance();
         Connection connection = utils.getConnection();
-        String req = "SELECT * FROM SCORES WHERE codeJeu = ?";
+        String req = "SELECT * FROM SCORES WHERE codeJeu = ? ORDER BY score DESC";
         try (
                 PreparedStatement st = connection.prepareStatement(req);
         ) {
