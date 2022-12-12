@@ -21,6 +21,4 @@ public class StartGame extends Application {
         vueDemarrage.screenStart();
         Son.playMusic();
     }
-
-
 }
