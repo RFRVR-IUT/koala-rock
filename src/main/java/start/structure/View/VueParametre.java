@@ -7,6 +7,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 import javafx.scene.control.Button;
+import start.structure.Model.Fond;
 import start.structure.Model.PersonneEnnemie;
 import start.structure.Model.PersonnePrincipale;
 
@@ -45,8 +46,10 @@ public class VueParametre extends Stage {
             choixEnnemi = newValue;
             if(choixEnnemi.equals("Koala")) {
                 PersonneEnnemie.setChoixPersonnage("KOALA");
+                Fond.setChoixFond("fondKoala.png");
             } else if (choixEnnemi.equals("Ninja")) {
                 PersonneEnnemie.setChoixPersonnage("NINJA");
+                Fond.setChoixFond("fondNinja.png");
             }
         });
 
