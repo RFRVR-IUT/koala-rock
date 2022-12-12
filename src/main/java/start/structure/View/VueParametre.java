@@ -22,7 +22,7 @@ public class VueParametre extends Stage {
 
         ComboBox<String> comboBoxJoueurPrincipale = new ComboBox<>();
         comboBoxJoueurPrincipale.getItems().addAll("Panda", "Samurai");
-        comboBoxJoueurPrincipale.setValue("Panda");
+        comboBoxJoueurPrincipale.setValue("Default");
 
         comboBoxJoueurPrincipale.getSelectionModel().selectedItemProperty().addListener((v, oldValue, newValue) -> {
             choixPersonnage = newValue;
@@ -33,12 +33,9 @@ public class VueParametre extends Stage {
             }
         });
 
-        comboBoxJoueurPrincipale.setLayoutX(400);
-        comboBoxJoueurPrincipale.setLayoutY(300);
-
         ComboBox<String> comboBoxPersonnageEnnemie = new ComboBox<>();
         comboBoxPersonnageEnnemie.getItems().addAll("Koala", "Ninja");
-        comboBoxPersonnageEnnemie.setValue("Koala");
+        comboBoxPersonnageEnnemie.setValue("Default");
 
         comboBoxPersonnageEnnemie.getSelectionModel().selectedItemProperty().addListener((v, oldValue, newValue) -> {
             choixEnnemi = newValue;
@@ -57,8 +54,36 @@ public class VueParametre extends Stage {
             }
         });
 
-        comboBoxPersonnageEnnemie.setLayoutX(500);
-        comboBoxPersonnageEnnemie.setLayoutY(300);
+        comboBoxJoueurPrincipale.setLayoutX(300);
+        comboBoxJoueurPrincipale.setLayoutY(100);
+
+        comboBoxPersonnageEnnemie.setLayoutX(300);
+        comboBoxPersonnageEnnemie.setLayoutY(200);
+
+        // CSS ComboBox //
+
+        comboBoxJoueurPrincipale.getStyleClass().add("buttonEcran");
+        comboBoxJoueurPrincipale.setStyle("-fx-font-size: 12px; -fx-pref-width: 130px; -fx-pref-height: 20px;");
+        comboBoxPersonnageEnnemie.getStyleClass().add("buttonEcran");
+        comboBoxPersonnageEnnemie.setStyle("-fx-font-size: 12px; -fx-pref-width: 130px; -fx-pref-height: 20px;");
+
+        // Texte ComboBox //
+
+        Label labelJoueurPrincipale = new Label("Personnage principal : ");
+        labelJoueurPrincipale.setLayoutX(100);
+        labelJoueurPrincipale.setLayoutY(110);
+
+        Label labelPersonnageEnnemie = new Label("Personnage ennemie : ");
+        labelPersonnageEnnemie.setLayoutX(100);
+        labelPersonnageEnnemie.setLayoutY(210);
+
+        // CSS Texte ComboBox //
+
+        labelJoueurPrincipale.getStyleClass().add("LabelUnderButton");
+        labelPersonnageEnnemie.getStyleClass().add("LabelUnderButton");
+
+
+
 
 
         ////////////////////////////Bouton////////////////////////////
@@ -152,6 +177,7 @@ public class VueParametre extends Stage {
         pane.getChildren().addAll(button_Bas, button_Haut, button_Gauche, button_Droite, button_Espace);
         pane.getChildren().addAll(texte_Bas, texte_Haut, texte_Gauche, texte_Droite, texte_Espace);
         pane.getChildren().addAll(comboBoxPersonnageEnnemie, comboBoxJoueurPrincipale);
+        pane.getChildren().addAll(labelJoueurPrincipale, labelPersonnageEnnemie);
 
 
         setTitle("Paramètre");
