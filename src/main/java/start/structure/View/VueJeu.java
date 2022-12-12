@@ -24,7 +24,7 @@ public class VueJeu {
     ArrayList<Echelle> echelles;
     ArrayList<EchelleBroken> echellesBrokens;
     ArrayList<Objet_Attaque> tonneaux;
-    PersonnePrincipale personnePrincipale = new PersonnePrincipale();
+    PersonnePrincipale personnePrincipale;
     private boolean isPause = false;
     private Scene scene;
     private Stage primaryStage;
