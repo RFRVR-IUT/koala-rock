@@ -406,4 +406,6 @@ public class PersonnePrincipale extends Group {
     public static void setPersonnePrincipale(String choixPersonne) {
         choixPersonnage = choixPersonne;
     }
+
+    public static String getPersonnePrincipale() {return choixPersonnage;}
 }

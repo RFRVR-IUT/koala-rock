@@ -1,17 +1,21 @@
 package start.structure.View;
 
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
+import javafx.scene.paint.ImagePattern;
+import javafx.scene.paint.Paint;
 import javafx.stage.Stage;
-import javafx.scene.control.Button;
 import start.structure.Model.*;
 
 public class VueParametre extends Stage {
     private static String choixPersonnage = "Panda";
     private static String choixEnnemi = "Koala";
+
 
     public VueParametre() {
         Pane pane = new Pane();
@@ -26,7 +30,7 @@ public class VueParametre extends Stage {
 
         comboBoxJoueurPrincipale.getSelectionModel().selectedItemProperty().addListener((v, oldValue, newValue) -> {
             choixPersonnage = newValue;
-            if(choixPersonnage.equals("Panda")) {
+            if (choixPersonnage.equals("Panda")) {
                 PersonnePrincipale.setPersonnePrincipale("PANDA");
             } else if (choixPersonnage.equals("Samurai")) {
                 PersonnePrincipale.setPersonnePrincipale("SAMURAI");
@@ -39,7 +43,7 @@ public class VueParametre extends Stage {
 
         comboBoxPersonnageEnnemie.getSelectionModel().selectedItemProperty().addListener((v, oldValue, newValue) -> {
             choixEnnemi = newValue;
-            if(choixEnnemi.equals("Koala")) {
+            if (choixEnnemi.equals("Koala")) {
                 PersonneEnnemie.setChoixPersonnage("KOALA");
                 Fond.setChoixFond("KOALA");
                 Echelle.setChoixEchelle("KOALA");
@@ -81,10 +85,6 @@ public class VueParametre extends Stage {
 
         labelJoueurPrincipale.getStyleClass().add("LabelUnderButton");
         labelPersonnageEnnemie.getStyleClass().add("LabelUnderButton");
-
-
-
-
 
         ////////////////////////////Bouton////////////////////////////
         Label button_Bas = new Label();
