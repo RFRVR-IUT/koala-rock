@@ -7,10 +7,12 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 import javafx.scene.control.Button;
+import start.structure.Model.PersonneEnnemie;
 import start.structure.Model.PersonnePrincipale;
 
 public class VueParametre extends Stage {
     private static String choixPersonnage = "Panda";
+    private static String choixEnnemi = "Koala";
 
     public VueParametre() {
         Pane pane = new Pane();
@@ -30,7 +32,6 @@ public class VueParametre extends Stage {
             } else if (choixPersonnage.equals("Samurai")) {
                 PersonnePrincipale.setPersonnePrincipale("SAMURAI");
             }
-
         });
 
         comboBoxJoueurPrincipale.setLayoutX(400);
@@ -40,12 +41,17 @@ public class VueParametre extends Stage {
         comboBoxPersonnageEnnemie.getItems().addAll("Koala", "Ninja");
         comboBoxPersonnageEnnemie.setValue("Koala");
 
+        comboBoxPersonnageEnnemie.getSelectionModel().selectedItemProperty().addListener((v, oldValue, newValue) -> {
+            choixEnnemi = newValue;
+            if(choixEnnemi.equals("Koala")) {
+                PersonneEnnemie.setChoixPersonnage("KOALA");
+            } else if (choixEnnemi.equals("Ninja")) {
+                PersonneEnnemie.setChoixPersonnage("NINJA");
+            }
+        });
+
         comboBoxPersonnageEnnemie.setLayoutX(500);
         comboBoxPersonnageEnnemie.setLayoutY(300);
-
-//        if(comboBoxJoueurPrincipale.getValue().equals("koala")) {
-//            PersonnePrincipale.setChoixPersonnage("PANDA");
-//        }
 
 
         ////////////////////////////Bouton////////////////////////////
