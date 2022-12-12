@@ -13,7 +13,7 @@ public class PersonneEnnemie extends Group {
     private final Rectangle donkey;
 
     /////////////////////////// Choix personnage ///////////////////////////
-    private static String choixPersonnage = "NINJA";
+    private static String choixPersonnage = "KOALA";
     /**
      * Permet de changer l'image du personnage en fonction du choix du joueur
      * @param choixPersonnage

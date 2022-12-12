@@ -7,9 +7,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 import javafx.scene.control.Button;
-import start.structure.Model.Fond;
-import start.structure.Model.PersonneEnnemie;
-import start.structure.Model.PersonnePrincipale;
+import start.structure.Model.*;
 
 public class VueParametre extends Stage {
     private static String choixPersonnage = "Panda";
@@ -47,9 +45,13 @@ public class VueParametre extends Stage {
             if(choixEnnemi.equals("Koala")) {
                 PersonneEnnemie.setChoixPersonnage("KOALA");
                 Fond.setChoixFond("fondKoala.png");
+                Echelle.setChoixEchelle("echelle_koala.png");
+                EchelleBroken.setChoixEchelleBroken("echelle_broken_koala.png");
             } else if (choixEnnemi.equals("Ninja")) {
                 PersonneEnnemie.setChoixPersonnage("NINJA");
                 Fond.setChoixFond("fondNinja.png");
+                Echelle.setChoixEchelle("echelle_ninja.png");
+                EchelleBroken.setChoixEchelleBroken("echelle_broken_ninja.png");
             }
         });
 

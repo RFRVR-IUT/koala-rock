@@ -9,6 +9,7 @@ public class Echelle extends Group {
 
     private final Rectangle collision;
     private Rectangle echelle;
+    private static String choixEchelle = "echelle_koala.png";
 
     /**
      * Constructeur de la classe Echelle
@@ -21,7 +22,7 @@ public class Echelle extends Group {
     public Echelle(int x, int y, int width, int height) {
         this.echelle = new Rectangle(x, y, width, height);
         this.collision = new Rectangle(x - 10, y - 35, (width + 20), (height + 35));
-        echelle.setFill(new ImagePattern(new Image("echelle2.png")));
+        echelle.setFill(new ImagePattern(new Image(choixEchelle)));
         collision.setOpacity(0.5);
         this.getChildren().add(echelle);
         this.getChildren().add(collision);
@@ -37,5 +38,13 @@ public class Echelle extends Group {
 
     public void setEchelle(Rectangle echelle) {
         this.echelle = echelle;
+    }
+
+    public static String getChoixEchelle() {
+        return choixEchelle;
+    }
+
+    public static void setChoixEchelle(String choixEchelle) {
+        Echelle.choixEchelle = choixEchelle;
     }
 }
