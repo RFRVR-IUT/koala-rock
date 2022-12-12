@@ -44,14 +44,16 @@ public class VueParametre extends Stage {
             choixEnnemi = newValue;
             if(choixEnnemi.equals("Koala")) {
                 PersonneEnnemie.setChoixPersonnage("KOALA");
-                Fond.setChoixFond("fondKoala.png");
-                Echelle.setChoixEchelle("echelle_koala.png");
-                EchelleBroken.setChoixEchelleBroken("echelle_broken_koala.png");
+                Fond.setChoixFond("KOALA");
+                Echelle.setChoixEchelle("KOALA");
+                EchelleBroken.setChoixEchelleBroken("KOALA");
+                Objet_Attaque.setChoixObjet("ROCHER");
             } else if (choixEnnemi.equals("Ninja")) {
                 PersonneEnnemie.setChoixPersonnage("NINJA");
-                Fond.setChoixFond("fondNinja.png");
-                Echelle.setChoixEchelle("echelle_ninja.png");
-                EchelleBroken.setChoixEchelleBroken("echelle_broken_ninja.png");
+                Fond.setChoixFond("NINJA");
+                Echelle.setChoixEchelle("NINJA");
+                EchelleBroken.setChoixEchelleBroken("NINJA");
+                Objet_Attaque.setChoixObjet("SHURIKANE");
             }
         });
 
@@ -145,7 +147,6 @@ public class VueParametre extends Stage {
         buttonHide.setLayoutY(580);
         buttonHide.setOnAction(event -> {
             this.hide();
-            //System.out.println("Personnage : " + personnePrincipale.getChoixPersonnage());
         });
         pane.getChildren().add(buttonHide);
         pane.getChildren().addAll(button_Bas, button_Haut, button_Gauche, button_Droite, button_Espace);
@@ -160,9 +161,5 @@ public class VueParametre extends Stage {
         pane.setStyle("-fx-border-color: white ; -fx-border-width: 10px ; -fx-background-color: black ; -fx-background-radius: 10px ;");
 
 
-    }
-
-    public static String getChoixPersonnage() {
-        return choixPersonnage;
     }
 }

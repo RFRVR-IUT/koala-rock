@@ -27,11 +27,6 @@ public class PersonnePrincipale extends Group {
     /////////////////////////// Choix personnage ///////////////////////////
     private static String choixPersonnage = "PANDA";
 
-    public void setChoixPersonnage(String choixPersonnage) {
-        this.choixPersonnage = choixPersonnage;
-        System.out.println("Choix personnage : " + choixPersonnage);
-    }
-
     public String getChoixPersonnage() {
         return choixPersonnage;
     }
@@ -254,14 +249,6 @@ public class PersonnePrincipale extends Group {
         corps.setFill(setChoixPersonnage_IDLE(choixPersonnage));
     }
 
-    public double getYSave() {
-        return ySave;
-    }
-
-    public void setYSave(double y) {
-        ySave = y;
-    }
-
     /**
      * Méthode qui permet de savoir si le personnage est en collision avec une
      * échelle
@@ -308,7 +295,7 @@ public class PersonnePrincipale extends Group {
                     && Double.compare(getLayoutY(), d.get(1) + 77) < 0 // permet de passer par le bas même en étant sur
                     // la hitbox de l'échelle
                     && Double.compare(getLayoutY(), d.get(1)) > 0) { // pareil mais pour en haut (pour qu'il puisse
-                // sortir en gros)
+                // sortir en gros
                 return true;
             }
         }
@@ -404,7 +391,6 @@ public class PersonnePrincipale extends Group {
                     //aEuSonScore, s'il est true, permet d'avoir que +1 quand il touche la collision du haut.
                     //Il se remet à false à chaque fois qu'on saute.
                 } else if ((!this.isEstEnSaut() && !estSurEchelle) || (estSurEchelle && t.getDescendUneEchelle())) {
-                    //System.out.println("Touche !");
                     res = -1;
                 }
             }
@@ -419,9 +405,5 @@ public class PersonnePrincipale extends Group {
 
     public static void setPersonnePrincipale(String choixPersonne) {
         choixPersonnage = choixPersonne;
-    }
-
-    public static String getPersonnePrincipale() {
-        return choixPersonnage;
     }
 }

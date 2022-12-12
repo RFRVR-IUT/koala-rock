@@ -37,7 +37,6 @@ public class VueJeu {
     private final LongProperty time = new SimpleLongProperty(0);
     private Label button_Bas, button_Haut, button_Gauche, button_Droite, button_Espace;
     private ImageView image_Bas, image_Haut, image_Gauche, image_Droite, image_Espace;
-    private Objet_Attaque tonneau1,tonneau2,tonneau3,tonneau4,tonneau5;
     private AnimationTimer timer;
     private Timeline timelineTonneaux = new Timeline();
 
@@ -362,11 +361,11 @@ public class VueJeu {
     }
 
     public void creerTonneaux(ArrayList<ArrayList<Double>> coordonneesEchelles, PersonneEnnemie dk) {
-        tonneau1 = new Objet_Attaque(20, -10, 20, 20);
-        tonneau2 = new Objet_Attaque(20, -10, 20, 20);
-        tonneau3 = new Objet_Attaque(20, -10, 20, 20);
-        tonneau4 = new Objet_Attaque(20, -10, 20, 20);
-        tonneau5 = new Objet_Attaque(20, -10, 20, 20);
+        Objet_Attaque tonneau1 = new Objet_Attaque(20, -10, 20, 20);
+        Objet_Attaque tonneau2 = new Objet_Attaque(20, -10, 20, 20);
+        Objet_Attaque tonneau3 = new Objet_Attaque(20, -10, 20, 20);
+        Objet_Attaque tonneau4 = new Objet_Attaque(20, -10, 20, 20);
+        Objet_Attaque tonneau5 = new Objet_Attaque(20, -10, 20, 20);
         tonneau1.setLayoutY(-30);
         tonneau2.setLayoutY(-30);
         tonneau3.setLayoutY(-30);
@@ -390,11 +389,9 @@ public class VueJeu {
                 tonneaux.get(x[0]).moveTonneaux(coordonneesEchelles, dk);
                 tonneaux.get(x[0]).setLayoutY(160);
                 dk.lance(tonneaux.get(x[0]));
-                //System.out.println("dedans");
                 x[0]++;
-            } else {
-                //System.out.println("plus dedans");
             }
+
 
         }));
         timelineTonneaux.setCycleCount(Animation.INDEFINITE);
@@ -403,8 +400,6 @@ public class VueJeu {
     }
 
     /**
-     * Méthode qui permet le mouvement de Mario
-     *
      * @param personnePrincipale
      * @param echelles
      * @param echellesBrokens

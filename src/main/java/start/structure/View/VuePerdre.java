@@ -22,7 +22,6 @@ public class VuePerdre {
             vueJeu = new VueJeu();
         }
         Stage stage = new Stage();
-        stage = stage;
         stage.setTitle("Koala Rock");
         stage.setResizable(false);
         BorderPane borderPane = new BorderPane();
