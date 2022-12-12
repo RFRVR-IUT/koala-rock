@@ -7,11 +7,11 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 import javafx.scene.control.Button;
-import start.structure.Model.PersonnePrincipale;
+import start.structure.Model.*;
+
 public class VueParametre extends Stage {
-
-
-    PersonnePrincipale personnePrincipale = new PersonnePrincipale();
+    private static String choixPersonnage = "Panda";
+    private static String choixEnnemi = "Koala";
 
     public VueParametre() {
         Pane pane = new Pane();
@@ -24,6 +24,15 @@ public class VueParametre extends Stage {
         comboBoxJoueurPrincipale.getItems().addAll("Panda", "Samurai");
         comboBoxJoueurPrincipale.setValue("Panda");
 
+        comboBoxJoueurPrincipale.getSelectionModel().selectedItemProperty().addListener((v, oldValue, newValue) -> {
+            choixPersonnage = newValue;
+            if(choixPersonnage.equals("Panda")) {
+                PersonnePrincipale.setPersonnePrincipale("PANDA");
+            } else if (choixPersonnage.equals("Samurai")) {
+                PersonnePrincipale.setPersonnePrincipale("SAMURAI");
+            }
+        });
+
         comboBoxJoueurPrincipale.setLayoutX(400);
         comboBoxJoueurPrincipale.setLayoutY(300);
 
@@ -31,12 +40,23 @@ public class VueParametre extends Stage {
         comboBoxPersonnageEnnemie.getItems().addAll("Koala", "Ninja");
         comboBoxPersonnageEnnemie.setValue("Koala");
 
+        comboBoxPersonnageEnnemie.getSelectionModel().selectedItemProperty().addListener((v, oldValue, newValue) -> {
+            choixEnnemi = newValue;
+            if(choixEnnemi.equals("Koala")) {
+                PersonneEnnemie.setChoixPersonnage("KOALA");
+                Fond.setChoixFond("fondKoala.png");
+                Echelle.setChoixEchelle("echelle_koala.png");
+                EchelleBroken.setChoixEchelleBroken("echelle_broken_koala.png");
+            } else if (choixEnnemi.equals("Ninja")) {
+                PersonneEnnemie.setChoixPersonnage("NINJA");
+                Fond.setChoixFond("fondNinja.png");
+                Echelle.setChoixEchelle("echelle_ninja.png");
+                EchelleBroken.setChoixEchelleBroken("echelle_broken_ninja.png");
+            }
+        });
+
         comboBoxPersonnageEnnemie.setLayoutX(500);
         comboBoxPersonnageEnnemie.setLayoutY(300);
-
-        if(comboBoxJoueurPrincipale.getValue().equals("koala")) {
-            personnePrincipale.setChoixPersonnage("PANDA");
-        }
 
 
         ////////////////////////////Bouton////////////////////////////
@@ -125,7 +145,7 @@ public class VueParametre extends Stage {
         buttonHide.setLayoutY(580);
         buttonHide.setOnAction(event -> {
             this.hide();
-            System.out.println("Personnage : " + personnePrincipale.getChoixPersonnage());
+            //System.out.println("Personnage : " + personnePrincipale.getChoixPersonnage());
         });
         pane.getChildren().add(buttonHide);
         pane.getChildren().addAll(button_Bas, button_Haut, button_Gauche, button_Droite, button_Espace);
@@ -140,5 +160,9 @@ public class VueParametre extends Stage {
         pane.setStyle("-fx-border-color: white ; -fx-border-width: 10px ; -fx-background-color: black ; -fx-background-radius: 10px ;");
 
 
+    }
+
+    public static String getChoixPersonnage() {
+        return choixPersonnage;
     }
 }

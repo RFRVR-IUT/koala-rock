@@ -25,7 +25,7 @@ public class PersonnePrincipale extends Group {
     private boolean estSurEchelle = false;
 
     /////////////////////////// Choix personnage ///////////////////////////
-    private String choixPersonnage = "PANDA";
+    private static String choixPersonnage = "PANDA";
 
     public void setChoixPersonnage(String choixPersonnage) {
         this.choixPersonnage = choixPersonnage;
@@ -417,4 +417,11 @@ public class PersonnePrincipale extends Group {
     }
 
 
+    public static void setPersonnePrincipale(String choixPersonne) {
+        choixPersonnage = choixPersonne;
+    }
+
+    public static String getPersonnePrincipale() {
+        return choixPersonnage;
+    }
 }

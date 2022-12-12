@@ -13,7 +13,7 @@ public class PersonneEnnemie extends Group {
     private final Rectangle donkey;
 
     /////////////////////////// Choix personnage ///////////////////////////
-    private final String choixPersonnage = "NINJA";
+    private static String choixPersonnage = "KOALA";
     /**
      * Permet de changer l'image du personnage en fonction du choix du joueur
      * @param choixPersonnage
@@ -104,4 +104,11 @@ public class PersonneEnnemie extends Group {
         this.donkey.setFill(setChoixPersonnage_IDLE(choixPersonnage));
     }
 
+    public static String getChoixPersonnage() {
+        return choixPersonnage;
+    }
+
+    public static void setChoixPersonnage(String choixPersonnage) {
+        PersonneEnnemie.choixPersonnage = choixPersonnage;
+    }
 }
