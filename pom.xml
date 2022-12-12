@@ -38,6 +38,11 @@
             <version>${junit.version}</version>
             <scope>StartGame</scope>
         </dependency>
+        <dependency>
+            <groupId>com.oracle</groupId>
+            <artifactId>ojdbc11</artifactId>
+            <version>11.2.0.3.0</version>
+        </dependency>
     </dependencies>
 
     <build>
