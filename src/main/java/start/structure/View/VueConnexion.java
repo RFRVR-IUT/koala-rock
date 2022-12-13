@@ -104,7 +104,7 @@ public class VueConnexion extends Stage {
         buttonInscription.setOnAction(event -> {
             //if error -> labelErreur.setText("Erreur");
             labelErreur.setText("");
-//            if (new AuthPlayer(textFieldPseudoInscription.getText()).getLogin() == null){
+            if (PlayerManager.getInstance().getPlayer(textFieldPseudoInscription.getText()) == null){
                 if (textFieldPseudoInscription.getText().equals("") || passwordFieldInscription.getText().equals("") || passwordFieldInscription2.getText().equals("")) {
                     labelErreur.setText("Veuillez remplir tous les champs d'incription");
                 } else if (!passwordFieldInscription.getText().equals(passwordFieldInscription2.getText())) {
@@ -117,10 +117,20 @@ public class VueConnexion extends Stage {
                         labelErreur.setText("Erreur lors de l'inscription");
                     }
                 }
-//            } else {
-//                labelErreur.setText("Ce pseudo est déjà utilisé");
-//            }
+            } else {
+                labelErreur.setText("Ce pseudo est déjà utilisé");
+            }
         });
+
+//        buttonConnexion.setOnAction(event -> {
+//            //if error -> labelErreur.setText("Erreur");
+//            labelErreur.setText("");
+//            if (PlayerManager.getInstance().getPlayer(textFieldPseudo.getText()) == null){
+//                labelErreur.setText("Ce pseudo n'existe pas");
+//            } else {
+//
+//            }
+//        });
 
         buttonRetour.setOnAction(event -> {
             this.close();
