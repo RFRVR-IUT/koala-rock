@@ -27,8 +27,8 @@ public class VueMeilleurScore extends Stage {
 
 
         Label labelMeilleurScore = new Label("Meilleurs scores");
-        //labelMeilleurScore.getStyleClass().add("labelMeilleurScore");
-        labelMeilleurScore.setLayoutX(320);
+        labelMeilleurScore.getStyleClass().add("nomJeu");
+        labelMeilleurScore.setLayoutX(250);
         labelMeilleurScore.setLayoutY(50);
         labelMeilleurScore.setFont(new javafx.scene.text.Font("Goldman", 40));
         labelMeilleurScore.setTextFill(javafx.scene.paint.Color.WHITE);
