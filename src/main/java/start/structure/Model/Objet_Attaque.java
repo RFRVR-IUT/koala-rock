@@ -16,20 +16,26 @@ public class Objet_Attaque extends Group {
     protected final static double LARGEUR_MOITIE_TONNEAUX = 5;
     protected final static double LARGEUR_TONNEAUX = LARGEUR_MOITIE_TONNEAUX * 2;
     private final Rectangle corps;
-    private final Rectangle collision;
     private final Rectangle collisionHaut;
     private boolean isRotationGauche = false;
     private boolean isRotationDroite = false;
     private boolean descendUneEchelle = false;
 
     /////////////////////////// Choix personnage ///////////////////////////
-    private final String choixPersonnage = "SHURIKANE";
+    private static String choixObjet = "ROCHER";
+
+    public static void setChoixObjet(String choixObjet) {
+        Objet_Attaque.choixObjet = choixObjet;
+    }
+
     /**
      * Permet de changer l'image du personnage en fonction du choix du joueur
      * @param choixPersonnage
      * @return
      */
-    public Paint setChoixObjet(String choixPersonnage) {
+
+
+    public static Paint setChoixObjet_IDLE(String choixPersonnage) {
         if (choixPersonnage.equals("ROCHER")) {
             return new ImagePattern(new Image("Rocher.png"));
         } else if (choixPersonnage.equals("SHURIKANE")) {
@@ -49,10 +55,10 @@ public class Objet_Attaque extends Group {
      */
     public Objet_Attaque(int x, int y, int width, int height) {
         corps = new Rectangle(x, y, width, height);
-        collision = new Rectangle(x, y, width, height);
+        Rectangle collision = new Rectangle(x, y, width, height);
         collisionHaut = new Rectangle(x, y - 20, width, height - 10);
         corps.setFill(Paint.valueOf("brown"));
-        corps.setFill(setChoixObjet(choixPersonnage));
+        corps.setFill(setChoixObjet_IDLE(choixObjet));
         collision.setFill(Paint.valueOf("red"));
         collisionHaut.setFill(Paint.valueOf("blue"));
         collisionHaut.setOpacity(0);
@@ -63,20 +69,8 @@ public class Objet_Attaque extends Group {
         this.getChildren().add(collisionHaut);
     }
 
-    public Rectangle getCollision() {
-        return collision;
-    }
-
-    public Rectangle getCollisionHaut() {
-        return collisionHaut;
-    }
-
     public boolean getDescendUneEchelle() {
         return descendUneEchelle;
-    }
-
-    public void setDescendUneEchelle(boolean descendUneEchelle) {
-        this.descendUneEchelle = descendUneEchelle;
     }
 
     /**
@@ -195,7 +189,6 @@ public class Objet_Attaque extends Group {
                 this.directionBas();
                 pause.play();
             }
-            //System.out.println("x = " + this.getLayoutX() + "\ny = " + this.getLayoutY());
         });
     }
 }

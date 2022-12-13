@@ -1,17 +1,21 @@
 package start.structure.View;
 
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
+import javafx.scene.paint.ImagePattern;
+import javafx.scene.paint.Paint;
 import javafx.stage.Stage;
-import javafx.scene.control.Button;
 import start.structure.Model.*;
 
 public class VueParametre extends Stage {
     private static String choixPersonnage = "Panda";
     private static String choixEnnemi = "Koala";
+
 
     public VueParametre() {
         Pane pane = new Pane();
@@ -22,42 +26,65 @@ public class VueParametre extends Stage {
 
         ComboBox<String> comboBoxJoueurPrincipale = new ComboBox<>();
         comboBoxJoueurPrincipale.getItems().addAll("Panda", "Samurai");
-        comboBoxJoueurPrincipale.setValue("Panda");
+        comboBoxJoueurPrincipale.setValue("Default");
 
         comboBoxJoueurPrincipale.getSelectionModel().selectedItemProperty().addListener((v, oldValue, newValue) -> {
             choixPersonnage = newValue;
-            if(choixPersonnage.equals("Panda")) {
+            if (choixPersonnage.equals("Panda")) {
                 PersonnePrincipale.setPersonnePrincipale("PANDA");
             } else if (choixPersonnage.equals("Samurai")) {
                 PersonnePrincipale.setPersonnePrincipale("SAMURAI");
             }
         });
 
-        comboBoxJoueurPrincipale.setLayoutX(400);
-        comboBoxJoueurPrincipale.setLayoutY(300);
-
         ComboBox<String> comboBoxPersonnageEnnemie = new ComboBox<>();
         comboBoxPersonnageEnnemie.getItems().addAll("Koala", "Ninja");
-        comboBoxPersonnageEnnemie.setValue("Koala");
+        comboBoxPersonnageEnnemie.setValue("Default");
 
         comboBoxPersonnageEnnemie.getSelectionModel().selectedItemProperty().addListener((v, oldValue, newValue) -> {
             choixEnnemi = newValue;
-            if(choixEnnemi.equals("Koala")) {
+            if (choixEnnemi.equals("Koala")) {
                 PersonneEnnemie.setChoixPersonnage("KOALA");
-                Fond.setChoixFond("fondKoala.png");
-                Echelle.setChoixEchelle("echelle_koala.png");
-                EchelleBroken.setChoixEchelleBroken("echelle_broken_koala.png");
+                Fond.setChoixFond("KOALA");
+                Echelle.setChoixEchelle("KOALA");
+                EchelleBroken.setChoixEchelleBroken("KOALA");
+                Objet_Attaque.setChoixObjet("ROCHER");
             } else if (choixEnnemi.equals("Ninja")) {
                 PersonneEnnemie.setChoixPersonnage("NINJA");
-                Fond.setChoixFond("fondNinja.png");
-                Echelle.setChoixEchelle("echelle_ninja.png");
-                EchelleBroken.setChoixEchelleBroken("echelle_broken_ninja.png");
+                Fond.setChoixFond("NINJA");
+                Echelle.setChoixEchelle("NINJA");
+                EchelleBroken.setChoixEchelleBroken("NINJA");
+                Objet_Attaque.setChoixObjet("SHURIKANE");
             }
         });
 
-        comboBoxPersonnageEnnemie.setLayoutX(500);
-        comboBoxPersonnageEnnemie.setLayoutY(300);
+        comboBoxJoueurPrincipale.setLayoutX(300);
+        comboBoxJoueurPrincipale.setLayoutY(100);
 
+        comboBoxPersonnageEnnemie.setLayoutX(300);
+        comboBoxPersonnageEnnemie.setLayoutY(200);
+
+        // CSS ComboBox //
+
+        comboBoxJoueurPrincipale.getStyleClass().add("buttonEcran");
+        comboBoxJoueurPrincipale.setStyle("-fx-font-size: 12px; -fx-pref-width: 130px; -fx-pref-height: 20px;");
+        comboBoxPersonnageEnnemie.getStyleClass().add("buttonEcran");
+        comboBoxPersonnageEnnemie.setStyle("-fx-font-size: 12px; -fx-pref-width: 130px; -fx-pref-height: 20px;");
+
+        // Texte ComboBox //
+
+        Label labelJoueurPrincipale = new Label("Personnage principal : ");
+        labelJoueurPrincipale.setLayoutX(100);
+        labelJoueurPrincipale.setLayoutY(110);
+
+        Label labelPersonnageEnnemie = new Label("Personnage ennemie : ");
+        labelPersonnageEnnemie.setLayoutX(100);
+        labelPersonnageEnnemie.setLayoutY(210);
+
+        // CSS Texte ComboBox //
+
+        labelJoueurPrincipale.getStyleClass().add("LabelUnderButton");
+        labelPersonnageEnnemie.getStyleClass().add("LabelUnderButton");
 
         ////////////////////////////Bouton////////////////////////////
         Label button_Bas = new Label();
@@ -145,12 +172,12 @@ public class VueParametre extends Stage {
         buttonHide.setLayoutY(580);
         buttonHide.setOnAction(event -> {
             this.hide();
-            //System.out.println("Personnage : " + personnePrincipale.getChoixPersonnage());
         });
         pane.getChildren().add(buttonHide);
         pane.getChildren().addAll(button_Bas, button_Haut, button_Gauche, button_Droite, button_Espace);
         pane.getChildren().addAll(texte_Bas, texte_Haut, texte_Gauche, texte_Droite, texte_Espace);
         pane.getChildren().addAll(comboBoxPersonnageEnnemie, comboBoxJoueurPrincipale);
+        pane.getChildren().addAll(labelJoueurPrincipale, labelPersonnageEnnemie);
 
 
         setTitle("Paramètre");
@@ -160,9 +187,5 @@ public class VueParametre extends Stage {
         pane.setStyle("-fx-border-color: white ; -fx-border-width: 10px ; -fx-background-color: black ; -fx-background-radius: 10px ;");
 
 
-    }
-
-    public static String getChoixPersonnage() {
-        return choixPersonnage;
     }
 }

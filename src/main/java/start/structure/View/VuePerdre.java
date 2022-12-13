@@ -22,7 +22,6 @@ public class VuePerdre {
             vueJeu = new VueJeu();
         }
         Stage stage = new Stage();
-        stage = stage;
         stage.setTitle("Koala Rock");
         stage.setResizable(false);
         BorderPane borderPane = new BorderPane();
@@ -61,16 +60,15 @@ public class VuePerdre {
         pane.getChildren().add(quitter);
         pane.getChildren().add(nameGame);
 
-        Stage finalStage = stage;
         recommencer.setOnMouseClicked(event -> {
             try {
-                vueJeu.demarrerJeu(finalStage, vueJeu.getMode());
+                vueJeu.demarrerJeu(stage, vueJeu.getMode());
             } catch (IOException | InterruptedException e) {
                 e.printStackTrace();
             }
         });
         quitter.setOnMouseClicked(event -> {
-            finalStage.close();
+            stage.close();
             System.exit(0);
         });
 

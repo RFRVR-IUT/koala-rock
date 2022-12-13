@@ -3,25 +3,30 @@ package start.structure.Model;
 import javafx.scene.Group;
 import javafx.scene.image.Image;
 import javafx.scene.paint.ImagePattern;
+import javafx.scene.paint.Paint;
 import javafx.scene.shape.Rectangle;
 
 public class Fond extends Group {
-    private final Rectangle fond;
-    private static String choixFond = "fondKoala.png";
+    private static String choixFond = "KOALA";
 
     public Fond(int x, int y, int width, int height) {
-        fond = new Rectangle(x, y, width, height);
-        fond.setFill(new ImagePattern(new Image(choixFond)));
+        Rectangle fond = new Rectangle(x, y, width, height);
+        fond.setFill(setChoixFond_Img(choixFond));
 
 
         this.getChildren().add(fond);
     }
 
-    public static String getChoixFond() {
-        return choixFond;
-    }
-
     public static void setChoixFond(String choixFond) {
         Fond.choixFond = choixFond;
+    }
+
+    public Paint setChoixFond_Img(String choixFond) {
+        if (choixFond.equals("KOALA")) {
+            return new ImagePattern(new Image("fondKoala.png"));
+        } else if (choixFond.equals("NINJA")) {
+            return new ImagePattern(new Image("fondNinja.png"));
+        }
+        return null;
     }
 }

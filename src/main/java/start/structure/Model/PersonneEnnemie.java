@@ -55,10 +55,6 @@ public class PersonneEnnemie extends Group {
 
     }
 
-    public Rectangle getDonkey() {
-        return donkey;
-    }
-
     /**
      * Lancement Tonneaux
      *
@@ -102,10 +98,6 @@ public class PersonneEnnemie extends Group {
      */
     public void idle() {
         this.donkey.setFill(setChoixPersonnage_IDLE(choixPersonnage));
-    }
-
-    public static String getChoixPersonnage() {
-        return choixPersonnage;
     }
 
     public static void setChoixPersonnage(String choixPersonnage) {

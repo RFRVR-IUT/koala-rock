@@ -3,13 +3,12 @@ package start.structure.Model;
 import javafx.scene.Group;
 import javafx.scene.image.Image;
 import javafx.scene.paint.ImagePattern;
+import javafx.scene.paint.Paint;
 import javafx.scene.shape.Rectangle;
 
 public class Echelle extends Group {
 
-    private final Rectangle collision;
-    private Rectangle echelle;
-    private static String choixEchelle = "echelle_koala.png";
+    private static String choixEchelle = "KOALA";
 
     /**
      * Constructeur de la classe Echelle
@@ -20,31 +19,24 @@ public class Echelle extends Group {
      * @param height
      */
     public Echelle(int x, int y, int width, int height) {
-        this.echelle = new Rectangle(x, y, width, height);
-        this.collision = new Rectangle(x - 10, y - 35, (width + 20), (height + 35));
-        echelle.setFill(new ImagePattern(new Image(choixEchelle)));
+        Rectangle echelle = new Rectangle(x, y, width, height);
+        Rectangle collision = new Rectangle(x - 10, y - 35, (width + 20), (height + 35));
+        echelle.setFill(setChoixEchelle_Img(choixEchelle));
         collision.setOpacity(0.5);
         this.getChildren().add(echelle);
         this.getChildren().add(collision);
     }
 
-    public static int getLargeurCollision() {
-        return 15;
-    }
-
-    public Rectangle getEchelle() {
-        return echelle;
-    }
-
-    public void setEchelle(Rectangle echelle) {
-        this.echelle = echelle;
-    }
-
-    public static String getChoixEchelle() {
-        return choixEchelle;
-    }
-
     public static void setChoixEchelle(String choixEchelle) {
         Echelle.choixEchelle = choixEchelle;
+    }
+
+    public Paint setChoixEchelle_Img(String choixEchelle) {
+        if (choixEchelle.equals("KOALA")) {
+            return new ImagePattern(new Image("echelle_koala.png"));
+        } else if (choixEchelle.equals("NINJA")) {
+            return new ImagePattern(new Image("echelle_ninja.png"));
+        }
+        return null;
     }
 }

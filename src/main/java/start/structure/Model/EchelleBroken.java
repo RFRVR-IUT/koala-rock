@@ -24,17 +24,22 @@ public class EchelleBroken extends Group {
         this.echelle = new Rectangle(x, y, width, height);
         this.collision = new Rectangle(x - 10, y, (width + 20), (height));
         collision.setFill(Paint.valueOf("red"));
-        echelle.setFill(new ImagePattern(new Image(choixEchelleBroken)));
+        echelle.setFill(setChoixEchelleBroken_Img(choixEchelleBroken));
         collision.setOpacity(0);
         this.getChildren().add(echelle);
         this.getChildren().add(collision);
     }
 
-    public static String getChoixEchelleBroken() {
-        return choixEchelleBroken;
-    }
-
     public static void setChoixEchelleBroken(String choixEchelleBroken) {
         EchelleBroken.choixEchelleBroken = choixEchelleBroken;
+    }
+
+    public Paint setChoixEchelleBroken_Img(String choixEchelleBroken) {
+        if (choixEchelleBroken.equals("KOALA")) {
+            return new ImagePattern(new Image("echelle_broken_koala.png"));
+        } else if (choixEchelleBroken.equals("NINJA")) {
+            return new ImagePattern(new Image("echelle_broken_ninja.png"));
+        }
+        return null;
     }
 }
