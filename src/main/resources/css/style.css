@@ -95,6 +95,7 @@
 
 .LabelScore{
     -fx-font-family: 'Goldman', sans-serif;
+    -fx-font-weight: bold;
     -fx-font-size: 30px;
 }
 

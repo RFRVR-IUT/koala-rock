@@ -24,50 +24,55 @@ public class VueCompte extends Stage {
 
         Label label = new Label(Session.getInstance().getLogin());
         System.out.println(Session.getInstance().getLogin());
-        label.getStyleClass().add("nameGame");
+        label.getStyleClass().add("nomJeu");
         label.setLayoutX(25);
         label.setLayoutY(25);
 
         //chemp de modification du mot de passe avec un bouton de validation
         Label labelMotDePasse = new Label("Mot de passe");
         labelMotDePasse.getStyleClass().add("LabelConnexionField");
-        labelMotDePasse.setLayoutX(125);
+        labelMotDePasse.setLayoutX(50);
         labelMotDePasse.setLayoutY(200);
         PasswordField passwordField = new PasswordField();
         passwordField.getStyleClass().add("TextFieldConnexion");
-        passwordField.setLayoutX(125);
+        passwordField.setLayoutX(50);
         passwordField.setLayoutY(225);
 
 
-        Label labelMotDePasse2 = new Label("Mot de passe");
+        Label labelMotDePasse2 = new Label("Valider mot de passe");
         labelMotDePasse2.getStyleClass().add("LabelConnexionField");
-        labelMotDePasse2.setLayoutX(125);
+        labelMotDePasse2.setLayoutX(50);
         labelMotDePasse2.setLayoutY(300);
         PasswordField passwordField2 = new PasswordField();
         passwordField2.getStyleClass().add("TextFieldConnexion");
-        passwordField2.setLayoutX(125);
+        passwordField2.setLayoutX(50);
         passwordField2.setLayoutY(325);
 
         Button buttonConnexion = new Button("Modifier");
         buttonConnexion.getStyleClass().add("buttonConnexion");
-        buttonConnexion.setLayoutX(130);
+        buttonConnexion.setLayoutX(50);
         buttonConnexion.setLayoutY(400);
 
         Label labelErreur = new Label();
         labelErreur.getStyleClass().add("LabelError");
-        labelErreur.setLayoutX(125);
+        labelErreur.setLayoutX(50);
         labelErreur.setLayoutY(450);
 
-        if (passwordField.getText().equals(passwordField2.getText())) {
             buttonConnexion.setOnAction(event -> {
-                PlayerManager.getInstance().updatePlayer(Session.getInstance().getLogin(), passwordField.getText());
+                if (passwordField.getText() != "" && passwordField2.getText() != "") {
+                    if (passwordField.getText().equals(passwordField2.getText())) {
+                        PlayerManager.getInstance().updatePlayer(Session.getInstance().getLogin(), passwordField.getText());
+                        labelErreur.setText("Mot de passe modifié");
+                    } else {
+                        labelErreur.setText("Les mots de passe ne correspondent pas");
+                    }
+                } else {
+                    labelErreur.setText("Veuillez remplir les champs");
+                }
             });
-        }
-        else {
-            labelErreur.setText("Les mots de passe ne correspondent pas");
-        }
 
-        pane.getChildren().add(label);
+        pane.getChildren().addAll(label, labelMotDePasse, passwordField, labelMotDePasse2, passwordField2, buttonConnexion);
+        pane.getChildren().add(labelErreur);
 
         setTitle("Paramètre");
         setResizable(false);
