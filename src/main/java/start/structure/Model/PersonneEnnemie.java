@@ -14,8 +14,10 @@ public class PersonneEnnemie extends Group {
 
     /////////////////////////// Choix personnage ///////////////////////////
     private static String choixPersonnage = "KOALA";
+
     /**
      * Permet de changer l'image du personnage en fonction du choix du joueur
+     *
      * @param choixPersonnage
      * @return
      */
@@ -28,6 +30,12 @@ public class PersonneEnnemie extends Group {
         return null;
     }
 
+    /**
+     * Choix de l'image du personnage pour le Lancé d'objet
+     *
+     * @param choixPersonnage
+     * @return
+     */
     public Paint setChoixPersonnage_LANCE(String choixPersonnage) {
         if (choixPersonnage.equals("KOALA")) {
             return new ImagePattern(new Image("koala-2.png"));
@@ -37,7 +45,6 @@ public class PersonneEnnemie extends Group {
         return null;
     }
 /////////////////////////////////////////////////////////////////////////
-
 
 
     /**

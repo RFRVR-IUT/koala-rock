@@ -47,6 +47,11 @@ public class PersonnePrincipale extends Group {
         return null;
     }
 
+    /**
+     * Choix de l'image du personnage personne courir
+     * @param choixPersonnage
+     * @return
+     */
     public Paint setChoixPersonnage_RUN(String choixPersonnage) {
         if (choixPersonnage.equals("PANDA")) {
             return new ImagePattern(new Image("panda_idle.png"));
@@ -56,6 +61,11 @@ public class PersonnePrincipale extends Group {
         return null;
     }
 
+    /**
+     * Choix de l'image du personnage personne sauter
+     * @param choixPersonnage
+     * @return
+     */
     public Paint setChoixPersonnage_JUMP(String choixPersonnage) {
         if (choixPersonnage.equals("PANDA")) {
             return new ImagePattern(new Image("panda_idle.png"));
@@ -65,6 +75,11 @@ public class PersonnePrincipale extends Group {
         return null;
     }
 
+    /**
+     * Choix de l'image du personnage personne monte échelle
+     * @param choixPersonnage
+     * @return
+     */
     public Paint setChoixPersonnage_CLIMB(String choixPersonnage) {
         if (choixPersonnage.equals("PANDA")) {
             return new ImagePattern(new Image("Panda_Climb.png"));
@@ -337,6 +352,11 @@ public class PersonnePrincipale extends Group {
         return v;
     }
 
+    /**
+     * Méthode qui permet de savoir si le personnage est en collision avec un echelle cassée
+     * @param tab
+     * @return
+     */
     public boolean estEnBroken(ArrayList<ArrayList<Double>> tab) {
         for (ArrayList<Double> d : tab) {
             //System.out.println(d.toString());
@@ -379,6 +399,11 @@ public class PersonnePrincipale extends Group {
         }
     }
 
+    /**
+     * Méthode qui permet de savoir si le personnage est en collision avec un tonneaux
+     * @param tonneaus
+     * @return
+     */
     public int collisionTonneaux(ArrayList<Objet_Attaque> tonneaus) {
         int res = 0;
         for (Objet_Attaque t : tonneaus) {

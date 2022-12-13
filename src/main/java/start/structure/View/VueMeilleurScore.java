@@ -23,7 +23,7 @@ public class VueMeilleurScore extends Stage {
         Scene scene = new Scene(pane, 950, 650);
         scene.getStylesheets().add("file:src/main/resources/css/style.css");
 
-        //Recuperation des meilleurs scores
+
         Label labelMeilleurScore = new Label("Meilleurs scores");
         labelMeilleurScore.getStyleClass().add("labelMeilleurScore");
         labelMeilleurScore.setLayoutX(50);

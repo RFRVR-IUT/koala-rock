@@ -33,11 +33,22 @@ public class VuePerdre {
         stage.setScene(scene);
         stage.show();
 
+        /////////// LABEL ///////////
         Label nameGame = new Label("Vous avez perdu");
         nameGame.getStyleClass().add("nameGame");
         nameGame.setLayoutX(226);
         nameGame.setLayoutY(80);
 
+        Label deadScreen = new Label();
+        Image image = new Image("file:src/main/resources/ImageMenu.png");
+        ImageView imageView = new ImageView(image);
+        imageView.setFitHeight(720);
+        imageView.setFitWidth(1280);
+        deadScreen.setGraphic(imageView);
+        pane.getChildren().add(deadScreen);
+
+
+        /////////// BOUTON ///////////
         Button recommencer = new Button("Recommencer");
         recommencer.getStyleClass().add("buttonEcran");
         recommencer.setLayoutX(475);
@@ -48,18 +59,12 @@ public class VuePerdre {
         quitter.setLayoutX(695);
         quitter.setLayoutY(570);
 
-        Label deadScreen = new Label();
-        Image image = new Image("file:src/main/resources/ImageMenu.png");
-        ImageView imageView = new ImageView(image);
-        imageView.setFitHeight(720);
-        imageView.setFitWidth(1280);
-        deadScreen.setGraphic(imageView);
-        pane.getChildren().add(deadScreen);
 
-        pane.getChildren().add(recommencer);
-        pane.getChildren().add(quitter);
-        pane.getChildren().add(nameGame);
+        pane.getChildren().addAll(nameGame, recommencer, quitter);
 
+        /**
+         * Bouton recommencer
+         */
         recommencer.setOnMouseClicked(event -> {
             try {
                 vueJeu.demarrerJeu(stage, vueJeu.getMode());

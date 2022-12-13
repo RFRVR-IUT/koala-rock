@@ -34,7 +34,11 @@ public class Objet_Attaque extends Group {
      * @return
      */
 
-
+    /**
+     * Choix de l'image du personnage
+     * @param choixPersonnage
+     * @return
+     */
     public static Paint setChoixObjet_IDLE(String choixPersonnage) {
         if (choixPersonnage.equals("ROCHER")) {
             return new ImagePattern(new Image("Rocher.png"));
@@ -111,6 +115,10 @@ public class Objet_Attaque extends Group {
         this.getChildren().remove(collisionHaut);
     }
 
+    /**
+     * Méthode qui permet de faire bouger le tonneaux vers le haut
+     * @param d
+     */
     public void rotation(int d) {
         RotateTransition rotate = new RotateTransition();
         rotate.setAxis(Rotate.Z_AXIS);

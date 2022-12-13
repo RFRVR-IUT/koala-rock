@@ -21,6 +21,11 @@ public class Fond extends Group {
         Fond.choixFond = choixFond;
     }
 
+    /**
+     * Methode qui permet de choisir l'image de l'echelle
+     * @param choixFond
+     * @return
+     */
     public Paint setChoixFond_Img(String choixFond) {
         if (choixFond.equals("KOALA")) {
             return new ImagePattern(new Image("fondKoala.png"));

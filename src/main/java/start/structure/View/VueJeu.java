@@ -99,7 +99,6 @@ public class VueJeu {
         //////////////// End Label ///////////////////////
 
         //////////////// Button ///////////////////////
-
         button_Bas = new Label();
         image_Bas = new ImageView("file:src/main/resources/Button/Button_bas.png");
         image_Bas.setFitHeight(50);
@@ -144,7 +143,6 @@ public class VueJeu {
         button_Espace.getStyleClass().add("button_Action");
         button_Espace.setLayoutX(75);
         button_Espace.setLayoutY(600);
-
         //////////////// End Button ///////////////////////
 
 
@@ -153,6 +151,9 @@ public class VueJeu {
             private long timestamp;
             private long fraction = 0;
 
+            /**
+             * Démarre le chronomètre
+             */
             @Override
             public void start() {
                 // current time adjusted by remaining time from last run
@@ -160,6 +161,9 @@ public class VueJeu {
                 super.start();
             }
 
+            /**
+             * Arrête le chronomètre
+             */
             @Override
             public void stop() {
                 super.stop();
@@ -167,6 +171,11 @@ public class VueJeu {
                 fraction = System.currentTimeMillis() - timestamp;
             }
 
+            /**
+             * Met à jour le chronomètre
+             *
+             * @param now
+             */
             @Override
             public void handle(long now) {
                 long newTime = System.currentTimeMillis();
@@ -180,7 +189,6 @@ public class VueJeu {
         };
 
         //////////////// Listener score,vie,chrono ///////////////////////
-
         personnePrincipale.getScore().addListener((observableValue, number, t1) -> score.setText("Score : " + personnePrincipale.getScore().getValue().toString()));
         personnePrincipale.getVie().addListener((observableValue, number, t1) -> vie.setText("Vie : " + personnePrincipale.getVie().getValue().toString()));
         time.addListener((observableValue, number, t1) -> chrono.setText("Chrono : " + time.getValue().toString() + "s"));
@@ -266,8 +274,9 @@ public class VueJeu {
         // Tonneaux
         creerTonneaux(coordonneesEchelles,dk);
 
-        //replacer les tonneaux
-        //empecher le jeu de continuer
+        /**
+         * Boucle de jeu
+         */
         AnimationTimer collisionTimer = new AnimationTimer() {
             @Override
             public void handle(long now) {
@@ -333,6 +342,12 @@ public class VueJeu {
         stage.show();
     }
 
+    /**
+     * Méthode qui permet de retourner la scène du jeu
+     * @param stage
+     * @throws IOException
+     * @throws InterruptedException
+     */
     public void restartGame(Stage stage) throws IOException, InterruptedException {
         System.out.println("restart");
         stage.close();
@@ -342,7 +357,15 @@ public class VueJeu {
         sleep(1000);
     }
 
-
+    /**
+     * Méthode qui permet de supprimer les éléments du jeu
+     * @param jeu
+     * @param tonneaux
+     * @param echelles
+     * @param echellesBrokens
+     * @param personnePrincipale
+     * @param dk
+     */
     public void supprimerElements(Pane jeu, ArrayList<Objet_Attaque> tonneaux, ArrayList<Echelle> echelles, ArrayList<EchelleBroken> echellesBrokens, PersonnePrincipale personnePrincipale, PersonneEnnemie dk) {
         supprimerTonneaux(tonneaux);
         echelles = null;
@@ -352,6 +375,10 @@ public class VueJeu {
         jeu = null;
     }
 
+    /**
+     * Méthode qui permet de supprimer les tonneaux
+     * @param tonneaux
+     */
     public void supprimerTonneaux(ArrayList<Objet_Attaque> tonneaux) {
         for (Objet_Attaque tonneau : tonneaux) {
             jeu.getChildren().remove(tonneau);
@@ -360,6 +387,11 @@ public class VueJeu {
         timer.stop();
     }
 
+    /**
+     * Méthode qui permet de créer les tonneaux
+     * @param coordonneesEchelles
+     * @param dk
+     */
     public void creerTonneaux(ArrayList<ArrayList<Double>> coordonneesEchelles, PersonneEnnemie dk) {
         Objet_Attaque tonneau1 = new Objet_Attaque(20, -10, 20, 20);
         Objet_Attaque tonneau2 = new Objet_Attaque(20, -10, 20, 20);

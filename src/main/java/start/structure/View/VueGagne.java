@@ -34,11 +34,8 @@ public class VueGagne {
         stage.setScene(scene);
         stage.show();
 
-        Label nameGame = new Label("Vous avez gagné");
-        nameGame.getStyleClass().add("nameGame");
-        nameGame.setLayoutX(226);
-        nameGame.setLayoutY(80);
 
+        /////////// BOUTON ///////////
         Button recommencer = new Button("Recommencer");
         recommencer.getStyleClass().add("buttonEcran");
         recommencer.setLayoutX(475);
@@ -48,6 +45,12 @@ public class VueGagne {
         quitter.getStyleClass().add("buttonEcran");
         quitter.setLayoutX(695);
         quitter.setLayoutY(570);
+
+        /////////// LABEL ///////////
+        Label nameGame = new Label("Vous avez gagné");
+        nameGame.getStyleClass().add("nameGame");
+        nameGame.setLayoutX(226);
+        nameGame.setLayoutY(80);
 
         Label menuScreen = new Label();
         Image image = new Image("file:src/main/resources/ImageMenu.png");
@@ -62,22 +65,20 @@ public class VueGagne {
         scoreLabel.setLayoutX(565);
         scoreLabel.setLayoutY(200);
 
-        pane.getChildren().add(scoreLabel);
-        pane.getChildren().add(recommencer);
-        pane.getChildren().add(quitter);
-        pane.getChildren().add(nameGame);
+        pane.getChildren().addAll(menuScreen, recommencer, quitter, nameGame, scoreLabel);
 
-
-        Stage finalStage = stage;
+/**
+ * Action du bouton recommencer
+ */
         recommencer.setOnMouseClicked(event -> {
             try {
-                vueJeu.demarrerJeu(finalStage, vueJeu.getMode());
+                vueJeu.demarrerJeu(stage, vueJeu.getMode());
             } catch (IOException | InterruptedException e) {
                 e.printStackTrace();
             }
         });
         quitter.setOnMouseClicked(event -> {
-            finalStage.close();
+            stage.close();
             System.exit(0);
         });
     }

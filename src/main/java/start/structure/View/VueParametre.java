@@ -22,12 +22,18 @@ public class VueParametre extends Stage {
         Scene scene = new Scene(pane, 950, 650);
         scene.getStylesheets().add("file:src/main/resources/css/style.css");
 
-        /////////// PARAMETRE SCENE ///////////
-
+        /////////////// ComboBox ///////////////
         ComboBox<String> comboBoxJoueurPrincipale = new ComboBox<>();
         comboBoxJoueurPrincipale.getItems().addAll("Panda", "Samurai");
-        comboBoxJoueurPrincipale.setValue("Default");
+        comboBoxJoueurPrincipale.setValue("Panda");
 
+        ComboBox<String> comboBoxPersonnageEnnemie = new ComboBox<>();
+        comboBoxPersonnageEnnemie.getItems().addAll("Koala", "Ninja");
+        comboBoxPersonnageEnnemie.setValue("Koala");
+
+        /**
+         * ComboBox pour le choix du personnage
+         */
         comboBoxJoueurPrincipale.getSelectionModel().selectedItemProperty().addListener((v, oldValue, newValue) -> {
             choixPersonnage = newValue;
             if (choixPersonnage.equals("Panda")) {
@@ -37,10 +43,9 @@ public class VueParametre extends Stage {
             }
         });
 
-        ComboBox<String> comboBoxPersonnageEnnemie = new ComboBox<>();
-        comboBoxPersonnageEnnemie.getItems().addAll("Koala", "Ninja");
-        comboBoxPersonnageEnnemie.setValue("Default");
-
+        /**
+         * ComboBox pour le choix de l'ennemie
+         */
         comboBoxPersonnageEnnemie.getSelectionModel().selectedItemProperty().addListener((v, oldValue, newValue) -> {
             choixEnnemi = newValue;
             if (choixEnnemi.equals("Koala")) {

@@ -32,6 +32,7 @@ public class VueFinInfiniPartie {
         stage.setScene(scene);
         stage.show();
 
+        /////////// LABEL ///////////
         Label nameGame = new Label("Fin de la partie");
         nameGame.getStyleClass().add("nameGame");
         nameGame.setLayoutX(226);
@@ -42,6 +43,14 @@ public class VueFinInfiniPartie {
         score.setLayoutX(226);
         score.setLayoutY(180);
 
+        Label deadScreen = new Label();
+        Image image = new Image("file:src/main/resources/ImageMenu.png");
+        ImageView imageView = new ImageView(image);
+        imageView.setFitHeight(720);
+        imageView.setFitWidth(1280);
+        deadScreen.setGraphic(imageView);
+
+        /////////// BOUTON ///////////
         Button recommencer = new Button("Recommencer");
         recommencer.getStyleClass().add("buttonEcran");
         recommencer.setLayoutX(475);
@@ -52,29 +61,17 @@ public class VueFinInfiniPartie {
         quitter.setLayoutX(695);
         quitter.setLayoutY(570);
 
-        Label deadScreen = new Label();
-        Image image = new Image("file:src/main/resources/ImageMenu.png");
-        ImageView imageView = new ImageView(image);
-        imageView.setFitHeight(720);
-        imageView.setFitWidth(1280);
-        deadScreen.setGraphic(imageView);
-        pane.getChildren().add(deadScreen);
+        pane.getChildren().addAll(deadScreen, nameGame, score, recommencer, quitter);
 
-        pane.getChildren().add(recommencer);
-        pane.getChildren().add(score);
-        pane.getChildren().add(quitter);
-        pane.getChildren().add(nameGame);
-
-        Stage finalStage = stage;
         recommencer.setOnMouseClicked(event -> {
             try {
-                vueJeu.demarrerJeu(finalStage, vueJeu.getMode());
+                vueJeu.demarrerJeu(stage, vueJeu.getMode());
             } catch (IOException | InterruptedException e) {
                 e.printStackTrace();
             }
         });
         quitter.setOnMouseClicked(event -> {
-            finalStage.close();
+            stage.close();
             System.exit(0);
         });
     }

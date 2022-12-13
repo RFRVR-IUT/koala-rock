@@ -8,7 +8,6 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
-
 import java.io.IOException;
 
 public class VueDemarrage {
@@ -37,7 +36,7 @@ public class VueDemarrage {
         stage.setScene(scene);
         stage.show();
 
-
+/////////// BOUTON ///////////
         Label nameGame = new Label("Koala Rock");
         nameGame.getStyleClass().add("nameGame");
         nameGame.setLayoutX(355);
@@ -68,6 +67,7 @@ public class VueDemarrage {
         parametre.setLayoutX(555);
         parametre.setLayoutY(540);
 
+        ///////// IMAGE ///////////
         Label menuScreen = new Label();
         Image image = new Image("file:src/main/resources/ImageMenu.png");
         ImageView imageView = new ImageView(image);
@@ -75,14 +75,12 @@ public class VueDemarrage {
         imageView.setFitWidth(1280);
         menuScreen.setGraphic(imageView);
 
-        pane.getChildren().add(menuScreen);
-        pane.getChildren().add(demarrerPartie);
-        pane.getChildren().add(demarrerInfinit);
-        pane.getChildren().add(parametre);
-        pane.getChildren().add(nameGame);
-        pane.getChildren().add(connexionRegister);
-        pane.getChildren().add(meilleurScore);
+        pane.getChildren().addAll(menuScreen, nameGame, demarrerPartie, demarrerInfinit, connexionRegister, meilleurScore, parametre);
 
+        /**
+         * Permet de lancer le jeu en mode classique
+         * @param event
+         */
         demarrerPartie.setOnMouseClicked(event -> {
             try {
                 vueJeu.demarrerJeu(stage, "Normal");
@@ -91,6 +89,10 @@ public class VueDemarrage {
             }
         });
 
+        /**
+         * Permet de lancer le jeu en mode infini
+         * @param event
+         */
         demarrerInfinit.setOnMouseClicked(event -> {
             try {
                 vueJeu.demarrerJeu(stage, "Infini");
@@ -99,14 +101,26 @@ public class VueDemarrage {
             }
         });
 
+        /**
+         * Permet d'ouvrir la fenêtre de paramétrage
+         * @param event
+         */
         parametre.setOnMouseClicked(event -> {
             vueParametre.show();
         });
 
+        /**
+         * Permet d'ouvrir la fenêtre de connexion
+         * @param event
+         */
         connexionRegister.setOnMouseClicked(event -> {
             vueConnexion.show();
         });
 
+        /**
+         * Permet d'ouvrir la fenêtre de meilleur score
+         * @param event
+         */
         meilleurScore.setOnMouseClicked(event -> {
             vueMeilleurScore.show();
         });

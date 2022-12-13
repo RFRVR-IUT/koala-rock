@@ -34,6 +34,11 @@ public class EchelleBroken extends Group {
         EchelleBroken.choixEchelleBroken = choixEchelleBroken;
     }
 
+    /**
+     * Methode qui permet de choisir l'image de l'echelle
+     * @param choixEchelleBroken
+     * @return
+     */
     public Paint setChoixEchelleBroken_Img(String choixEchelleBroken) {
         if (choixEchelleBroken.equals("KOALA")) {
             return new ImagePattern(new Image("echelle_broken_koala.png"));

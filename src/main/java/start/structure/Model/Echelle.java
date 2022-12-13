@@ -31,6 +31,11 @@ public class Echelle extends Group {
         Echelle.choixEchelle = choixEchelle;
     }
 
+    /**
+     * Methode qui permet de choisir l'image de l'echelle
+     * @param choixEchelle
+     * @return
+     */
     public Paint setChoixEchelle_Img(String choixEchelle) {
         if (choixEchelle.equals("KOALA")) {
             return new ImagePattern(new Image("echelle_koala.png"));
