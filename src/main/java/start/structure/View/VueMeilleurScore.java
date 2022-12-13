@@ -31,14 +31,22 @@ public class VueMeilleurScore extends Stage {
 
         List<Score> scores = ScoreManager.getInstance().getScores();
         int i = 0;
-        while(i<10 || i<scores.size()){
-            Label labelPseudo = new Label(scores.get(i).getLogin());
+        while(i<10 && i<scores.size()){
+            Label labelPseudo;
+            if (scores.get(i).getLogin()==null){
+                labelPseudo = new Label("Invité");
+            }else {
+                labelPseudo = new Label(scores.get(i).getLogin());
+            }
             Label labelScore = new Label(String.valueOf(scores.get(i).getScore()));
             Label place = new Label(String.valueOf(i+1));
 
-            labelPseudo.setLayoutX(50*(i+1));
-            labelPseudo.setLayoutY(150);
-            labelScore.setLayoutX(50*(i+1));
+            labelPseudo.setFont(new javafx.scene.text.Font("Arial", 20));
+            labelPseudo.setTextFill(javafx.scene.paint.Color.WHITE);
+
+            labelPseudo.setLayoutX(100);
+            labelPseudo.setLayoutY(115+25*(i+1));
+            labelScore.setLayoutX(50);
             labelScore.setLayoutY(200);
             place.setLayoutX(50*(i+1));
             place.setLayoutY(250);
