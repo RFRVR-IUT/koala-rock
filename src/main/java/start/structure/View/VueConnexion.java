@@ -26,68 +26,68 @@ public class VueConnexion extends Stage {
    /////////////// CONNEXION SCENE ///////////////
         Label label = new Label("Connexion");
         label.getStyleClass().add("labelConnexion");
-        label.setLayoutX(50);
-        label.setLayoutY(100);
+        label.setLayoutX(100);
+        label.setLayoutY(50);
 
         Label labelPseudo = new Label("Pseudo");
         labelPseudo.getStyleClass().add("LabelConnexionField");
-        labelPseudo.setLayoutX(125);
-        labelPseudo.setLayoutY(200);
+        labelPseudo.setLayoutX(175);
+        labelPseudo.setLayoutY(250);
         Label labelMotDePasse = new Label("Mot de passe");
         labelMotDePasse.getStyleClass().add("LabelConnexionField");
-        labelMotDePasse.setLayoutX(125);
-        labelMotDePasse.setLayoutY(300);
+        labelMotDePasse.setLayoutX(175);
+        labelMotDePasse.setLayoutY(350);
 
         TextField textFieldPseudo = new TextField();
         textFieldPseudo.getStyleClass().add("TextFieldConnexion");
-        textFieldPseudo.setLayoutX(125);
-        textFieldPseudo.setLayoutY(225);
+        textFieldPseudo.setLayoutX(175);
+        textFieldPseudo.setLayoutY(275);
         PasswordField passwordField = new PasswordField();
         passwordField.getStyleClass().add("TextFieldConnexion");
-        passwordField.setLayoutX(125);
-        passwordField.setLayoutY(325);
+        passwordField.setLayoutX(175);
+        passwordField.setLayoutY(375);
 
         Button buttonConnexion = new Button("Se connecter");
         buttonConnexion.getStyleClass().add("buttonConnexion");
-        buttonConnexion.setLayoutX(130);
-        buttonConnexion.setLayoutY(400);
+        buttonConnexion.setLayoutX(185);
+        buttonConnexion.setLayoutY(450);
 
         //INSCRIPTION
         Label labelInscription = new Label("Inscription");
         labelInscription.getStyleClass().add("labelConnexion");
-        labelInscription.setLayoutX(500);
-        labelInscription.setLayoutY(100);
+        labelInscription.setLayoutX(520);
+        labelInscription.setLayoutY(50);
 
         Label labelPseudoInscription = new Label("Pseudo");
         labelPseudoInscription.getStyleClass().add("LabelConnexionField");
-        labelPseudoInscription.setLayoutX(575);
-        labelPseudoInscription.setLayoutY(200);
+        labelPseudoInscription.setLayoutX(590);
+        labelPseudoInscription.setLayoutY(150);
         Label labelMotDePasseInscription = new Label("Mot de passe");
         labelMotDePasseInscription.getStyleClass().add("LabelConnexionField");
-        labelMotDePasseInscription.setLayoutX(575);
-        labelMotDePasseInscription.setLayoutY(300);
-        Label labelMotDePasseInscription2 = new Label("Confirmer mot de passe");
+        labelMotDePasseInscription.setLayoutX(590);
+        labelMotDePasseInscription.setLayoutY(250);
+        Label labelMotDePasseInscription2 = new Label("Confirmation");
         labelMotDePasseInscription2.getStyleClass().add("LabelConnexionField");
-        labelMotDePasseInscription2.setLayoutX(575);
-        labelMotDePasseInscription2.setLayoutY(400);
+        labelMotDePasseInscription2.setLayoutX(590);
+        labelMotDePasseInscription2.setLayoutY(350);
 
         TextField textFieldPseudoInscription = new TextField();
         textFieldPseudoInscription.getStyleClass().add("TextFieldConnexion");
-        textFieldPseudoInscription.setLayoutX(575);
-        textFieldPseudoInscription.setLayoutY(225);
+        textFieldPseudoInscription.setLayoutX(590);
+        textFieldPseudoInscription.setLayoutY(175);
         PasswordField passwordFieldInscription = new PasswordField();
         passwordFieldInscription.getStyleClass().add("TextFieldConnexion");
-        passwordFieldInscription.setLayoutX(575);
-        passwordFieldInscription.setLayoutY(325);
+        passwordFieldInscription.setLayoutX(590);
+        passwordFieldInscription.setLayoutY(275);
         PasswordField passwordFieldInscription2 = new PasswordField();
         passwordFieldInscription2.getStyleClass().add("TextFieldConnexion");
-        passwordFieldInscription2.setLayoutX(575);
-        passwordFieldInscription2.setLayoutY(425);
+        passwordFieldInscription2.setLayoutX(590);
+        passwordFieldInscription2.setLayoutY(375);
 
         Button buttonInscription = new Button("S'inscrire");
         buttonInscription.getStyleClass().add("buttonConnexion");
-        buttonInscription.setLayoutX(580);
-        buttonInscription.setLayoutY(500);
+        buttonInscription.setLayoutX(610);
+        buttonInscription.setLayoutY(450);
 
 
         //RETOUR
@@ -98,8 +98,8 @@ public class VueConnexion extends Stage {
 
         Label labelErreur = new Label();
         labelErreur.getStyleClass().add("LabelConnexionField");
-        labelErreur.setLayoutX(250);
-        labelErreur.setLayoutY(600);
+        labelErreur.setLayoutX(340);
+        labelErreur.setLayoutY(580);
 
 
 
