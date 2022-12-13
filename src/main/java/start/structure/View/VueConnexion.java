@@ -8,6 +8,7 @@ import javafx.stage.Stage;
 import start.structure.metier.entite.AuthPlayer;
 import start.structure.metier.manager.PlayerManager;
 import start.structure.stockage.Security;
+import start.structure.stockage.Session;
 
 import java.security.InvalidKeyException;
 import java.security.NoSuchAlgorithmException;
@@ -19,7 +20,7 @@ public class VueConnexion extends Stage {
     Scene scene = new Scene(pane, 950, 650);
     Security security = new Security();
 
-    public VueConnexion() {;
+    public VueConnexion() {
         Pane pane = new Pane();
         Scene scene = new Scene(pane, 950, 650);
         scene.getStylesheets().add("file:src/main/resources/css/style.css");
@@ -139,6 +140,7 @@ public class VueConnexion extends Stage {
                 try {
                     if (security.checkPassword(passwordField.getText(), authPlayer.getSalt(), authPlayer.getHashedPassword())) {
                         labelErreur.setText("Connexion réussie");
+                        Session.getInstance().connect(textFieldPseudo.getText());
                         textFieldPseudo.setText("");
                         passwordField.setText("");
                 }
