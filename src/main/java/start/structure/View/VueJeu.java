@@ -149,20 +149,16 @@ public class VueJeu {
         button_Espace.setLayoutX(75);
         button_Espace.setLayoutY(600);
 
-        Button buttonMenuPrincipal = new Button("Menu Principal");
-        buttonMenuPrincipal.getStyleClass().add("buttonEcran");
-        buttonMenuPrincipal.setLayoutX(1080);
-        buttonMenuPrincipal.setLayoutY(50);
+        Label boutonMenuPrincipal = new Label("Menu Principal");
+        boutonMenuPrincipal.getStyleClass().add("LabelConnexionField");
+        boutonMenuPrincipal.setLayoutX(1080);
+        boutonMenuPrincipal.setLayoutY(650);
+
         //////////////// End Button ///////////////////////
 
-        buttonMenuPrincipal.setOnMouseClicked(event -> {
-            new VueMenu().demarrerMenu(stage);
-        });
-
-        buttonMenuPrincipal.setOnKeyPressed(event -> {
-            if (event.getCode() == KeyCode.ESCAPE) {
-                new VueMenu().demarrerMenu(stage);
-            }
+        boutonMenuPrincipal.setOnMouseClicked(event -> {
+            VueMenu vueMenu = new VueMenu();
+            vueMenu.demarrerMenu(stage);
         });
 
         //////////////// Chronometre ///////////////////////
@@ -245,7 +241,8 @@ public class VueJeu {
         interfaceJeu.setStyle("-fx-background-color: #000000;");
 
         interfaceJeu.getChildren().addAll(score, vie, nomJeu, chrono);
-        interfaceJeu.getChildren().addAll(button_Bas, button_Haut, button_Gauche, button_Droite, button_Espace, buttonMenuPrincipal);
+        interfaceJeu.getChildren().add(boutonMenuPrincipal);
+        interfaceJeu.getChildren().addAll(button_Bas, button_Haut, button_Gauche, button_Droite, button_Espace);
 
         System.out.println(echelle1.getLayoutX());
 
@@ -555,7 +552,6 @@ public class VueJeu {
                     System.out.println(personnePrincipale.getLayoutX());
                     System.out.println(personnePrincipale.getLayoutY());
                     System.out.println(personnePrincipale.getScore());
-
             }
         });
     }

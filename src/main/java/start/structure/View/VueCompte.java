@@ -62,6 +62,8 @@ public class VueCompte extends Stage {
         labelErreur.setLayoutX(50);
         labelErreur.setLayoutY(450);
 
+        Button boutonRetour = new Button("Retour");
+
             buttonConnexion.setOnAction(event -> {
                 if (passwordField.getText() != "" && passwordField2.getText() != "") {
                     if (passwordField.getText().equals(passwordField2.getText())) {
