@@ -1,10 +1,12 @@
 package start.structure.View;
 
+import javafx.animation.PauseTransition;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
+import javafx.util.Duration;
 import start.structure.metier.entite.AuthPlayer;
 import start.structure.metier.manager.PlayerManager;
 import start.structure.stockage.Security;
@@ -95,8 +97,8 @@ public class VueConnexion extends Stage {
         //RETOUR
         Button buttonRetour = new Button("Retour");
         buttonRetour.getStyleClass().add("buttonConnexionRetour");
-        buttonRetour.setLayoutX(125);
-        buttonRetour.setLayoutY(500);
+        buttonRetour.setLayoutX(50);
+        buttonRetour.setLayoutY(550);
 
         Label labelErreur = new Label();
         labelErreur.getStyleClass().add("LabelConnexionField");
@@ -120,6 +122,9 @@ public class VueConnexion extends Stage {
                 } else {
                     try {
                         PlayerManager.getInstance().createPlayer(textFieldPseudoInscription.getText(), passwordFieldInscription.getText());
+                        labelPseudoInscription.setText("");
+                        labelMotDePasseInscription.setText("");
+                        labelMotDePasseInscription2.setText("");
                         labelErreur.setText("Inscription réussie");
                     } catch (Exception e) {
                         labelErreur.setText("Erreur lors de l'inscription");

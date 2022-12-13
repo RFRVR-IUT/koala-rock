@@ -63,6 +63,14 @@ public class VueCompte extends Stage {
         labelErreur.setLayoutY(450);
 
         Button boutonRetour = new Button("Retour");
+        boutonRetour.getStyleClass().add("buttonConnexionRetour");
+        boutonRetour.setLayoutX(50);
+        boutonRetour.setLayoutY(550);
+
+        boutonRetour.setOnMouseClicked(event -> {
+            this.close();
+        });
+
 
             buttonConnexion.setOnAction(event -> {
                 if (passwordField.getText() != "" && passwordField2.getText() != "") {
@@ -104,7 +112,7 @@ public class VueCompte extends Stage {
             }
         }
 
-        pane.getChildren().addAll(label, labelMotDePasse, passwordField, labelMotDePasse2, passwordField2, buttonConnexion, labelMeilleurScore);
+        pane.getChildren().addAll(label, labelMotDePasse, passwordField, labelMotDePasse2, passwordField2, buttonConnexion, labelMeilleurScore, boutonRetour);
         pane.getChildren().add(labelErreur);
 
         setTitle("Paramètre");

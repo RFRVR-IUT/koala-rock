@@ -33,6 +33,14 @@ public class VueMeilleurScore extends Stage {
         labelMeilleurScore.setFont(new javafx.scene.text.Font("Goldman", 40));
         labelMeilleurScore.setTextFill(javafx.scene.paint.Color.WHITE);
 
+        Button buttonRetour = new Button("Retour");
+        buttonRetour.getStyleClass().add("buttonConnexionRetour");
+        buttonRetour.setLayoutX(50);
+        buttonRetour.setLayoutY(550);
+        buttonRetour.setOnAction(event -> {
+            this.close();
+        });
+
         List<Score> scores = ScoreManager.getInstance().getScores();
         int i = 0;
         //afficher les trois joueurs ayant le plus de score avec des couleurs differentes
@@ -90,7 +98,7 @@ public class VueMeilleurScore extends Stage {
         }
 
         pane.setStyle("-fx-border-color: white ; -fx-border-width: 10px ; -fx-background-color: black ; -fx-background-radius: 10px ;");
-        pane.getChildren().add(labelMeilleurScore);
+        pane.getChildren().addAll(labelMeilleurScore, buttonRetour);
         this.setScene(scene);
 
     }

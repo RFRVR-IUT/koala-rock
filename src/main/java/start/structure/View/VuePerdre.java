@@ -49,18 +49,23 @@ public class VuePerdre {
 
 
         /////////// BOUTON ///////////
+        Button retourMenu = new Button("Retour au menu");
+        retourMenu.getStyleClass().add("buttonEcran");
+        retourMenu.setLayoutX(325);
+        retourMenu.setLayoutY(570);
+
         Button recommencer = new Button("Recommencer");
         recommencer.getStyleClass().add("buttonEcran");
-        recommencer.setLayoutX(475);
+        recommencer.setLayoutX(540);
         recommencer.setLayoutY(570);
 
         Button quitter = new Button("Quitter");
         quitter.getStyleClass().add("buttonEcran");
-        quitter.setLayoutX(695);
+        quitter.setLayoutX(740);
         quitter.setLayoutY(570);
 
 
-        pane.getChildren().addAll(nameGame, recommencer, quitter);
+        pane.getChildren().addAll(nameGame, recommencer, quitter, retourMenu);
 
         /**
          * Bouton recommencer
@@ -75,6 +80,11 @@ public class VuePerdre {
         quitter.setOnMouseClicked(event -> {
             stage.close();
             System.exit(0);
+        });
+
+        retourMenu.setOnMouseClicked(event -> {
+            VueMenu vueMenu = new VueMenu();
+            vueMenu.demarrerMenu(stage);
         });
 
     }
