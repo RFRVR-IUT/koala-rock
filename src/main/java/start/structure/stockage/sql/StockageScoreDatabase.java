@@ -1,6 +1,6 @@
 package start.structure.stockage.sql; //Votre package ici.
 
-import start.structure.metier.entite.Score; //Si vous avez une classe Score importez la.
+import start.structure.metier.entite.Score;
 
 import java.sql.*;
 import java.util.ArrayList;
@@ -8,7 +8,7 @@ import java.util.List;
 
 public class StockageScoreDatabase {
 
-        public void create(Score element) {
+    public void create(Score element) {
         SQLUtils utils = SQLUtils.getInstance();
         Connection connection = utils.getConnection();
         String req = "INSERT INTO SCORES(score, horodatage, codeJeu, login) VALUES (?, ?, ?, ?)";
@@ -150,6 +150,7 @@ public class StockageScoreDatabase {
 
     /**
      * Renvoie l'historique des scores sur votre jeu.
+     *
      * @param login
      * @return
      */
@@ -182,6 +183,7 @@ public class StockageScoreDatabase {
 
     /**
      * Renvoie tous les scores de votre jeu.
+     *
      * @return
      */
     public List<Score> getAll() {

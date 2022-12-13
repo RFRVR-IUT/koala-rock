@@ -6,10 +6,8 @@ import javafx.beans.property.LongProperty;
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleLongProperty;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
-import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.Pane;
@@ -23,6 +21,7 @@ import start.structure.stockage.Session;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
+
 import static java.lang.Thread.sleep;
 
 public class VueJeu {
@@ -288,7 +287,7 @@ public class VueJeu {
         ////////////////////////////////////////////////
 
         // Tonneaux
-        creerTonneaux(coordonneesEchelles,dk);
+        creerTonneaux(coordonneesEchelles, dk);
 
         /**
          * Boucle de jeu
@@ -303,7 +302,7 @@ public class VueJeu {
                         personnePrincipale.setLayoutY(545);
                         getVie().setValue(getVie().getValue() - 1);
                         supprimerTonneaux(tonneaux);
-                        creerTonneaux(coordonneesEchelles,dk);
+                        creerTonneaux(coordonneesEchelles, dk);
                     } else {
                         timer.stop();
                         isPause = true;
@@ -323,7 +322,7 @@ public class VueJeu {
                         primaryStage.close();
                         if (mode.equals("Infini")) {
                             vueFinInfiniPartie.screenLose(saveScore);
-                            if(Session.getInstance().getLogin() != null){
+                            if (Session.getInstance().getLogin() != null) {
                                 ScoreManager.getInstance().createScore(saveScore, Session.getInstance().getLogin());
                             }
                         } else {
@@ -340,7 +339,7 @@ public class VueJeu {
                         personnePrincipale.setLayoutY(545);
                         getScore().setValue(getScore().getValue() + 1000);
                         supprimerTonneaux(tonneaux);
-                        creerTonneaux(coordonneesEchelles,dk);
+                        creerTonneaux(coordonneesEchelles, dk);
                     } else {
                         isPause = true;
                         personnePrincipale.setLayoutX(20 * 10);
@@ -364,6 +363,7 @@ public class VueJeu {
 
     /**
      * Méthode qui permet de retourner la scène du jeu
+     *
      * @param stage
      * @throws IOException
      * @throws InterruptedException
@@ -379,6 +379,7 @@ public class VueJeu {
 
     /**
      * Méthode qui permet de supprimer les éléments du jeu
+     *
      * @param jeu
      * @param tonneaux
      * @param echelles
@@ -397,6 +398,7 @@ public class VueJeu {
 
     /**
      * Méthode qui permet de supprimer les tonneaux
+     *
      * @param tonneaux
      */
     public void supprimerTonneaux(ArrayList<Objet_Attaque> tonneaux) {
@@ -409,6 +411,7 @@ public class VueJeu {
 
     /**
      * Méthode qui permet de créer les tonneaux
+     *
      * @param coordonneesEchelles
      * @param dk
      */

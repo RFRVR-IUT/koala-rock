@@ -33,6 +33,7 @@ public class Echelle extends Group {
 
     /**
      * Methode qui permet de choisir l'image de l'echelle
+     *
      * @param choixEchelle
      * @return
      */

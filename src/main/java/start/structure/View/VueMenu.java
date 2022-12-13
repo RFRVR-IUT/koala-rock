@@ -71,7 +71,6 @@ public class VueMenu {
         parametre.setLayoutY(580);
 
 
-
         ///////// IMAGE ///////////
         Label menuScreen = new Label();
         Image image = new Image("file:src/main/resources/ImageMenu.png");

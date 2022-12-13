@@ -36,6 +36,7 @@ public class Objet_Attaque extends Group {
 
     /**
      * Choix de l'image du personnage
+     *
      * @param choixPersonnage
      * @return
      */
@@ -117,6 +118,7 @@ public class Objet_Attaque extends Group {
 
     /**
      * Méthode qui permet de faire bouger le tonneaux vers le haut
+     *
      * @param d
      */
     public void rotation(int d) {

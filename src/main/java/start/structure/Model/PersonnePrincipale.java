@@ -49,6 +49,7 @@ public class PersonnePrincipale extends Group {
 
     /**
      * Choix de l'image du personnage personne courir
+     *
      * @param choixPersonnage
      * @return
      */
@@ -63,6 +64,7 @@ public class PersonnePrincipale extends Group {
 
     /**
      * Choix de l'image du personnage personne sauter
+     *
      * @param choixPersonnage
      * @return
      */
@@ -77,6 +79,7 @@ public class PersonnePrincipale extends Group {
 
     /**
      * Choix de l'image du personnage personne monte échelle
+     *
      * @param choixPersonnage
      * @return
      */
@@ -354,6 +357,7 @@ public class PersonnePrincipale extends Group {
 
     /**
      * Méthode qui permet de savoir si le personnage est en collision avec un echelle cassée
+     *
      * @param tab
      * @return
      */
@@ -401,6 +405,7 @@ public class PersonnePrincipale extends Group {
 
     /**
      * Méthode qui permet de savoir si le personnage est en collision avec un tonneaux
+     *
      * @param tonneaus
      * @return
      */
@@ -432,5 +437,7 @@ public class PersonnePrincipale extends Group {
         choixPersonnage = choixPersonne;
     }
 
-    public static String getPersonnePrincipale() {return choixPersonnage;}
+    public static String getPersonnePrincipale() {
+        return choixPersonnage;
+    }
 }

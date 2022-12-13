@@ -1,6 +1,6 @@
 package start.structure.stockage.sql; //Votre package ici.
 
-import start.structure.metier.entite.AuthPlayer; //Votre classe de joueur (j'ai personnellement séparé les joueurs anonymes (non-connectés) des joueurs connectés mais àa vous de choisir pour vos jeux.)
+import start.structure.metier.entite.AuthPlayer;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;

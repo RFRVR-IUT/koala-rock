@@ -36,6 +36,7 @@ public class EchelleBroken extends Group {
 
     /**
      * Methode qui permet de choisir l'image de l'echelle
+     *
      * @param choixEchelleBroken
      * @return
      */

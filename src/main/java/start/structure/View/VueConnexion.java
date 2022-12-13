@@ -23,7 +23,7 @@ public class VueConnexion extends Stage {
     public VueConnexion() {
         scene.getStylesheets().add("file:src/main/resources/css/style.css");
 
-   /////////////// CONNEXION SCENE ///////////////
+        /////////////// CONNEXION SCENE ///////////////
         Label label = new Label("Connexion");
         label.getStyleClass().add("labelConnexion");
         label.setLayoutX(100);
@@ -102,13 +102,12 @@ public class VueConnexion extends Stage {
         labelErreur.setLayoutY(580);
 
 
-
         pane.getChildren().addAll(label, labelPseudo, labelMotDePasse, textFieldPseudo, passwordField, buttonConnexion, labelInscription, labelPseudoInscription, labelMotDePasseInscription, labelMotDePasseInscription2, textFieldPseudoInscription, passwordFieldInscription, passwordFieldInscription2, buttonInscription, buttonRetour, labelErreur);
 
         buttonInscription.setOnAction(event -> {
             //if error -> labelErreur.setText("Erreur");
             labelErreur.setText("");
-            if (PlayerManager.getInstance().getPlayer(textFieldPseudoInscription.getText()) == null){
+            if (PlayerManager.getInstance().getPlayer(textFieldPseudoInscription.getText()) == null) {
                 if (textFieldPseudoInscription.getText().equals("") || passwordFieldInscription.getText().equals("") || passwordFieldInscription2.getText().equals("")) {
                     labelErreur.setText("Veuillez remplir tous les champs d'incription");
                 } else if (!passwordFieldInscription.getText().equals(passwordFieldInscription2.getText())) {
@@ -134,7 +133,7 @@ public class VueConnexion extends Stage {
         buttonConnexion.setOnAction(event -> {
             //if error -> labelErreur.setText("Erreur");
             labelErreur.setText("");
-            if (PlayerManager.getInstance().getPlayer(textFieldPseudo.getText()) == null){
+            if (PlayerManager.getInstance().getPlayer(textFieldPseudo.getText()) == null) {
                 labelErreur.setText("Ce pseudo n'existe pas");
             } else {
                 AuthPlayer authPlayer = PlayerManager.getInstance().getPlayer(textFieldPseudo.getText());
@@ -144,8 +143,7 @@ public class VueConnexion extends Stage {
                         Session.getInstance().connect(textFieldPseudo.getText());
                         textFieldPseudo.setText("");
                         passwordField.setText("");
-                    }
-                    else {
+                    } else {
                         labelErreur.setText("Mot de passe incorrect");
                         passwordField.setText("");
                     }

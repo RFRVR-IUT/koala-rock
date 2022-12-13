@@ -2,20 +2,13 @@ package start.structure.View;
 
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
-import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
-import javafx.scene.paint.ImagePattern;
-import javafx.scene.paint.Paint;
 import javafx.scene.shape.Line;
-import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 import javafx.stage.Stage;
-import start.structure.Model.*;
 import start.structure.metier.entite.Score;
 import start.structure.metier.manager.PlayerManager;
 import start.structure.metier.manager.ScoreManager;
@@ -100,18 +93,18 @@ public class VueCompte extends Stage {
         });
 
 
-            buttonConnexion.setOnAction(event -> {
-                if (passwordField.getText() != "" && passwordField2.getText() != "") {
-                    if (passwordField.getText().equals(passwordField2.getText())) {
-                        PlayerManager.getInstance().updatePlayer(Session.getInstance().getLogin(), passwordField.getText());
-                        labelErreur.setText("Mot de passe modifié");
-                    } else {
-                        labelErreur.setText("Les mots de passe ne correspondent pas");
-                    }
+        buttonConnexion.setOnAction(event -> {
+            if (passwordField.getText() != "" && passwordField2.getText() != "") {
+                if (passwordField.getText().equals(passwordField2.getText())) {
+                    PlayerManager.getInstance().updatePlayer(Session.getInstance().getLogin(), passwordField.getText());
+                    labelErreur.setText("Mot de passe modifié");
                 } else {
-                    labelErreur.setText("Veuillez remplir les champs");
+                    labelErreur.setText("Les mots de passe ne correspondent pas");
                 }
-            });
+            } else {
+                labelErreur.setText("Veuillez remplir les champs");
+            }
+        });
 
 
         //10 meilleurs score du joueurs avec la date
@@ -123,15 +116,15 @@ public class VueCompte extends Stage {
         int i = 0;
         for (Score score : scores) {
             if (score.getLogin().equals(Session.getInstance().getLogin())) {
-                Label labelScore = new Label(score.getScore()+"");
+                Label labelScore = new Label(score.getScore() + "");
                 labelScore.getStyleClass().add("LabelConnexionField");
                 labelScore.setLayoutX(450);
                 labelScore.setLayoutY(150 + i * 35);
-                Label labelDate = new Label(score.getHorodatage()+"");
+                Label labelDate = new Label(score.getHorodatage() + "");
                 labelDate.getStyleClass().add("LabelConnexionField");
                 labelDate.setLayoutX(600);
                 labelDate.setLayoutY(150 + i * 35);
-                Label place = new Label((i+1)+".");
+                Label place = new Label((i + 1) + ".");
                 place.getStyleClass().add("LabelConnexionField");
                 place.setLayoutX(400);
                 place.setLayoutY(150 + i * 35);

@@ -12,7 +12,8 @@ public class PlayerManager {
     private static PlayerManager instance = null;
     private StockagePlayerDatabase stockage = new StockagePlayerDatabase();
 
-    private PlayerManager() {}
+    private PlayerManager() {
+    }
 
     public static PlayerManager getInstance() {
         if (instance == null) instance = new PlayerManager();
@@ -43,5 +44,7 @@ public class PlayerManager {
         return stockage.getByLogin(login);
     }
 
-    public List<AuthPlayer> getPlayers() { return stockage.getAll(); }
+    public List<AuthPlayer> getPlayers() {
+        return stockage.getAll();
+    }
 }

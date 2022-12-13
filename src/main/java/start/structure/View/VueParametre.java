@@ -4,11 +4,8 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
-import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
-import javafx.scene.paint.ImagePattern;
-import javafx.scene.paint.Paint;
 import javafx.stage.Stage;
 import start.structure.Model.*;
 import start.structure.metier.manager.ScoreManager;
@@ -30,9 +27,9 @@ public class VueParametre extends Stage {
         comboBoxJoueurPrincipale.setValue("Panda");
         comboBoxJoueurPrincipale.getItems().addAll("Panda");
         comboBoxJoueurPrincipale.setValue("Panda");
-        if(Session.getInstance().getLogin() != null){
-            if(ScoreManager.getInstance().getHighScoreByLogin(Session.getInstance().getLogin()) != null){
-                if(ScoreManager.getInstance().getHighScoreByLogin(Session.getInstance().getLogin()).getScore() > 10){
+        if (Session.getInstance().getLogin() != null) {
+            if (ScoreManager.getInstance().getHighScoreByLogin(Session.getInstance().getLogin()) != null) {
+                if (ScoreManager.getInstance().getHighScoreByLogin(Session.getInstance().getLogin()).getScore() > 10) {
                     comboBoxJoueurPrincipale.getItems().add("Samurai");
                 }
             }
@@ -58,12 +55,12 @@ public class VueParametre extends Stage {
          * ComboBox pour le choix de l'ennemie
          */
 
-        if(Session.getInstance().getLogin() != null){
-            if(ScoreManager.getInstance().getHighScoreByLogin(Session.getInstance().getLogin()) != null) {
-                if(ScoreManager.getInstance().getHighScoreByLogin(Session.getInstance().getLogin()).getScore() > 10){
+        if (Session.getInstance().getLogin() != null) {
+            if (ScoreManager.getInstance().getHighScoreByLogin(Session.getInstance().getLogin()) != null) {
+                if (ScoreManager.getInstance().getHighScoreByLogin(Session.getInstance().getLogin()).getScore() > 10) {
                     comboBoxPersonnageEnnemie.getItems().add("Ninja");
                 }
-             }
+            }
         }
 
         comboBoxPersonnageEnnemie.getSelectionModel().selectedItemProperty().addListener((v, oldValue, newValue) -> {

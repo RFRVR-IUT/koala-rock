@@ -10,10 +10,11 @@ public class ScoreManager {
     private static ScoreManager instance = null;
     private StockageScoreDatabase stockage = new StockageScoreDatabase();
 
-    private ScoreManager() {}
+    private ScoreManager() {
+    }
 
     public static ScoreManager getInstance() {
-        if (instance ==null) instance = new ScoreManager();
+        if (instance == null) instance = new ScoreManager();
         return instance;
     }
 
@@ -37,7 +38,9 @@ public class ScoreManager {
         stockage.deleteByLogin(login);
     }
 
-    public Score getHighScoreByLogin(String login) { return stockage.getHighScore(login); }
+    public Score getHighScoreByLogin(String login) {
+        return stockage.getHighScore(login);
+    }
 
     //public List<Score> getHighScores() { return stockage.get10HighScore(); }
 

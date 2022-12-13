@@ -59,7 +59,7 @@ public class Security {
 
         return hexString.toString();
     }
-    
+
     public static boolean checkPassword(String password, byte[] salt, String hash) throws NoSuchAlgorithmException, InvalidKeyException {
         return toHexString(getSHA(password, salt)).equals(hash);
     }

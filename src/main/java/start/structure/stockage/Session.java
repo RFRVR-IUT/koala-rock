@@ -5,7 +5,8 @@ public class Session {
     private static Session instance = null;
     private String login;
 
-    private Session() {}
+    private Session() {
+    }
 
     public static Session getInstance() {
         if (instance == null) instance = new Session();

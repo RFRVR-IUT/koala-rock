@@ -23,6 +23,7 @@ public class Fond extends Group {
 
     /**
      * Methode qui permet de choisir l'image de l'echelle
+     *
      * @param choixFond
      * @return
      */

@@ -25,7 +25,9 @@ public class SQLUtils {
         return instance;
     }
 
-    public Connection getConnection() { return connection; }
+    public Connection getConnection() {
+        return connection;
+    }
 
     /**
      * Ce main sert juste à tester si votre connection fonctionne correctement.
@@ -39,7 +41,7 @@ public class SQLUtils {
         try (
                 Statement st = connection.createStatement();
                 ResultSet rs = st.executeQuery("SELECT * FROM SCORES");
-                ) {
+        ) {
             while (rs.next()) {
                 System.out.println(rs.getInt("codeScore"));
             }
