@@ -116,10 +116,10 @@
     -fx-padding: 8 15 15 15;
     -fx-background-insets: 0, 0 0 5 0, 0 0 6 0, 0 0 7 0;
     -fx-background-radius: 8;
-    -fx-background-color: linear-gradient(from 0% 93% to 0% 100%, #a20202 0%, #7e0202 100%),
+    -fx-background-color: linear-gradient(from 0% 93% to 0% 100%, #9a0b0b 0%, #6e0b0b 100%),
     #830202,
     #980101,
-    radial-gradient(center 50% 50%, radius 100%, #f13838, #a10202);
+    radial-gradient(center 50% 50%, radius 100%, #cc1717, #9a0b0b);
     -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.75), 4, 0, 0, 1);
     /* -fx-font-weight: bold;*/
     -fx-font-size: 1.25em;

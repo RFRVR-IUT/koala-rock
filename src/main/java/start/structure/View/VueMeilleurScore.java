@@ -27,15 +27,15 @@ public class VueMeilleurScore extends Stage {
 
 
         Label labelMeilleurScore = new Label("Meilleurs scores");
-        //labelMeilleurScore.getStyleClass().add("labelMeilleurScore");
-        labelMeilleurScore.setLayoutX(320);
-        labelMeilleurScore.setLayoutY(50);
+        labelMeilleurScore.setLayoutX(300);
+        labelMeilleurScore.setLayoutY(40);
         labelMeilleurScore.setFont(new javafx.scene.text.Font("Goldman", 40));
         labelMeilleurScore.setTextFill(javafx.scene.paint.Color.WHITE);
+        labelMeilleurScore.setUnderline(true);
 
         Button buttonRetour = new Button("Retour");
         buttonRetour.getStyleClass().add("buttonConnexionRetour");
-        buttonRetour.setLayoutX(50);
+        buttonRetour.setLayoutX(430);
         buttonRetour.setLayoutY(550);
         buttonRetour.setOnAction(event -> {
             this.close();
@@ -43,7 +43,6 @@ public class VueMeilleurScore extends Stage {
 
         List<Score> scores = ScoreManager.getInstance().getScores();
         int i = 0;
-        //afficher les trois joueurs ayant le plus de score avec des couleurs differentes
 
         while(i<10 && i<scores.size()){
             Label labelPseudo;
@@ -84,12 +83,12 @@ public class VueMeilleurScore extends Stage {
             labelPseudo.getStyleClass().add("LabelScore");
             place.getStyleClass().add("LabelScore");
 
-            labelPseudo.setLayoutX(350);
-            labelPseudo.setLayoutY(115+25*(i+1));
-            labelScore.setLayoutX(650);
-            labelScore.setLayoutY(115+25*(i+1));
-            place.setLayoutX(300);
-            place.setLayoutY(115+25*(i+1));
+            labelPseudo.setLayoutX(310);
+            labelPseudo.setLayoutY(115+35*(i+1));
+            labelScore.setLayoutX(610);
+            labelScore.setLayoutY(115+35*(i+1));
+            place.setLayoutX(260);
+            place.setLayoutY(115+35*(i+1));
 
             pane.getChildren().add(labelPseudo);
             pane.getChildren().add(labelScore);
