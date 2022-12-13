@@ -25,9 +25,11 @@ public class VueMeilleurScore extends Stage {
 
         //Recuperation des meilleurs scores
         Label labelMeilleurScore = new Label("Meilleurs scores");
-        labelMeilleurScore.getStyleClass().add("labelMeilleurScore");
+        //labelMeilleurScore.getStyleClass().add("labelMeilleurScore");
         labelMeilleurScore.setLayoutX(50);
         labelMeilleurScore.setLayoutY(100);
+        labelMeilleurScore.setFont(new javafx.scene.text.Font("Arial", 20));
+        labelMeilleurScore.setTextFill(javafx.scene.paint.Color.WHITE);
 
         List<Score> scores = ScoreManager.getInstance().getScores();
         int i = 0;
@@ -39,18 +41,15 @@ public class VueMeilleurScore extends Stage {
                 labelPseudo = new Label(scores.get(i).getLogin());
             }
             Label labelScore = new Label(String.valueOf(scores.get(i).getScore()));
-            Label place = new Label(String.valueOf(i+1));
+            Label place = new Label(String.valueOf(i+1)+".");
 
-            labelPseudo.setFont(new javafx.scene.text.Font("Arial", 20));
-            labelPseudo.setTextFill(javafx.scene.paint.Color.WHITE);
-            labelScore.setFont(new javafx.scene.text.Font("Arial", 20));
-            labelScore.setTextFill(javafx.scene.paint.Color.WHITE);
-            place.setFont(new javafx.scene.text.Font("Arial", 20));
-            place.setTextFill(javafx.scene.paint.Color.WHITE);
+            labelScore.getStyleClass().add("LabelConnexionField");
+            labelPseudo.getStyleClass().add("LabelConnexionField");
+            place.getStyleClass().add("LabelConnexionField");
 
             labelPseudo.setLayoutX(100);
             labelPseudo.setLayoutY(115+25*(i+1));
-            labelScore.setLayoutX(200);
+            labelScore.setLayoutX(300);
             labelScore.setLayoutY(115+25*(i+1));
             place.setLayoutX(50);
             place.setLayoutY(115+25*(i+1));
