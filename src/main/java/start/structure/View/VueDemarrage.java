@@ -15,7 +15,6 @@ import java.io.IOException;
 public class VueDemarrage {
 
     private final VueJeu vueJeu = new VueJeu();
-    private final VueParametre vueParametre = new VueParametre();
 
     private final VueConnexion vueConnexion = new VueConnexion();
     private final VueMeilleurScore vueMeilleurScore = new VueMeilleurScore();
@@ -114,6 +113,7 @@ public class VueDemarrage {
         });
 
         parametre.setOnMouseClicked(event -> {
+            VueParametre vueParametre = new VueParametre();
             vueParametre.show();
         });
 

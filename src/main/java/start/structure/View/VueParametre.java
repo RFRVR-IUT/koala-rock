@@ -11,6 +11,8 @@ import javafx.scene.paint.ImagePattern;
 import javafx.scene.paint.Paint;
 import javafx.stage.Stage;
 import start.structure.Model.*;
+import start.structure.metier.manager.ScoreManager;
+import start.structure.stockage.Session;
 
 public class VueParametre extends Stage {
     private static String choixPersonnage = "Panda";
@@ -25,8 +27,15 @@ public class VueParametre extends Stage {
         /////////// PARAMETRE SCENE ///////////
 
         ComboBox<String> comboBoxJoueurPrincipale = new ComboBox<>();
-        comboBoxJoueurPrincipale.getItems().addAll("Panda", "Samurai");
+        comboBoxJoueurPrincipale.getItems().addAll("Panda");
         comboBoxJoueurPrincipale.setValue("Default");
+        if(Session.getInstance().getLogin() != null){
+            if(ScoreManager.getInstance().getHighScoreByLogin(Session.getInstance().getLogin()) != null){
+                if(ScoreManager.getInstance().getHighScoreByLogin(Session.getInstance().getLogin()).getScore() > 10){
+                    comboBoxJoueurPrincipale.getItems().add("Samurai");
+                }
+            }
+        }
 
         comboBoxJoueurPrincipale.getSelectionModel().selectedItemProperty().addListener((v, oldValue, newValue) -> {
             choixPersonnage = newValue;
@@ -38,8 +47,16 @@ public class VueParametre extends Stage {
         });
 
         ComboBox<String> comboBoxPersonnageEnnemie = new ComboBox<>();
-        comboBoxPersonnageEnnemie.getItems().addAll("Koala", "Ninja");
+        comboBoxPersonnageEnnemie.getItems().addAll("Koala");
         comboBoxPersonnageEnnemie.setValue("Default");
+
+        if(Session.getInstance().getLogin() != null){
+            if(ScoreManager.getInstance().getHighScoreByLogin(Session.getInstance().getLogin()) != null) {
+                if(ScoreManager.getInstance().getHighScoreByLogin(Session.getInstance().getLogin()).getScore() > 10){
+                    comboBoxPersonnageEnnemie.getItems().add("Ninja");
+                }
+             }
+        }
 
         comboBoxPersonnageEnnemie.getSelectionModel().selectedItemProperty().addListener((v, oldValue, newValue) -> {
             choixEnnemi = newValue;
