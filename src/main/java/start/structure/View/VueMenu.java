@@ -52,6 +52,11 @@ public class VueMenu {
         demarrerInfinit.setLayoutX(554);
         demarrerInfinit.setLayoutY(430);
 
+        Button monCompte = new Button("Mon Compte");
+        monCompte.getStyleClass().add("buttonEcran");
+        monCompte.setLayoutX(940);
+        monCompte.setLayoutY(500);
+
         Button connexionRegister = new Button("Connexion/Inscription");
         connexionRegister.getStyleClass().add("buttonEcran");
         connexionRegister.setLayoutX(900);
@@ -59,18 +64,14 @@ public class VueMenu {
 
         Button meilleurScore = new Button("Meilleurs Score");
         meilleurScore.getStyleClass().add("buttonEcran");
-        meilleurScore.setLayoutX(900);
-        meilleurScore.setLayoutY(510);
+        meilleurScore.setLayoutX(100);
+        meilleurScore.setLayoutY(500);
 
         Button parametre = new Button("Paramètres");
         parametre.getStyleClass().add("buttonEcran");
-        parametre.setLayoutX(550);
-        parametre.setLayoutY(540);
+        parametre.setLayoutX(120);
+        parametre.setLayoutY(580);
 
-        Button monCompte = new Button("Mon Compte");
-        monCompte.getStyleClass().add("buttonEcran");
-        monCompte.setLayoutX(100);
-        monCompte.setLayoutY(580);
 
 
         ///////// IMAGE ///////////
@@ -83,8 +84,8 @@ public class VueMenu {
 
         Label labelError = new Label();
         labelError.getStyleClass().add("LabelError");
-        labelError.setLayoutX(100);
-        labelError.setLayoutY(500);
+        labelError.setLayoutX(510);
+        labelError.setLayoutY(590);
 
 
         pane.getChildren().add(menuScreen);
@@ -149,8 +150,7 @@ public class VueMenu {
                 VueCompte vueCompte = new VueCompte();
                 vueCompte.show();
             } else {
-                labelError.setText("Vous devez être connecté \n " +
-                        "pour accéder à votre compte");
+                labelError.setText("Veuillez vous connecter");
             }
         });
 

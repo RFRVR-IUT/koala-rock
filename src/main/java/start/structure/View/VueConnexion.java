@@ -1,8 +1,10 @@
 package start.structure.View;
 
 import javafx.scene.Scene;
-import javafx.scene.control.*;
-import javafx.scene.image.ImageView;
+import javafx.scene.control.Button;
+import javafx.scene.control.Label;
+import javafx.scene.control.PasswordField;
+import javafx.scene.control.TextField;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 import start.structure.metier.entite.AuthPlayer;
@@ -13,8 +15,6 @@ import start.structure.stockage.Session;
 import java.security.InvalidKeyException;
 import java.security.NoSuchAlgorithmException;
 
-import static java.lang.constant.ConstantDescs.NULL;
-
 public class VueConnexion extends Stage {
     Pane pane = new Pane();
     Scene scene = new Scene(pane, 950, 650);
@@ -23,8 +23,7 @@ public class VueConnexion extends Stage {
     public VueConnexion() {
         scene.getStylesheets().add("file:src/main/resources/css/style.css");
 
-
-        //CONNEXION
+   /////////////// CONNEXION SCENE ///////////////
         Label label = new Label("Connexion");
         label.getStyleClass().add("labelConnexion");
         label.setLayoutX(50);
@@ -103,7 +102,7 @@ public class VueConnexion extends Stage {
         labelErreur.setLayoutY(600);
 
 
-        //ajout des éléments à la fenêtre
+
         pane.getChildren().addAll(label, labelPseudo, labelMotDePasse, textFieldPseudo, passwordField, buttonConnexion, labelInscription, labelPseudoInscription, labelMotDePasseInscription, labelMotDePasseInscription2, textFieldPseudoInscription, passwordFieldInscription, passwordFieldInscription2, buttonInscription, buttonRetour, labelErreur);
 
         buttonInscription.setOnAction(event -> {
