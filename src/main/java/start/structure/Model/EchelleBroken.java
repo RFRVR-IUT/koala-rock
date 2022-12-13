@@ -10,7 +10,7 @@ public class EchelleBroken extends Group {
 
     private final Rectangle echelle;
     private final Rectangle collision;
-    private static String choixEchelleBroken = "echelle_broken_koala.png";
+    private static String choixEchelleBroken = "KOALA";
 
     /**
      * Constructeur de la classe EchelleBroken

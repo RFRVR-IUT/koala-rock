@@ -1,20 +1,26 @@
 package start.structure.View;
 
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.PasswordField;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
+import start.structure.metier.entite.AuthPlayer;
 import start.structure.metier.manager.PlayerManager;
+import start.structure.stockage.Security;
+import start.structure.stockage.Session;
+
+import java.security.InvalidKeyException;
+import java.security.NoSuchAlgorithmException;
+
+import static java.lang.constant.ConstantDescs.NULL;
 
 public class VueConnexion extends Stage {
     Pane pane = new Pane();
     Scene scene = new Scene(pane, 950, 650);
+    Security security = new Security();
 
     public VueConnexion() {
-
         scene.getStylesheets().add("file:src/main/resources/css/style.css");
 
    /////////////// CONNEXION SCENE ///////////////
@@ -109,18 +115,22 @@ public class VueConnexion extends Stage {
          */
         buttonInscription.setOnAction(event -> {
             labelErreur.setText("");
-            if (textFieldPseudoInscription.getText().equals("") || passwordFieldInscription.getText().equals("") || passwordFieldInscription2.getText().equals("")) {
-                labelErreur.setText("Veuillez remplir tous les champs d'incription");
-            } else if (!passwordFieldInscription.getText().equals(passwordFieldInscription2.getText())) {
-                labelErreur.setText("Les mots de passe ne correspondent pas");
-            } else {
-                try {
-                    PlayerManager.getInstance().createPlayer(textFieldPseudoInscription.getText(), passwordFieldInscription.getText());
-                    labelErreur.setText("Inscription réussie");
-                } catch (Exception e) {
-                    labelErreur.setText("Erreur lors de l'inscription");
+//            if (new AuthPlayer(textFieldPseudoInscription.getText()).getLogin() == null){
+                if (textFieldPseudoInscription.getText().equals("") || passwordFieldInscription.getText().equals("") || passwordFieldInscription2.getText().equals("")) {
+                    labelErreur.setText("Veuillez remplir tous les champs d'incription");
+                } else if (!passwordFieldInscription.getText().equals(passwordFieldInscription2.getText())) {
+                    labelErreur.setText("Les mots de passe ne correspondent pas");
+                } else {
+                    try {
+                        PlayerManager.getInstance().createPlayer(textFieldPseudoInscription.getText(), passwordFieldInscription.getText());
+                        labelErreur.setText("Inscription réussie");
+                    } catch (Exception e) {
+                        labelErreur.setText("Erreur lors de l'inscription");
+                    }
                 }
-            }
+//            } else {
+//                labelErreur.setText("Ce pseudo est déjà utilisé");
+//            }
         });
 
 

@@ -15,6 +15,9 @@ import javafx.stage.Stage;
 import javafx.util.Duration;
 import start.structure.Model.*;
 import start.structure.Sound.Son;
+import start.structure.metier.manager.ScoreManager;
+import start.structure.stockage.Session;
+
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -300,12 +303,16 @@ public class VueJeu {
                             tonneau.setLayoutY(-30);
                         }
                         int saveScore = getScore().getValue();
+
                         supprimerElements(jeu, tonneaux, echelles, echellesBrokens, personnePrincipale, dk);
                         //empecher le jeu de continuer
                         timelineTonneaux.stop();
                         primaryStage.close();
                         if (mode.equals("Infini")) {
                             vueFinInfiniPartie.screenLose(saveScore);
+                            if(Session.getInstance().getLogin() != null){
+                                ScoreManager.getInstance().createScore(saveScore, Session.getInstance().getLogin());
+                            }
                         } else {
                             vuesPerdu.screenLose();
                         }

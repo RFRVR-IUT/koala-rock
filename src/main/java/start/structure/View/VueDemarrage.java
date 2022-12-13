@@ -8,12 +8,13 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
+import start.structure.stockage.Session;
+
 import java.io.IOException;
 
 public class VueDemarrage {
 
     private final VueJeu vueJeu = new VueJeu();
-    private final VueParametre vueParametre = new VueParametre();
 
     private final VueConnexion vueConnexion = new VueConnexion();
     private final VueMeilleurScore vueMeilleurScore = new VueMeilleurScore();
@@ -67,6 +68,12 @@ public class VueDemarrage {
         parametre.setLayoutX(555);
         parametre.setLayoutY(540);
 
+        Button monCompte = new Button("Mon Compte");
+        monCompte.getStyleClass().add("buttonEcran");
+        monCompte.setLayoutX(100);
+        monCompte.setLayoutY(580);
+
+
         ///////// IMAGE ///////////
         Label menuScreen = new Label();
         Image image = new Image("file:src/main/resources/ImageMenu.png");
@@ -75,8 +82,13 @@ public class VueDemarrage {
         imageView.setFitWidth(1280);
         menuScreen.setGraphic(imageView);
 
-        pane.getChildren().addAll(menuScreen, nameGame, demarrerPartie, demarrerInfinit, connexionRegister, meilleurScore, parametre);
+        Label labelError = new Label();
+        labelError.getStyleClass().add("LabelError");
+        labelError.setLayoutX(100);
+        labelError.setLayoutY(500);
 
+        pane.getChildren().addAll(demarrerPartie,demarrerInfinit);
+        pane.getChildren().addAll(nameGame, connexionRegister, meilleurScore, monCompte, labelError, menuScreen);
         /**
          * Permet de lancer le jeu en mode classique
          * @param event
@@ -106,6 +118,7 @@ public class VueDemarrage {
          * @param event
          */
         parametre.setOnMouseClicked(event -> {
+            VueParametre vueParametre = new VueParametre();
             vueParametre.show();
         });
 
@@ -123,6 +136,17 @@ public class VueDemarrage {
          */
         meilleurScore.setOnMouseClicked(event -> {
             vueMeilleurScore.show();
+        });
+
+        monCompte.setOnMouseClicked(event -> {
+            labelError.setText("");
+            if (Session.getInstance().isConnected()) {
+                VueCompte vueCompte = new VueCompte();
+                vueCompte.show();
+            } else {
+                labelError.setText("Vous devez être connecté \n " +
+                        "pour accéder à votre compte");
+            }
         });
 
     }

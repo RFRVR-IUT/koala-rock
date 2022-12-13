@@ -99,7 +99,7 @@ public class StockageScoreDatabase {
         Score score = null;
         SQLUtils utils = SQLUtils.getInstance();
         Connection connection = utils.getConnection();
-        String req = "SELECT * FROM SCORES WHERE login = ? AND codeJeu = ? ORDER BY score DESC LIMIT 1";
+        String req = "SELECT * FROM SCORES WHERE login = ? AND codeJeu = ? ORDER BY score";
         try (
                 PreparedStatement st = connection.prepareStatement(req);
         ) {

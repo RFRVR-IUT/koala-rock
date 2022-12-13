@@ -88,10 +88,11 @@
 }
 
 .LabelConnexionField{
-    -fx-text-fill: white;
     -fx-font-family: 'Goldman', sans-serif;
-    -fx-font-size: 20px;
+    -fx-font-size: 30px;
 }
+
+
 
 .buttonConnexion{
     -fx-padding: 8 15 15 15;
@@ -127,4 +128,10 @@
 .buttonConnexionRetour:pressed {
     -fx-padding: 10 15 13 15;
     -fx-background-insets: 2 0 0 0, 2 0 3 0, 2 0 4 0, 2 0 5 0;
+}
+
+.LabelError{
+    -fx-text-fill: red;
+    -fx-font-family: 'Goldman', sans-serif;
+    -fx-font-size: 20px;
 }
