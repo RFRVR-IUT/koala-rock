@@ -8,8 +8,10 @@ import javafx.scene.control.PasswordField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
+import javafx.scene.paint.Color;
 import javafx.scene.paint.ImagePattern;
 import javafx.scene.paint.Paint;
+import javafx.scene.shape.Line;
 import javafx.stage.Stage;
 import start.structure.Model.*;
 import start.structure.metier.entite.Score;
@@ -29,32 +31,46 @@ public class VueCompte extends Stage {
         Label label = new Label(Session.getInstance().getLogin());
         System.out.println(Session.getInstance().getLogin());
         label.getStyleClass().add("nomJeu");
-        label.setLayoutX(25);
+        label.setLayoutX(45);
         label.setLayoutY(25);
 
         //chemp de modification du mot de passe avec un bouton de validation
+
+        Label labelModificationMDP = new Label("Modification du mot de passe");
+        labelModificationMDP.getStyleClass().add("LabelConnexionField");
+        labelModificationMDP.setLayoutX(25);
+        labelModificationMDP.setLayoutY(130);
+
+        Line line = new Line();
+        line.setStartX(350.0f);
+        line.setStartY(100.0f);
+        line.setEndX(350.0f);
+        line.setEndY(500.0f);
+        line.setStrokeWidth(5);
+        line.setStroke(Color.WHITE);
+
         Label labelMotDePasse = new Label("Mot de passe");
         labelMotDePasse.getStyleClass().add("LabelConnexionField");
-        labelMotDePasse.setLayoutX(50);
+        labelMotDePasse.setLayoutX(90);
         labelMotDePasse.setLayoutY(200);
         PasswordField passwordField = new PasswordField();
         passwordField.getStyleClass().add("TextFieldConnexion");
-        passwordField.setLayoutX(50);
+        passwordField.setLayoutX(90);
         passwordField.setLayoutY(225);
 
 
-        Label labelMotDePasse2 = new Label("Valider mot de passe");
+        Label labelMotDePasse2 = new Label("Confirmation");
         labelMotDePasse2.getStyleClass().add("LabelConnexionField");
-        labelMotDePasse2.setLayoutX(50);
+        labelMotDePasse2.setLayoutX(90);
         labelMotDePasse2.setLayoutY(300);
         PasswordField passwordField2 = new PasswordField();
         passwordField2.getStyleClass().add("TextFieldConnexion");
-        passwordField2.setLayoutX(50);
+        passwordField2.setLayoutX(90);
         passwordField2.setLayoutY(325);
 
         Button buttonConnexion = new Button("Changer mot de passe");
         buttonConnexion.getStyleClass().add("buttonConnexion");
-        buttonConnexion.setLayoutX(50);
+        buttonConnexion.setLayoutX(60);
         buttonConnexion.setLayoutY(400);
 
         Label labelErreur = new Label();
@@ -69,13 +85,13 @@ public class VueCompte extends Stage {
 
         Button supprimerCompte = new Button("SupprimerCompte");
         supprimerCompte.getStyleClass().add("buttonConnexionRetour");
-        supprimerCompte.setLayoutX(50);
-        supprimerCompte.setLayoutY(90);
+        supprimerCompte.setLayoutX(710);
+        supprimerCompte.setLayoutY(550);
 
         Button deconnexion = new Button("Deconnexion");
         deconnexion.getStyleClass().add("buttonConnexion");
-        deconnexion.setLayoutX(50);
-        deconnexion.setLayoutY(150);
+        deconnexion.setLayoutX(400);
+        deconnexion.setLayoutY(550);
 
         boutonRetour.setOnMouseClicked(event -> {
             this.close();
@@ -134,6 +150,8 @@ public class VueCompte extends Stage {
 
         pane.getChildren().addAll(label, labelMotDePasse, passwordField, labelMotDePasse2, passwordField2, buttonConnexion, labelMeilleurScore, boutonRetour, supprimerCompte, deconnexion);
         pane.getChildren().add(labelErreur);
+        pane.getChildren().add(labelModificationMDP);
+        pane.getChildren().add(line);
 
         setTitle("Paramètre");
         setResizable(false);
