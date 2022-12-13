@@ -1,12 +1,10 @@
 package start.structure.View;
 
-import javafx.animation.PauseTransition;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
-import javafx.util.Duration;
 import start.structure.metier.entite.AuthPlayer;
 import start.structure.metier.manager.PlayerManager;
 import start.structure.stockage.Security;
@@ -23,8 +21,6 @@ public class VueConnexion extends Stage {
     Security security = new Security();
 
     public VueConnexion() {
-        Pane pane = new Pane();
-        Scene scene = new Scene(pane, 950, 650);
         scene.getStylesheets().add("file:src/main/resources/css/style.css");
 
 
@@ -93,6 +89,7 @@ public class VueConnexion extends Stage {
         buttonInscription.getStyleClass().add("buttonConnexion");
         buttonInscription.setLayoutX(580);
         buttonInscription.setLayoutY(500);
+
 
         //RETOUR
         Button buttonRetour = new Button("Retour");

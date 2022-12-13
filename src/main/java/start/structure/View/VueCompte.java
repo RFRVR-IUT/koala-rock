@@ -67,6 +67,16 @@ public class VueCompte extends Stage {
         boutonRetour.setLayoutX(50);
         boutonRetour.setLayoutY(550);
 
+        Button supprimerCompte = new Button("SupprimerCompte");
+        supprimerCompte.getStyleClass().add("buttonConnexionRetour");
+        supprimerCompte.setLayoutX(50);
+        supprimerCompte.setLayoutY(90);
+
+        Button deconnexion = new Button("Deconnexion");
+        deconnexion.getStyleClass().add("buttonConnexion");
+        deconnexion.setLayoutX(50);
+        deconnexion.setLayoutY(150);
+
         boutonRetour.setOnMouseClicked(event -> {
             this.close();
         });
@@ -112,7 +122,17 @@ public class VueCompte extends Stage {
             }
         }
 
-        pane.getChildren().addAll(label, labelMotDePasse, passwordField, labelMotDePasse2, passwordField2, buttonConnexion, labelMeilleurScore, boutonRetour);
+        supprimerCompte.setOnMouseClicked(event -> {
+            VueSupprimerCompte vueSupprimerCompte = new VueSupprimerCompte();
+            vueSupprimerCompte.show();
+        });
+
+        deconnexion.setOnMouseClicked(event -> {
+            Session.getInstance().disconnect();
+            this.close();
+        });
+
+        pane.getChildren().addAll(label, labelMotDePasse, passwordField, labelMotDePasse2, passwordField2, buttonConnexion, labelMeilleurScore, boutonRetour, supprimerCompte, deconnexion);
         pane.getChildren().add(labelErreur);
 
         setTitle("Paramètre");
