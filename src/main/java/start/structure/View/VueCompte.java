@@ -11,6 +11,7 @@ import javafx.scene.paint.ImagePattern;
 import javafx.scene.paint.Paint;
 import javafx.stage.Stage;
 import start.structure.Model.*;
+import start.structure.stockage.Session;
 
 public class VueCompte extends Stage {
 
@@ -18,6 +19,14 @@ public class VueCompte extends Stage {
         Pane pane = new Pane();
         Scene scene = new Scene(pane, 950, 650);
         scene.getStylesheets().add("file:src/main/resources/css/style.css");
+
+        Label label = new Label("Connecté en tant que : \n" + Session.getInstance().getLogin());
+        System.out.println(Session.getInstance().getLogin());
+        label.getStyleClass().add("nameGame");
+        label.setLayoutX(0);
+        label.setLayoutY(0);
+
+        pane.getChildren().add(label);
 
         setTitle("Paramètre");
         setResizable(false);

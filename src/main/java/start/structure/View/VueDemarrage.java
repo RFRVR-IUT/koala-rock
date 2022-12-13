@@ -20,8 +20,6 @@ public class VueDemarrage {
     private final VueConnexion vueConnexion = new VueConnexion();
     private final VueMeilleurScore vueMeilleurScore = new VueMeilleurScore();
 
-    private final VueCompte vueCompte = new VueCompte();
-
 
     public void screenStart() {
         Stage stage = new Stage();
@@ -130,6 +128,7 @@ public class VueDemarrage {
         monCompte.setOnMouseClicked(event -> {
             labelError.setText("");
             if (Session.getInstance().isConnected()) {
+                VueCompte vueCompte = new VueCompte();
                 vueCompte.show();
             } else {
                 labelError.setText("Vous devez être connecté \n " +
