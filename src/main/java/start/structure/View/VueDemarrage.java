@@ -87,8 +87,12 @@ public class VueDemarrage {
         labelError.setLayoutX(100);
         labelError.setLayoutY(500);
 
-        pane.getChildren().addAll(demarrerPartie,demarrerInfinit);
-        pane.getChildren().addAll(nameGame, connexionRegister, meilleurScore, monCompte, labelError, menuScreen);
+        pane.getChildren().add(nameGame);
+        pane.getChildren().addAll(labelError,menuScreen);
+        pane.getChildren().addAll(demarrerPartie, demarrerInfinit);
+        pane.getChildren().addAll(parametre, connexionRegister, meilleurScore, monCompte);
+
+
         /**
          * Permet de lancer le jeu en mode classique
          * @param event
