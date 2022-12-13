@@ -43,15 +43,21 @@ public class VueMeilleurScore extends Stage {
 
             labelPseudo.setFont(new javafx.scene.text.Font("Arial", 20));
             labelPseudo.setTextFill(javafx.scene.paint.Color.WHITE);
+            labelScore.setFont(new javafx.scene.text.Font("Arial", 20));
+            labelScore.setTextFill(javafx.scene.paint.Color.WHITE);
+            place.setFont(new javafx.scene.text.Font("Arial", 20));
+            place.setTextFill(javafx.scene.paint.Color.WHITE);
 
             labelPseudo.setLayoutX(100);
             labelPseudo.setLayoutY(115+25*(i+1));
-            labelScore.setLayoutX(50);
-            labelScore.setLayoutY(200);
-            place.setLayoutX(50*(i+1));
-            place.setLayoutY(250);
+            labelScore.setLayoutX(200);
+            labelScore.setLayoutY(115+25*(i+1));
+            place.setLayoutX(50);
+            place.setLayoutY(115+25*(i+1));
 
             pane.getChildren().add(labelPseudo);
+            pane.getChildren().add(labelScore);
+            pane.getChildren().add(place);
             i++;
         }
 
