@@ -72,9 +72,9 @@ public class VueMeilleurScore extends Stage {
             labelPseudo.setFont(new javafx.scene.text.Font("Goldman", 40));
             place.setFont(new javafx.scene.text.Font("Goldman", 40));
 */
-            labelScore.getStyleClass().add("LabelConnexionField");
-            labelPseudo.getStyleClass().add("LabelConnexionField");
-            place.getStyleClass().add("LabelConnexionField");
+            labelScore.getStyleClass().add("LabelScore");
+            labelPseudo.getStyleClass().add("LabelScore");
+            place.getStyleClass().add("LabelScore");
 
             labelPseudo.setLayoutX(350);
             labelPseudo.setLayoutY(115+25*(i+1));

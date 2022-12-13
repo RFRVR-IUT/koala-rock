@@ -88,7 +88,8 @@ public class VueDemarrage {
         labelError.setLayoutY(500);
 
 
-        pane.getChildren().addAll(labelError,menuScreen);
+        pane.getChildren().add(menuScreen);
+        pane.getChildren().add(labelError);
         pane.getChildren().addAll(demarrerPartie, demarrerInfinit);
         pane.getChildren().addAll(parametre, connexionRegister, meilleurScore, monCompte);
         pane.getChildren().add(nameGame);

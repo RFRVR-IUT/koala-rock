@@ -20,11 +20,13 @@ public class VueCompte extends Stage {
         Scene scene = new Scene(pane, 950, 650);
         scene.getStylesheets().add("file:src/main/resources/css/style.css");
 
-        Label label = new Label("Connecté en tant que : \n" + Session.getInstance().getLogin());
+        Label label = new Label(Session.getInstance().getLogin());
         System.out.println(Session.getInstance().getLogin());
         label.getStyleClass().add("nameGame");
         label.setLayoutX(0);
         label.setLayoutY(0);
+
+
 
         pane.getChildren().add(label);
 
