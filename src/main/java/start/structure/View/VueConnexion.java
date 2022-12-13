@@ -7,12 +7,17 @@ import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 import start.structure.metier.entite.AuthPlayer;
 import start.structure.metier.manager.PlayerManager;
+import start.structure.stockage.Security;
+
+import java.security.InvalidKeyException;
+import java.security.NoSuchAlgorithmException;
 
 import static java.lang.constant.ConstantDescs.NULL;
 
 public class VueConnexion extends Stage {
     Pane pane = new Pane();
     Scene scene = new Scene(pane, 950, 650);
+    Security security = new Security();
 
     public VueConnexion() {;
         Pane pane = new Pane();
@@ -109,6 +114,8 @@ public class VueConnexion extends Stage {
                     labelErreur.setText("Veuillez remplir tous les champs d'incription");
                 } else if (!passwordFieldInscription.getText().equals(passwordFieldInscription2.getText())) {
                     labelErreur.setText("Les mots de passe ne correspondent pas");
+                    passwordFieldInscription.setText("");
+                    passwordFieldInscription2.setText("");
                 } else {
                     try {
                         PlayerManager.getInstance().createPlayer(textFieldPseudoInscription.getText(), passwordFieldInscription.getText());
@@ -122,15 +129,30 @@ public class VueConnexion extends Stage {
             }
         });
 
-//        buttonConnexion.setOnAction(event -> {
-//            //if error -> labelErreur.setText("Erreur");
-//            labelErreur.setText("");
-//            if (PlayerManager.getInstance().getPlayer(textFieldPseudo.getText()) == null){
-//                labelErreur.setText("Ce pseudo n'existe pas");
-//            } else {
-//
-//            }
-//        });
+        buttonConnexion.setOnAction(event -> {
+            //if error -> labelErreur.setText("Erreur");
+            labelErreur.setText("");
+            if (PlayerManager.getInstance().getPlayer(textFieldPseudo.getText()) == null){
+                labelErreur.setText("Ce pseudo n'existe pas");
+            } else {
+                AuthPlayer authPlayer = PlayerManager.getInstance().getPlayer(textFieldPseudo.getText());
+                try {
+                    if (security.checkPassword(passwordField.getText(), authPlayer.getSalt(), authPlayer.getHashedPassword())) {
+                        labelErreur.setText("Connexion réussie");
+                        textFieldPseudo.setText("");
+                        passwordField.setText("");
+                }
+                    else {
+                        labelErreur.setText("Mot de passe incorrect");
+                        passwordField.setText("");
+                    }
+                } catch (NoSuchAlgorithmException e) {
+                    throw new RuntimeException(e);
+                } catch (InvalidKeyException e) {
+                    throw new RuntimeException(e);
+                }
+            }
+        });
 
         buttonRetour.setOnAction(event -> {
             this.close();
