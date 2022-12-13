@@ -29,7 +29,7 @@ public class VueParametre extends Stage {
         comboBoxJoueurPrincipale.getItems().addAll("Panda", "Samurai");
         comboBoxJoueurPrincipale.setValue("Panda");
         comboBoxJoueurPrincipale.getItems().addAll("Panda");
-        comboBoxJoueurPrincipale.setValue("Default");
+        comboBoxJoueurPrincipale.setValue("Panda");
         if(Session.getInstance().getLogin() != null){
             if(ScoreManager.getInstance().getHighScoreByLogin(Session.getInstance().getLogin()) != null){
                 if(ScoreManager.getInstance().getHighScoreByLogin(Session.getInstance().getLogin()).getScore() > 10){
@@ -57,9 +57,6 @@ public class VueParametre extends Stage {
         /**
          * ComboBox pour le choix de l'ennemie
          */
-        ComboBox<String> comboBoxPersonnageEnnemie = new ComboBox<>();
-        comboBoxPersonnageEnnemie.getItems().addAll("Koala");
-        comboBoxPersonnageEnnemie.setValue("Default");
 
         if(Session.getInstance().getLogin() != null){
             if(ScoreManager.getInstance().getHighScoreByLogin(Session.getInstance().getLogin()) != null) {
