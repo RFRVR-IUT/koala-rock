@@ -15,8 +15,6 @@ import java.io.IOException;
 public class VueMenu {
 
     private final VueJeu vueJeu = new VueJeu();
-
-    private final VueConnexion vueConnexion = new VueConnexion();
     private final VueMeilleurScore vueMeilleurScore = new VueMeilleurScore();
 
 
@@ -133,6 +131,7 @@ public class VueMenu {
          * @param event
          */
         connexionRegister.setOnMouseClicked(event -> {
+            VueConnexion vueConnexion = new VueConnexion();
             vueConnexion.show();
         });
 
