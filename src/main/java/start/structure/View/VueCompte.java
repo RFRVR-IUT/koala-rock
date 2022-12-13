@@ -12,8 +12,12 @@ import javafx.scene.paint.ImagePattern;
 import javafx.scene.paint.Paint;
 import javafx.stage.Stage;
 import start.structure.Model.*;
+import start.structure.metier.entite.Score;
 import start.structure.metier.manager.PlayerManager;
+import start.structure.metier.manager.ScoreManager;
 import start.structure.stockage.Session;
+
+import java.util.List;
 
 public class VueCompte extends Stage {
 
@@ -48,7 +52,7 @@ public class VueCompte extends Stage {
         passwordField2.setLayoutX(50);
         passwordField2.setLayoutY(325);
 
-        Button buttonConnexion = new Button("Modifier");
+        Button buttonConnexion = new Button("Changer mot de passe");
         buttonConnexion.getStyleClass().add("buttonConnexion");
         buttonConnexion.setLayoutX(50);
         buttonConnexion.setLayoutY(400);
@@ -71,7 +75,34 @@ public class VueCompte extends Stage {
                 }
             });
 
-        pane.getChildren().addAll(label, labelMotDePasse, passwordField, labelMotDePasse2, passwordField2, buttonConnexion);
+
+        //10 meilleurs score du joueurs avec la date
+        Label labelMeilleurScore = new Label("Meilleurs scores");
+        labelMeilleurScore.getStyleClass().add("nomJeu");
+        labelMeilleurScore.setLayoutX(400);
+        labelMeilleurScore.setLayoutY(75);
+        List<Score> scores = ScoreManager.getInstance().getScores();
+        int i = 0;
+        for (Score score : scores) {
+            if (score.getLogin().equals(Session.getInstance().getLogin())) {
+                Label labelScore = new Label(score.getScore()+"");
+                labelScore.getStyleClass().add("LabelConnexionField");
+                labelScore.setLayoutX(450);
+                labelScore.setLayoutY(150 + i * 35);
+                Label labelDate = new Label(score.getHorodatage()+"");
+                labelDate.getStyleClass().add("LabelConnexionField");
+                labelDate.setLayoutX(600);
+                labelDate.setLayoutY(150 + i * 35);
+                Label place = new Label((i+1)+".");
+                place.getStyleClass().add("LabelConnexionField");
+                place.setLayoutX(400);
+                place.setLayoutY(150 + i * 35);
+                pane.getChildren().addAll(labelScore, labelDate, place);
+                i++;
+            }
+        }
+
+        pane.getChildren().addAll(label, labelMotDePasse, passwordField, labelMotDePasse2, passwordField2, buttonConnexion, labelMeilleurScore);
         pane.getChildren().add(labelErreur);
 
         setTitle("Paramètre");

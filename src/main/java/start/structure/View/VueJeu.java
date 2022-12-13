@@ -6,8 +6,10 @@ import javafx.beans.property.LongProperty;
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleLongProperty;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.Pane;
@@ -146,8 +148,22 @@ public class VueJeu {
         button_Espace.getStyleClass().add("button_Action");
         button_Espace.setLayoutX(75);
         button_Espace.setLayoutY(600);
+
+        Button buttonMenuPrincipal = new Button("Menu Principal");
+        buttonMenuPrincipal.getStyleClass().add("buttonEcran");
+        buttonMenuPrincipal.setLayoutX(1080);
+        buttonMenuPrincipal.setLayoutY(50);
         //////////////// End Button ///////////////////////
 
+        buttonMenuPrincipal.setOnMouseClicked(event -> {
+            new VueMenu().demarrerMenu(stage);
+        });
+
+        buttonMenuPrincipal.setOnKeyPressed(event -> {
+            if (event.getCode() == KeyCode.ESCAPE) {
+                new VueMenu().demarrerMenu(stage);
+            }
+        });
 
         //////////////// Chronometre ///////////////////////
         timer = new AnimationTimer() {
@@ -229,7 +245,7 @@ public class VueJeu {
         interfaceJeu.setStyle("-fx-background-color: #000000;");
 
         interfaceJeu.getChildren().addAll(score, vie, nomJeu, chrono);
-        interfaceJeu.getChildren().addAll(button_Bas, button_Haut, button_Gauche, button_Droite, button_Espace);
+        interfaceJeu.getChildren().addAll(button_Bas, button_Haut, button_Gauche, button_Droite, button_Espace, buttonMenuPrincipal);
 
         System.out.println(echelle1.getLayoutX());
 
@@ -539,6 +555,7 @@ public class VueJeu {
                     System.out.println(personnePrincipale.getLayoutX());
                     System.out.println(personnePrincipale.getLayoutY());
                     System.out.println(personnePrincipale.getScore());
+
             }
         });
     }
