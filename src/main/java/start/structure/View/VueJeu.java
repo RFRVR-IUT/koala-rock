@@ -44,6 +44,7 @@ public class VueJeu {
     private Label button_Bas, button_Haut, button_Gauche, button_Droite, button_Espace;
     private ImageView image_Bas, image_Haut, image_Gauche, image_Droite, image_Espace;
     private AnimationTimer timer;
+    private AnimationTimer collisionTimer;
     private Timeline timelineTonneaux = new Timeline();
 
     public IntegerProperty getScore() {
@@ -169,6 +170,9 @@ public class VueJeu {
         boutonMenuPrincipal.setOnMouseClicked(event -> {
             alert.showAndWait();
             if (alert.getResult() == ButtonType.YES) {
+                supprimerElements(jeu,tonneaux,echelles,echellesBrokens,personnePrincipale,dk);
+                collisionTimer.stop();
+                timer.stop();
                 VueMenu vueMenu = new VueMenu();
                 vueMenu.demarrerMenu(stage);
             } else if (alert.getResult() == ButtonType.NO) {
@@ -308,7 +312,7 @@ public class VueJeu {
         /**
          * Boucle de jeu
          */
-        AnimationTimer collisionTimer = new AnimationTimer() {
+        collisionTimer = new AnimationTimer() {
             @Override
             public void handle(long now) {
                 if (personnePrincipale.collisionTonneaux(tonneaux) == -1 && !isPause) {
