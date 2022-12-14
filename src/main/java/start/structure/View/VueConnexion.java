@@ -133,24 +133,28 @@ public class VueConnexion extends Stage {
         buttonConnexion.setOnAction(event -> {
             //if error -> labelErreur.setText("Erreur");
             labelErreur.setText("");
-            if (PlayerManager.getInstance().getPlayer(textFieldPseudo.getText()) == null) {
-                labelErreur.setText("Ce pseudo n'existe pas");
+            if (textFieldPseudo.getText().equals("") || passwordField.getText().equals("") ) {
+                labelErreur.setText("Veuillez remplir tous les champs d'incription");
             } else {
-                AuthPlayer authPlayer = PlayerManager.getInstance().getPlayer(textFieldPseudo.getText());
-                try {
-                    if (security.checkPassword(passwordField.getText(), authPlayer.getSalt(), authPlayer.getHashedPassword())) {
-                        labelErreur.setText("Connexion réussie");
-                        Session.getInstance().connect(textFieldPseudo.getText());
-                        textFieldPseudo.setText("");
-                        passwordField.setText("");
-                    } else {
-                        labelErreur.setText("Mot de passe incorrect");
-                        passwordField.setText("");
+                if (PlayerManager.getInstance().getPlayer(textFieldPseudo.getText()) == null) {
+                    labelErreur.setText("Ce pseudo n'existe pas");
+                } else {
+                    AuthPlayer authPlayer = PlayerManager.getInstance().getPlayer(textFieldPseudo.getText());
+                    try {
+                        if (security.checkPassword(passwordField.getText(), authPlayer.getSalt(), authPlayer.getHashedPassword())) {
+                            labelErreur.setText("Connexion réussie");
+                            Session.getInstance().connect(textFieldPseudo.getText());
+                            textFieldPseudo.setText("");
+                            passwordField.setText("");
+                        } else {
+                            labelErreur.setText("Mot de passe incorrect");
+                            passwordField.setText("");
+                        }
+                    } catch (NoSuchAlgorithmException e) {
+                        throw new RuntimeException(e);
+                    } catch (InvalidKeyException e) {
+                        throw new RuntimeException(e);
                     }
-                } catch (NoSuchAlgorithmException e) {
-                    throw new RuntimeException(e);
-                } catch (InvalidKeyException e) {
-                    throw new RuntimeException(e);
                 }
             }
         });
