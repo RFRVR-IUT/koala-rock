@@ -141,6 +141,7 @@ public class VueCompte extends Stage {
             if (alert.getResult() == ButtonType.OK) {
                 PlayerManager.getInstance().deletePlayer(Session.getInstance().getLogin());
                 Session.getInstance().disconnect();
+                this.close();
             } else if (alert.getResult() == ButtonType.CANCEL) {
                 alert.close();
             }
