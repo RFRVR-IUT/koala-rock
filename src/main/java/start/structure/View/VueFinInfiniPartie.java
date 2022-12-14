@@ -66,7 +66,7 @@ public class VueFinInfiniPartie {
         quitter.setLayoutX(740);
         quitter.setLayoutY(570);
 
-        pane.getChildren().addAll(deadScreen, nameGame, score, recommencer, quitter);
+        pane.getChildren().addAll(deadScreen, nameGame, score, recommencer, quitter,retourMenu);
 
         recommencer.setOnMouseClicked(event -> {
             try {
