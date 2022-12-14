@@ -6,6 +6,8 @@ import javafx.beans.property.LongProperty;
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleLongProperty;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyEvent;
@@ -155,9 +157,23 @@ public class VueJeu {
 
         //////////////// End Button ///////////////////////
 
+        //// ALERTE ////
+
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle("Voulez-vous vraiment quitter ?");
+        alert.setHeaderText("Vous êtes sur le point de quitter le jeu");
+        alert.setContentText("Voulez-vous vraiment quitter ?");
+        alert.getButtonTypes().setAll(ButtonType.YES, ButtonType.NO);
+
+
         boutonMenuPrincipal.setOnMouseClicked(event -> {
-            VueMenu vueMenu = new VueMenu();
-            vueMenu.demarrerMenu(stage);
+            alert.showAndWait();
+            if (alert.getResult() == ButtonType.YES) {
+                VueMenu vueMenu = new VueMenu();
+                vueMenu.demarrerMenu(stage);
+            } else if (alert.getResult() == ButtonType.NO) {
+                alert.close();
+            }
         });
 
         //////////////// Chronometre ///////////////////////
