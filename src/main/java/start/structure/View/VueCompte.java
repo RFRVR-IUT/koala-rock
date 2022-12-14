@@ -1,13 +1,10 @@
 package start.structure.View;
 
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.PasswordField;
+import javafx.scene.control.*;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Line;
-import javafx.scene.shape.Rectangle;
 import javafx.stage.Stage;
 import start.structure.metier.entite.Score;
 import start.structure.metier.manager.PlayerManager;
@@ -135,43 +132,18 @@ public class VueCompte extends Stage {
 
         supprimerCompte.setOnMouseClicked(event -> {
 
-            Label alerte = new Label("Voulez vous vraiment \n" +
-                    " supprimer votre compte ?");
-            alerte.getStyleClass().add("LabelError");
-            alerte.setLayoutX(320);
-            alerte.setLayoutY(250);
+            Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+            alert.setTitle("Suppression du compte");
+            alert.setHeaderText("Voulez-vous vraiment supprimer votre compte ?");
+            alert.setContentText("Attention, cette action est irréversible");
+            alert.showAndWait();
 
-            Rectangle rectangle = new Rectangle();
-            rectangle.setX(250);
-            rectangle.setY(200);
-            rectangle.setWidth(300);
-            rectangle.setHeight(200);
-
-            rectangle.setArcHeight(50);
-            rectangle.setArcWidth(50);
-            rectangle.setFill(Color.BLACK);
-
-            Button oui = new Button("Oui");
-            oui.getStyleClass().add("buttonConnexionRetour");
-            oui.setLayoutX(320);
-            oui.setLayoutY(325);
-
-            Button non = new Button("Non");
-            non.getStyleClass().add("buttonConnexion");
-            non.setLayoutX(520);
-            non.setLayoutY(325);
-
-            oui.setOnAction(e -> {
+            if (alert.getResult() == ButtonType.OK) {
                 PlayerManager.getInstance().deletePlayer(Session.getInstance().getLogin());
                 Session.getInstance().disconnect();
-                this.close();
-                pane.getChildren().removeAll(oui, non, rectangle, alerte);
-            });
-            non.setOnAction(e -> {
-                pane.getChildren().removeAll(oui, non, rectangle, alerte);
-            });
-
-            pane.getChildren().addAll(rectangle, oui, non, alerte);
+            } else if (alert.getResult() == ButtonType.CANCEL) {
+                alert.close();
+            }
         });
 
         deconnexion.setOnMouseClicked(event -> {
