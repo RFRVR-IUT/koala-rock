@@ -23,8 +23,6 @@ public class VueParametre extends Stage {
 
         /////////////// ComboBox ///////////////
         ComboBox<String> comboBoxJoueurPrincipale = new ComboBox<>();
-        comboBoxJoueurPrincipale.getItems().addAll("Panda", "Samurai");
-        comboBoxJoueurPrincipale.setValue("Panda");
         comboBoxJoueurPrincipale.getItems().addAll("Panda");
         comboBoxJoueurPrincipale.setValue("Panda");
         if (Session.getInstance().getLogin() != null) {
@@ -36,7 +34,7 @@ public class VueParametre extends Stage {
         }
 
         ComboBox<String> comboBoxPersonnageEnnemie = new ComboBox<>();
-        comboBoxPersonnageEnnemie.getItems().addAll("Koala", "Ninja");
+        comboBoxPersonnageEnnemie.getItems().addAll("Koala");
         comboBoxPersonnageEnnemie.setValue("Koala");
 
         /**
