@@ -15,7 +15,6 @@ import java.io.IOException;
 public class VueMenu {
 
     private final VueJeu vueJeu = new VueJeu();
-    private final VueMeilleurScore vueMeilleurScore = new VueMeilleurScore();
 
 
     public void demarrerMenu(Stage stage) {
@@ -139,6 +138,7 @@ public class VueMenu {
          * @param event
          */
         meilleurScore.setOnMouseClicked(event -> {
+            VueMeilleurScore vueMeilleurScore = new VueMeilleurScore();
             vueMeilleurScore.show();
         });
 
