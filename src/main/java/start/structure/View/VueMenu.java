@@ -69,6 +69,11 @@ public class VueMenu {
         parametre.setLayoutX(120);
         parametre.setLayoutY(580);
 
+        Button quitter = new Button("Quitter");
+        quitter.getStyleClass().add("buttonEcran");
+        quitter.setLayoutX(575);
+        quitter.setLayoutY(580);
+
 
         ///////// IMAGE ///////////
         Label menuScreen = new Label();
@@ -87,7 +92,7 @@ public class VueMenu {
         pane.getChildren().add(menuScreen);
         pane.getChildren().add(labelError);
         pane.getChildren().addAll(demarrerPartie, demarrerInfinit);
-        pane.getChildren().addAll(parametre, connexionRegister, meilleurScore, monCompte);
+        pane.getChildren().addAll(parametre, connexionRegister, meilleurScore, monCompte, quitter);
         pane.getChildren().add(nameGame);
 
 
@@ -152,5 +157,8 @@ public class VueMenu {
             }
         });
 
+        quitter.setOnMouseClicked(event -> {
+            stage.close();
+        });
     }
 }

@@ -117,9 +117,10 @@ public class VueConnexion extends Stage {
                 } else {
                     try {
                         PlayerManager.getInstance().createPlayer(textFieldPseudoInscription.getText(), passwordFieldInscription.getText());
-                        labelPseudoInscription.setText("");
-                        labelMotDePasseInscription.setText("");
-                        labelMotDePasseInscription2.setText("");
+                        Session.getInstance().connect(textFieldPseudoInscription.getText());
+                        textFieldPseudoInscription.setText("");
+                        passwordFieldInscription.setText("");
+                        passwordFieldInscription2.setText("");
                         labelErreur.setText("Inscription réussie");
                     } catch (Exception e) {
                         labelErreur.setText("Erreur lors de l'inscription");

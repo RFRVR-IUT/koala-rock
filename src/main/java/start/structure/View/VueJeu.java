@@ -86,7 +86,7 @@ public class VueJeu {
         //////////////// Label ///////////////////////
         Label score = new Label("Score : 0");
         score.getStyleClass().add("Score_Vie");
-        score.setLayoutX(1080);
+        score.setLayoutX(900);
         score.setLayoutY(17);
 
         Label vie = new Label("Vie : 0");

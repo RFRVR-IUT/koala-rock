@@ -22,7 +22,7 @@ public class Echelle extends Group {
         Rectangle echelle = new Rectangle(x, y, width, height);
         Rectangle collision = new Rectangle(x - 10, y - 35, (width + 20), (height + 35));
         echelle.setFill(setChoixEchelle_Img(choixEchelle));
-        collision.setOpacity(0.5);
+        collision.setOpacity(0.0);
         this.getChildren().add(echelle);
         this.getChildren().add(collision);
     }
