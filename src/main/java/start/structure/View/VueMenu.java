@@ -86,7 +86,7 @@ public class VueMenu {
         Label labelError = new Label();
         labelError.getStyleClass().add("LabelError");
         labelError.setLayoutX(510);
-        labelError.setLayoutY(590);
+        labelError.setLayoutY(250);
 
 
         pane.getChildren().add(menuScreen);
