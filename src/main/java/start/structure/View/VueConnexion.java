@@ -121,7 +121,8 @@ public class VueConnexion extends Stage {
                         textFieldPseudoInscription.setText("");
                         passwordFieldInscription.setText("");
                         passwordFieldInscription2.setText("");
-                        labelErreur.setText("Inscription réussie");
+                        this.close();
+//                        labelErreur.setText("Inscription réussie");
                     } catch (Exception e) {
                         labelErreur.setText("Erreur lors de l'inscription");
                     }
@@ -143,10 +144,11 @@ public class VueConnexion extends Stage {
                     AuthPlayer authPlayer = PlayerManager.getInstance().getPlayer(textFieldPseudo.getText());
                     try {
                         if (security.checkPassword(passwordField.getText(), authPlayer.getSalt(), authPlayer.getHashedPassword())) {
-                            labelErreur.setText("Connexion réussie");
+//                            labelErreur.setText("Connexion réussie");
                             Session.getInstance().connect(textFieldPseudo.getText());
                             textFieldPseudo.setText("");
                             passwordField.setText("");
+                            this.close();
                         } else {
                             labelErreur.setText("Mot de passe incorrect");
                             passwordField.setText("");
