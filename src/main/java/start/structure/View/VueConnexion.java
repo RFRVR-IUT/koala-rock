@@ -144,11 +144,11 @@ public class VueConnexion extends Stage {
                     AuthPlayer authPlayer = PlayerManager.getInstance().getPlayer(textFieldPseudo.getText());
                     try {
                         if (security.checkPassword(passwordField.getText(), authPlayer.getSalt(), authPlayer.getHashedPassword())) {
-//                            labelErreur.setText("Connexion réussie");
+                            labelErreur.setText("Connexion réussie");
                             Session.getInstance().connect(textFieldPseudo.getText());
                             textFieldPseudo.setText("");
                             passwordField.setText("");
-                            this.close();
+//                            this.close();
                         } else {
                             labelErreur.setText("Mot de passe incorrect");
                             passwordField.setText("");

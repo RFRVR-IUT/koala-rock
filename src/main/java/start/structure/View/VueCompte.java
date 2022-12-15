@@ -112,7 +112,7 @@ public class VueCompte extends Stage {
         List<Score> scores = ScoreManager.getInstance().getScores();
         int i = 0;
         for (Score score : scores) {
-            if (score.getLogin().equals(Session.getInstance().getLogin())) {
+            if (score.getLogin() != null && score.getLogin().equals(Session.getInstance().getLogin())) {
                 Label labelScore = new Label(score.getScore() + "");
                 labelScore.getStyleClass().add("LabelConnexionField");
                 labelScore.setLayoutX(450);
