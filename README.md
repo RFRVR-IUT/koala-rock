@@ -1,6 +1,6 @@
 <h1 align="center">
   <br>
-  <img src="src/main/resources/start/structure/README_PIC/DK_TOP.png" alt="Donkey-Kong" width="200"></a>
+  <img src="src/main/resources/readMe/DK_TOP.png" alt="Donkey-Kong" width="200"></a>
   <br>
   Projet - Donkey Kong
   <br>
@@ -16,7 +16,7 @@
 
 <div align="center">
 
-![screenshot](src/main/resources/start/structure/README_PIC/Mario_gif.gif)
+![screenshot](src/main/resources/readMe/Mario_gif.gif)
   
 
 </div>
@@ -47,7 +47,7 @@ $ cd DK-Project
 
 
 <div align="center">
-<img src="src/main/resources/start/structure/README_PIC/LogoIUT.png" alt="Logo_IUT" width="400" height="150" />
+<img src="src/main/resources/readMe/LogoIUT.png" alt="Logo_IUT" width="400" height="150" />
 </div>
 
 <!--
