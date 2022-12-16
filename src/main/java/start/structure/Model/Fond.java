@@ -29,9 +29,9 @@ public class Fond extends Group {
      */
     public Paint setChoixFond_Img(String choixFond) {
         if (choixFond.equals("KOALA")) {
-            return new ImagePattern(new Image("fondKoala.png"));
+            return new ImagePattern(new Image("file:src/main/resources/fond/fondKoala.png"));
         } else if (choixFond.equals("NINJA")) {
-            return new ImagePattern(new Image("fondNinja.png"));
+            return new ImagePattern(new Image("file:src/main/resources/fond/fondNinja.png"));
         }
         return null;
     }

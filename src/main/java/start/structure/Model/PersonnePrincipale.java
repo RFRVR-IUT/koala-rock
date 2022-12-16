@@ -40,9 +40,9 @@ public class PersonnePrincipale extends Group {
     public Paint setChoixPersonnage_IDLE(String choixPersonnage) {
         System.out.println("Choix personnage : " + getChoixPersonnage());
         if (choixPersonnage.equals("PANDA")) {
-            return new ImagePattern(new Image("panda_idle.png"));
+            return new ImagePattern(new Image("file:src/main/resources/personnagePrincipale/Panda_Idle.png"));
         } else if (choixPersonnage.equals("SAMURAI")) {
-            return new ImagePattern(new Image("Samurai_IDLE.png"));
+            return new ImagePattern(new Image("file:src/main/resources/personnagePrincipale/Samurai_Idle.png"));
         }
         return null;
     }
@@ -55,9 +55,9 @@ public class PersonnePrincipale extends Group {
      */
     public Paint setChoixPersonnage_RUN(String choixPersonnage) {
         if (choixPersonnage.equals("PANDA")) {
-            return new ImagePattern(new Image("panda_idle.png"));
+            return new ImagePattern(new Image("file:src/main/resources/personnagePrincipale/Panda_Idle.png"));
         } else if (choixPersonnage.equals("SAMURAI")) {
-            return new ImagePattern(new Image("Samurai_RUN.png"));
+            return new ImagePattern(new Image("persoPrincipale/idle/personnagePrincipale/run/Samurai_Run.png"));
         }
         return null;
     }
@@ -70,9 +70,9 @@ public class PersonnePrincipale extends Group {
      */
     public Paint setChoixPersonnage_JUMP(String choixPersonnage) {
         if (choixPersonnage.equals("PANDA")) {
-            return new ImagePattern(new Image("panda_idle.png"));
+            return new ImagePattern(new Image("file:src/main/resources/personnagePrincipale/Panda_Idle.png"));
         } else if (choixPersonnage.equals("SAMURAI")) {
-            return new ImagePattern(new Image("Samurai_RUN2.png"));
+            return new ImagePattern(new Image("file:src/main/resources/personnagePrincipale/run/Samurai_Run2.png"));
         }
         return null;
     }
@@ -85,9 +85,9 @@ public class PersonnePrincipale extends Group {
      */
     public Paint setChoixPersonnage_CLIMB(String choixPersonnage) {
         if (choixPersonnage.equals("PANDA")) {
-            return new ImagePattern(new Image("Panda_Climb.png"));
+            return new ImagePattern(new Image("file:src/main/resources/personnagePrincipale/climb/Panda_Climb.png"));
         } else if (choixPersonnage.equals("SAMURAI")) {
-            return new ImagePattern(new Image("Samurai_Climb.png"));
+            return new ImagePattern(new Image("file:src/main/resources/personnagePrincipale/climb/Samurai_Climb.png"));
         }
         return null;
     }

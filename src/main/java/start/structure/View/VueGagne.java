@@ -58,7 +58,7 @@ public class VueGagne {
         nameGame.setLayoutY(80);
 
         Label menuScreen = new Label();
-        Image image = new Image("file:src/main/resources/ImageMenu.png");
+        Image image = new Image("file:src/main/resources/enu/ImageMenu.png");
         ImageView imageView = new ImageView(image);
         imageView.setFitHeight(720);
         imageView.setFitWidth(1280);

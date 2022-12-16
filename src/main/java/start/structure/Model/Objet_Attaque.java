@@ -42,9 +42,9 @@ public class Objet_Attaque extends Group {
      */
     public static Paint setChoixObjet_IDLE(String choixPersonnage) {
         if (choixPersonnage.equals("ROCHER")) {
-            return new ImagePattern(new Image("Rocher.png"));
+            return new ImagePattern(new Image("file:src/main/resources/objectAttaque/Rocher.png"));
         } else if (choixPersonnage.equals("SHURIKANE")) {
-            return new ImagePattern(new Image("Shurikane.png"));
+            return new ImagePattern(new Image("file:src/main/resources/objectAttaque/Shurikane.png"));
         }
         return null;
     }

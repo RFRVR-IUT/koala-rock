@@ -39,9 +39,9 @@ public class Echelle extends Group {
      */
     public Paint setChoixEchelle_Img(String choixEchelle) {
         if (choixEchelle.equals("KOALA")) {
-            return new ImagePattern(new Image("echelle_koala.png"));
+            return new ImagePattern(new Image("file:src/main/resources/echelle/echelle_koala.png"));
         } else if (choixEchelle.equals("NINJA")) {
-            return new ImagePattern(new Image("echelle_ninja.png"));
+            return new ImagePattern(new Image("file:src/main/resources/echelle/echelle_ninja.png"));
         }
         return null;
     }

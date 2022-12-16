@@ -44,7 +44,7 @@ public class VueFinInfiniPartie {
         score.setLayoutY(180);
 
         Label deadScreen = new Label();
-        Image image = new Image("file:src/main/resources/ImageMenu.png");
+        Image image = new Image("file:src/main/resources/menu/ImageMenu.png");
         ImageView imageView = new ImageView(image);
         imageView.setFitHeight(720);
         imageView.setFitWidth(1280);

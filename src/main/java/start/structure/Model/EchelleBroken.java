@@ -42,9 +42,9 @@ public class EchelleBroken extends Group {
      */
     public Paint setChoixEchelleBroken_Img(String choixEchelleBroken) {
         if (choixEchelleBroken.equals("KOALA")) {
-            return new ImagePattern(new Image("echelle_broken_koala.png"));
+            return new ImagePattern(new Image("file:src/main/resources/echelle/broken/echelle_broken_koala.png"));
         } else if (choixEchelleBroken.equals("NINJA")) {
-            return new ImagePattern(new Image("echelle_broken_ninja.png"));
+            return new ImagePattern(new Image("file:src/main/resources/echelle/broken/echelle_broken_ninja.png"));
         }
         return null;
     }

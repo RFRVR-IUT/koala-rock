@@ -23,9 +23,9 @@ public class PersonneEnnemie extends Group {
      */
     public Paint setChoixPersonnage_IDLE(String choixPersonnage) {
         if (choixPersonnage.equals("KOALA")) {
-            return new ImagePattern(new Image("koala.png"));
+            return new ImagePattern(new Image("file:src/main/resources/personnageEnnemie/koala.png"));
         } else if (choixPersonnage.equals("NINJA")) {
-            return new ImagePattern(new Image("Ninja.png"));
+            return new ImagePattern(new Image("file:src/main/resources/personnageEnnemie/Ninja.png"));
         }
         return null;
     }
@@ -38,9 +38,9 @@ public class PersonneEnnemie extends Group {
      */
     public Paint setChoixPersonnage_LANCE(String choixPersonnage) {
         if (choixPersonnage.equals("KOALA")) {
-            return new ImagePattern(new Image("koala-2.png"));
+            return new ImagePattern(new Image("file:src/main/resources/personnageEnnemie/koala-2.png"));
         } else if (choixPersonnage.equals("NINJA")) {
-            return new ImagePattern(new Image("Ninja-2.png"));
+            return new ImagePattern(new Image("file:src/main/resources/personnageEnnemie/Ninja-2.png"));
         }
         return null;
     }
