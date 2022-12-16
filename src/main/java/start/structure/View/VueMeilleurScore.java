@@ -39,7 +39,7 @@ public class VueMeilleurScore extends Stage {
         List<Score> scores = ScoreManager.getInstance().getScores();
         int i = 0;
 
-        while (i < 10 && i < scores.size()) {
+        while (i < 11 && i < scores.size()) {
             Label labelPseudo;
             if (scores.get(i).getLogin() == null) {
                 labelPseudo = new Label("Invité");
