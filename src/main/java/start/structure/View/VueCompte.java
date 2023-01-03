@@ -6,6 +6,7 @@ import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Line;
 import javafx.stage.Stage;
+import start.structure.RessourcesAccess;
 import start.structure.metier.entite.Score;
 import start.structure.metier.manager.PlayerManager;
 import start.structure.metier.manager.ScoreManager;
@@ -18,7 +19,7 @@ public class VueCompte extends Stage {
     public VueCompte() {
         Pane pane = new Pane();
         Scene scene = new Scene(pane, 950, 650);
-        scene.getStylesheets().add("file:src/main/resources/css/style.css");
+        scene.getStylesheets().add(String.valueOf(RessourcesAccess.class.getResource("css/style.css")));
 
         Label label = new Label(Session.getInstance().getLogin());
         System.out.println(Session.getInstance().getLogin());

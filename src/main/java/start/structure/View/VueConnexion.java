@@ -7,6 +7,7 @@ import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
+import start.structure.RessourcesAccess;
 import start.structure.metier.entite.AuthPlayer;
 import start.structure.metier.manager.PlayerManager;
 import start.structure.stockage.Security;
@@ -21,7 +22,7 @@ public class VueConnexion extends Stage {
     Security security = new Security();
 
     public VueConnexion() {
-        scene.getStylesheets().add("file:src/main/resources/css/style.css");
+        scene.getStylesheets().add(String.valueOf(RessourcesAccess.class.getResource("css/style.css")));
 
         /////////////// CONNEXION SCENE ///////////////
         Label label = new Label("Connexion");

@@ -5,6 +5,9 @@ import javafx.scene.image.Image;
 import javafx.scene.paint.ImagePattern;
 import javafx.scene.paint.Paint;
 import javafx.scene.shape.Rectangle;
+import start.structure.RessourcesAccess;
+
+import java.util.Objects;
 
 public class Echelle extends Group {
 
@@ -39,9 +42,9 @@ public class Echelle extends Group {
      */
     public Paint setChoixEchelle_Img(String choixEchelle) {
         if (choixEchelle.equals("KOALA")) {
-            return new ImagePattern(new Image("file:src/main/resources/echelle/echelle_koala.png"));
+            return new ImagePattern(new Image(Objects.requireNonNull(RessourcesAccess.class.getResourceAsStream("echelle/echelle_koala.png"))));
         } else if (choixEchelle.equals("NINJA")) {
-            return new ImagePattern(new Image("file:src/main/resources/echelle/echelle_ninja.png"));
+            return new ImagePattern(new Image(Objects.requireNonNull(RessourcesAccess.class.getResourceAsStream("echelle/echelle_ninja.png"))));
         }
         return null;
     }

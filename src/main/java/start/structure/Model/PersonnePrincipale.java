@@ -7,9 +7,11 @@ import javafx.scene.image.Image;
 import javafx.scene.paint.ImagePattern;
 import javafx.scene.paint.Paint;
 import javafx.scene.shape.Rectangle;
+import start.structure.RessourcesAccess;
 import start.structure.Sound.Son;
 
 import java.util.ArrayList;
+import java.util.Objects;
 
 public class PersonnePrincipale extends Group {
     protected final static double LARGEUR_MOITIE_PERSONNAGE = 5;
@@ -40,9 +42,9 @@ public class PersonnePrincipale extends Group {
     public Paint setChoixPersonnage_IDLE(String choixPersonnage) {
         System.out.println("Choix personnage : " + getChoixPersonnage());
         if (choixPersonnage.equals("PANDA")) {
-            return new ImagePattern(new Image("file:src/main/resources/personnagePrincipale/Panda_Idle.png"));
+            return new ImagePattern(new Image(Objects.requireNonNull(RessourcesAccess.class.getResourceAsStream("personnagePrincipale/Panda_Idle.png"))));
         } else if (choixPersonnage.equals("SAMURAI")) {
-            return new ImagePattern(new Image("file:src/main/resources/personnagePrincipale/Samurai_Idle.png"));
+            return new ImagePattern(new Image(Objects.requireNonNull(RessourcesAccess.class.getResourceAsStream("personnagePrincipale/Samurai_Idle.png"))));
         }
         return null;
     }
@@ -55,12 +57,13 @@ public class PersonnePrincipale extends Group {
      */
     public Paint setChoixPersonnage_RUN(String choixPersonnage) {
         if (choixPersonnage.equals("PANDA")) {
-            return new ImagePattern(new Image("file:src/main/resources/personnagePrincipale/Panda_Idle.png"));
+            return new ImagePattern(new Image(Objects.requireNonNull(RessourcesAccess.class.getResourceAsStream("personnagePrincipale/Panda_Idle.png"))));
         } else if (choixPersonnage.equals("SAMURAI")) {
-            return new ImagePattern(new Image("persoPrincipale/idle/personnagePrincipale/run/Samurai_Run.png"));
+            return new ImagePattern(new Image(Objects.requireNonNull(RessourcesAccess.class.getResourceAsStream("personnagePrincipale/run/Samurai_Run.png"))));
         }
         return null;
     }
+
 
     /**
      * Choix de l'image du personnage personne sauter
@@ -70,9 +73,9 @@ public class PersonnePrincipale extends Group {
      */
     public Paint setChoixPersonnage_JUMP(String choixPersonnage) {
         if (choixPersonnage.equals("PANDA")) {
-            return new ImagePattern(new Image("file:src/main/resources/personnagePrincipale/Panda_Idle.png"));
+            return new ImagePattern(new Image(Objects.requireNonNull(RessourcesAccess.class.getResourceAsStream("personnagePrincipale/Panda_Idle.png"))));
         } else if (choixPersonnage.equals("SAMURAI")) {
-            return new ImagePattern(new Image("file:src/main/resources/personnagePrincipale/run/Samurai_Run2.png"));
+            return new ImagePattern(new Image(Objects.requireNonNull(RessourcesAccess.class.getResourceAsStream("personnagePrincipale/run/Samurai_Run2.png"))));
         }
         return null;
     }
@@ -85,9 +88,9 @@ public class PersonnePrincipale extends Group {
      */
     public Paint setChoixPersonnage_CLIMB(String choixPersonnage) {
         if (choixPersonnage.equals("PANDA")) {
-            return new ImagePattern(new Image("file:src/main/resources/personnagePrincipale/climb/Panda_Climb.png"));
+            return new ImagePattern(new Image(Objects.requireNonNull(RessourcesAccess.class.getResourceAsStream("personnagePrincipale/climb/Panda_Climb.png"))));
         } else if (choixPersonnage.equals("SAMURAI")) {
-            return new ImagePattern(new Image("file:src/main/resources/personnagePrincipale/climb/Samurai_Climb.png"));
+            return new ImagePattern(new Image(Objects.requireNonNull(RessourcesAccess.class.getResourceAsStream("personnagePrincipale/climb/Samurai_Climb.png"))));
         }
         return null;
     }

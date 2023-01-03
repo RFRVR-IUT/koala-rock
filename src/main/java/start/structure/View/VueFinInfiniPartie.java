@@ -8,8 +8,10 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
+import start.structure.RessourcesAccess;
 
 import java.io.IOException;
+import java.util.Objects;
 
 public class VueFinInfiniPartie {
     private VueJeu vueJeu;
@@ -28,7 +30,7 @@ public class VueFinInfiniPartie {
         borderPane.setCenter(pane);
 
         Scene scene = new Scene(borderPane, 1280, 720);
-        scene.getStylesheets().add("file:src/main/resources/css/style.css");
+        scene.getStylesheets().add(String.valueOf(RessourcesAccess.class.getResource("css/style.css")));
         stage.setScene(scene);
         stage.show();
 
@@ -44,7 +46,7 @@ public class VueFinInfiniPartie {
         score.setLayoutY(180);
 
         Label deadScreen = new Label();
-        Image image = new Image("file:src/main/resources/menu/ImageMenu.png");
+        Image image = new Image(Objects.requireNonNull(RessourcesAccess.class.getResourceAsStream("menu/ImageMenu.png")));
         ImageView imageView = new ImageView(image);
         imageView.setFitHeight(720);
         imageView.setFitWidth(1280);
@@ -66,7 +68,7 @@ public class VueFinInfiniPartie {
         quitter.setLayoutX(740);
         quitter.setLayoutY(570);
 
-        pane.getChildren().addAll(deadScreen, nameGame, score, recommencer, quitter,retourMenu);
+        pane.getChildren().addAll(deadScreen, nameGame, score, recommencer, quitter, retourMenu);
 
         recommencer.setOnMouseClicked(event -> {
             try {

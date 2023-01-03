@@ -9,8 +9,10 @@ import javafx.scene.paint.Paint;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.transform.Rotate;
 import javafx.util.Duration;
+import start.structure.RessourcesAccess;
 
 import java.util.ArrayList;
+import java.util.Objects;
 
 public class Objet_Attaque extends Group {
     protected final static double LARGEUR_MOITIE_TONNEAUX = 5;
@@ -42,9 +44,9 @@ public class Objet_Attaque extends Group {
      */
     public static Paint setChoixObjet_IDLE(String choixPersonnage) {
         if (choixPersonnage.equals("ROCHER")) {
-            return new ImagePattern(new Image("file:src/main/resources/objectAttaque/Rocher.png"));
+            return new ImagePattern(new Image(Objects.requireNonNull(RessourcesAccess.class.getResourceAsStream("objectAttaque/Rocher.png"))));
         } else if (choixPersonnage.equals("SHURIKANE")) {
-            return new ImagePattern(new Image("file:src/main/resources/objectAttaque/Shurikane.png"));
+            return new ImagePattern(new Image(Objects.requireNonNull(RessourcesAccess.class.getResourceAsStream("objectAttaque/Shurikane.png"))));
         }
         return null;
     }

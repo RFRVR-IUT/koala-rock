@@ -7,6 +7,9 @@ import javafx.scene.paint.ImagePattern;
 import javafx.scene.paint.Paint;
 import javafx.scene.shape.Rectangle;
 import javafx.util.Duration;
+import start.structure.RessourcesAccess;
+
+import java.util.Objects;
 
 public class PersonneEnnemie extends Group {
 
@@ -23,9 +26,9 @@ public class PersonneEnnemie extends Group {
      */
     public Paint setChoixPersonnage_IDLE(String choixPersonnage) {
         if (choixPersonnage.equals("KOALA")) {
-            return new ImagePattern(new Image("file:src/main/resources/personnageEnnemie/koala.png"));
+            return new ImagePattern(new Image(Objects.requireNonNull(RessourcesAccess.class.getResourceAsStream("personnageEnnemie/koala.png"))));
         } else if (choixPersonnage.equals("NINJA")) {
-            return new ImagePattern(new Image("file:src/main/resources/personnageEnnemie/Ninja.png"));
+            return new ImagePattern(new Image(Objects.requireNonNull(RessourcesAccess.class.getResourceAsStream("personnageEnnemie/Ninja.png"))));
         }
         return null;
     }
@@ -38,9 +41,9 @@ public class PersonneEnnemie extends Group {
      */
     public Paint setChoixPersonnage_LANCE(String choixPersonnage) {
         if (choixPersonnage.equals("KOALA")) {
-            return new ImagePattern(new Image("file:src/main/resources/personnageEnnemie/koala-2.png"));
+            return new ImagePattern(new Image(Objects.requireNonNull(RessourcesAccess.class.getResourceAsStream("personnageEnnemie/koala-2.png"))));
         } else if (choixPersonnage.equals("NINJA")) {
-            return new ImagePattern(new Image("file:src/main/resources/personnageEnnemie/Ninja-2.png"));
+            return new ImagePattern(new Image(Objects.requireNonNull(RessourcesAccess.class.getResourceAsStream("personnageEnnemie/Ninja-2.png"))));
         }
         return null;
     }

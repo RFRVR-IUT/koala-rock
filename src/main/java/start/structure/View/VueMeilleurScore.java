@@ -5,6 +5,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
+import start.structure.RessourcesAccess;
 import start.structure.metier.entite.Score;
 import start.structure.metier.manager.ScoreManager;
 
@@ -18,7 +19,8 @@ public class VueMeilleurScore extends Stage {
         ;
         Pane pane = new Pane();
         Scene scene = new Scene(pane, 950, 650);
-        scene.getStylesheets().add("file:src/main/resources/css/style.css");
+        scene.getStylesheets().add(String.valueOf(RessourcesAccess.class.getResource("css/style.css")));
+
 
 
         Label labelMeilleurScore = new Label("Meilleurs scores");

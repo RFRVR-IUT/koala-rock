@@ -5,6 +5,10 @@ import javafx.scene.image.Image;
 import javafx.scene.paint.ImagePattern;
 import javafx.scene.paint.Paint;
 import javafx.scene.shape.Rectangle;
+import start.structure.Client.StartGame;
+import start.structure.RessourcesAccess;
+
+import java.util.Objects;
 
 public class Fond extends Group {
     private static String choixFond = "KOALA";
@@ -29,9 +33,9 @@ public class Fond extends Group {
      */
     public Paint setChoixFond_Img(String choixFond) {
         if (choixFond.equals("KOALA")) {
-            return new ImagePattern(new Image("file:src/main/resources/fond/fondKoala.png"));
+            return new ImagePattern(new Image(Objects.requireNonNull(RessourcesAccess.class.getResourceAsStream("fond/fondKoala.png"))));
         } else if (choixFond.equals("NINJA")) {
-            return new ImagePattern(new Image("file:src/main/resources/fond/fondNinja.png"));
+            return new ImagePattern(new Image(Objects.requireNonNull(RessourcesAccess.class.getResourceAsStream("fond/fondNinja.png"))));
         }
         return null;
     }

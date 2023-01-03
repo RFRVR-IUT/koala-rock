@@ -9,6 +9,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.BorderPane;
@@ -16,6 +17,7 @@ import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 import start.structure.Model.*;
+import start.structure.RessourcesAccess;
 import start.structure.Sound.Son;
 import start.structure.metier.manager.ScoreManager;
 import start.structure.stockage.Session;
@@ -23,6 +25,7 @@ import start.structure.stockage.Session;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Objects;
 
 import static java.lang.Thread.sleep;
 
@@ -107,7 +110,7 @@ public class VueJeu {
 
         //////////////// Button ///////////////////////
         button_Bas = new Label();
-        image_Bas = new ImageView("file:src/main/resources/Button/Button_bas.png");
+        image_Bas = new ImageView(new Image(Objects.requireNonNull(RessourcesAccess.class.getResourceAsStream("Button/Button_bas.png"))));
         image_Bas.setFitHeight(50);
         image_Bas.setFitWidth(50);
         button_Bas.setGraphic(image_Bas);
@@ -116,7 +119,7 @@ public class VueJeu {
         button_Bas.setLayoutY(530);
 
         button_Haut = new Label();
-        image_Haut = new ImageView("file:src/main/resources/Button/Button_haut.png");
+        image_Haut = new ImageView(new Image(Objects.requireNonNull(RessourcesAccess.class.getResourceAsStream("Button/Button_haut.png"))));
         image_Haut.setFitHeight(50);
         image_Haut.setFitWidth(50);
         button_Haut.setGraphic(image_Haut);
@@ -125,7 +128,7 @@ public class VueJeu {
         button_Haut.setLayoutY(465);
 
         button_Gauche = new Label();
-        image_Gauche = new ImageView("file:src/main/resources/Button/Button_gauche.png");
+        image_Gauche = new ImageView(new Image(Objects.requireNonNull(RessourcesAccess.class.getResourceAsStream("Button/Button_gauche.png"))));
         image_Gauche.setFitHeight(50);
         image_Gauche.setFitWidth(50);
         button_Gauche.setGraphic(image_Gauche);
@@ -134,7 +137,7 @@ public class VueJeu {
         button_Gauche.setLayoutY(530);
 
         button_Droite = new Label();
-        image_Droite = new ImageView("file:src/main/resources/Button/Button_droite.png");
+        image_Droite = new ImageView(new Image(Objects.requireNonNull(RessourcesAccess.class.getResourceAsStream("Button/Button_droite.png"))));
         image_Droite.setFitHeight(50);
         image_Droite.setFitWidth(50);
         button_Droite.setGraphic(image_Droite);
@@ -143,7 +146,7 @@ public class VueJeu {
         button_Droite.setLayoutY(530);
 
         button_Espace = new Label();
-        image_Espace = new ImageView("file:src/main/resources/Button/Button_espace.png");
+        image_Espace = new ImageView(new Image(Objects.requireNonNull(RessourcesAccess.class.getResourceAsStream("Button/Button_espace.png"))));
         image_Espace.setFitHeight(50);
         image_Espace.setFitWidth(200);
         button_Espace.setGraphic(image_Espace);
@@ -373,7 +376,7 @@ public class VueJeu {
         collisionTimer.start();
         root.setCenter(interfaceJeu);
         scene = new Scene(root);
-        scene.getStylesheets().add("file:src/main/resources/css/style.css");
+        scene.getStylesheets().add(String.valueOf(RessourcesAccess.class.getResource("css/style.css")));
         move(personnePrincipale, echelles, echellesBrokens, coordonneesEchelles);
         stage.setScene(scene);
         stage.show();
@@ -479,23 +482,23 @@ public class VueJeu {
      * @param coordonneesEchelles
      */
     private void move(PersonnePrincipale personnePrincipale, ArrayList<Echelle> echelles, ArrayList<EchelleBroken> echellesBrokens, ArrayList<ArrayList<Double>> coordonneesEchelles) {
-        ImageView image_Haut_Click = new ImageView("file:src/main/resources/Button/Button_Haut_Click.png");
+        ImageView image_Haut_Click = new ImageView(new Image(Objects.requireNonNull(RessourcesAccess.class.getResourceAsStream("Button/Button_Haut_Click.png"))));
         image_Haut_Click.setFitHeight(50);
         image_Haut_Click.setFitWidth(50);
 
-        ImageView image_Bas_Click = new ImageView("file:src/main/resources/Button/Button_Bas_Click.png");
+        ImageView image_Bas_Click = new ImageView(new Image(Objects.requireNonNull(RessourcesAccess.class.getResourceAsStream("Button/Button_Bas_Click.png"))));
         image_Bas_Click.setFitHeight(50);
         image_Bas_Click.setFitWidth(50);
 
-        ImageView image_Gauche_Click = new ImageView("file:src/main/resources/Button/Button_Gauche_Click.png");
+        ImageView image_Gauche_Click = new ImageView(new Image(Objects.requireNonNull(RessourcesAccess.class.getResourceAsStream("Button/Button_Gauche_Click.png"))));
         image_Gauche_Click.setFitHeight(50);
         image_Gauche_Click.setFitWidth(50);
 
-        ImageView image_Droite_Click = new ImageView("file:src/main/resources/Button/Button_Droite_Click.png");
+        ImageView image_Droite_Click = new ImageView(new Image(Objects.requireNonNull(RessourcesAccess.class.getResourceAsStream("Button/Button_Droite_Click.png"))));
         image_Droite_Click.setFitHeight(50);
         image_Droite_Click.setFitWidth(50);
 
-        ImageView image_Espace_Click = new ImageView("file:src/main/resources/Button/Button_Espace_Click.png");
+        ImageView image_Espace_Click = new ImageView(new Image(Objects.requireNonNull(RessourcesAccess.class.getResourceAsStream("Button/Button_Espace_Click.png"))));
         image_Espace_Click.setFitHeight(50);
         image_Espace_Click.setFitWidth(200);
 
