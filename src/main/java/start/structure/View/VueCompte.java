@@ -118,7 +118,7 @@ public class VueCompte extends Stage {
                 labelScore.getStyleClass().add("LabelConnexionField");
                 labelScore.setLayoutX(450);
                 labelScore.setLayoutY(150 + i * 35);
-                Label labelDate = new Label(score.getHorodatage() + "");
+                Label labelDate = new Label(score.getHorodatage().toLocalDateTime().getDayOfMonth() + "-" + score.getHorodatage().toLocalDateTime().getMonth() + "-" + score.getHorodatage().toLocalDateTime().getYear()+ " " + score.getHorodatage().toLocalDateTime().getHour() + "h" + score.getHorodatage().toLocalDateTime().getMinute());
                 labelDate.getStyleClass().add("LabelConnexionField");
                 labelDate.setLayoutX(600);
                 labelDate.setLayoutY(150 + i * 35);
