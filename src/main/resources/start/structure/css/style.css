@@ -140,3 +140,16 @@
     -fx-font-family: 'Goldman', sans-serif;
     -fx-font-size: 20px;
 }
+
+.copyRight{
+    -fx-text-fill: white;
+    -fx-font-family: 'Goldman', sans-serif;
+    -fx-font-size: 15px;
+}
+
+.copyRightName{
+    -fx-text-fill: white;
+    -fx-font-family: 'Goldman', sans-serif;
+    -fx-font-size: 10px;
+    -fx-font-weight: bold;
+}

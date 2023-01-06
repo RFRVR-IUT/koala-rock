@@ -91,12 +91,24 @@ public class VueMenu {
         labelError.setLayoutX(510);
         labelError.setLayoutY(250);
 
+        ///////// COPYRIGHT ///////////
+        Label copyRight = new Label("© 2020 Koala Rock");
+        copyRight.getStyleClass().add("copyRight");
+        copyRight.setLayoutX(1000);
+        copyRight.setLayoutY(230);
+
+        Label copyRightName = new Label("Réalisé par : Célyan, Joris, Killian, Simon, Valentin");
+        copyRightName.getStyleClass().add("copyRightName");
+        copyRightName.setLayoutX(872);
+        copyRightName.setLayoutY(260);
+
 
         pane.getChildren().add(menuScreen);
         pane.getChildren().add(labelError);
         pane.getChildren().addAll(demarrerPartie, demarrerInfinit);
         pane.getChildren().addAll(parametre, connexionRegister, meilleurScore, monCompte, quitter);
         pane.getChildren().add(nameGame);
+        pane.getChildren().addAll(copyRight, copyRightName);
 
 
         /**
