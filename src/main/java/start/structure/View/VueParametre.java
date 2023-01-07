@@ -21,7 +21,7 @@ public class VueParametre {
     private static String choixEnnemi = "Koala";
 
 
-    public void VueParametre(Stage stage) throws IOException {
+    public void affichageVueParametre(Stage stage) throws IOException {
 
             Pane pane = new Pane();
             Scene scene = new Scene(pane, 1280, 720);

@@ -373,10 +373,10 @@ public class VueJeu {
                         timelineTonneaux.stop();
                         primaryStage.close();
                         if (mode.equals("Infini")) {
-                            vueFinInfiniPartie.screenLose(saveScore);
+                            vueFinInfiniPartie.screenLose(saveScore, stage);
                             ScoreManager.getInstance().createScore(saveScore, Session.getInstance().getLogin());
                         } else {
-                            vuesPerdu.screenLose();
+                            vuesPerdu.screenLose(stage);
                         }
                     }
                 } else if (personnePrincipale.collisionTonneaux(tonneaux) == 1) {
@@ -396,7 +396,7 @@ public class VueJeu {
                         personnePrincipale.setLayoutY(545);
                         supprimerElements(jeu, tonneaux, echelles, echellesBrokens, personnePrincipale, dk);
                         primaryStage.close();
-                        vueGagne.screenWin(personnePrincipale.getScore());
+                        vueGagne.screenWin(personnePrincipale.getScore(), stage);
                     }
                 }
             }

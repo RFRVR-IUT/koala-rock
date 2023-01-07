@@ -144,7 +144,7 @@ public class VueMenu {
         parametre.setOnMouseClicked(event -> {
             VueParametre vueParametre = new VueParametre();
             try {
-                vueParametre.VueParametre(stage);
+                vueParametre.affichageVueParametre(stage);
             } catch (IOException e) {
                 throw new RuntimeException(e);
             }
@@ -157,7 +157,7 @@ public class VueMenu {
         connexionRegister.setOnMouseClicked(event -> {
             VueConnexion vueConnexion = new VueConnexion();
             try {
-                vueConnexion.VueConnexion(stage);
+                vueConnexion.affichageVueConnexion(stage);
             } catch (IOException e) {
                 throw new RuntimeException(e);
             }
@@ -169,13 +169,22 @@ public class VueMenu {
          */
         meilleurScore.setOnMouseClicked(event -> {
             VueMeilleurScore vueMeilleurScore = new VueMeilleurScore();
-            vueMeilleurScore.show();
+            try {
+                vueMeilleurScore.affichageVueMeilleurScore(stage);
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
         });
 
         monCompte.setOnMouseClicked(event -> {
             labelError.setText("");
             if (Session.getInstance().isConnected()) {
                 VueCompte vueCompte = new VueCompte();
+                try {
+                    vueCompte.affichageVueCompte(stage);
+                } catch (IOException e) {
+                    throw new RuntimeException(e);
+                }
             } else {
                 labelError.setText("Veuillez vous connecter");
             }
