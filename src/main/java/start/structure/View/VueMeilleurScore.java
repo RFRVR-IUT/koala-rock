@@ -31,7 +31,7 @@ public class VueMeilleurScore extends Stage {
         labelMeilleurScore.setUnderline(true);
 
         Button buttonRetour = new Button("Retour");
-        buttonRetour.getStyleClass().add("buttonConnexionRetour");
+        buttonRetour.getStyleClass().add("btnGrey");
         buttonRetour.setLayoutX(430);
         buttonRetour.setLayoutY(550);
         buttonRetour.setOnAction(event -> {

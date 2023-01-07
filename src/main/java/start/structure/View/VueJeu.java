@@ -7,18 +7,23 @@ import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleLongProperty;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
+import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
+import javafx.scene.effect.DropShadow;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.Pane;
+import javafx.scene.paint.Color;
+import javafx.scene.shape.Rectangle;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 import start.structure.Model.*;
 import start.structure.RessourcesAccess;
 import start.structure.Sound.Son;
+import start.structure.metier.manager.PlayerManager;
 import start.structure.metier.manager.ScoreManager;
 import start.structure.stockage.Session;
 
@@ -163,24 +168,46 @@ public class VueJeu {
 
         //// ALERTE ////
 
-        Alert alert = new Alert(Alert.AlertType.INFORMATION);
-        alert.setTitle("Voulez-vous vraiment quitter ?");
-        alert.setHeaderText("Vous êtes sur le point de quitter le jeu");
-        alert.setContentText("Voulez-vous vraiment quitter ?");
-        alert.getButtonTypes().setAll(ButtonType.YES, ButtonType.NO);
-
-
         boutonMenuPrincipal.setOnMouseClicked(event -> {
-            alert.showAndWait();
-            if (alert.getResult() == ButtonType.YES) {
+            Label alerte = new Label("Voulez vous vraiment \n" + "supprimer votre compte ?");
+            alerte.getStyleClass().add("LabelError");
+            alerte.setLayoutX(160);
+            alerte.setLayoutY(200);
+
+            Rectangle rectangle = new Rectangle();
+            rectangle.setX(140);
+            rectangle.setY(150);
+            rectangle.setWidth(300);
+            rectangle.setHeight(200);
+
+            rectangle.setArcHeight(50);
+            rectangle.setArcWidth(50);
+            rectangle.setFill(Color.BLACK);
+            rectangle.setEffect(new DropShadow(10, Color.WHITE));
+
+            Button oui = new Button("Oui");
+            oui.getStyleClass().add("btnGrey");
+            oui.setLayoutX(160);
+            oui.setLayoutY(275);
+
+            Button non = new Button("Non");
+            non.getStyleClass().add("btnRed");
+            non.setLayoutX(360);
+            non.setLayoutY(275);
+
+            oui.setOnAction(e -> {
                 supprimerElements(jeu,tonneaux,echelles,echellesBrokens,personnePrincipale,dk);
                 collisionTimer.stop();
                 timer.stop();
                 VueMenu vueMenu = new VueMenu();
                 vueMenu.demarrerMenu(stage);
-            } else if (alert.getResult() == ButtonType.NO) {
-                alert.close();
-            }
+                jeu.getChildren().removeAll(oui, non, rectangle, alerte);
+            });
+            non.setOnAction(e -> {
+                jeu.getChildren().removeAll(oui, non, rectangle, alerte);
+            });
+
+            jeu.getChildren().addAll(rectangle, oui, non, alerte);
         });
 
         //////////////// Chronometre ///////////////////////

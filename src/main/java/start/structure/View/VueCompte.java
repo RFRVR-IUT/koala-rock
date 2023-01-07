@@ -2,9 +2,11 @@ package start.structure.View;
 
 import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.scene.effect.DropShadow;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Line;
+import javafx.scene.shape.Rectangle;
 import javafx.stage.Stage;
 import start.structure.RessourcesAccess;
 import start.structure.metier.entite.Score;
@@ -62,7 +64,7 @@ public class VueCompte extends Stage {
         passwordField2.setLayoutY(325);
 
         Button buttonConnexion = new Button("Changer mot de passe");
-        buttonConnexion.getStyleClass().add("buttonConnexion");
+        buttonConnexion.getStyleClass().add("btnGrey");
         buttonConnexion.setLayoutX(60);
         buttonConnexion.setLayoutY(400);
 
@@ -72,17 +74,17 @@ public class VueCompte extends Stage {
         labelErreur.setLayoutY(450);
 
         Button boutonRetour = new Button("Retour");
-        boutonRetour.getStyleClass().add("buttonConnexionRetour");
+        boutonRetour.getStyleClass().add("btnGrey");
         boutonRetour.setLayoutX(50);
         boutonRetour.setLayoutY(550);
 
         Button supprimerCompte = new Button("SupprimerCompte");
-        supprimerCompte.getStyleClass().add("buttonConnexionRetour");
+        supprimerCompte.getStyleClass().add("btnRed");
         supprimerCompte.setLayoutX(710);
         supprimerCompte.setLayoutY(550);
 
         Button deconnexion = new Button("Deconnexion");
-        deconnexion.getStyleClass().add("buttonConnexion");
+        deconnexion.getStyleClass().add("btnGrey");
         deconnexion.setLayoutX(400);
         deconnexion.setLayoutY(550);
 
@@ -132,20 +134,43 @@ public class VueCompte extends Stage {
         }
 
         supprimerCompte.setOnMouseClicked(event -> {
+            Label alerte = new Label("Voulez vous vraiment \n" + "supprimer votre compte ?");
+            alerte.getStyleClass().add("LabelError");
+            alerte.setLayoutX(320);
+            alerte.setLayoutY(250);
 
-            Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
-            alert.setTitle("Suppression du compte");
-            alert.setHeaderText("Voulez-vous vraiment supprimer votre compte ?");
-            alert.setContentText("Attention, cette action est irréversible");
-            alert.showAndWait();
+            Rectangle rectangle = new Rectangle();
+            rectangle.setX(300);
+            rectangle.setY(200);
+            rectangle.setWidth(300);
+            rectangle.setHeight(200);
 
-            if (alert.getResult() == ButtonType.OK) {
+            rectangle.setArcHeight(50);
+            rectangle.setArcWidth(50);
+            rectangle.setFill(Color.BLACK);
+            rectangle.setEffect(new DropShadow(10, Color.WHITE));
+
+            Button oui = new Button("Oui");
+            oui.getStyleClass().add("btnGrey");
+            oui.setLayoutX(320);
+            oui.setLayoutY(325);
+
+            Button non = new Button("Non");
+            non.getStyleClass().add("btnRed");
+            non.setLayoutX(520);
+            non.setLayoutY(325);
+
+            oui.setOnAction(e -> {
                 PlayerManager.getInstance().deletePlayer(Session.getInstance().getLogin());
                 Session.getInstance().disconnect();
                 this.close();
-            } else if (alert.getResult() == ButtonType.CANCEL) {
-                alert.close();
-            }
+                pane.getChildren().removeAll(oui, non, rectangle, alerte);
+            });
+            non.setOnAction(e -> {
+                pane.getChildren().removeAll(oui, non, rectangle, alerte);
+            });
+
+            pane.getChildren().addAll(rectangle, oui, non, alerte);
         });
 
         deconnexion.setOnMouseClicked(event -> {

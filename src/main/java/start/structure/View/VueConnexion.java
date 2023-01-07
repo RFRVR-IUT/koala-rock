@@ -49,7 +49,7 @@ public class VueConnexion extends Stage {
         passwordField.setLayoutY(375);
 
         Button buttonConnexion = new Button("Se connecter");
-        buttonConnexion.getStyleClass().add("buttonConnexion");
+        buttonConnexion.getStyleClass().add("btnGrey");
         buttonConnexion.setLayoutX(185);
         buttonConnexion.setLayoutY(450);
 
@@ -86,14 +86,14 @@ public class VueConnexion extends Stage {
         passwordFieldInscription2.setLayoutY(375);
 
         Button buttonInscription = new Button("S'inscrire");
-        buttonInscription.getStyleClass().add("buttonConnexion");
+        buttonInscription.getStyleClass().add("btnGrey");
         buttonInscription.setLayoutX(610);
         buttonInscription.setLayoutY(450);
 
 
         //RETOUR
         Button buttonRetour = new Button("Retour");
-        buttonRetour.getStyleClass().add("buttonConnexionRetour");
+        buttonRetour.getStyleClass().add("btnGrey");
         buttonRetour.setLayoutX(50);
         buttonRetour.setLayoutY(550);
 
