@@ -91,7 +91,8 @@ public class VueCompte {
         deconnexion.setLayoutY(550);
 
         boutonRetour.setOnMouseClicked(event -> {
-            stage.close();
+            VueMenu vueMenu = new VueMenu();
+            vueMenu.demarrerMenu(stage);
         });
 
 
@@ -165,7 +166,8 @@ public class VueCompte {
             oui.setOnAction(e -> {
                 PlayerManager.getInstance().deletePlayer(Session.getInstance().getLogin());
                 Session.getInstance().disconnect();
-                stage.close();
+                VueMenu vueMenu = new VueMenu();
+                vueMenu.demarrerMenu(stage);
                 pane.getChildren().removeAll(oui, non, rectangle, alerte);
             });
             non.setOnAction(e -> {
@@ -177,7 +179,8 @@ public class VueCompte {
 
         deconnexion.setOnMouseClicked(event -> {
             Session.getInstance().disconnect();
-            stage.close();
+            VueMenu vueMenu = new VueMenu();
+            vueMenu.demarrerMenu(stage);
         });
 
         pane.getChildren().addAll(label, labelMotDePasse, passwordField, labelMotDePasse2, passwordField2, buttonConnexion, labelMeilleurScore, boutonRetour, supprimerCompte, deconnexion);

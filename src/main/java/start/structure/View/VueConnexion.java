@@ -127,7 +127,8 @@ public class VueConnexion {
                         textFieldPseudoInscription.setText("");
                         passwordFieldInscription.setText("");
                         passwordFieldInscription2.setText("");
-                        stage.close();
+                        VueMenu vueMenu = new VueMenu();
+                        vueMenu.demarrerMenu(stage);
 //                        labelErreur.setText("Inscription réussie");
                     } catch (Exception e) {
                         labelErreur.setText("Erreur lors de l'inscription");
@@ -156,7 +157,8 @@ public class VueConnexion {
                             Session.getInstance().connect(textFieldPseudo.getText());
                             textFieldPseudo.setText("");
                             passwordField.setText("");
-                            stage.close();
+                            VueMenu vueMenu = new VueMenu();
+                            vueMenu.demarrerMenu(stage);
                         } else {
                             labelErreur.setText("Mot de passe incorrect");
                             passwordField.setText("");
@@ -169,7 +171,8 @@ public class VueConnexion {
         });
 
         buttonRetour.setOnAction(event -> {
-            stage.close();
+            VueMenu vueMenu = new VueMenu();
+            vueMenu.demarrerMenu(stage);
         });
 
         stage.setTitle("Connexion");

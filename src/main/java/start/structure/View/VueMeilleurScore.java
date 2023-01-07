@@ -35,7 +35,8 @@ public class VueMeilleurScore{
         buttonRetour.setLayoutX(430);
         buttonRetour.setLayoutY(550);
         buttonRetour.setOnAction(event -> {
-            stage.close();
+            VueMenu vueMenu = new VueMenu();
+            vueMenu.demarrerMenu(stage);
         });
 
         List<Score> scores = ScoreManager.getInstance().getScores();

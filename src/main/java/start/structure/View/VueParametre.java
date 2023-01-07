@@ -197,7 +197,8 @@ public class VueParametre {
             buttonHide.setLayoutX(350);
             buttonHide.setLayoutY(580);
             buttonHide.setOnAction(event -> {
-                stage.hide();
+                VueMenu vueMenu = new VueMenu();
+                vueMenu.demarrerMenu(stage);
             });
             pane.getChildren().add(buttonHide);
             pane.getChildren().addAll(button_Bas, button_Haut, button_Gauche, button_Droite, button_Espace);
