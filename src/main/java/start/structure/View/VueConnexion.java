@@ -16,14 +16,17 @@ import start.structure.metier.manager.PlayerManager;
 import start.structure.stockage.Security;
 import start.structure.stockage.Session;
 
+import java.io.IOException;
 import java.security.InvalidKeyException;
 import java.security.NoSuchAlgorithmException;
 
-public class VueConnexion extends Stage {
-    Pane pane = new Pane();
-    Scene scene = new Scene(pane, 950, 650);
+public class VueConnexion {
 
-    public VueConnexion() {
+
+    public void VueConnexion(Stage stage) throws IOException {
+
+        Pane pane = new Pane();
+        Scene scene = new Scene(pane, 1280, 720);
         scene.getStylesheets().add(String.valueOf(RessourcesAccess.class.getResource("css/style.css")));
 
         /////////////// CONNEXION SCENE ///////////////
@@ -124,7 +127,7 @@ public class VueConnexion extends Stage {
                         textFieldPseudoInscription.setText("");
                         passwordFieldInscription.setText("");
                         passwordFieldInscription2.setText("");
-                        this.close();
+                        stage.close();
 //                        labelErreur.setText("Inscription réussie");
                     } catch (Exception e) {
                         labelErreur.setText("Erreur lors de l'inscription");
@@ -153,7 +156,7 @@ public class VueConnexion extends Stage {
                             Session.getInstance().connect(textFieldPseudo.getText());
                             textFieldPseudo.setText("");
                             passwordField.setText("");
-                            this.close();
+                            stage.close();
                         } else {
                             labelErreur.setText("Mot de passe incorrect");
                             passwordField.setText("");
@@ -166,12 +169,13 @@ public class VueConnexion extends Stage {
         });
 
         buttonRetour.setOnAction(event -> {
-            this.close();
+            stage.close();
         });
 
-        setTitle("Connexion");
-        setResizable(false);
-        setScene(scene);
+        stage.setTitle("Connexion");
+        stage.setResizable(false);
+        stage.setScene(scene);
+        stage.show();
 
         pane.setStyle("-fx-border-color: white ; -fx-border-width: 10px ; -fx-background-color: black ; -fx-background-radius: 10px ;");
     }

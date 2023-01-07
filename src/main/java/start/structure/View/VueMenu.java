@@ -156,7 +156,11 @@ public class VueMenu {
          */
         connexionRegister.setOnMouseClicked(event -> {
             VueConnexion vueConnexion = new VueConnexion();
-            vueConnexion.show();
+            try {
+                vueConnexion.VueConnexion(stage);
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
         });
 
         /**
