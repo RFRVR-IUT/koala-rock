@@ -6,9 +6,7 @@ import javafx.beans.property.LongProperty;
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleLongProperty;
 import javafx.scene.Scene;
-import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
-import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
 import javafx.scene.effect.DropShadow;
 import javafx.scene.image.Image;
@@ -23,7 +21,6 @@ import javafx.util.Duration;
 import start.structure.Model.*;
 import start.structure.RessourcesAccess;
 import start.structure.Sound.Son;
-import start.structure.metier.manager.PlayerManager;
 import start.structure.metier.manager.ScoreManager;
 import start.structure.stockage.Session;
 
@@ -86,8 +83,6 @@ public class VueJeu {
 
         PersonneEnnemie dk = new PersonneEnnemie(60, 80, 100, 100);
         Fond fond = new Fond(0, 0, 600, 600);
-
-
 
 
         personnePrincipale.setLayoutX(20 * 10);
@@ -167,7 +162,7 @@ public class VueJeu {
         boutonMenuPrincipal.setLayoutY(650);
         //////////////// End Button ///////////////////////
 
-            //////////////// ALERTE ////////////////
+        //////////////// ALERTE ////////////////
         boutonMenuPrincipal.setOnMouseClicked(event -> {
             Label alerte = new Label("Voulez vous vraiment \n" + "supprimer votre compte ?");
             alerte.getStyleClass().add("LabelError");
@@ -196,7 +191,7 @@ public class VueJeu {
             non.setLayoutY(275);
 
             oui.setOnAction(e -> {
-                supprimerElements(jeu,tonneaux,echelles,echellesBrokens,personnePrincipale,dk);
+                supprimerElements(jeu, tonneaux, echelles, echellesBrokens, personnePrincipale, dk);
                 collisionTimer.stop();
                 timer.stop();
                 VueMenu vueMenu = new VueMenu();
@@ -448,7 +443,7 @@ public class VueJeu {
             non.setOnAction(e -> {
                 interfaceJeu.getChildren().removeAll(oui, non, rectangle, alerte);
             });
-                interfaceJeu.getChildren().addAll(rectangle, alerte, oui, non);
+            interfaceJeu.getChildren().addAll(rectangle, alerte, oui, non);
         });
     }
 

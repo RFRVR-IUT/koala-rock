@@ -3,16 +3,20 @@ package start.structure.View;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.effect.DropShadow;
 import javafx.scene.layout.Pane;
+import javafx.scene.paint.Color;
+import javafx.scene.shape.Rectangle;
 import javafx.stage.Stage;
 import start.structure.RessourcesAccess;
 import start.structure.metier.entite.Score;
 import start.structure.metier.manager.ScoreManager;
+import start.structure.stockage.Session;
 
 import java.io.IOException;
 import java.util.List;
 
-public class VueMeilleurScore{
+public class VueMeilleurScore {
     Pane pane = new Pane();
 
     public void affichageVueMeilleurScore(Stage stage) throws IOException {
@@ -20,7 +24,6 @@ public class VueMeilleurScore{
         Pane pane = new Pane();
         Scene scene = new Scene(pane, 1280, 720);
         scene.getStylesheets().add(String.valueOf(RessourcesAccess.class.getResource("css/style.css")));
-
 
 
         Label labelMeilleurScore = new Label("Meilleurs scores");
@@ -96,5 +99,45 @@ public class VueMeilleurScore{
         stage.setScene(scene);
         stage.show();
 
+        stage.setOnCloseRequest(event -> {
+            event.consume();
+            System.out.println("Fermeture de Koala Rock");
+            Label alerte = new Label("Voulez vous vraiment \n" + "quitter le jeu ?");
+            alerte.getStyleClass().add("LabelError");
+            alerte.setLayoutX(320);
+            alerte.setLayoutY(250);
+
+            Rectangle rectangle = new Rectangle();
+            rectangle.setX(300);
+            rectangle.setY(200);
+            rectangle.setWidth(300);
+            rectangle.setHeight(200);
+
+            rectangle.setArcHeight(50);
+            rectangle.setArcWidth(50);
+            rectangle.setFill(Color.BLACK);
+            rectangle.setEffect(new DropShadow(10, Color.WHITE));
+
+            Button oui = new Button("Oui");
+            oui.getStyleClass().add("btnGrey");
+            oui.setLayoutX(320);
+            oui.setLayoutY(325);
+
+            Button non = new Button("Non");
+            non.getStyleClass().add("btnRed");
+            non.setLayoutX(520);
+            non.setLayoutY(325);
+
+            oui.setOnAction(e -> {
+                System.out.println("Deconnexion de l'utilisateur");
+                Session.getInstance().disconnect();
+                System.out.println("Fermeture du jeu");
+                System.exit(0);
+            });
+            non.setOnAction(e -> {
+                pane.getChildren().removeAll(oui, non, rectangle, alerte);
+            });
+            pane.getChildren().addAll(rectangle, alerte, oui, non);
+        });
     }
 }

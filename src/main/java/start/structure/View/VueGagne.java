@@ -4,12 +4,16 @@ import javafx.beans.property.IntegerProperty;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.effect.DropShadow;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.Pane;
+import javafx.scene.paint.Color;
+import javafx.scene.shape.Rectangle;
 import javafx.stage.Stage;
 import start.structure.RessourcesAccess;
+import start.structure.stockage.Session;
 
 import java.io.IOException;
 import java.util.Objects;
@@ -90,6 +94,46 @@ public class VueGagne {
         retourMenu.setOnMouseClicked(event -> {
             VueMenu vueMenu = new VueMenu();
             vueMenu.demarrerMenu(stage);
+        });
+        stage.setOnCloseRequest(event -> {
+            event.consume();
+            System.out.println("Fermeture de Koala Rock");
+            Label alerte = new Label("Voulez vous vraiment \n" + "quitter le jeu ?");
+            alerte.getStyleClass().add("LabelError");
+            alerte.setLayoutX(320);
+            alerte.setLayoutY(250);
+
+            Rectangle rectangle = new Rectangle();
+            rectangle.setX(300);
+            rectangle.setY(200);
+            rectangle.setWidth(300);
+            rectangle.setHeight(200);
+
+            rectangle.setArcHeight(50);
+            rectangle.setArcWidth(50);
+            rectangle.setFill(Color.BLACK);
+            rectangle.setEffect(new DropShadow(10, Color.WHITE));
+
+            Button oui = new Button("Oui");
+            oui.getStyleClass().add("btnGrey");
+            oui.setLayoutX(320);
+            oui.setLayoutY(325);
+
+            Button non = new Button("Non");
+            non.getStyleClass().add("btnRed");
+            non.setLayoutX(520);
+            non.setLayoutY(325);
+
+            oui.setOnAction(e -> {
+                System.out.println("Deconnexion de l'utilisateur");
+                Session.getInstance().disconnect();
+                System.out.println("Fermeture du jeu");
+                System.exit(0);
+            });
+            non.setOnAction(e -> {
+                pane.getChildren().removeAll(oui, non, rectangle, alerte);
+            });
+            pane.getChildren().addAll(rectangle, alerte, oui, non);
         });
     }
 }
