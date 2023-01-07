@@ -88,6 +88,8 @@ public class VueJeu {
         Fond fond = new Fond(0, 0, 600, 600);
 
 
+
+
         personnePrincipale.setLayoutX(20 * 10);
         personnePrincipale.setLayoutY(545);
 
@@ -163,11 +165,9 @@ public class VueJeu {
         boutonMenuPrincipal.getStyleClass().add("LabelConnexionField");
         boutonMenuPrincipal.setLayoutX(1080);
         boutonMenuPrincipal.setLayoutY(650);
-
         //////////////// End Button ///////////////////////
 
-        //// ALERTE ////
-
+            //////////////// ALERTE ////////////////
         boutonMenuPrincipal.setOnMouseClicked(event -> {
             Label alerte = new Label("Voulez vous vraiment \n" + "supprimer votre compte ?");
             alerte.getStyleClass().add("LabelError");
@@ -209,6 +209,8 @@ public class VueJeu {
 
             jeu.getChildren().addAll(rectangle, oui, non, alerte);
         });
+        //////////////// End ALERTE ////////////////
+
 
         //////////////// Chronometre ///////////////////////
         timer = new AnimationTimer() {
@@ -407,6 +409,47 @@ public class VueJeu {
         move(personnePrincipale, echelles, echellesBrokens, coordonneesEchelles);
         stage.setScene(scene);
         stage.show();
+
+        stage.setOnCloseRequest(event -> {
+            event.consume();
+            System.out.println("Fermeture de Koala Rock");
+            Label alerte = new Label("Voulez vous vraiment \n" + "quitter le jeu ?");
+            alerte.getStyleClass().add("LabelError");
+            alerte.setLayoutX(320);
+            alerte.setLayoutY(250);
+
+            Rectangle rectangle = new Rectangle();
+            rectangle.setX(300);
+            rectangle.setY(200);
+            rectangle.setWidth(300);
+            rectangle.setHeight(200);
+
+            rectangle.setArcHeight(50);
+            rectangle.setArcWidth(50);
+            rectangle.setFill(Color.BLACK);
+            rectangle.setEffect(new DropShadow(10, Color.WHITE));
+
+            Button oui = new Button("Oui");
+            oui.getStyleClass().add("btnGrey");
+            oui.setLayoutX(320);
+            oui.setLayoutY(325);
+
+            Button non = new Button("Non");
+            non.getStyleClass().add("btnRed");
+            non.setLayoutX(520);
+            non.setLayoutY(325);
+
+            oui.setOnAction(e -> {
+                System.out.println("Deconnexion de l'utilisateur");
+                Session.getInstance().disconnect();
+                System.out.println("Fermeture du jeu");
+                System.exit(0);
+            });
+            non.setOnAction(e -> {
+                interfaceJeu.getChildren().removeAll(oui, non, rectangle, alerte);
+            });
+                interfaceJeu.getChildren().addAll(rectangle, alerte, oui, non);
+        });
     }
 
     /**
@@ -605,5 +648,6 @@ public class VueJeu {
                     System.out.println(personnePrincipale.getScore());
             }
         });
+
     }
 }

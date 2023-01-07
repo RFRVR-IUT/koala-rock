@@ -5,7 +5,10 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
+import javafx.scene.effect.DropShadow;
 import javafx.scene.layout.Pane;
+import javafx.scene.paint.Color;
+import javafx.scene.shape.Rectangle;
 import javafx.stage.Stage;
 import start.structure.RessourcesAccess;
 import start.structure.metier.entite.AuthPlayer;
@@ -19,7 +22,6 @@ import java.security.NoSuchAlgorithmException;
 public class VueConnexion extends Stage {
     Pane pane = new Pane();
     Scene scene = new Scene(pane, 950, 650);
-    Security security = new Security();
 
     public VueConnexion() {
         scene.getStylesheets().add(String.valueOf(RessourcesAccess.class.getResource("css/style.css")));
@@ -134,7 +136,6 @@ public class VueConnexion extends Stage {
         });
 
         buttonConnexion.setOnAction(event -> {
-            //if error -> labelErreur.setText("Erreur");
             labelErreur.setText("");
             if (textFieldPseudo.getText().equals("") || passwordField.getText().equals("") ) {
                 labelErreur.setText("Veuillez remplir tous les champs d'incription");
@@ -144,8 +145,11 @@ public class VueConnexion extends Stage {
                 } else {
                     AuthPlayer authPlayer = PlayerManager.getInstance().getPlayer(textFieldPseudo.getText());
                     try {
-                        if (security.checkPassword(passwordField.getText(), authPlayer.getSalt(), authPlayer.getHashedPassword())) {
-//                            labelErreur.setText("Connexion réussie");
+                        if (Security.checkPassword(passwordField.getText(), authPlayer.getSalt(), authPlayer.getHashedPassword())) {
+                            if(Session.getInstance().isConnected()){
+                                System.out.println("Disconnect Before");
+                                Session.getInstance().disconnect();
+                            }
                             Session.getInstance().connect(textFieldPseudo.getText());
                             textFieldPseudo.setText("");
                             passwordField.setText("");
@@ -154,9 +158,7 @@ public class VueConnexion extends Stage {
                             labelErreur.setText("Mot de passe incorrect");
                             passwordField.setText("");
                         }
-                    } catch (NoSuchAlgorithmException e) {
-                        throw new RuntimeException(e);
-                    } catch (InvalidKeyException e) {
+                    } catch (NoSuchAlgorithmException | InvalidKeyException e) {
                         throw new RuntimeException(e);
                     }
                 }
@@ -172,6 +174,5 @@ public class VueConnexion extends Stage {
         setScene(scene);
 
         pane.setStyle("-fx-border-color: white ; -fx-border-width: 10px ; -fx-background-color: black ; -fx-background-radius: 10px ;");
-
     }
 }
