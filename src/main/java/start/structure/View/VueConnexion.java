@@ -23,7 +23,7 @@ import java.security.NoSuchAlgorithmException;
 public class VueConnexion {
 
 
-    public void VueConnexion(Stage stage) throws IOException {
+    public void affichageVueConnexion(Stage stage) throws IOException {
 
         Pane pane = new Pane();
         Scene scene = new Scene(pane, 1280, 720);
