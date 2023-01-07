@@ -143,7 +143,11 @@ public class VueMenu {
          */
         parametre.setOnMouseClicked(event -> {
             VueParametre vueParametre = new VueParametre();
-            vueParametre.show();
+            try {
+                vueParametre.VueParametre(stage);
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
         });
 
         /**
@@ -168,7 +172,6 @@ public class VueMenu {
             labelError.setText("");
             if (Session.getInstance().isConnected()) {
                 VueCompte vueCompte = new VueCompte();
-                vueCompte.show();
             } else {
                 labelError.setText("Veuillez vous connecter");
             }
