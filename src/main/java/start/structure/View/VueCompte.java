@@ -67,15 +67,15 @@ public class VueCompte {
         passwordField2.setLayoutX(90);
         passwordField2.setLayoutY(325);
 
-        Button buttonConnexion = new Button("Changer mot de passe");
-        buttonConnexion.getStyleClass().add("btnGrey");
-        buttonConnexion.setLayoutX(60);
-        buttonConnexion.setLayoutY(400);
+        Button buttonModifPassword = new Button("Changer mot de passe");
+        buttonModifPassword.getStyleClass().add("btnGrey");
+        buttonModifPassword.setLayoutX(60);
+        buttonModifPassword.setLayoutY(400);
 
         Label labelErreur = new Label();
         labelErreur.getStyleClass().add("LabelError");
         labelErreur.setLayoutX(50);
-        labelErreur.setLayoutY(450);
+        labelErreur.setLayoutY(470);
 
         Button boutonRetour = new Button("Retour");
         boutonRetour.getStyleClass().add("btnGrey");
@@ -98,13 +98,13 @@ public class VueCompte {
         });
 
 
-        buttonConnexion.setOnAction(event -> {
+        buttonModifPassword.setOnAction(event -> {
             if (!Objects.equals(passwordField.getText(), "") && !Objects.equals(passwordField2.getText(), "")) {
                 if (passwordField.getText().equals(passwordField2.getText())) {
                     PlayerManager.getInstance().updatePlayer(Session.getInstance().getLogin(), passwordField.getText());
                     labelErreur.setText("Mot de passe modifié");
                 } else {
-                    labelErreur.setText("Les mots de passe ne correspondent pas");
+                    labelErreur.setText("Les mots de passe" + "\n"  + "ne correspondent pas");
                 }
             } else {
                 labelErreur.setText("Veuillez remplir les champs");
@@ -139,7 +139,7 @@ public class VueCompte {
         }
 
         supprimerCompte.setOnMouseClicked(event -> {
-            Label alerte = new Label("Voulez vous vraiment \n" + "supprimer votre compte ?");
+            Label alerte = new Label("Voulez vous vraiment" + "\n" + "supprimer votre compte ?");
             alerte.getStyleClass().add("LabelError");
             alerte.setLayoutX(320);
             alerte.setLayoutY(250);
@@ -185,7 +185,7 @@ public class VueCompte {
             vueMenu.demarrerMenu(stage);
         });
 
-        pane.getChildren().addAll(label, labelMotDePasse, passwordField, labelMotDePasse2, passwordField2, buttonConnexion, labelMeilleurScore, boutonRetour, supprimerCompte, deconnexion);
+        pane.getChildren().addAll(label, labelMotDePasse, passwordField, labelMotDePasse2, passwordField2, buttonModifPassword, labelMeilleurScore, boutonRetour, supprimerCompte, deconnexion);
         pane.getChildren().add(labelErreur);
         pane.getChildren().add(labelModificationMDP);
         pane.getChildren().add(line);
