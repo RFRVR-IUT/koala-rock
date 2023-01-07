@@ -14,13 +14,15 @@ import start.structure.metier.manager.PlayerManager;
 import start.structure.metier.manager.ScoreManager;
 import start.structure.stockage.Session;
 
+import java.io.IOException;
 import java.util.List;
+import java.util.Objects;
 
-public class VueCompte extends Stage {
+public class VueCompte {
 
-    public VueCompte() {
+    public void affichageVueCompte(Stage stage) throws IOException {
         Pane pane = new Pane();
-        Scene scene = new Scene(pane, 950, 650);
+        Scene scene = new Scene(pane, 1280, 720);
         scene.getStylesheets().add(String.valueOf(RessourcesAccess.class.getResource("css/style.css")));
 
         Label label = new Label(Session.getInstance().getLogin());
@@ -89,12 +91,12 @@ public class VueCompte extends Stage {
         deconnexion.setLayoutY(550);
 
         boutonRetour.setOnMouseClicked(event -> {
-            this.close();
+            stage.close();
         });
 
 
         buttonConnexion.setOnAction(event -> {
-            if (passwordField.getText() != "" && passwordField2.getText() != "") {
+            if (!Objects.equals(passwordField.getText(), "") && !Objects.equals(passwordField2.getText(), "")) {
                 if (passwordField.getText().equals(passwordField2.getText())) {
                     PlayerManager.getInstance().updatePlayer(Session.getInstance().getLogin(), passwordField.getText());
                     labelErreur.setText("Mot de passe modifié");
@@ -163,7 +165,7 @@ public class VueCompte extends Stage {
             oui.setOnAction(e -> {
                 PlayerManager.getInstance().deletePlayer(Session.getInstance().getLogin());
                 Session.getInstance().disconnect();
-                this.close();
+                stage.close();
                 pane.getChildren().removeAll(oui, non, rectangle, alerte);
             });
             non.setOnAction(e -> {
@@ -175,7 +177,7 @@ public class VueCompte extends Stage {
 
         deconnexion.setOnMouseClicked(event -> {
             Session.getInstance().disconnect();
-            this.close();
+            stage.close();
         });
 
         pane.getChildren().addAll(label, labelMotDePasse, passwordField, labelMotDePasse2, passwordField2, buttonConnexion, labelMeilleurScore, boutonRetour, supprimerCompte, deconnexion);
@@ -183,9 +185,10 @@ public class VueCompte extends Stage {
         pane.getChildren().add(labelModificationMDP);
         pane.getChildren().add(line);
 
-        setTitle("Paramètre");
-        setResizable(false);
-        setScene(scene);
+        stage.setTitle("Paramètre");
+        stage.setResizable(false);
+        stage.setScene(scene);
+        stage.show();
 
         pane.setStyle("-fx-border-color: white ; -fx-border-width: 10px ; -fx-background-color: black ; -fx-background-radius: 10px ;");
     }
