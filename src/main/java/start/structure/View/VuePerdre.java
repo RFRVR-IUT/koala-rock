@@ -18,12 +18,11 @@ public class VuePerdre {
     private VueJeu vueJeu;
 
 
-    public void screenLose() {
+    public void screenLose(Stage stage) {
 
         if (vueJeu == null) {
             vueJeu = new VueJeu();
         }
-        Stage stage = new Stage();
         stage.setTitle("Koala Rock");
         stage.setResizable(false);
         BorderPane borderPane = new BorderPane();

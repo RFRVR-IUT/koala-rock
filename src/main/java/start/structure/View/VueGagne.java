@@ -18,13 +18,12 @@ public class VueGagne {
 
     private VueJeu vueJeu;
 
-    public void screenWin(IntegerProperty scoreProperty) {
+    public void screenWin(IntegerProperty scoreProperty, Stage stage) {
 
         if (vueJeu == null) {
             vueJeu = new VueJeu();
         }
 
-        Stage stage = new Stage();
         stage.setTitle("Koala Rock");
         stage.setResizable(false);
         BorderPane borderPane = new BorderPane();
