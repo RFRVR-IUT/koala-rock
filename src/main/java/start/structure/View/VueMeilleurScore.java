@@ -9,16 +9,16 @@ import start.structure.RessourcesAccess;
 import start.structure.metier.entite.Score;
 import start.structure.metier.manager.ScoreManager;
 
+import java.io.IOException;
 import java.util.List;
 
-public class VueMeilleurScore extends Stage {
+public class VueMeilleurScore{
     Pane pane = new Pane();
-    Scene scene = new Scene(pane, 950, 650);
 
-    public VueMeilleurScore() {
+    public void affichageVueMeilleurScore(Stage stage) throws IOException {
         ;
         Pane pane = new Pane();
-        Scene scene = new Scene(pane, 950, 650);
+        Scene scene = new Scene(pane, 1280, 720);
         scene.getStylesheets().add(String.valueOf(RessourcesAccess.class.getResource("css/style.css")));
 
 
@@ -35,7 +35,7 @@ public class VueMeilleurScore extends Stage {
         buttonRetour.setLayoutX(430);
         buttonRetour.setLayoutY(550);
         buttonRetour.setOnAction(event -> {
-            this.close();
+            stage.close();
         });
 
         List<Score> scores = ScoreManager.getInstance().getScores();
@@ -92,7 +92,8 @@ public class VueMeilleurScore extends Stage {
 
         pane.setStyle("-fx-border-color: white ; -fx-border-width: 10px ; -fx-background-color: black ; -fx-background-radius: 10px ;");
         pane.getChildren().addAll(labelMeilleurScore, buttonRetour);
-        this.setScene(scene);
+        stage.setScene(scene);
+        stage.show();
 
     }
 }
