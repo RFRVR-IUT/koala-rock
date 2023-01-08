@@ -30,67 +30,67 @@ public class VueCompte {
         Label label = new Label(Session.getInstance().getLogin());
         System.out.println(Session.getInstance().getLogin());
         label.getStyleClass().add("nomJeu");
-        label.setLayoutX(45);
+        label.setLayoutX(55);
         label.setLayoutY(25);
 
-        //chemp de modification du mot de passe avec un bouton de validation
+        //champ de modification du mot de passe avec un bouton de validation
 
         Label labelModificationMDP = new Label("Modification du mot de passe");
         labelModificationMDP.getStyleClass().add("LabelConnexionField");
-        labelModificationMDP.setLayoutX(25);
+        labelModificationMDP.setLayoutX(50);
         labelModificationMDP.setLayoutY(130);
 
         Line line = new Line();
-        line.setStartX(350.0f);
-        line.setStartY(100.0f);
-        line.setEndX(350.0f);
+        line.setStartX(400.0f);
+        line.setStartY(150.0f);
+        line.setEndX(400.0f);
         line.setEndY(500.0f);
-        line.setStrokeWidth(5);
+        line.setStrokeWidth(2);
         line.setStroke(Color.WHITE);
 
         Label labelMotDePasse = new Label("Mot de passe");
         labelMotDePasse.getStyleClass().add("LabelConnexionField");
-        labelMotDePasse.setLayoutX(90);
+        labelMotDePasse.setLayoutX(110);
         labelMotDePasse.setLayoutY(200);
         PasswordField passwordField = new PasswordField();
         passwordField.getStyleClass().add("TextFieldConnexion");
-        passwordField.setLayoutX(90);
+        passwordField.setLayoutX(110);
         passwordField.setLayoutY(225);
 
 
         Label labelMotDePasse2 = new Label("Confirmation");
         labelMotDePasse2.getStyleClass().add("LabelConnexionField");
-        labelMotDePasse2.setLayoutX(90);
+        labelMotDePasse2.setLayoutX(110);
         labelMotDePasse2.setLayoutY(300);
         PasswordField passwordField2 = new PasswordField();
         passwordField2.getStyleClass().add("TextFieldConnexion");
-        passwordField2.setLayoutX(90);
+        passwordField2.setLayoutX(110);
         passwordField2.setLayoutY(325);
 
         Button buttonModifPassword = new Button("Changer mot de passe");
         buttonModifPassword.getStyleClass().add("btnGrey");
-        buttonModifPassword.setLayoutX(60);
-        buttonModifPassword.setLayoutY(400);
+        buttonModifPassword.setLayoutX(83);
+        buttonModifPassword.setLayoutY(420);
 
         Label labelErreur = new Label();
         labelErreur.getStyleClass().add("LabelError");
-        labelErreur.setLayoutX(50);
+        labelErreur.setLayoutX(60);
         labelErreur.setLayoutY(470);
 
-        Button boutonRetour = new Button("Retour");
-        boutonRetour.getStyleClass().add("btnGrey");
-        boutonRetour.setLayoutX(50);
-        boutonRetour.setLayoutY(550);
-
-        Button supprimerCompte = new Button("SupprimerCompte");
+        Button supprimerCompte = new Button("Supprimer Compte");
         supprimerCompte.getStyleClass().add("btnRed");
-        supprimerCompte.setLayoutX(710);
-        supprimerCompte.setLayoutY(550);
+        supprimerCompte.setLayoutX(1040);
+        supprimerCompte.setLayoutY(600);
 
         Button deconnexion = new Button("Deconnexion");
         deconnexion.getStyleClass().add("btnGrey");
-        deconnexion.setLayoutX(400);
-        deconnexion.setLayoutY(550);
+        deconnexion.setLayoutX(878);
+        deconnexion.setLayoutY(600);
+
+        Button boutonRetour = new Button("Retour");
+        boutonRetour.getStyleClass().add("btnGrey");
+        boutonRetour.setLayoutX(150);
+        boutonRetour.setLayoutY(600);
 
         Button menu = new Button("Menu");
         menu.getStyleClass().add("btnGrey");
@@ -129,7 +129,7 @@ public class VueCompte {
         //10 meilleurs score du joueurs avec la date
         Label labelMeilleurScore = new Label("Meilleurs scores");
         labelMeilleurScore.getStyleClass().add("nomJeu");
-        labelMeilleurScore.setLayoutX(400);
+        labelMeilleurScore.setLayoutX(630);
         labelMeilleurScore.setLayoutY(75);
         List<Score> scores = ScoreManager.getInstance().getScores();
         int i = 0;

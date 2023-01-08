@@ -61,12 +61,12 @@ public class VuePerdre {
 
         Button recommencer = new Button("Recommencer");
         recommencer.getStyleClass().add("buttonEcran");
-        recommencer.setLayoutX(540);
+        recommencer.setLayoutX(580);
         recommencer.setLayoutY(570);
 
         Button quitter = new Button("Quitter");
         quitter.getStyleClass().add("buttonEcran");
-        quitter.setLayoutX(740);
+        quitter.setLayoutX(800);
         quitter.setLayoutY(570);
 
 

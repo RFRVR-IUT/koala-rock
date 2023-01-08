@@ -1,11 +1,13 @@
 package start.structure.View;
 
 import javafx.scene.Scene;
+import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.effect.DropShadow;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
+import javafx.scene.shape.Line;
 import javafx.scene.shape.Rectangle;
 import javafx.stage.Stage;
 import start.structure.RessourcesAccess;
@@ -13,6 +15,7 @@ import start.structure.metier.entite.Score;
 import start.structure.metier.manager.ScoreManager;
 import start.structure.stockage.Session;
 
+import java.awt.*;
 import java.io.IOException;
 import java.util.List;
 
@@ -27,30 +30,50 @@ public class VueMeilleurScore {
 
 
         Label labelMeilleurScore = new Label("Meilleurs scores");
-        labelMeilleurScore.setLayoutX(300);
+        labelMeilleurScore.setLayoutX(480);
         labelMeilleurScore.setLayoutY(40);
         labelMeilleurScore.setFont(new javafx.scene.text.Font("Goldman", 40));
         labelMeilleurScore.setTextFill(javafx.scene.paint.Color.WHITE);
         labelMeilleurScore.setUnderline(true);
 
+        Label labelClassic = new Label("Classic");
+        labelClassic.setLayoutX(250);
+        labelClassic.setLayoutY(120);
+        labelClassic.setFont(new javafx.scene.text.Font("Goldman", 25));
+        labelClassic.setTextFill(javafx.scene.paint.Color.WHITE);
+
+        Label labelInfini = new Label("Infini");
+        labelInfini.setLayoutX(900);
+        labelInfini.setLayoutY(120);
+        labelInfini.setFont(new javafx.scene.text.Font("Goldman", 25));
+        labelInfini.setTextFill(javafx.scene.paint.Color.WHITE);
+
+        Line line = new Line();
+        line.setStartX(640.0f);
+        line.setStartY(200.0f);
+        line.setEndX(640.0f);
+        line.setEndY(450.0f);
+        line.setStrokeWidth(2);
+        line.setStroke(Color.WHITE);
+
+
         Button buttonRetour = new Button("Retour");
         buttonRetour.getStyleClass().add("btnGrey");
-        buttonRetour.setLayoutX(600);
-        buttonRetour.setLayoutY(550);
+        buttonRetour.setLayoutX(645);
+        buttonRetour.setLayoutY(620);
         buttonRetour.setOnAction(event -> {
             VueParametre vueParametre = new VueParametre();
             try {
 				vueParametre.affichageVueParametre(stage);
 			} catch (IOException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
         });
 
         Button menu = new Button("Menu");
         menu.getStyleClass().add("btnGrey");
-        menu.setLayoutX(607);
-        menu.setLayoutY(600);
+        menu.setLayoutX(545);
+        menu.setLayoutY(620);
         menu.setOnAction(event -> {
             VueMenu vueMenu = new VueMenu();
             vueMenu.demarrerMenu(stage);
@@ -60,57 +83,54 @@ public class VueMeilleurScore {
         int i = 0;
 
         while (i < 11 && i < scores.size()) {
-            Label labelPseudo;
+            Label labelPseudoInfini;
             if (scores.get(i).getLogin() == null) {
-                labelPseudo = new Label("Invité");
+                labelPseudoInfini = new Label("Invité");
             } else {
-                labelPseudo = new Label(scores.get(i).getLogin());
+                labelPseudoInfini = new Label(scores.get(i).getLogin());
             }
-            Label labelScore = new Label(String.valueOf(scores.get(i).getScore()));
-            Label place = new Label(String.valueOf(i + 1) + ".");
+            Label labelScoreInfini = new Label(String.valueOf(scores.get(i).getScore()));
+            Label placeInfini = new Label(i + 1 + ".");
 
             if (i == 0) {
-                labelScore.setTextFill(javafx.scene.paint.Color.GOLD);
-                labelPseudo.setTextFill(javafx.scene.paint.Color.GOLD);
-                place.setTextFill(javafx.scene.paint.Color.GOLD);
+                labelScoreInfini.setTextFill(javafx.scene.paint.Color.GOLD);
+                labelPseudoInfini.setTextFill(javafx.scene.paint.Color.GOLD);
+                placeInfini.setTextFill(javafx.scene.paint.Color.GOLD);
             } else if (i == 1) {
-                labelScore.setTextFill(javafx.scene.paint.Color.GRAY);
-                labelPseudo.setTextFill(javafx.scene.paint.Color.GRAY);
-                place.setTextFill(javafx.scene.paint.Color.GRAY);
+                labelScoreInfini.setTextFill(javafx.scene.paint.Color.GRAY);
+                labelPseudoInfini.setTextFill(javafx.scene.paint.Color.GRAY);
+                placeInfini.setTextFill(javafx.scene.paint.Color.GRAY);
             } else if (i == 2) {
-                labelScore.setTextFill(javafx.scene.paint.Color.BROWN);
-                labelPseudo.setTextFill(javafx.scene.paint.Color.BROWN);
-                place.setTextFill(javafx.scene.paint.Color.BROWN);
+                labelScoreInfini.setTextFill(javafx.scene.paint.Color.BROWN);
+                labelPseudoInfini.setTextFill(javafx.scene.paint.Color.BROWN);
+                placeInfini.setTextFill(javafx.scene.paint.Color.BROWN);
             } else {
-                labelScore.setTextFill(javafx.scene.paint.Color.WHITE);
-                labelPseudo.setTextFill(javafx.scene.paint.Color.WHITE);
-                place.setTextFill(javafx.scene.paint.Color.WHITE);
+                labelScoreInfini.setTextFill(javafx.scene.paint.Color.WHITE);
+                labelPseudoInfini.setTextFill(javafx.scene.paint.Color.WHITE);
+                placeInfini.setTextFill(javafx.scene.paint.Color.WHITE);
             }
-/*
-            labelScore.setFont(new javafx.scene.text.Font("Arial", 40));
-            labelPseudo.setFont(new javafx.scene.text.Font("Goldman", 40));
-            place.setFont(new javafx.scene.text.Font("Goldman", 40));
-*/
-            labelScore.getStyleClass().add("LabelScore");
-            labelPseudo.getStyleClass().add("LabelScore");
-            place.getStyleClass().add("LabelScore");
 
-            labelPseudo.setLayoutX(310);
-            labelPseudo.setLayoutY(115 + 35 * (i + 1));
-            labelScore.setLayoutX(610);
-            labelScore.setLayoutY(115 + 35 * (i + 1));
-            place.setLayoutX(260);
-            place.setLayoutY(115 + 35 * (i + 1));
+            labelScoreInfini.getStyleClass().add("LabelScore");
+            labelPseudoInfini.getStyleClass().add("LabelScore");
+            placeInfini.getStyleClass().add("LabelScore");
 
-            pane.getChildren().add(labelPseudo);
-            pane.getChildren().add(labelScore);
-            pane.getChildren().add(place);
+            labelPseudoInfini.setLayoutX(800);
+            labelPseudoInfini.setLayoutY(165 + 35 * (i + 1));
+            labelScoreInfini.setLayoutX(1100);
+            labelScoreInfini.setLayoutY(165 + 35 * (i + 1));
+            placeInfini.setLayoutX(750);
+            placeInfini.setLayoutY(165 + 35 * (i + 1));
+
+            pane.getChildren().add(labelPseudoInfini);
+            pane.getChildren().add(labelScoreInfini);
+            pane.getChildren().add(placeInfini);
             i++;
         }
 
         pane.setStyle("-fx-border-color: white ; -fx-border-width: 10px ; -fx-background-color: black ; -fx-background-radius: 10px ;");
-        pane.getChildren().addAll(labelMeilleurScore, buttonRetour, menu);
+        pane.getChildren().addAll(labelMeilleurScore, buttonRetour, menu, labelClassic, labelInfini, line);
         stage.setScene(scene);
+        stage.setTitle("Meilleurs scores");
         stage.show();
 
         stage.setOnCloseRequest(event -> {

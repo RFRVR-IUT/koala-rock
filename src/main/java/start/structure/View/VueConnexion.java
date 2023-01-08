@@ -80,7 +80,7 @@ public class VueConnexion {
         TextField textFieldPseudoInscription = new TextField();
         textFieldPseudoInscription.getStyleClass().add("TextFieldConnexion");
         textFieldPseudoInscription.setLayoutX(790);
-        textFieldPseudoInscription.setLayoutY(275);
+        textFieldPseudoInscription.setLayoutY(175);
         PasswordField passwordFieldInscription = new PasswordField();
         passwordFieldInscription.getStyleClass().add("TextFieldConnexion");
         passwordFieldInscription.setLayoutX(790);
@@ -99,8 +99,8 @@ public class VueConnexion {
         //RETOUR
         Button buttonRetour = new Button("Retour");
         buttonRetour.getStyleClass().add("btnGrey");
-        buttonRetour.setLayoutX(100);
-        buttonRetour.setLayoutY(550);
+        buttonRetour.setLayoutX(645);
+        buttonRetour.setLayoutY(620);
 
         Label labelErreur = new Label();
         labelErreur.getStyleClass().add("LabelConnexionField");
@@ -109,8 +109,8 @@ public class VueConnexion {
 
         Button menu = new Button("Menu");
         menu.getStyleClass().add("btnGrey");
-        menu.setLayoutX(100);
-        menu.setLayoutY(610);
+        menu.setLayoutX(545);
+        menu.setLayoutY(620);
         menu.setOnAction(event -> {
             VueMenu vueMenu = new VueMenu();
             vueMenu.demarrerMenu(stage);
@@ -184,7 +184,6 @@ public class VueConnexion {
             try {
                 vueParametre.affichageVueParametre(stage);
             } catch (IOException e) {
-                // TODO Auto-generated catch block
                 e.printStackTrace();
             }
         });

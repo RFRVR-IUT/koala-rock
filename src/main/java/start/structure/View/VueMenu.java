@@ -46,18 +46,18 @@ public class VueMenu {
 
         Button demarrerPartie = new Button("Jouer");
         demarrerPartie.getStyleClass().add("buttonEcran");
-        demarrerPartie.setLayoutX(580);
-        demarrerPartie.setLayoutY(350);
+        demarrerPartie.setLayoutX(590);
+        demarrerPartie.setLayoutY(280);
 
         Button parametre = new Button("Paramètres");
         parametre.getStyleClass().add("buttonEcran");
         parametre.setLayoutX(555);
-        parametre.setLayoutY(450);
+        parametre.setLayoutY(380);
 
         Button quitter = new Button("Quitter");
         quitter.getStyleClass().add("buttonEcran");
-        quitter.setLayoutX(575);
-        quitter.setLayoutY(550);
+        quitter.setLayoutX(585);
+        quitter.setLayoutY(480);
 
 
         ///////// IMAGE ///////////
@@ -76,13 +76,13 @@ public class VueMenu {
         ///////// COPYRIGHT ///////////
         Label copyRight = new Label("© 2023 Koala Rock");
         copyRight.getStyleClass().add("copyRight");
-        copyRight.setLayoutX(1000);
-        copyRight.setLayoutY(600);
+        copyRight.setLayoutX(1050);
+        copyRight.setLayoutY(590);
 
         Label copyRightName = new Label("Réalisé par : Célyan, Joris, Killian, Simon, Valentin");
         copyRightName.getStyleClass().add("copyRightName");
-        copyRightName.setLayoutX(872);
-        copyRightName.setLayoutY(630);
+        copyRightName.setLayoutX(922);
+        copyRightName.setLayoutY(620);
 
 
         pane.getChildren().add(menuScreen);

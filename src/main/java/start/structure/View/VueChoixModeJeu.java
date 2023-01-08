@@ -32,18 +32,18 @@ public class VueChoixModeJeu {
 
         Button demarrerPartie = new Button("Mode Classic");
         demarrerPartie.getStyleClass().add("buttonEcran");
-        demarrerPartie.setLayoutX(541);
-        demarrerPartie.setLayoutY(350);
+        demarrerPartie.setLayoutX(550);
+        demarrerPartie.setLayoutY(280);
 
         Button demarrerInfinit = new Button("Mode Infini");
         demarrerInfinit.getStyleClass().add("buttonEcran");
-        demarrerInfinit.setLayoutX(554);
-        demarrerInfinit.setLayoutY(430);
+        demarrerInfinit.setLayoutX(562);
+        demarrerInfinit.setLayoutY(370);
 
         Button buttonRetour = new Button("Retour");
         buttonRetour.getStyleClass().add("buttonEcran");
-        buttonRetour.setLayoutX(570);
-        buttonRetour.setLayoutY(510);
+        buttonRetour.setLayoutX(585);
+        buttonRetour.setLayoutY(460);
 
         buttonRetour.setOnAction(event -> {
             VueMenu vueMenu = new VueMenu();

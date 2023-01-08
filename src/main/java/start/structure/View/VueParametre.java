@@ -173,7 +173,7 @@ public class VueParametre {
 
         Button monCompte = new Button("Mon Compte");
         monCompte.getStyleClass().add("buttonEcran");
-        monCompte.setLayoutX(902);
+        monCompte.setLayoutX(912);
         monCompte.setLayoutY(180);
         ////////////////////////////End Bouton////////////////////////////
 
@@ -225,7 +225,7 @@ public class VueParametre {
             pane.getChildren().add(connexionRegister);
         }
 
-        buttonHide.setLayoutX(550);
+        buttonHide.setLayoutX(540);
         buttonHide.setLayoutY(620);
         buttonHide.setOnAction(event -> {
             VueMenu vueMenu = new VueMenu();
