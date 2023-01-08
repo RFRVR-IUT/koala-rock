@@ -183,7 +183,7 @@ public class VueJeu {
             Rectangle rectangle = new Rectangle();
             rectangle.setX(140);
             rectangle.setY(150);
-            rectangle.setWidth(300);
+            rectangle.setWidth(350);
             rectangle.setHeight(200);
 
             rectangle.setArcHeight(50);
@@ -198,7 +198,7 @@ public class VueJeu {
 
             Button non = new Button("Non");
             non.getStyleClass().add("btnRed");
-            non.setLayoutX(360);
+            non.setLayoutX(410);
             non.setLayoutY(275);
 
             oui.setOnAction(e -> {
