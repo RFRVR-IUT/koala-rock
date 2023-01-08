@@ -51,13 +51,13 @@ public class VueMenu {
 
         Button parametre = new Button("Paramètres");
         parametre.getStyleClass().add("buttonEcran");
-        parametre.setLayoutX(120);
-        parametre.setLayoutY(580);
+        parametre.setLayoutX(555);
+        parametre.setLayoutY(450);
 
         Button quitter = new Button("Quitter");
         quitter.getStyleClass().add("buttonEcran");
         quitter.setLayoutX(575);
-        quitter.setLayoutY(580);
+        quitter.setLayoutY(550);
 
 
         ///////// IMAGE ///////////

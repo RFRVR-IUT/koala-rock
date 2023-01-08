@@ -92,9 +92,23 @@ public class VueCompte {
         deconnexion.setLayoutX(400);
         deconnexion.setLayoutY(550);
 
-        boutonRetour.setOnMouseClicked(event -> {
+        Button menu = new Button("Menu");
+        menu.getStyleClass().add("btnGrey");
+        menu.setLayoutX(50);
+        menu.setLayoutY(600);
+        menu.setOnAction(event -> {
             VueMenu vueMenu = new VueMenu();
             vueMenu.demarrerMenu(stage);
+        });
+
+        boutonRetour.setOnAction(event -> {
+            VueParametre vueParametre = new VueParametre();
+            try {
+				vueParametre.affichageVueParametre(stage);
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
         });
 
 
@@ -185,7 +199,7 @@ public class VueCompte {
             vueMenu.demarrerMenu(stage);
         });
 
-        pane.getChildren().addAll(label, labelMotDePasse, passwordField, labelMotDePasse2, passwordField2, buttonModifPassword, labelMeilleurScore, boutonRetour, supprimerCompte, deconnexion);
+        pane.getChildren().addAll(label, labelMotDePasse, passwordField, labelMotDePasse2, passwordField2, buttonModifPassword, labelMeilleurScore, boutonRetour, supprimerCompte, deconnexion, menu);
         pane.getChildren().add(labelErreur);
         pane.getChildren().add(labelModificationMDP);
         pane.getChildren().add(line);

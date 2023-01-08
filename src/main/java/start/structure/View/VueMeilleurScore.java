@@ -35,9 +35,23 @@ public class VueMeilleurScore {
 
         Button buttonRetour = new Button("Retour");
         buttonRetour.getStyleClass().add("btnGrey");
-        buttonRetour.setLayoutX(430);
+        buttonRetour.setLayoutX(600);
         buttonRetour.setLayoutY(550);
         buttonRetour.setOnAction(event -> {
+            VueParametre vueParametre = new VueParametre();
+            try {
+				vueParametre.affichageVueParametre(stage);
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+        });
+
+        Button menu = new Button("Menu");
+        menu.getStyleClass().add("btnGrey");
+        menu.setLayoutX(607);
+        menu.setLayoutY(600);
+        menu.setOnAction(event -> {
             VueMenu vueMenu = new VueMenu();
             vueMenu.demarrerMenu(stage);
         });
@@ -95,7 +109,7 @@ public class VueMeilleurScore {
         }
 
         pane.setStyle("-fx-border-color: white ; -fx-border-width: 10px ; -fx-background-color: black ; -fx-background-radius: 10px ;");
-        pane.getChildren().addAll(labelMeilleurScore, buttonRetour);
+        pane.getChildren().addAll(labelMeilleurScore, buttonRetour, menu);
         stage.setScene(scene);
         stage.show();
 

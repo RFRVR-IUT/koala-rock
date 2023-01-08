@@ -173,7 +173,7 @@ public class VueParametre {
 
         Button monCompte = new Button("Mon Compte");
         monCompte.getStyleClass().add("buttonEcran");
-        monCompte.setLayoutX(960);
+        monCompte.setLayoutX(902);
         monCompte.setLayoutY(180);
         ////////////////////////////End Bouton////////////////////////////
 
