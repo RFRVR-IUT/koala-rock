@@ -52,7 +52,7 @@ public class VueMenu {
         Button monCompte = new Button("Mon Compte");
         monCompte.getStyleClass().add("buttonEcran");
         monCompte.setLayoutX(940);
-        monCompte.setLayoutY(500);
+        monCompte.setLayoutY(580);
 
         Button connexionRegister = new Button("Connexion/Inscription");
         connexionRegister.getStyleClass().add("buttonEcran");
@@ -103,9 +103,17 @@ public class VueMenu {
         pane.getChildren().add(menuScreen);
         pane.getChildren().add(labelError);
         pane.getChildren().addAll(demarrerPartie);
-        pane.getChildren().addAll(parametre, connexionRegister, meilleurScore, monCompte, quitter);
+        pane.getChildren().addAll(parametre, meilleurScore, quitter);
         pane.getChildren().add(nameGame);
         pane.getChildren().addAll(copyRight, copyRightName);
+
+        if (Session.getInstance().isConnected()) {
+            pane.getChildren().add(monCompte);
+            pane.getChildren().remove(connexionRegister);
+        } else {
+            pane.getChildren().remove(monCompte);
+            pane.getChildren().add(connexionRegister);
+        }
 
 
         /**
