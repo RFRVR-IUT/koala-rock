@@ -104,11 +104,11 @@ public class VueMeilleurScore {
             System.out.println("Fermeture de Koala Rock");
             Label alerte = new Label("Voulez vous vraiment \n" + "quitter le jeu ?");
             alerte.getStyleClass().add("LabelError");
-            alerte.setLayoutX(320);
+            alerte.setLayoutX(520);
             alerte.setLayoutY(250);
 
             Rectangle rectangle = new Rectangle();
-            rectangle.setX(300);
+            rectangle.setX(500);
             rectangle.setY(200);
             rectangle.setWidth(300);
             rectangle.setHeight(200);
@@ -120,12 +120,12 @@ public class VueMeilleurScore {
 
             Button oui = new Button("Oui");
             oui.getStyleClass().add("btnGrey");
-            oui.setLayoutX(320);
+            oui.setLayoutX(520);
             oui.setLayoutY(325);
 
             Button non = new Button("Non");
             non.getStyleClass().add("btnRed");
-            non.setLayoutX(520);
+            non.setLayoutX(720);
             non.setLayoutY(325);
 
             oui.setOnAction(e -> {
