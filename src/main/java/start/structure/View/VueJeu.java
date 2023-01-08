@@ -164,7 +164,7 @@ public class VueJeu {
 
         //////////////// ALERTE ////////////////
         boutonMenuPrincipal.setOnMouseClicked(event -> {
-            Label alerte = new Label("Voulez vous vraiment \n" + "supprimer votre compte ?");
+            Label alerte = new Label("Voulez vous vraiment \n" + "retourner au menu principal ?");
             alerte.getStyleClass().add("LabelError");
             alerte.setLayoutX(160);
             alerte.setLayoutY(200);
