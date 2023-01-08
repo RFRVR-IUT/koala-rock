@@ -108,6 +108,11 @@ public class VueJeu {
         chrono.getStyleClass().add("Chrono");
         chrono.setLayoutX(20);
         chrono.setLayoutY(50);
+
+        Label modeDeJeu = new Label("Mode : Normal");
+        modeDeJeu.getStyleClass().add("Chrono");
+        modeDeJeu.setLayoutX(900);
+        modeDeJeu.setLayoutY(50);
         //////////////// End Label ///////////////////////
 
         //////////////// Button ///////////////////////
@@ -260,6 +265,7 @@ public class VueJeu {
             getVie().setValue(1);
         } else if (modeJeu.equals("Infini")) {
             mode = "Infini";
+            modeDeJeu.setText("Mode : Infini");
             getVie().setValue(3);
         }
 
@@ -286,7 +292,7 @@ public class VueJeu {
         // Couleur Interface
         interfaceJeu.setStyle("-fx-background-color: #000000;");
 
-        interfaceJeu.getChildren().addAll(score, vie, nomJeu, chrono);
+        interfaceJeu.getChildren().addAll(score, vie, nomJeu, chrono, modeDeJeu);
         interfaceJeu.getChildren().add(boutonMenuPrincipal);
         interfaceJeu.getChildren().addAll(button_Bas, button_Haut, button_Gauche, button_Droite, button_Espace);
 

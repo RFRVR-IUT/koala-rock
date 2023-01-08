@@ -19,7 +19,7 @@ import java.util.Objects;
 
 public class VueMenu {
 
-    private final VueJeu vueJeu = new VueJeu();
+    private VueChoixModeJeu vueChoixModeJeu = new VueChoixModeJeu();
 
     public void demarrerMenu(Stage stage) {
         stage.setTitle("Koala Rock");
@@ -44,15 +44,10 @@ public class VueMenu {
         nameGame.setLayoutX(355);
         nameGame.setLayoutY(100);
 
-        Button demarrerPartie = new Button("Mode Classic");
+        Button demarrerPartie = new Button("Jouer");
         demarrerPartie.getStyleClass().add("buttonEcran");
-        demarrerPartie.setLayoutX(541);
+        demarrerPartie.setLayoutX(580);
         demarrerPartie.setLayoutY(350);
-
-        Button demarrerInfinit = new Button("Mode Infini");
-        demarrerInfinit.getStyleClass().add("buttonEcran");
-        demarrerInfinit.setLayoutX(554);
-        demarrerInfinit.setLayoutY(430);
 
         Button monCompte = new Button("Mon Compte");
         monCompte.getStyleClass().add("buttonEcran");
@@ -107,7 +102,7 @@ public class VueMenu {
 
         pane.getChildren().add(menuScreen);
         pane.getChildren().add(labelError);
-        pane.getChildren().addAll(demarrerPartie, demarrerInfinit);
+        pane.getChildren().addAll(demarrerPartie);
         pane.getChildren().addAll(parametre, connexionRegister, meilleurScore, monCompte, quitter);
         pane.getChildren().add(nameGame);
         pane.getChildren().addAll(copyRight, copyRightName);
@@ -119,23 +114,11 @@ public class VueMenu {
          */
         demarrerPartie.setOnMouseClicked(event -> {
             try {
-                vueJeu.demarrerJeu(stage, "Normal");
-            } catch (IOException | InterruptedException e) {
-                e.printStackTrace();
+                vueChoixModeJeu.affichageVueChoixModeJeu(stage);
+            } catch (IOException e) {
+                throw new RuntimeException(e);
             }
-        });
-
-        /**
-         * Permet de lancer le jeu en mode infini
-         * @param event
-         */
-        demarrerInfinit.setOnMouseClicked(event -> {
-            try {
-                vueJeu.demarrerJeu(stage, "Infini");
-            } catch (IOException | InterruptedException e) {
-                e.printStackTrace();
-            }
-        });
+        }); 
 
         /**
          * Permet d'ouvrir la fenêtre de paramétrage
