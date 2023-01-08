@@ -74,15 +74,15 @@ public class VueMenu {
         labelError.setLayoutY(250);
 
         ///////// COPYRIGHT ///////////
-        Label copyRight = new Label("© 2020 Koala Rock");
+        Label copyRight = new Label("© 2023 Koala Rock");
         copyRight.getStyleClass().add("copyRight");
         copyRight.setLayoutX(1000);
-        copyRight.setLayoutY(230);
+        copyRight.setLayoutY(600);
 
         Label copyRightName = new Label("Réalisé par : Célyan, Joris, Killian, Simon, Valentin");
         copyRightName.getStyleClass().add("copyRightName");
         copyRightName.setLayoutX(872);
-        copyRightName.setLayoutY(260);
+        copyRightName.setLayoutY(630);
 
 
         pane.getChildren().add(menuScreen);
