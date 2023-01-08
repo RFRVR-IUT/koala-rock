@@ -32,7 +32,8 @@ import java.util.Objects;
 import static java.lang.Thread.sleep;
 
 public class VueJeu {
-    ArrayList<Echelle> echelles;
+    private int compteur = 1;
+	ArrayList<Echelle> echelles;
     ArrayList<EchelleBroken> echellesBrokens;
     ArrayList<Objet_Attaque> tonneaux;
     PersonnePrincipale personnePrincipale;
@@ -113,6 +114,11 @@ public class VueJeu {
         modeDeJeu.getStyleClass().add("Chrono");
         modeDeJeu.setLayoutX(900);
         modeDeJeu.setLayoutY(50);
+
+        Label niveau = new Label("");
+        niveau.getStyleClass().add("Chrono");
+        niveau.setLayoutX(20);
+        niveau.setLayoutY(100);
         //////////////// End Label ///////////////////////
 
         //////////////// Button ///////////////////////
@@ -266,6 +272,7 @@ public class VueJeu {
         } else if (modeJeu.equals("Infini")) {
             mode = "Infini";
             modeDeJeu.setText("Mode : Infini");
+            niveau.setText("Niveau : "+ compteur);
             getVie().setValue(3);
         }
 
@@ -292,7 +299,7 @@ public class VueJeu {
         // Couleur Interface
         interfaceJeu.setStyle("-fx-background-color: #000000;");
 
-        interfaceJeu.getChildren().addAll(score, vie, nomJeu, chrono, modeDeJeu);
+        interfaceJeu.getChildren().addAll(score, vie, nomJeu, chrono, modeDeJeu, niveau);
         interfaceJeu.getChildren().add(boutonMenuPrincipal);
         interfaceJeu.getChildren().addAll(button_Bas, button_Haut, button_Gauche, button_Droite, button_Espace);
 
@@ -391,6 +398,7 @@ public class VueJeu {
                         getScore().setValue(getScore().getValue() + 1000);
                         supprimerTonneaux(tonneaux);
                         creerTonneaux(coordonneesEchelles, dk);
+                        niveau.setText("Niveau : " + (compteur + 1));
                     } else {
                         isPause = true;
                         personnePrincipale.setLayoutX(20 * 10);
