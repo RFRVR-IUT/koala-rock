@@ -119,6 +119,15 @@ public class VueJeu {
         niveau.getStyleClass().add("Chrono");
         niveau.setLayoutX(20);
         niveau.setLayoutY(100);
+
+        Label niveauAlerte = new Label("");
+        niveauAlerte.getStyleClass().add("Score_Vie");
+        niveauAlerte.setLayoutX(580);
+        niveauAlerte.setLayoutY(390);
+
+        Timeline timeline = new Timeline(new KeyFrame(Duration.millis(5000), event -> niveauAlerte.setVisible(false)));
+        timeline.play();
+
         //////////////// End Label ///////////////////////
 
         //////////////// Button ///////////////////////
@@ -273,6 +282,7 @@ public class VueJeu {
             mode = "Infini";
             modeDeJeu.setText("Mode : Infini");
             niveau.setText("Niveau : "+ compteur);
+            niveauAlerte.setText("Niveau : "+ compteur);
             getVie().setValue(3);
         }
 
@@ -299,7 +309,7 @@ public class VueJeu {
         // Couleur Interface
         interfaceJeu.setStyle("-fx-background-color: #000000;");
 
-        interfaceJeu.getChildren().addAll(score, vie, nomJeu, chrono, modeDeJeu, niveau);
+        interfaceJeu.getChildren().addAll(score, vie, nomJeu, chrono, modeDeJeu, niveau, niveauAlerte);
         interfaceJeu.getChildren().add(boutonMenuPrincipal);
         interfaceJeu.getChildren().addAll(button_Bas, button_Haut, button_Gauche, button_Droite, button_Espace);
 
@@ -399,6 +409,9 @@ public class VueJeu {
                         supprimerTonneaux(tonneaux);
                         creerTonneaux(coordonneesEchelles, dk);
                         niveau.setText("Niveau : " + (compteur + 1));
+                        niveauAlerte.setText("Niveau : " + (compteur + 1));
+                        niveauAlerte.setVisible(true);
+                        timeline.play();
                     } else {
                         isPause = true;
                         personnePrincipale.setLayoutX(20 * 10);
