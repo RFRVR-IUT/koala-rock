@@ -28,7 +28,7 @@ public class VueParametre {
 
         Pane pane = new Pane();
         Scene scene = new Scene(pane, 1280, 720);
-        scene.getStylesheets().add(String.valueOf(RessourcesAccess.class.getResource("css/style.css")));
+        scene.getStylesheets().add(String.valueOf(RessourcesAccess.class.getResource("css/style.css")));        
 
         /////////////// ComboBox ///////////////
         ComboBox<String> comboBoxJoueurPrincipale = new ComboBox<>();
@@ -158,8 +158,23 @@ public class VueParametre {
         image_Espace.setFitWidth(200);
         button_Espace.setGraphic(image_Espace);
         button_Espace.getStyleClass().add("button_Action");
-        button_Espace.setLayoutX(600);
+        button_Espace.setLayoutX(500);
         button_Espace.setLayoutY(485);
+
+        Button connexionRegister = new Button("Connexion/Inscription");
+        connexionRegister.getStyleClass().add("buttonEcran");
+        connexionRegister.setLayoutX(900);
+        connexionRegister.setLayoutY(180);
+
+        Button meilleurScore = new Button("Meilleurs Score");
+        meilleurScore.getStyleClass().add("buttonEcran");
+        meilleurScore.setLayoutX(900);
+        meilleurScore.setLayoutY(100);
+
+        Button monCompte = new Button("Mon Compte");
+        monCompte.getStyleClass().add("buttonEcran");
+        monCompte.setLayoutX(960);
+        monCompte.setLayoutY(180);
         ////////////////////////////End Bouton////////////////////////////
 
         ////////////////////////////Texte////////////////////////////
@@ -186,8 +201,13 @@ public class VueParametre {
 
         Label texte_Espace = new Label("Espace");
         texte_Espace.getStyleClass().add("LabelUnderButton");
-        texte_Espace.setLayoutX(670);
+        texte_Espace.setLayoutX(570);
         texte_Espace.setLayoutY(540);
+
+        Label labelError = new Label();
+        labelError.getStyleClass().add("LabelError");
+        labelError.setLayoutX(510);
+        labelError.setLayoutY(250);
 
         ////////////////////////////End Texte////////////////////////////
 
@@ -197,23 +217,74 @@ public class VueParametre {
         buttonHide.setStyle("-fx-font-size: 12px; -fx-pref-width: 200px; -fx-pref-height: 30px;");
 
 
-        buttonHide.setLayoutX(350);
-        buttonHide.setLayoutY(580);
+        if (Session.getInstance().isConnected()) {
+            pane.getChildren().add(monCompte);
+            pane.getChildren().remove(connexionRegister);
+        } else {
+            pane.getChildren().remove(monCompte);
+            pane.getChildren().add(connexionRegister);
+        }
+
+        buttonHide.setLayoutX(550);
+        buttonHide.setLayoutY(620);
         buttonHide.setOnAction(event -> {
             VueMenu vueMenu = new VueMenu();
             vueMenu.demarrerMenu(stage);
         });
-        pane.getChildren().add(buttonHide);
+        pane.getChildren().addAll(buttonHide, meilleurScore);
         pane.getChildren().addAll(button_Bas, button_Haut, button_Gauche, button_Droite, button_Espace);
         pane.getChildren().addAll(texte_Bas, texte_Haut, texte_Gauche, texte_Droite, texte_Espace);
         pane.getChildren().addAll(comboBoxPersonnageEnnemie, comboBoxJoueurPrincipale);
         pane.getChildren().addAll(labelJoueurPrincipale, labelPersonnageEnnemie);
+        pane.getChildren().add(labelError);
 
 
         stage.setTitle("Paramètre");
         stage.setResizable(false);
         stage.setScene(scene);
         stage.show();
+
+        /**
+         * Permet d'ouvrir la fenêtre de connexion
+         * 
+         * @param event
+         */
+        connexionRegister.setOnMouseClicked(event -> {
+            VueConnexion vueConnexion = new VueConnexion();
+            try {
+                vueConnexion.affichageVueConnexion(stage);
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
+        });
+
+        /**
+         * Permet d'ouvrir la fenêtre de meilleur score
+         * 
+         * @param event
+         */
+        meilleurScore.setOnMouseClicked(event -> {
+            VueMeilleurScore vueMeilleurScore = new VueMeilleurScore();
+            try {
+                vueMeilleurScore.affichageVueMeilleurScore(stage);
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
+        });
+
+        monCompte.setOnMouseClicked(event -> {
+            labelError.setText("");
+            if (Session.getInstance().isConnected()) {
+                VueCompte vueCompte = new VueCompte();
+                try {
+                    vueCompte.affichageVueCompte(stage);
+                } catch (IOException e) {
+                    throw new RuntimeException(e);
+                }
+            } else {
+                labelError.setText("Veuillez vous connecter");
+            }
+        });
 
         pane.setStyle("-fx-border-color: white ; -fx-border-width: 10px ; -fx-background-color: black ; -fx-background-radius: 10px ;");
         stage.setOnCloseRequest(event -> {

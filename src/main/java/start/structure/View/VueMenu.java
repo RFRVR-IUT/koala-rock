@@ -49,21 +49,6 @@ public class VueMenu {
         demarrerPartie.setLayoutX(580);
         demarrerPartie.setLayoutY(350);
 
-        Button monCompte = new Button("Mon Compte");
-        monCompte.getStyleClass().add("buttonEcran");
-        monCompte.setLayoutX(940);
-        monCompte.setLayoutY(580);
-
-        Button connexionRegister = new Button("Connexion/Inscription");
-        connexionRegister.getStyleClass().add("buttonEcran");
-        connexionRegister.setLayoutX(900);
-        connexionRegister.setLayoutY(580);
-
-        Button meilleurScore = new Button("Meilleurs Score");
-        meilleurScore.getStyleClass().add("buttonEcran");
-        meilleurScore.setLayoutX(100);
-        meilleurScore.setLayoutY(500);
-
         Button parametre = new Button("Paramètres");
         parametre.getStyleClass().add("buttonEcran");
         parametre.setLayoutX(120);
@@ -103,17 +88,9 @@ public class VueMenu {
         pane.getChildren().add(menuScreen);
         pane.getChildren().add(labelError);
         pane.getChildren().addAll(demarrerPartie);
-        pane.getChildren().addAll(parametre, meilleurScore, quitter);
+        pane.getChildren().addAll(parametre, quitter);
         pane.getChildren().add(nameGame);
         pane.getChildren().addAll(copyRight, copyRightName);
-
-        if (Session.getInstance().isConnected()) {
-            pane.getChildren().add(monCompte);
-            pane.getChildren().remove(connexionRegister);
-        } else {
-            pane.getChildren().remove(monCompte);
-            pane.getChildren().add(connexionRegister);
-        }
 
 
         /**
@@ -138,46 +115,6 @@ public class VueMenu {
                 vueParametre.affichageVueParametre(stage);
             } catch (IOException e) {
                 throw new RuntimeException(e);
-            }
-        });
-
-        /**
-         * Permet d'ouvrir la fenêtre de connexion
-         * @param event
-         */
-        connexionRegister.setOnMouseClicked(event -> {
-            VueConnexion vueConnexion = new VueConnexion();
-            try {
-                vueConnexion.affichageVueConnexion(stage);
-            } catch (IOException e) {
-                throw new RuntimeException(e);
-            }
-        });
-
-        /**
-         * Permet d'ouvrir la fenêtre de meilleur score
-         * @param event
-         */
-        meilleurScore.setOnMouseClicked(event -> {
-            VueMeilleurScore vueMeilleurScore = new VueMeilleurScore();
-            try {
-                vueMeilleurScore.affichageVueMeilleurScore(stage);
-            } catch (IOException e) {
-                throw new RuntimeException(e);
-            }
-        });
-
-        monCompte.setOnMouseClicked(event -> {
-            labelError.setText("");
-            if (Session.getInstance().isConnected()) {
-                VueCompte vueCompte = new VueCompte();
-                try {
-                    vueCompte.affichageVueCompte(stage);
-                } catch (IOException e) {
-                    throw new RuntimeException(e);
-                }
-            } else {
-                labelError.setText("Veuillez vous connecter");
             }
         });
 
