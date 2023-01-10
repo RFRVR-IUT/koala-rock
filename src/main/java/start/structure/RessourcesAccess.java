@@ -10,16 +10,16 @@ import java.io.IOException;
 
 public class RessourcesAccess extends Application {
 
-        private final VueDemarrage vueDemarrage = new VueDemarrage();
+    private final VueDemarrage vueDemarrage = new VueDemarrage();
 
-        public static void main(String[] args) {
-            launch();
-        }
+    public static void main(String[] args) {
+        launch();
+    }
 
 
-        @Override
-        public void start(Stage stage) throws IOException, InterruptedException {
-            vueDemarrage.screenStart();
-            Son.playMusic();
-        }
+    @Override
+    public void start(Stage stage) throws IOException, InterruptedException {
+        vueDemarrage.screenStart();
+        Son.playMusic();
+    }
 }

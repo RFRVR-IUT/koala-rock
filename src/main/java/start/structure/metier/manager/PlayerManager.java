@@ -10,7 +10,7 @@ import java.util.List;
 public class PlayerManager {
 
     private static PlayerManager instance = null;
-    private StockagePlayerDatabase stockage = new StockagePlayerDatabase();
+    private final StockagePlayerDatabase stockage = new StockagePlayerDatabase();
 
     private PlayerManager() {
     }

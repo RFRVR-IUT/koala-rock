@@ -8,7 +8,7 @@ import java.util.List;
 public class ScoreManager {
 
     private static ScoreManager instance = null;
-    private StockageScoreDatabase stockage = new StockageScoreDatabase();
+    private final StockageScoreDatabase stockage = new StockageScoreDatabase();
 
     private ScoreManager() {
     }

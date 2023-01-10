@@ -1,4 +1,4 @@
-package start. structure.Client;
+package start.structure.Client;
 
 import javafx.application.Application;
 import javafx.stage.Stage;

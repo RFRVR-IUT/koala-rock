@@ -16,7 +16,7 @@ public class StockagePlayerDatabase {
         Connection connection = utils.getConnection();
         String req = "INSERT INTO JOUEURS(login, mdpHache, selHachage) VALUES (?, ?, ?)";
         try (
-                PreparedStatement st = connection.prepareStatement(req);
+                PreparedStatement st = connection.prepareStatement(req)
         ) {
             st.setString(1, element.getLogin());
             st.setString(2, element.getHashedPassword());
@@ -32,7 +32,7 @@ public class StockagePlayerDatabase {
         Connection connection = utils.getConnection();
         String req = "UPDATE JOUEURS SET mdpHache = ?, selHachage = ? WHERE login = ?";
         try (
-                PreparedStatement st = connection.prepareStatement(req);
+                PreparedStatement st = connection.prepareStatement(req)
         ) {
             st.setString(3, element.getLogin());
             st.setString(1, element.getHashedPassword());
@@ -48,7 +48,7 @@ public class StockagePlayerDatabase {
         Connection connection = utils.getConnection();
         String req = "DELETE FROM JOUEURS WHERE login = ?";
         try (
-                PreparedStatement st = connection.prepareStatement(req);
+                PreparedStatement st = connection.prepareStatement(req)
         ) {
             st.setString(1, login);
             st.executeUpdate();
@@ -63,10 +63,10 @@ public class StockagePlayerDatabase {
         Connection connection = utils.getConnection();
         String req = "SELECT * FROM JOUEURS WHERE login = ?";
         try (
-                PreparedStatement st = connection.prepareStatement(req);
+                PreparedStatement st = connection.prepareStatement(req)
         ) {
             st.setString(1, login);
-            try (ResultSet result = st.executeQuery();) {
+            try (ResultSet result = st.executeQuery()) {
                 if (result.next()) {
                     String password = result.getString("mdpHache");
                     byte[] salt = result.getBytes("selHachage");
@@ -86,7 +86,7 @@ public class StockagePlayerDatabase {
         String req = "SELECT * FROM JOUEURS";
         try (
                 PreparedStatement st = connection.prepareStatement(req);
-                ResultSet result = st.executeQuery();
+                ResultSet result = st.executeQuery()
         ) {
             while (result.next()) {
                 String login = result.getString("login");

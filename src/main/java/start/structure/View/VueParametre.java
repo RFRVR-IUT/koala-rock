@@ -28,7 +28,7 @@ public class VueParametre {
 
         Pane pane = new Pane();
         Scene scene = new Scene(pane, 1280, 720);
-        scene.getStylesheets().add(String.valueOf(RessourcesAccess.class.getResource("css/style.css")));        
+        scene.getStylesheets().add(String.valueOf(RessourcesAccess.class.getResource("css/style.css")));
 
         /////////////// ComboBox ///////////////
         ComboBox<String> comboBoxJoueurPrincipale = new ComboBox<>();
@@ -246,7 +246,7 @@ public class VueParametre {
 
         /**
          * Permet d'ouvrir la fenêtre de connexion
-         * 
+         *
          * @param event
          */
         connexionRegister.setOnMouseClicked(event -> {
@@ -260,7 +260,7 @@ public class VueParametre {
 
         /**
          * Permet d'ouvrir la fenêtre de meilleur score
-         * 
+         *
          * @param event
          */
         meilleurScore.setOnMouseClicked(event -> {

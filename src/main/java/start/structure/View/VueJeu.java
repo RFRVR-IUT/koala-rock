@@ -32,8 +32,8 @@ import java.util.Objects;
 import static java.lang.Thread.sleep;
 
 public class VueJeu {
-    private int compteur = 1;
-	ArrayList<Echelle> echelles;
+    private final int compteur = 1;
+    ArrayList<Echelle> echelles;
     ArrayList<EchelleBroken> echellesBrokens;
     ArrayList<Objet_Attaque> tonneaux;
     PersonnePrincipale personnePrincipale;
@@ -49,8 +49,7 @@ public class VueJeu {
     private final LongProperty time = new SimpleLongProperty(0);
     private Label button_Bas, button_Haut, button_Gauche, button_Droite, button_Espace;
     private ImageView image_Bas, image_Haut, image_Gauche, image_Droite, image_Espace;
-    private AnimationTimer timer;
-    private AnimationTimer collisionTimer;
+    private AnimationTimer timer, collisionTimer;
     private Timeline timelineTonneaux = new Timeline();
 
     public IntegerProperty getScore() {
@@ -281,8 +280,8 @@ public class VueJeu {
         } else if (modeJeu.equals("Infini")) {
             mode = "Infini";
             modeDeJeu.setText("Mode : Infini");
-            niveau.setText("Niveau : "+ compteur);
-            niveauAlerte.setText("Niveau : "+ compteur);
+            niveau.setText("Niveau : " + compteur);
+            niveauAlerte.setText("Niveau : " + compteur);
             getVie().setValue(3);
         }
 

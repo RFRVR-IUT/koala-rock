@@ -1,7 +1,6 @@
 package start.structure.View;
 
 import javafx.scene.Scene;
-import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.effect.DropShadow;
@@ -15,7 +14,6 @@ import start.structure.metier.entite.Score;
 import start.structure.metier.manager.ScoreManager;
 import start.structure.stockage.Session;
 
-import java.awt.*;
 import java.io.IOException;
 import java.util.List;
 
@@ -23,7 +21,6 @@ public class VueMeilleurScore {
     Pane pane = new Pane();
 
     public void affichageVueMeilleurScore(Stage stage) throws IOException {
-        ;
         Pane pane = new Pane();
         Scene scene = new Scene(pane, 1280, 720);
         scene.getStylesheets().add(String.valueOf(RessourcesAccess.class.getResource("css/style.css")));
@@ -64,10 +61,10 @@ public class VueMeilleurScore {
         buttonRetour.setOnAction(event -> {
             VueParametre vueParametre = new VueParametre();
             try {
-				vueParametre.affichageVueParametre(stage);
-			} catch (IOException e) {
-				e.printStackTrace();
-			}
+                vueParametre.affichageVueParametre(stage);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
         });
 
         Button menu = new Button("Menu");

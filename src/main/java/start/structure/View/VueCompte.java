@@ -104,11 +104,11 @@ public class VueCompte {
         boutonRetour.setOnAction(event -> {
             VueParametre vueParametre = new VueParametre();
             try {
-				vueParametre.affichageVueParametre(stage);
-			} catch (IOException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
+                vueParametre.affichageVueParametre(stage);
+            } catch (IOException e) {
+                // TODO Auto-generated catch block
+                e.printStackTrace();
+            }
         });
 
 
@@ -118,7 +118,7 @@ public class VueCompte {
                     PlayerManager.getInstance().updatePlayer(Session.getInstance().getLogin(), passwordField.getText());
                     labelErreur.setText("Mot de passe modifié");
                 } else {
-                    labelErreur.setText("Les mots de passe" + "\n"  + "ne correspondent pas");
+                    labelErreur.setText("Les mots de passe" + "\n" + "ne correspondent pas");
                 }
             } else {
                 labelErreur.setText("Veuillez remplir les champs");

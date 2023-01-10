@@ -14,11 +14,10 @@ import start.structure.stockage.Session;
 import java.io.IOException;
 
 public class VueChoixModeJeu {
-    
+
     private static final VueJeu vueJeu = new VueJeu();
 
-	public void affichageVueChoixModeJeu(Stage stage) throws IOException {
-        ;
+    public void affichageVueChoixModeJeu(Stage stage) throws IOException {
         Pane pane = new Pane();
         Scene scene = new Scene(pane, 1280, 720);
         scene.getStylesheets().add(String.valueOf(RessourcesAccess.class.getResource("css/style.css")));
@@ -67,7 +66,7 @@ public class VueChoixModeJeu {
         });
 
         pane.getChildren().addAll(demarrerPartie, demarrerInfinit, buttonRetour, labelChoixModeJeu);
-        
+
         stage.setScene(scene);
         stage.show();
 

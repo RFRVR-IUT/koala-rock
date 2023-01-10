@@ -19,7 +19,7 @@ import java.util.Objects;
 
 public class VueMenu {
 
-    private VueChoixModeJeu vueChoixModeJeu = new VueChoixModeJeu();
+    private final VueChoixModeJeu vueChoixModeJeu = new VueChoixModeJeu();
 
     public void demarrerMenu(Stage stage) {
         stage.setTitle("Koala Rock");
@@ -74,9 +74,9 @@ public class VueMenu {
         labelError.setLayoutY(250);
 
         ///////// COPYRIGHT ///////////
-        Label copyRight = new Label("© 2023 Koala Rock");
+        Label copyRight = new Label(" Koala Rock© 2023. Tous droits réservés");
         copyRight.getStyleClass().add("copyRight");
-        copyRight.setLayoutX(1050);
+        copyRight.setLayoutX(880);
         copyRight.setLayoutY(590);
 
         Label copyRightName = new Label("Réalisé par : Célyan, Joris, Killian, Simon, Valentin");
@@ -103,7 +103,7 @@ public class VueMenu {
             } catch (IOException e) {
                 throw new RuntimeException(e);
             }
-        }); 
+        });
 
         /**
          * Permet d'ouvrir la fenêtre de paramétrage

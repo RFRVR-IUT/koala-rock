@@ -40,7 +40,7 @@ public class SQLUtils {
 
         try (
                 Statement st = connection.createStatement();
-                ResultSet rs = st.executeQuery("SELECT * FROM SCORES");
+                ResultSet rs = st.executeQuery("SELECT * FROM SCORES")
         ) {
             while (rs.next()) {
                 System.out.println(rs.getInt("codeScore"));

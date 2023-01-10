@@ -8,7 +8,6 @@ import java.io.File;
 public class Son {
 
 
-
     public static void playMusic() {
         try {
             File musicPath;
