@@ -45,7 +45,7 @@ public class VueJeu {
     private final VueGagne vueGagne = new VueGagne();
     private final VuePerdre vuesPerdu = new VuePerdre();
     private final VueFinInfiniPartie vueFinInfiniPartie = new VueFinInfiniPartie();
-    private String mode = "Normal";
+    private String mode = "Classic";
     private final LongProperty time = new SimpleLongProperty(0);
     private Label button_Bas, button_Haut, button_Gauche, button_Droite, button_Espace;
     private ImageView image_Bas, image_Haut, image_Gauche, image_Droite, image_Espace;
