@@ -28,7 +28,6 @@ public class VueCompte {
         scene.getStylesheets().add(String.valueOf(RessourcesAccess.class.getResource("css/style.css")));
 
         Label label = new Label(Session.getInstance().getLogin());
-        System.out.println(Session.getInstance().getLogin());
         label.getStyleClass().add("nomJeu");
         label.setLayoutX(55);
         label.setLayoutY(25);
@@ -212,7 +211,6 @@ public class VueCompte {
         pane.setStyle("-fx-border-color: white ; -fx-border-width: 10px ; -fx-background-color: black ; -fx-background-radius: 10px ;");
         stage.setOnCloseRequest(event -> {
             event.consume();
-            System.out.println("Fermeture de Koala Rock");
             Label alerte = new Label("Voulez vous vraiment \n" + "quitter le jeu ?");
             alerte.getStyleClass().add("LabelError");
             alerte.setLayoutX(520);
@@ -240,9 +238,7 @@ public class VueCompte {
             non.setLayoutY(325);
 
             oui.setOnAction(e -> {
-                System.out.println("Deconnexion de l'utilisateur");
                 Session.getInstance().disconnect();
-                System.out.println("Fermeture du jeu");
                 System.exit(0);
             });
             non.setOnAction(e -> {

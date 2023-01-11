@@ -132,7 +132,6 @@ public class VueMeilleurScore {
 
         stage.setOnCloseRequest(event -> {
             event.consume();
-            System.out.println("Fermeture de Koala Rock");
             Label alerte = new Label("Voulez vous vraiment \n" + "quitter le jeu ?");
             alerte.getStyleClass().add("LabelError");
             alerte.setLayoutX(520);
@@ -160,9 +159,7 @@ public class VueMeilleurScore {
             non.setLayoutY(325);
 
             oui.setOnAction(e -> {
-                System.out.println("Deconnexion de l'utilisateur");
                 Session.getInstance().disconnect();
-                System.out.println("Fermeture du jeu");
                 System.exit(0);
             });
             non.setOnAction(e -> {

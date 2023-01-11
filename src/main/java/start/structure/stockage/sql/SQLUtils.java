@@ -36,14 +36,12 @@ public class SQLUtils {
     public static void main(String[] args) {
         SQLUtils utils = SQLUtils.getInstance();
         Connection connection = utils.getConnection();
-        System.out.println(connection);
 
         try (
                 Statement st = connection.createStatement();
                 ResultSet rs = st.executeQuery("SELECT * FROM SCORES")
         ) {
             while (rs.next()) {
-                System.out.println(rs.getInt("codeScore"));
             }
         } catch (SQLException e) {
             e.printStackTrace();

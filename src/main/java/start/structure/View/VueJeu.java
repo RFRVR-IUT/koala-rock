@@ -263,7 +263,6 @@ public class VueJeu {
                     long deltaT = (newTime - timestamp) / 1000;
                     time.set(time.get() + deltaT);
                     timestamp += 1000 * deltaT;
-                    System.out.println(time);
                 }
             }
         };
@@ -311,8 +310,6 @@ public class VueJeu {
         interfaceJeu.getChildren().addAll(score, vie, nomJeu, chrono, modeDeJeu, niveau, niveauAlerte);
         interfaceJeu.getChildren().add(boutonMenuPrincipal);
         interfaceJeu.getChildren().addAll(button_Bas, button_Haut, button_Gauche, button_Droite, button_Espace);
-
-        System.out.println(echelle1.getLayoutX());
 
         //////////////////////// Echelle ////////////////////////
         // Attribution des coordonnées etc des échelles
@@ -365,7 +362,6 @@ public class VueJeu {
             @Override
             public void handle(long now) {
                 if (personnePrincipale.collisionTonneaux(tonneaux) == -1 && !isPause) {
-                    System.out.println("here");
                     if (getVie().getValue() > 1) {
                         personnePrincipale.setLayoutX(20 * 10);
                         personnePrincipale.setLayoutY(545);
@@ -375,7 +371,6 @@ public class VueJeu {
                     } else {
                         timer.stop();
                         isPause = true;
-                        System.out.println(isPause);
                         personnePrincipale.setLayoutX(20 * 10);
                         personnePrincipale.setLayoutY(545);
                         //replacer les tonneaux
@@ -396,9 +391,6 @@ public class VueJeu {
                             vuesPerdu.screenLose(stage);
                         }
                     }
-                } else if (personnePrincipale.collisionTonneaux(tonneaux) == 1) {
-                    System.out.println("+1");
-
                 }
                 if (personnePrincipale.getLayoutX() == 305 && personnePrincipale.getLayoutY() == 94 || personnePrincipale.getLayoutX() == 300 && personnePrincipale.getLayoutY() == 94 || personnePrincipale.getLayoutX() == 295 && personnePrincipale.getLayoutY() == 94 || personnePrincipale.getLayoutX() == 290 && personnePrincipale.getLayoutY() == 94) {
                     if (getVie().getValue() > 1) {
@@ -433,7 +425,6 @@ public class VueJeu {
 
         stage.setOnCloseRequest(event -> {
             event.consume();
-            System.out.println("Fermeture de Koala Rock");
             Label alerte = new Label("Voulez vous vraiment \n" + "quitter le jeu ?");
             alerte.getStyleClass().add("LabelError");
             alerte.setLayoutX(520);
@@ -461,9 +452,7 @@ public class VueJeu {
             non.setLayoutY(325);
 
             oui.setOnAction(e -> {
-                System.out.println("Deconnexion de l'utilisateur");
                 Session.getInstance().disconnect();
-                System.out.println("Fermeture du jeu");
                 System.exit(0);
             });
             non.setOnAction(e -> {
@@ -481,7 +470,6 @@ public class VueJeu {
      * @throws InterruptedException
      */
     public void restartGame(Stage stage) throws IOException, InterruptedException {
-        System.out.println("restart");
         stage.close();
         supprimerElements(jeu, tonneaux, echelles, echellesBrokens, personnePrincipale, dk);
         personnePrincipale.setLayoutX(20 * 10);
@@ -543,7 +531,6 @@ public class VueJeu {
 
         tonneaux = new ArrayList<>(Arrays.asList(tonneau1, tonneau2, tonneau3, tonneau4, tonneau5));
         if (!isPause) {
-            System.out.println("je lance le premier tonneau !");
             tonneau1.moveTonneaux(coordonneesEchelles, dk);
             tonneau1.setLayoutY(160);
             dk.lance(tonneau1);
@@ -663,10 +650,6 @@ public class VueJeu {
                         pause.setOnFinished(event1 -> personnePrincipale.atterir());
                         break;
                     }
-                case A:
-                    System.out.println(personnePrincipale.getLayoutX());
-                    System.out.println(personnePrincipale.getLayoutY());
-                    System.out.println(personnePrincipale.getScore());
             }
         });
 

@@ -23,7 +23,6 @@ public class Son {
                 clip.start();
                 clip.loop(Clip.LOOP_CONTINUOUSLY);
             } else {
-                System.out.println("Can't find file");
             }
         } catch (Exception e) {
             e.printStackTrace();

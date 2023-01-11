@@ -40,7 +40,6 @@ public class PersonnePrincipale extends Group {
      * @return
      */
     public Paint setChoixPersonnage_IDLE(String choixPersonnage) {
-        System.out.println("Choix personnage : " + getChoixPersonnage());
         if (choixPersonnage.equals("PANDA")) {
             return new ImagePattern(new Image(Objects.requireNonNull(RessourcesAccess.class.getResourceAsStream("personnagePrincipale/Panda_Idle.png"))));
         } else if (choixPersonnage.equals("SAMURAI")) {
@@ -249,7 +248,6 @@ public class PersonnePrincipale extends Group {
         if (getLayoutY() >= LARGEUR_PERSONNAGE) {
             // making jump
             double y = getLayoutY();
-            //System.out.println("y = " + y);
             for (int i = 0; i < 3; i++) {
                 setLayoutY(getLayoutY() - (0.7 * LARGEUR_PERSONNAGE));
             }
@@ -366,7 +364,6 @@ public class PersonnePrincipale extends Group {
      */
     public boolean estEnBroken(ArrayList<ArrayList<Double>> tab) {
         for (ArrayList<Double> d : tab) {
-            //System.out.println(d.toString());
             if ((Double.compare(getLayoutX(), d.get(0)) == 0 || Double.compare(getLayoutX(), d.get(0) + 10) == 0 || Double.compare(getLayoutX(), d.get(0) + 5) == 0 || Double.compare(getLayoutX(), d.get(0) - 5) == 0 || Double.compare(getLayoutX(), d.get(0) - 10) == 0) && Double.compare(getLayoutY(), d.get(1) + 60) <= 0) {
                 return true;
             }
