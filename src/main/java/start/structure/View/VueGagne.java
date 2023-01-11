@@ -68,7 +68,6 @@ public class VueGagne {
         imageView.setFitHeight(720);
         imageView.setFitWidth(1280);
         menuScreen.setGraphic(imageView);
-        pane.getChildren().add(menuScreen);
 
         Label scoreLabel = new Label("Score : " + scoreProperty.getValue());
         scoreLabel.getStyleClass().add("Score_Vie");
