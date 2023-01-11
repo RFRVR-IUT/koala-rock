@@ -386,7 +386,11 @@ public class VueJeu {
                         primaryStage.close();
                         if (mode.equals("Infini")) {
                             vueFinInfiniPartie.screenLose(saveScore, stage);
-                            ScoreManager.getInstance().createScore(saveScore, Session.getInstance().getLogin());
+                            if(Session.getInstance().getLogin() == null){
+                                ScoreManager.getInstance().createScore(saveScore, "");
+                            }else{
+                                ScoreManager.getInstance().createScore(saveScore, Session.getInstance().getLogin());
+                            }
                         } else {
                             vuesPerdu.screenLose(stage);
                         }
