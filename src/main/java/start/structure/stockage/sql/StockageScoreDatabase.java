@@ -17,7 +17,6 @@ public class StockageScoreDatabase {
         ) {
             st.setInt(1, element.getScore());
             st.setTimestamp(2, element.getHorodatage());
-            System.out.println(element.getHorodatage());
             st.setString(3, Score.getGameCode());
             if (!element.getLogin().isEmpty()) st.setString(4, element.getLogin());
             else st.setNull(4, Types.VARCHAR);
