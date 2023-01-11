@@ -109,7 +109,7 @@ public class VueJeu {
         chrono.setLayoutX(20);
         chrono.setLayoutY(50);
 
-        Label modeDeJeu = new Label("Mode : Normal");
+        Label modeDeJeu = new Label("Mode : Classic");
         modeDeJeu.getStyleClass().add("Chrono");
         modeDeJeu.setLayoutX(900);
         modeDeJeu.setLayoutY(50);

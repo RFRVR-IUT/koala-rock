@@ -79,7 +79,7 @@ public class VueMeilleurScore {
         List<Score> scores = ScoreManager.getInstance().getScores();
         int i = 0;
 
-        while (i < 11 && i < scores.size()) {
+        while (i < 10 && i < scores.size()) {
             Label labelPseudoInfini;
             if (scores.get(i).getLogin() == null) {
                 labelPseudoInfini = new Label("Invité");
