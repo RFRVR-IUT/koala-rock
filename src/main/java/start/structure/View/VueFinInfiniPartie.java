@@ -75,7 +75,7 @@ public class VueFinInfiniPartie {
 
         recommencer.setOnMouseClicked(event -> {
             try {
-                vueJeu.demarrerJeu(stage, vueJeu.getMode());
+                vueJeu.demarrerJeu(stage, "Infini");
             } catch (IOException | InterruptedException e) {
                 e.printStackTrace();
             }
