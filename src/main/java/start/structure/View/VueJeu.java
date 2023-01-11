@@ -131,7 +131,7 @@ public class VueJeu {
 
         //////////////// Button ///////////////////////
         button_Bas = new Label();
-        image_Bas = new ImageView(new Image(Objects.requireNonNull(RessourcesAccess.class.getResourceAsStream("Button/Button_bas.png"))));
+        image_Bas = new ImageView(new Image(Objects.requireNonNull(RessourcesAccess.class.getResourceAsStream("Button/Button_Bas.png"))));
         image_Bas.setFitHeight(50);
         image_Bas.setFitWidth(50);
         button_Bas.setGraphic(image_Bas);
@@ -140,7 +140,7 @@ public class VueJeu {
         button_Bas.setLayoutY(530);
 
         button_Haut = new Label();
-        image_Haut = new ImageView(new Image(Objects.requireNonNull(RessourcesAccess.class.getResourceAsStream("Button/Button_haut.png"))));
+        image_Haut = new ImageView(new Image(Objects.requireNonNull(RessourcesAccess.class.getResourceAsStream("Button/Button_Haut.png"))));
         image_Haut.setFitHeight(50);
         image_Haut.setFitWidth(50);
         button_Haut.setGraphic(image_Haut);
@@ -149,7 +149,7 @@ public class VueJeu {
         button_Haut.setLayoutY(465);
 
         button_Gauche = new Label();
-        image_Gauche = new ImageView(new Image(Objects.requireNonNull(RessourcesAccess.class.getResourceAsStream("Button/Button_gauche.png"))));
+        image_Gauche = new ImageView(new Image(Objects.requireNonNull(RessourcesAccess.class.getResourceAsStream("Button/Button_Gauche.png"))));
         image_Gauche.setFitHeight(50);
         image_Gauche.setFitWidth(50);
         button_Gauche.setGraphic(image_Gauche);
@@ -158,7 +158,7 @@ public class VueJeu {
         button_Gauche.setLayoutY(530);
 
         button_Droite = new Label();
-        image_Droite = new ImageView(new Image(Objects.requireNonNull(RessourcesAccess.class.getResourceAsStream("Button/Button_droite.png"))));
+        image_Droite = new ImageView(new Image(Objects.requireNonNull(RessourcesAccess.class.getResourceAsStream("Button/Button_Droite.png"))));
         image_Droite.setFitHeight(50);
         image_Droite.setFitWidth(50);
         button_Droite.setGraphic(image_Droite);
@@ -167,7 +167,7 @@ public class VueJeu {
         button_Droite.setLayoutY(530);
 
         button_Espace = new Label();
-        image_Espace = new ImageView(new Image(Objects.requireNonNull(RessourcesAccess.class.getResourceAsStream("Button/Button_espace.png"))));
+        image_Espace = new ImageView(new Image(Objects.requireNonNull(RessourcesAccess.class.getResourceAsStream("Button/Button_Espace.png"))));
         image_Espace.setFitHeight(50);
         image_Espace.setFitWidth(200);
         button_Espace.setGraphic(image_Espace);

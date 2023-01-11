@@ -117,7 +117,7 @@ public class VueParametre {
 
         ////////////////////////////Bouton////////////////////////////
         Label button_Bas = new Label();
-        ImageView image_Bas = new ImageView(new Image(Objects.requireNonNull(RessourcesAccess.class.getResourceAsStream("Button/Button_bas.png"))));
+        ImageView image_Bas = new ImageView(new Image(Objects.requireNonNull(RessourcesAccess.class.getResourceAsStream("Button/Button_Bas.png"))));
         image_Bas.setFitHeight(50);
         image_Bas.setFitWidth(50);
         button_Bas.setGraphic(image_Bas);
@@ -126,7 +126,7 @@ public class VueParametre {
         button_Bas.setLayoutY(485);
 
         Label button_Haut = new Label();
-        ImageView image_Haut = new ImageView(new Image(Objects.requireNonNull(RessourcesAccess.class.getResourceAsStream("Button/Button_haut.png"))));
+        ImageView image_Haut = new ImageView(new Image(Objects.requireNonNull(RessourcesAccess.class.getResourceAsStream("Button/Button_Haut.png"))));
         image_Haut.setFitHeight(50);
         image_Haut.setFitWidth(50);
         button_Haut.setGraphic(image_Haut);
@@ -135,7 +135,7 @@ public class VueParametre {
         button_Haut.setLayoutY(400);
 
         Label button_Gauche = new Label();
-        ImageView image_Gauche = new ImageView(new Image(Objects.requireNonNull(RessourcesAccess.class.getResourceAsStream("Button/Button_gauche.png"))));
+        ImageView image_Gauche = new ImageView(new Image(Objects.requireNonNull(RessourcesAccess.class.getResourceAsStream("Button/Button_Gauche.png"))));
         image_Gauche.setFitHeight(50);
         image_Gauche.setFitWidth(50);
         button_Gauche.setGraphic(image_Gauche);
@@ -144,7 +144,7 @@ public class VueParametre {
         button_Gauche.setLayoutY(485);
 
         Label button_Droite = new Label();
-        ImageView image_Droite = new ImageView(new Image(Objects.requireNonNull(RessourcesAccess.class.getResourceAsStream("Button/Button_droite.png"))));
+        ImageView image_Droite = new ImageView(new Image(Objects.requireNonNull(RessourcesAccess.class.getResourceAsStream("Button/Button_Droite.png"))));
         image_Droite.setFitHeight(50);
         image_Droite.setFitWidth(50);
         button_Droite.setGraphic(image_Droite);
@@ -153,7 +153,7 @@ public class VueParametre {
         button_Droite.setLayoutY(485);
 
         Label button_Espace = new Label();
-        ImageView image_Espace = new ImageView(new Image(Objects.requireNonNull(RessourcesAccess.class.getResourceAsStream("Button/Button_espace.png"))));
+        ImageView image_Espace = new ImageView(new Image(Objects.requireNonNull(RessourcesAccess.class.getResourceAsStream("Button/Button_Espace.png"))));
         image_Espace.setFitHeight(50);
         image_Espace.setFitWidth(200);
         button_Espace.setGraphic(image_Espace);
