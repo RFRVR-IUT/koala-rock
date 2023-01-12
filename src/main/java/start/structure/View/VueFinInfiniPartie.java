@@ -26,18 +26,15 @@ public class VueFinInfiniPartie {
         if (vueJeu == null) {
             vueJeu = new VueJeu();
         }
-        stage.setTitle("Koala Rock");
-        stage.setResizable(false);
+
         BorderPane borderPane = new BorderPane();
         Pane pane = new Pane();
         borderPane.setCenter(pane);
 
         Scene scene = new Scene(borderPane, 1280, 720);
         scene.getStylesheets().add(String.valueOf(RessourcesAccess.class.getResource("css/style.css")));
-        stage.setScene(scene);
-        stage.show();
 
-        /////////// LABEL ///////////
+
         Label nameGame = new Label("Fin de la partie");
         nameGame.getStyleClass().add("nameGame");
         nameGame.setLayoutX(226);
@@ -55,7 +52,6 @@ public class VueFinInfiniPartie {
         imageView.setFitWidth(1280);
         deadScreen.setGraphic(imageView);
 
-        /////////// BOUTON ///////////
         Button retourMenu = new Button("Retour au menu");
         retourMenu.getStyleClass().add("buttonEcran");
         retourMenu.setLayoutX(325);
@@ -71,8 +67,7 @@ public class VueFinInfiniPartie {
         quitter.setLayoutX(740);
         quitter.setLayoutY(570);
 
-        pane.getChildren().addAll(deadScreen, nameGame, score, recommencer, quitter, retourMenu);
-
+        // Recommencer la partie
         recommencer.setOnMouseClicked(event -> {
             try {
                 vueJeu.demarrerJeu(stage, "Infini");
@@ -80,13 +75,19 @@ public class VueFinInfiniPartie {
                 e.printStackTrace();
             }
         });
+
+        // Quitter le jeu
         quitter.setOnMouseClicked(event -> {
             System.exit(0);
         });
+
+        // Retour au menu
         retourMenu.setOnMouseClicked(event -> {
             VueMenu vueMenu = new VueMenu();
             vueMenu.demarrerMenu(stage);
         });
+
+        // Lors du click sur le bouton quitter de la fenetre (affichage confirmation)
         stage.setOnCloseRequest(event -> {
             event.consume();
             Label alerte = new Label("Voulez vous vraiment \n" + "quitter le jeu ?");
@@ -124,5 +125,12 @@ public class VueFinInfiniPartie {
             });
             pane.getChildren().addAll(rectangle, alerte, oui, non);
         });
+
+        pane.getChildren().addAll(deadScreen, nameGame, score, recommencer, quitter, retourMenu);
+
+        stage.setTitle("Koala Rock");
+        stage.setResizable(false);
+        stage.setScene(scene);
+        stage.show();
     }
 }

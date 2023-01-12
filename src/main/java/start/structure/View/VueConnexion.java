@@ -29,7 +29,7 @@ public class VueConnexion {
         Scene scene = new Scene(pane, 1280, 720);
         scene.getStylesheets().add(String.valueOf(RessourcesAccess.class.getResource("css/style.css")));
 
-        /////////////// CONNEXION SCENE ///////////////
+        // CONNEXION //
         Label label = new Label("Connexion");
         label.getStyleClass().add("labelConnexion");
         label.setLayoutX(200);
@@ -39,6 +39,7 @@ public class VueConnexion {
         labelPseudo.getStyleClass().add("LabelConnexionField");
         labelPseudo.setLayoutX(275);
         labelPseudo.setLayoutY(250);
+
         Label labelMotDePasse = new Label("Mot de passe");
         labelMotDePasse.getStyleClass().add("LabelConnexionField");
         labelMotDePasse.setLayoutX(275);
@@ -48,6 +49,7 @@ public class VueConnexion {
         textFieldPseudo.getStyleClass().add("TextFieldConnexion");
         textFieldPseudo.setLayoutX(275);
         textFieldPseudo.setLayoutY(275);
+
         PasswordField passwordField = new PasswordField();
         passwordField.getStyleClass().add("TextFieldConnexion");
         passwordField.setLayoutX(275);
@@ -58,7 +60,7 @@ public class VueConnexion {
         buttonConnexion.setLayoutX(285);
         buttonConnexion.setLayoutY(450);
 
-        //INSCRIPTION
+        // Inscription //
         Label labelInscription = new Label("Inscription");
         labelInscription.getStyleClass().add("labelConnexion");
         labelInscription.setLayoutX(720);
@@ -68,10 +70,12 @@ public class VueConnexion {
         labelPseudoInscription.getStyleClass().add("LabelConnexionField");
         labelPseudoInscription.setLayoutX(790);
         labelPseudoInscription.setLayoutY(150);
+
         Label labelMotDePasseInscription = new Label("Mot de passe");
         labelMotDePasseInscription.getStyleClass().add("LabelConnexionField");
         labelMotDePasseInscription.setLayoutX(790);
         labelMotDePasseInscription.setLayoutY(250);
+
         Label labelMotDePasseInscription2 = new Label("Confirmation");
         labelMotDePasseInscription2.getStyleClass().add("LabelConnexionField");
         labelMotDePasseInscription2.setLayoutX(790);
@@ -81,10 +85,12 @@ public class VueConnexion {
         textFieldPseudoInscription.getStyleClass().add("TextFieldConnexion");
         textFieldPseudoInscription.setLayoutX(790);
         textFieldPseudoInscription.setLayoutY(175);
+
         PasswordField passwordFieldInscription = new PasswordField();
         passwordFieldInscription.getStyleClass().add("TextFieldConnexion");
         passwordFieldInscription.setLayoutX(790);
         passwordFieldInscription.setLayoutY(275);
+
         PasswordField passwordFieldInscription2 = new PasswordField();
         passwordFieldInscription2.getStyleClass().add("TextFieldConnexion");
         passwordFieldInscription2.setLayoutX(790);
@@ -95,8 +101,6 @@ public class VueConnexion {
         buttonInscription.setLayoutX(810);
         buttonInscription.setLayoutY(450);
 
-
-        //RETOUR
         Button buttonRetour = new Button("Retour");
         buttonRetour.getStyleClass().add("btnGrey");
         buttonRetour.setLayoutX(645);
@@ -111,14 +115,14 @@ public class VueConnexion {
         menu.getStyleClass().add("btnGrey");
         menu.setLayoutX(545);
         menu.setLayoutY(620);
+
+        // Retour menu
         menu.setOnAction(event -> {
             VueMenu vueMenu = new VueMenu();
             vueMenu.demarrerMenu(stage);
         });
 
-
-        pane.getChildren().addAll(label, labelPseudo, labelMotDePasse, textFieldPseudo, passwordField, buttonConnexion, labelInscription, labelPseudoInscription, labelMotDePasseInscription, labelMotDePasseInscription2, textFieldPseudoInscription, passwordFieldInscription, passwordFieldInscription2, buttonInscription, buttonRetour, labelErreur, menu);
-
+        // Inscription
         buttonInscription.setOnAction(event -> {
             //if error -> labelErreur.setText("Erreur");
             labelErreur.setText("");
@@ -148,6 +152,7 @@ public class VueConnexion {
             }
         });
 
+        // Connexion
         buttonConnexion.setOnAction(event -> {
             labelErreur.setText("");
             if (textFieldPseudo.getText().equals("") || passwordField.getText().equals("")) {
@@ -178,6 +183,7 @@ public class VueConnexion {
             }
         });
 
+        // Retour
         buttonRetour.setOnAction(event -> {
             VueParametre vueParametre = new VueParametre();
             try {
@@ -187,13 +193,7 @@ public class VueConnexion {
             }
         });
 
-
-        stage.setTitle("Connexion");
-        stage.setResizable(false);
-        stage.setScene(scene);
-        stage.show();
-
-        pane.setStyle("-fx-border-color: white ; -fx-border-width: 10px ; -fx-background-color: black ; -fx-background-radius: 10px ;");
+        // Lors du click sur le bouton quitter de la fenetre (affichage confirmation)
         stage.setOnCloseRequest(event -> {
             event.consume();
             Label alerte = new Label("Voulez vous vraiment \n" + "quitter le jeu ?");
@@ -231,5 +231,13 @@ public class VueConnexion {
             });
             pane.getChildren().addAll(rectangle, alerte, oui, non);
         });
+
+        pane.setStyle("-fx-border-color: white ; -fx-border-width: 10px ; -fx-background-color: black ; -fx-background-radius: 10px ;");
+        pane.getChildren().addAll(label, labelPseudo, labelMotDePasse, textFieldPseudo, passwordField, buttonConnexion, labelInscription, labelPseudoInscription, labelMotDePasseInscription, labelMotDePasseInscription2, textFieldPseudoInscription, passwordFieldInscription, passwordFieldInscription2, buttonInscription, buttonRetour, labelErreur, menu);
+        stage.setTitle("Connexion");
+        stage.setResizable(false);
+        stage.setScene(scene);
+        stage.show();
+
     }
 }

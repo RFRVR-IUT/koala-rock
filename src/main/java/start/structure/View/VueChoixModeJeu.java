@@ -44,11 +44,13 @@ public class VueChoixModeJeu {
         buttonRetour.setLayoutX(585);
         buttonRetour.setLayoutY(460);
 
+        //  Retour sur le menu
         buttonRetour.setOnAction(event -> {
             VueMenu vueMenu = new VueMenu();
             vueMenu.demarrerMenu(stage);
         });
 
+        // Demarrer une partie en mode classic
         demarrerPartie.setOnMouseClicked(event -> {
             try {
                 vueJeu.demarrerJeu(stage, "Normal");
@@ -57,6 +59,7 @@ public class VueChoixModeJeu {
             }
         });
 
+        // Demarrer une partie en mode infini
         demarrerInfinit.setOnMouseClicked(event -> {
             try {
                 vueJeu.demarrerJeu(stage, "Infini");
@@ -65,15 +68,7 @@ public class VueChoixModeJeu {
             }
         });
 
-        pane.getChildren().addAll(demarrerPartie, demarrerInfinit, buttonRetour, labelChoixModeJeu);
-
-        stage.setScene(scene);
-        stage.show();
-
-        pane.setStyle("-fx-border-color: white ; -fx-border-width: 10px ; -fx-background-color: black ; -fx-background-radius: 10px ;");
-        stage.setScene(scene);
-        stage.show();
-
+        // Lors du click sur le bouton quitter de la fenetre (affichage confirmation)
         stage.setOnCloseRequest(event -> {
             event.consume();
             Label alerte = new Label("Voulez vous vraiment \n" + "quitter le jeu ?");
@@ -111,42 +106,10 @@ public class VueChoixModeJeu {
             });
             pane.getChildren().addAll(rectangle, oui, non, alerte);
         });
-        stage.setOnCloseRequest(event -> {
-            event.consume();
-            Label alerte = new Label("Voulez vous vraiment \n" + "quitter le jeu ?");
-            alerte.getStyleClass().add("LabelError");
-            alerte.setLayoutX(520);
-            alerte.setLayoutY(250);
 
-            Rectangle rectangle = new Rectangle();
-            rectangle.setX(500);
-            rectangle.setY(200);
-            rectangle.setWidth(300);
-            rectangle.setHeight(200);
-
-            rectangle.setArcHeight(50);
-            rectangle.setArcWidth(50);
-            rectangle.setFill(Color.BLACK);
-            rectangle.setEffect(new DropShadow(10, Color.WHITE));
-
-            Button oui = new Button("Oui");
-            oui.getStyleClass().add("btnGrey");
-            oui.setLayoutX(520);
-            oui.setLayoutY(325);
-
-            Button non = new Button("Non");
-            non.getStyleClass().add("btnRed");
-            non.setLayoutX(720);
-            non.setLayoutY(325);
-
-            oui.setOnAction(e -> {
-                Session.getInstance().disconnect();
-                System.exit(0);
-            });
-            non.setOnAction(e -> {
-                pane.getChildren().removeAll(oui, non, rectangle, alerte);
-            });
-            pane.getChildren().addAll(rectangle, alerte, oui, non);
-        });
+        pane.getChildren().addAll(demarrerPartie, demarrerInfinit, buttonRetour, labelChoixModeJeu);
+        pane.setStyle("-fx-border-color: white ; -fx-border-width: 10px ; -fx-background-color: black ; -fx-background-radius: 10px ;");
+        stage.setScene(scene);
+        stage.show();
     }
 }

@@ -23,14 +23,12 @@ public class VueParametre {
     private static String choixPersonnage = "Panda";
     private static String choixEnnemi = "Koala";
 
-
     public void affichageVueParametre(Stage stage) throws IOException {
 
         Pane pane = new Pane();
         Scene scene = new Scene(pane, 1280, 720);
         scene.getStylesheets().add(String.valueOf(RessourcesAccess.class.getResource("css/style.css")));
 
-        /////////////// ComboBox ///////////////
         ComboBox<String> comboBoxJoueurPrincipale = new ComboBox<>();
         comboBoxJoueurPrincipale.getItems().addAll("Panda");
         comboBoxJoueurPrincipale.setValue("Panda");
@@ -46,9 +44,6 @@ public class VueParametre {
         comboBoxPersonnageEnnemie.getItems().addAll("Koala");
         comboBoxPersonnageEnnemie.setValue("Koala");
 
-        /**
-         * ComboBox pour le choix du personnage
-         */
         comboBoxJoueurPrincipale.getSelectionModel().selectedItemProperty().addListener((v, oldValue, newValue) -> {
             choixPersonnage = newValue;
             if (choixPersonnage.equals("Panda")) {
@@ -57,10 +52,6 @@ public class VueParametre {
                 PersonnePrincipale.setPersonnePrincipale("SAMURAI");
             }
         });
-
-        /**
-         * ComboBox pour le choix de l'ennemie
-         */
 
         if (Session.getInstance().getLogin() != null) {
             if (ScoreManager.getInstance().getHighScoreByLogin(Session.getInstance().getLogin()) != null) {
@@ -93,14 +84,10 @@ public class VueParametre {
         comboBoxPersonnageEnnemie.setLayoutX(300);
         comboBoxPersonnageEnnemie.setLayoutY(200);
 
-        // CSS ComboBox //
-
         comboBoxJoueurPrincipale.getStyleClass().add("buttonEcran");
         comboBoxJoueurPrincipale.setStyle("-fx-font-size: 12px; -fx-pref-width: 130px; -fx-pref-height: 20px;");
         comboBoxPersonnageEnnemie.getStyleClass().add("buttonEcran");
         comboBoxPersonnageEnnemie.setStyle("-fx-font-size: 12px; -fx-pref-width: 130px; -fx-pref-height: 20px;");
-
-        // Texte ComboBox //
 
         Label labelJoueurPrincipale = new Label("Personnage principal : ");
         labelJoueurPrincipale.setLayoutX(100);
@@ -110,12 +97,9 @@ public class VueParametre {
         labelPersonnageEnnemie.setLayoutX(100);
         labelPersonnageEnnemie.setLayoutY(210);
 
-        // CSS Texte ComboBox //
-
         labelJoueurPrincipale.getStyleClass().add("LabelUnderButton");
         labelPersonnageEnnemie.getStyleClass().add("LabelUnderButton");
 
-        ////////////////////////////Bouton////////////////////////////
         Label button_Bas = new Label();
         ImageView image_Bas = new ImageView(new Image(Objects.requireNonNull(RessourcesAccess.class.getResourceAsStream("Button/Button_Bas.png"))));
         image_Bas.setFitHeight(50);
@@ -175,9 +159,6 @@ public class VueParametre {
         monCompte.getStyleClass().add("buttonEcran");
         monCompte.setLayoutX(912);
         monCompte.setLayoutY(180);
-        ////////////////////////////End Bouton////////////////////////////
-
-        ////////////////////////////Texte////////////////////////////
 
         Label texte_Bas = new Label("Bas");
         texte_Bas.getStyleClass().add("LabelUnderButton");
@@ -209,13 +190,11 @@ public class VueParametre {
         labelError.setLayoutX(510);
         labelError.setLayoutY(250);
 
-        ////////////////////////////End Texte////////////////////////////
-
-
         Button buttonHide = new Button("quitter et sauvegarder");
         buttonHide.getStyleClass().add("buttonEcran");
         buttonHide.setStyle("-fx-font-size: 12px; -fx-pref-width: 200px; -fx-pref-height: 30px;");
-
+        buttonHide.setLayoutX(540);
+        buttonHide.setLayoutY(620);
 
         if (Session.getInstance().isConnected()) {
             pane.getChildren().add(monCompte);
@@ -225,12 +204,6 @@ public class VueParametre {
             pane.getChildren().add(connexionRegister);
         }
 
-        buttonHide.setLayoutX(540);
-        buttonHide.setLayoutY(620);
-        buttonHide.setOnAction(event -> {
-            VueMenu vueMenu = new VueMenu();
-            vueMenu.demarrerMenu(stage);
-        });
         pane.getChildren().addAll(buttonHide, meilleurScore);
         pane.getChildren().addAll(button_Bas, button_Haut, button_Gauche, button_Droite, button_Espace);
         pane.getChildren().addAll(texte_Bas, texte_Haut, texte_Gauche, texte_Droite, texte_Espace);
@@ -238,17 +211,13 @@ public class VueParametre {
         pane.getChildren().addAll(labelJoueurPrincipale, labelPersonnageEnnemie);
         pane.getChildren().add(labelError);
 
+        // Retour menu
+        buttonHide.setOnAction(event -> {
+            VueMenu vueMenu = new VueMenu();
+            vueMenu.demarrerMenu(stage);
+        });
 
-        stage.setTitle("Paramètre");
-        stage.setResizable(false);
-        stage.setScene(scene);
-        stage.show();
-
-        /**
-         * Permet d'ouvrir la fenêtre de connexion
-         *
-         * @param event
-         */
+        // Ouvrir la fenêtre de connexion
         connexionRegister.setOnMouseClicked(event -> {
             VueConnexion vueConnexion = new VueConnexion();
             try {
@@ -258,11 +227,7 @@ public class VueParametre {
             }
         });
 
-        /**
-         * Permet d'ouvrir la fenêtre de meilleur score
-         *
-         * @param event
-         */
+        // Ouvrir la fenêtre de meilleur score
         meilleurScore.setOnMouseClicked(event -> {
             VueMeilleurScore vueMeilleurScore = new VueMeilleurScore();
             try {
@@ -272,6 +237,7 @@ public class VueParametre {
             }
         });
 
+        // Ouvrir la fenêtre de mon compte
         monCompte.setOnMouseClicked(event -> {
             labelError.setText("");
             if (Session.getInstance().isConnected()) {
@@ -286,7 +252,7 @@ public class VueParametre {
             }
         });
 
-        pane.setStyle("-fx-border-color: white ; -fx-border-width: 10px ; -fx-background-color: black ; -fx-background-radius: 10px ;");
+        // Lors du click sur le bouton quitter de la fenetre (affichage confirmation)
         stage.setOnCloseRequest(event -> {
             event.consume();
             Label alerte = new Label("Voulez vous vraiment \n" + "quitter le jeu ?");
@@ -324,5 +290,11 @@ public class VueParametre {
             });
             pane.getChildren().addAll(rectangle, alerte, oui, non);
         });
+
+        pane.setStyle("-fx-border-color: white ; -fx-border-width: 10px ; -fx-background-color: black ; -fx-background-radius: 10px ;");
+        stage.setTitle("Paramètre");
+        stage.setResizable(false);
+        stage.setScene(scene);
+        stage.show();
     }
 }

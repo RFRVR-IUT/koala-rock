@@ -13,12 +13,13 @@ public class VueDemarrage {
         Stage stage = new Stage();
         stage.setTitle("Koala Rock");
         stage.setResizable(false);
+
         BorderPane borderPane = new BorderPane();
+        borderPane.setStyle("-fx-background-color: transparent ;");
+
         Pane pane = new Pane();
         borderPane.setCenter(pane);
-
         pane.setStyle("-fx-border-color: green ;");
-        borderPane.setStyle("-fx-background-color: transparent ;");
 
         vueMenu.demarrerMenu(stage);
     }

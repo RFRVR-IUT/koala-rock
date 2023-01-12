@@ -25,7 +25,6 @@ public class VueMeilleurScore {
         Scene scene = new Scene(pane, 1280, 720);
         scene.getStylesheets().add(String.valueOf(RessourcesAccess.class.getResource("css/style.css")));
 
-
         Label labelMeilleurScore = new Label("Meilleurs scores");
         labelMeilleurScore.setLayoutX(480);
         labelMeilleurScore.setLayoutY(40);
@@ -53,11 +52,17 @@ public class VueMeilleurScore {
         line.setStrokeWidth(2);
         line.setStroke(Color.WHITE);
 
-
         Button buttonRetour = new Button("Retour");
         buttonRetour.getStyleClass().add("btnGrey");
         buttonRetour.setLayoutX(645);
         buttonRetour.setLayoutY(620);
+
+        Button menu = new Button("Menu");
+        menu.getStyleClass().add("btnGrey");
+        menu.setLayoutX(545);
+        menu.setLayoutY(620);
+
+        //  Retour sur le menu
         buttonRetour.setOnAction(event -> {
             VueParametre vueParametre = new VueParametre();
             try {
@@ -67,18 +72,54 @@ public class VueMeilleurScore {
             }
         });
 
-        Button menu = new Button("Menu");
-        menu.getStyleClass().add("btnGrey");
-        menu.setLayoutX(545);
-        menu.setLayoutY(620);
+        //  Retour sur le menu
         menu.setOnAction(event -> {
             VueMenu vueMenu = new VueMenu();
             vueMenu.demarrerMenu(stage);
         });
 
+        //         // Lors du click sur le bouton quitter de la fenetre (affichage confirmation)
+        stage.setOnCloseRequest(event -> {
+            event.consume();
+            Label alerte = new Label("Voulez vous vraiment \n" + "quitter le jeu ?");
+            alerte.getStyleClass().add("LabelError");
+            alerte.setLayoutX(520);
+            alerte.setLayoutY(250);
+
+            Rectangle rectangle = new Rectangle();
+            rectangle.setX(500);
+            rectangle.setY(200);
+            rectangle.setWidth(300);
+            rectangle.setHeight(200);
+
+            rectangle.setArcHeight(50);
+            rectangle.setArcWidth(50);
+            rectangle.setFill(Color.BLACK);
+            rectangle.setEffect(new DropShadow(10, Color.WHITE));
+
+            Button oui = new Button("Oui");
+            oui.getStyleClass().add("btnGrey");
+            oui.setLayoutX(520);
+            oui.setLayoutY(325);
+
+            Button non = new Button("Non");
+            non.getStyleClass().add("btnRed");
+            non.setLayoutX(720);
+            non.setLayoutY(325);
+
+            oui.setOnAction(e -> {
+                Session.getInstance().disconnect();
+                System.exit(0);
+            });
+            non.setOnAction(e -> {
+                pane.getChildren().removeAll(oui, non, rectangle, alerte);
+            });
+            pane.getChildren().addAll(rectangle, alerte, oui, non);
+        });
+
+        // Affichage des meilleurs scores
         List<Score> scores = ScoreManager.getInstance().getScores();
         int i = 0;
-
         while (i < 10 && i < scores.size()) {
             Label labelPseudoInfini;
             if (scores.get(i).getLogin() == null) {
@@ -129,43 +170,5 @@ public class VueMeilleurScore {
         stage.setScene(scene);
         stage.setTitle("Meilleurs scores");
         stage.show();
-
-        stage.setOnCloseRequest(event -> {
-            event.consume();
-            Label alerte = new Label("Voulez vous vraiment \n" + "quitter le jeu ?");
-            alerte.getStyleClass().add("LabelError");
-            alerte.setLayoutX(520);
-            alerte.setLayoutY(250);
-
-            Rectangle rectangle = new Rectangle();
-            rectangle.setX(500);
-            rectangle.setY(200);
-            rectangle.setWidth(300);
-            rectangle.setHeight(200);
-
-            rectangle.setArcHeight(50);
-            rectangle.setArcWidth(50);
-            rectangle.setFill(Color.BLACK);
-            rectangle.setEffect(new DropShadow(10, Color.WHITE));
-
-            Button oui = new Button("Oui");
-            oui.getStyleClass().add("btnGrey");
-            oui.setLayoutX(520);
-            oui.setLayoutY(325);
-
-            Button non = new Button("Non");
-            non.getStyleClass().add("btnRed");
-            non.setLayoutX(720);
-            non.setLayoutY(325);
-
-            oui.setOnAction(e -> {
-                Session.getInstance().disconnect();
-                System.exit(0);
-            });
-            non.setOnAction(e -> {
-                pane.getChildren().removeAll(oui, non, rectangle, alerte);
-            });
-            pane.getChildren().addAll(rectangle, alerte, oui, non);
-        });
     }
 }
