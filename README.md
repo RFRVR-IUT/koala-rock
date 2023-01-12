@@ -15,7 +15,7 @@
 </p>
 
 <div align="center">
-<img src="src/main/resources/start/structure/readMe/jeu.gif" alt="Gif" width="200"></a>
+<img src="src/main/resources/start/structure/readMe/jeu.gif" alt="Gif" width="350" height="350" ></a>
 </div>
 
 ## Le projet
