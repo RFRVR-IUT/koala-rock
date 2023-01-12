@@ -16,6 +16,7 @@ import start.structure.stockage.Session;
 
 import java.io.IOException;
 import java.util.List;
+import java.util.Map;
 
 public class VueMeilleurScore {
     Pane pane = new Pane();
@@ -163,6 +164,53 @@ public class VueMeilleurScore {
             pane.getChildren().add(labelScoreInfini);
             pane.getChildren().add(placeInfini);
             i++;
+        }
+
+        int j = 0;
+        Map<Integer,Double> scoresTemps = ScoreManager.getInstance().getScoresTemps();
+        System.out.println(scoresTemps);
+        while (j<10 && j<scoresTemps.size()){
+            Label labelPseudoTemps;
+            if (ScoreManager.getInstance().getLoginTemps((Integer) scoresTemps.keySet().toArray()[j]) == null) {
+                labelPseudoTemps = new Label("Invité");
+            } else {
+                labelPseudoTemps = new Label(ScoreManager.getInstance().getLoginTemps((Integer) scoresTemps.keySet().toArray()[j]));
+            }
+            Label labelScoreTemps = new Label(String.valueOf(scoresTemps.values().toArray()[j]));
+            Label placeTemps = new Label(j + 1 + ".");
+            if (j == 0) {
+                labelScoreTemps.setTextFill(javafx.scene.paint.Color.GOLD);
+                labelPseudoTemps.setTextFill(javafx.scene.paint.Color.GOLD);
+                placeTemps.setTextFill(javafx.scene.paint.Color.GOLD);
+            } else if (j == 1) {
+                labelScoreTemps.setTextFill(javafx.scene.paint.Color.GRAY);
+                labelPseudoTemps.setTextFill(javafx.scene.paint.Color.GRAY);
+                placeTemps.setTextFill(javafx.scene.paint.Color.GRAY);
+            } else if (j == 2) {
+                labelScoreTemps.setTextFill(javafx.scene.paint.Color.BROWN);
+                labelPseudoTemps.setTextFill(javafx.scene.paint.Color.BROWN);
+                placeTemps.setTextFill(javafx.scene.paint.Color.BROWN);
+            } else {
+                labelScoreTemps.setTextFill(javafx.scene.paint.Color.WHITE);
+                labelPseudoTemps.setTextFill(javafx.scene.paint.Color.WHITE);
+                placeTemps.setTextFill(javafx.scene.paint.Color.WHITE);
+            }
+
+            labelScoreTemps.getStyleClass().add("LabelScore");
+            labelPseudoTemps.getStyleClass().add("LabelScore");
+            placeTemps.getStyleClass().add("LabelScore");
+
+            labelPseudoTemps.setLayoutX(200);
+            labelPseudoTemps.setLayoutY(165 + 35 * (j + 1));
+            labelScoreTemps.setLayoutX(500);
+            labelScoreTemps.setLayoutY(165 + 35 * (j + 1));
+            placeTemps.setLayoutX(150);
+            placeTemps.setLayoutY(165 + 35 * (j + 1));
+
+            pane.getChildren().add(labelPseudoTemps);
+            pane.getChildren().add(labelScoreTemps);
+            pane.getChildren().add(placeTemps);
+            j++;
         }
 
         pane.setStyle("-fx-border-color: white ; -fx-border-width: 10px ; -fx-background-color: black ; -fx-background-radius: 10px ;");

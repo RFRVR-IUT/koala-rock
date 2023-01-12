@@ -3,8 +3,7 @@ package start.structure.stockage.sql; //Votre package ici.
 import start.structure.metier.entite.Score;
 
 import java.sql.*;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 
 public class StockageScoreDatabase {
 
@@ -211,5 +210,44 @@ public class StockageScoreDatabase {
             e.printStackTrace();
         }
         return scoreList;
+    }
+
+    public Map<Integer,Double> getAllTemps() {
+        Map<Integer,Double> scoreList = new LinkedHashMap<>();
+        SQLUtils utils = SQLUtils.getInstance();
+        Connection connection = utils.getConnection();
+        String req = "SELECT * FROM scoreTemps ORDER BY temps ASC";
+        try (PreparedStatement st = connection.prepareStatement(req)){
+            try(ResultSet result = st.executeQuery()){
+                while (result.next()){
+                    System.out.println(result);
+                    int id = result.getInt("codeScore");
+                    double temps = result.getDouble("temps");
+                    String login = result.getString("login");
+                    scoreList.put(id,temps);
+                }
+            }
+        }catch (SQLException e){
+            e.printStackTrace();
+        }
+        return scoreList;
+    }
+
+    public String getLoginTemps(int id){
+        String res = "";
+        SQLUtils utils = SQLUtils.getInstance();
+        Connection connection = utils.getConnection();
+        String req = "SELECT * FROM scoreTemps WHERE codeScore = ?";
+        try (PreparedStatement st = connection.prepareStatement(req)){
+            st.setInt(1,id);
+            try(ResultSet result = st.executeQuery()){
+                if (result.next()){
+                    res = result.getString("login");
+                }
+            }
+        } catch (SQLException e) {
+                throw new RuntimeException(e);
+        }
+        return res;
     }
 }
