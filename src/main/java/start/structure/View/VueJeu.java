@@ -66,6 +66,10 @@ public class VueJeu {
 
     public void demarrerJeu(Stage stage, String modeJeu) throws IOException, InterruptedException {
 
+        if(isPause){
+            isPause = false;
+        }
+
         primaryStage = stage;
         Pane interfaceJeu = new Pane();
         jeu = new Pane();
@@ -361,7 +365,9 @@ public class VueJeu {
         collisionTimer = new AnimationTimer() {
             @Override
             public void handle(long now) {
+
                 if (personnePrincipale.collisionTonneaux(tonneaux) == -1 && !isPause) {
+                    System.out.println("boom tapé");
                     if (getVie().getValue() > 1) {
                         personnePrincipale.setLayoutX(20 * 10);
                         personnePrincipale.setLayoutY(545);
@@ -386,7 +392,11 @@ public class VueJeu {
                         primaryStage.close();
                         if (mode.equals("Infini")) {
                             vueFinInfiniPartie.screenLose(saveScore, stage);
-                            ScoreManager.getInstance().createScore(saveScore, Session.getInstance().getLogin());
+                            if(Session.getInstance().getLogin() == null){
+                                ScoreManager.getInstance().createScore(saveScore, "");
+                            }else{
+                                ScoreManager.getInstance().createScore(saveScore, Session.getInstance().getLogin());
+                            }
                         } else {
                             vuesPerdu.screenLose(stage);
                         }
@@ -414,6 +424,7 @@ public class VueJeu {
                 }
             }
         };
+        System.out.println(collisionTimer);
         // Fin Start Game //
         collisionTimer.start();
         root.setCenter(interfaceJeu);
