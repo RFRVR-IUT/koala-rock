@@ -63,5 +63,11 @@ public class ScoreManager {
         return stockage.getLoginTemps(id);
     }
 
+    public int getDernierCode() {
+        return stockage.getDernierCode();
+    }
 
+    public void addTemps(double temps,String login) {
+        stockage.addTemps(temps,login);
+    }
 }

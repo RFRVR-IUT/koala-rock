@@ -220,7 +220,6 @@ public class StockageScoreDatabase {
         try (PreparedStatement st = connection.prepareStatement(req)){
             try(ResultSet result = st.executeQuery()){
                 while (result.next()){
-                    System.out.println(result);
                     int id = result.getInt("codeScore");
                     double temps = result.getDouble("temps");
                     String login = result.getString("login");
@@ -255,7 +254,7 @@ public class StockageScoreDatabase {
         int res = 0;
         SQLUtils utils = SQLUtils.getInstance();
         Connection connection = utils.getConnection();
-        String req = "SELECT * FROM scoreTemps ORDER BY codeScore DESC LIMIT 1";
+        String req = "SELECT * FROM scoreTemps ORDER BY codeScore DESC";
         try (PreparedStatement st = connection.prepareStatement(req)){
             try(ResultSet result = st.executeQuery()){
                 if (result.next()){
@@ -266,5 +265,19 @@ public class StockageScoreDatabase {
             throw new RuntimeException(e);
         }
         return res;
+    }
+
+    public void addTemps(double temps, String login){
+        SQLUtils utils = SQLUtils.getInstance();
+        Connection connection = utils.getConnection();
+        String req = "INSERT INTO scoreTemps (codeScore,temps,login) VALUES (?,?,?)";
+        try (PreparedStatement st = connection.prepareStatement(req)){
+            st.setInt(1,getDernierCode()+1);
+            st.setDouble(2,temps);
+            st.setString(3,login);
+            st.executeUpdate();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
     }
 }

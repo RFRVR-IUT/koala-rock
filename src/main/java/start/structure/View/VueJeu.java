@@ -420,6 +420,13 @@ public class VueJeu {
                         supprimerElements(jeu, tonneaux, echelles, echellesBrokens, personnePrincipale, dk);
                         primaryStage.close();
                         vueGagne.screenWin(personnePrincipale.getScore(), stage);
+                        if (modeJeu.equals("Normal")){
+                            if (Session.getInstance().getLogin() == null) {
+                                ScoreManager.getInstance().addTemps(time.getValue(), "");
+                            } else {
+                                ScoreManager.getInstance().addTemps(time.getValue(), Session.getInstance().getLogin());
+                            }
+                        }
                     }
                 }
             }
