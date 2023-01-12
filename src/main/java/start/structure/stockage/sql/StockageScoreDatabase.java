@@ -250,4 +250,21 @@ public class StockageScoreDatabase {
         }
         return res;
     }
+
+    public int getDernierCode(){
+        int res = 0;
+        SQLUtils utils = SQLUtils.getInstance();
+        Connection connection = utils.getConnection();
+        String req = "SELECT * FROM scoreTemps ORDER BY codeScore DESC LIMIT 1";
+        try (PreparedStatement st = connection.prepareStatement(req)){
+            try(ResultSet result = st.executeQuery()){
+                if (result.next()){
+                    res = result.getInt("codeScore");
+                }
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        return res;
+    }
 }

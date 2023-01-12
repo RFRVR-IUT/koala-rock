@@ -62,4 +62,6 @@ public class ScoreManager {
     public String getLoginTemps(int id) {
         return stockage.getLoginTemps(id);
     }
+
+
 }
