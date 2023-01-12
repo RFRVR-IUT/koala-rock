@@ -4,6 +4,7 @@ import start.structure.metier.entite.Score;
 import start.structure.stockage.sql.StockageScoreDatabase;
 
 import java.util.List;
+import java.util.Map;
 
 public class ScoreManager {
 
@@ -55,4 +56,12 @@ public class ScoreManager {
     public List<Score> getScores() {
         return stockage.getAll();
     }
+
+    public Map<Integer,Double> getScoresTemps(){ return stockage.getAllTemps(); }
+
+    public String getLoginTemps(int id) {
+        return stockage.getLoginTemps(id);
+    }
+
+
 }

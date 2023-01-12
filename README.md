@@ -1,6 +1,6 @@
 <h1 align="center">
   <br>
-  <img src="src/main/resources/start/structure/readMe/DK_TOP.png" alt="Donkey-Kong" width="200"></a>
+  <img src="src/main/resources/start/structure/readMe/koala.png" alt="Donkey-Kong" width="200"></a>
   <br>
   Projet - Donkey Kong
   <br>
@@ -15,10 +15,7 @@
 </p>
 
 <div align="center">
-
-![screenshot](src/main/resources/start/structure/readMe/Mario_gif.gif)
-  
-
+<img src="src/main/resources/start/structure/readMe/jeu.gif" alt="Gif" width="350" height="350" ></a>
 </div>
 
 ## Le projet

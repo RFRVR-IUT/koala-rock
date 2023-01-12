@@ -18,27 +18,17 @@ import java.io.IOException;
 import java.util.Objects;
 
 public class VueMenu {
-
     private final VueChoixModeJeu vueChoixModeJeu = new VueChoixModeJeu();
 
     public void demarrerMenu(Stage stage) {
-        stage.setTitle("Koala Rock");
-        stage.setResizable(false);
+
         BorderPane borderPane = new BorderPane();
         Pane pane = new Pane();
         borderPane.setCenter(pane);
 
-        pane.setStyle("-fx-border-color: green ;");
-        borderPane.setStyle("-fx-background-color: transparent ;");
-
-
         Scene scene = new Scene(borderPane, 1280, 720);
         scene.getStylesheets().add(String.valueOf(RessourcesAccess.class.getResource("css/style.css")));
 
-        stage.setScene(scene);
-        stage.show();
-
-/////////// BOUTON ///////////
         Label nameGame = new Label("Koala Rock");
         nameGame.getStyleClass().add("nameGame");
         nameGame.setLayoutX(355);
@@ -59,8 +49,6 @@ public class VueMenu {
         quitter.setLayoutX(585);
         quitter.setLayoutY(480);
 
-
-        ///////// IMAGE ///////////
         Label menuScreen = new Label();
         Image image = new Image(Objects.requireNonNull(RessourcesAccess.class.getResourceAsStream("menu/ImageMenu.png")));
         ImageView imageView = new ImageView(image);
@@ -73,7 +61,6 @@ public class VueMenu {
         labelError.setLayoutX(510);
         labelError.setLayoutY(250);
 
-        ///////// COPYRIGHT ///////////
         Label copyRight = new Label(" Koala Rock© 2023. Tous droits réservés");
         copyRight.getStyleClass().add("copyRight");
         copyRight.setLayoutX(880);
@@ -84,7 +71,6 @@ public class VueMenu {
         copyRightName.setLayoutX(922);
         copyRightName.setLayoutY(620);
 
-
         pane.getChildren().add(menuScreen);
         pane.getChildren().add(labelError);
         pane.getChildren().addAll(demarrerPartie);
@@ -92,11 +78,7 @@ public class VueMenu {
         pane.getChildren().add(nameGame);
         pane.getChildren().addAll(copyRight, copyRightName);
 
-
-        /**
-         * Permet de lancer le jeu en mode classique
-         * @param event
-         */
+        // Permet de lancer le jeu en mode classique
         demarrerPartie.setOnMouseClicked(event -> {
             try {
                 vueChoixModeJeu.affichageVueChoixModeJeu(stage);
@@ -105,10 +87,7 @@ public class VueMenu {
             }
         });
 
-        /**
-         * Permet d'ouvrir la fenêtre de paramétrage
-         * @param event
-         */
+        // Permet d'ouvrir la fenêtre de paramétrage
         parametre.setOnMouseClicked(event -> {
             VueParametre vueParametre = new VueParametre();
             try {
@@ -118,6 +97,7 @@ public class VueMenu {
             }
         });
 
+        // Permet de quitter le jeu
         quitter.setOnMouseClicked(event -> {
             Label alerte = new Label("Voulez vous vraiment \n" + "quitter le jeu ?");
             alerte.getStyleClass().add("LabelError");
@@ -156,6 +136,7 @@ public class VueMenu {
             pane.getChildren().addAll(rectangle, oui, non, alerte);
         });
 
+        // Lors du click sur le bouton quitter de la fenetre (affichage confirmation)
         stage.setOnCloseRequest(event -> {
             event.consume();
             Label alerte = new Label("Voulez vous vraiment \n" + "quitter le jeu ?");
@@ -193,42 +174,12 @@ public class VueMenu {
             });
             pane.getChildren().addAll(rectangle, oui, non, alerte);
         });
-        stage.setOnCloseRequest(event -> {
-            event.consume();
-            Label alerte = new Label("Voulez vous vraiment \n" + "quitter le jeu ?");
-            alerte.getStyleClass().add("LabelError");
-            alerte.setLayoutX(520);
-            alerte.setLayoutY(250);
 
-            Rectangle rectangle = new Rectangle();
-            rectangle.setX(500);
-            rectangle.setY(200);
-            rectangle.setWidth(300);
-            rectangle.setHeight(200);
-
-            rectangle.setArcHeight(50);
-            rectangle.setArcWidth(50);
-            rectangle.setFill(Color.BLACK);
-            rectangle.setEffect(new DropShadow(10, Color.WHITE));
-
-            Button oui = new Button("Oui");
-            oui.getStyleClass().add("btnGrey");
-            oui.setLayoutX(520);
-            oui.setLayoutY(325);
-
-            Button non = new Button("Non");
-            non.getStyleClass().add("btnRed");
-            non.setLayoutX(720);
-            non.setLayoutY(325);
-
-            oui.setOnAction(e -> {
-                Session.getInstance().disconnect();
-                System.exit(0);
-            });
-            non.setOnAction(e -> {
-                pane.getChildren().removeAll(oui, non, rectangle, alerte);
-            });
-            pane.getChildren().addAll(rectangle, alerte, oui, non);
-        });
+        pane.setStyle("-fx-border-color: green ;");
+        borderPane.setStyle("-fx-background-color: transparent ;");
+        stage.setTitle("Koala Rock");
+        stage.setResizable(false);
+        stage.setScene(scene);
+        stage.show();
     }
 }

@@ -73,33 +73,33 @@
     -fx-font-size: 15px;
 }
 
-.field{
+.field {
     -fx-text-fill: black;
     -fx-font-family: 'Goldman', sans-serif;
     -fx-font-weight: bold;
     -fx-font-size: 20px;
 }
 
-.labelConnexion{
+.labelConnexion {
     -fx-text-fill: white;
     -fx-font-family: 'Goldman', sans-serif;
     -fx-font-weight: bold;
     -fx-font-size: 50px;
 }
 
-.LabelConnexionField{
+.LabelConnexionField {
     -fx-text-fill: white;
     -fx-font-family: 'Goldman', sans-serif;
     -fx-font-size: 20px;
 }
 
-.LabelScore{
+.LabelScore {
     -fx-font-family: 'Goldman', sans-serif;
     -fx-font-weight: bold;
     -fx-font-size: 30px;
 }
 
-.btnGrey{
+.btnGrey {
     -fx-padding: 8 15 15 15;
     -fx-background-insets: 0, 0 0 5 0, 0 0 6 0, 0 0 7 0;
     -fx-background-radius: 8;
@@ -113,7 +113,7 @@
     -fx-font-family: 'Goldman', sans-serif;
 }
 
-.btnRed{
+.btnRed {
     -fx-padding: 8 15 15 15;
     -fx-background-insets: 0, 0 0 5 0, 0 0 6 0, 0 0 7 0;
     -fx-background-radius: 8;
@@ -137,19 +137,19 @@
     -fx-background-insets: 2 0 0 0, 2 0 3 0, 2 0 4 0, 2 0 5 0;
 }
 
-.LabelError{
+.LabelError {
     -fx-text-fill: #ececec;
     -fx-font-family: 'Goldman', sans-serif;
     -fx-font-size: 20px;
 }
 
-.copyRight{
+.copyRight {
     -fx-text-fill: white;
     -fx-font-family: 'Goldman', sans-serif;
     -fx-font-size: 15px;
 }
 
-.copyRightName{
+.copyRightName {
     -fx-text-fill: white;
     -fx-font-family: 'Goldman', sans-serif;
     -fx-font-size: 10px;

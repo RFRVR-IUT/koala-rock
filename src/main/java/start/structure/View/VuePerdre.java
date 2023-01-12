@@ -18,27 +18,20 @@ import java.io.IOException;
 import java.util.Objects;
 
 public class VuePerdre {
-
     private VueJeu vueJeu;
-
 
     public void screenLose(Stage stage) {
 
         if (vueJeu == null) {
             vueJeu = new VueJeu();
         }
-        stage.setTitle("Koala Rock");
-        stage.setResizable(false);
         BorderPane borderPane = new BorderPane();
         Pane pane = new Pane();
         borderPane.setCenter(pane);
 
         Scene scene = new Scene(borderPane, 1280, 720);
         scene.getStylesheets().add(String.valueOf(RessourcesAccess.class.getResource("css/style.css")));
-        stage.setScene(scene);
-        stage.show();
 
-        /////////// LABEL ///////////
         Label nameGame = new Label("Vous avez perdu");
         nameGame.getStyleClass().add("nameGame");
         nameGame.setLayoutX(226);
@@ -50,10 +43,7 @@ public class VuePerdre {
         imageView.setFitHeight(720);
         imageView.setFitWidth(1280);
         deadScreen.setGraphic(imageView);
-        pane.getChildren().add(deadScreen);
 
-
-        /////////// BOUTON ///////////
         Button retourMenu = new Button("Retour au menu");
         retourMenu.getStyleClass().add("buttonEcran");
         retourMenu.setLayoutX(325);
@@ -69,12 +59,9 @@ public class VuePerdre {
         quitter.setLayoutX(800);
         quitter.setLayoutY(570);
 
+        pane.getChildren().addAll(nameGame, recommencer, quitter, retourMenu, deadScreen);
 
-        pane.getChildren().addAll(nameGame, recommencer, quitter, retourMenu);
-
-        /**
-         * Bouton recommencer
-         */
+        // Bouton recommencer
         recommencer.setOnMouseClicked(event -> {
             try {
                 vueJeu.demarrerJeu(stage, vueJeu.getMode());
@@ -82,15 +69,20 @@ public class VuePerdre {
                 e.printStackTrace();
             }
         });
+
+        // Bouton quitter jeu
         quitter.setOnMouseClicked(event -> {
             stage.close();
             System.exit(0);
         });
 
+        // Bouton retour menu
         retourMenu.setOnMouseClicked(event -> {
             VueMenu vueMenu = new VueMenu();
             vueMenu.demarrerMenu(stage);
         });
+
+        // Lors du click sur le bouton quitter de la fenetre (affichage confirmation)
         stage.setOnCloseRequest(event -> {
             event.consume();
             Label alerte = new Label("Voulez vous vraiment \n" + "quitter le jeu ?");
@@ -129,5 +121,9 @@ public class VuePerdre {
             pane.getChildren().addAll(rectangle, alerte, oui, non);
         });
 
+        stage.setTitle("Koala Rock");
+        stage.setResizable(false);
+        stage.setScene(scene);
+        stage.show();
     }
 }

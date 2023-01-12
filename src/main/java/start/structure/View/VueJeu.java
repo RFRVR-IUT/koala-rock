@@ -66,6 +66,10 @@ public class VueJeu {
 
     public void demarrerJeu(Stage stage, String modeJeu) throws IOException, InterruptedException {
 
+        if (isPause) {
+            isPause = false;
+        }
+
         primaryStage = stage;
         Pane interfaceJeu = new Pane();
         jeu = new Pane();
@@ -361,7 +365,9 @@ public class VueJeu {
         collisionTimer = new AnimationTimer() {
             @Override
             public void handle(long now) {
+
                 if (personnePrincipale.collisionTonneaux(tonneaux) == -1 && !isPause) {
+                    System.out.println("boom tapé");
                     if (getVie().getValue() > 1) {
                         personnePrincipale.setLayoutX(20 * 10);
                         personnePrincipale.setLayoutY(545);
@@ -386,7 +392,11 @@ public class VueJeu {
                         primaryStage.close();
                         if (mode.equals("Infini")) {
                             vueFinInfiniPartie.screenLose(saveScore, stage);
-                            ScoreManager.getInstance().createScore(saveScore, Session.getInstance().getLogin());
+                            if (Session.getInstance().getLogin() == null) {
+                                ScoreManager.getInstance().createScore(saveScore, "");
+                            } else {
+                                ScoreManager.getInstance().createScore(saveScore, Session.getInstance().getLogin());
+                            }
                         } else {
                             vuesPerdu.screenLose(stage);
                         }
@@ -414,6 +424,7 @@ public class VueJeu {
                 }
             }
         };
+        System.out.println(collisionTimer);
         // Fin Start Game //
         collisionTimer.start();
         root.setCenter(interfaceJeu);
@@ -462,14 +473,8 @@ public class VueJeu {
         });
     }
 
-    /**
-     * Méthode qui permet de retourner la scène du jeu
-     *
-     * @param stage
-     * @throws IOException
-     * @throws InterruptedException
-     */
-    public void restartGame(Stage stage) throws IOException, InterruptedException {
+    // Méthode qui permet de retourner la scène du jeu
+    public void restartGame(Stage stage) throws InterruptedException {
         stage.close();
         supprimerElements(jeu, tonneaux, echelles, echellesBrokens, personnePrincipale, dk);
         personnePrincipale.setLayoutX(20 * 10);
@@ -477,16 +482,7 @@ public class VueJeu {
         sleep(1000);
     }
 
-    /**
-     * Méthode qui permet de supprimer les éléments du jeu
-     *
-     * @param jeu
-     * @param tonneaux
-     * @param echelles
-     * @param echellesBrokens
-     * @param personnePrincipale
-     * @param dk
-     */
+    // Méthode qui permet de supprimer les éléments du jeu
     public void supprimerElements(Pane jeu, ArrayList<Objet_Attaque> tonneaux, ArrayList<Echelle> echelles, ArrayList<EchelleBroken> echellesBrokens, PersonnePrincipale personnePrincipale, PersonneEnnemie dk) {
         supprimerTonneaux(tonneaux);
         echelles = null;
@@ -496,11 +492,7 @@ public class VueJeu {
         jeu = null;
     }
 
-    /**
-     * Méthode qui permet de supprimer les tonneaux
-     *
-     * @param tonneaux
-     */
+    // Méthode qui permet de supprimer les tonneaux
     public void supprimerTonneaux(ArrayList<Objet_Attaque> tonneaux) {
         for (Objet_Attaque tonneau : tonneaux) {
             jeu.getChildren().remove(tonneau);
@@ -509,12 +501,7 @@ public class VueJeu {
         timer.stop();
     }
 
-    /**
-     * Méthode qui permet de créer les tonneaux
-     *
-     * @param coordonneesEchelles
-     * @param dk
-     */
+    // Méthode qui permet de créer les tonneaux
     public void creerTonneaux(ArrayList<ArrayList<Double>> coordonneesEchelles, PersonneEnnemie dk) {
         Objet_Attaque tonneau1 = new Objet_Attaque(20, -10, 20, 20);
         Objet_Attaque tonneau2 = new Objet_Attaque(20, -10, 20, 20);
@@ -553,12 +540,7 @@ public class VueJeu {
         timer.start();
     }
 
-    /**
-     * @param personnePrincipale
-     * @param echelles
-     * @param echellesBrokens
-     * @param coordonneesEchelles
-     */
+    // Méthode qui permet le mouvement
     private void move(PersonnePrincipale personnePrincipale, ArrayList<Echelle> echelles, ArrayList<EchelleBroken> echellesBrokens, ArrayList<ArrayList<Double>> coordonneesEchelles) {
         ImageView image_Haut_Click = new ImageView(new Image(Objects.requireNonNull(RessourcesAccess.class.getResourceAsStream("Button/Button_Haut_Click.png"))));
         image_Haut_Click.setFitHeight(50);

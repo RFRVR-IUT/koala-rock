@@ -28,19 +28,13 @@ public class VueGagne {
             vueJeu = new VueJeu();
         }
 
-        stage.setTitle("Koala Rock");
-        stage.setResizable(false);
         BorderPane borderPane = new BorderPane();
         Pane pane = new Pane();
         borderPane.setCenter(pane);
 
         Scene scene = new Scene(borderPane, 1280, 720);
         scene.getStylesheets().add(String.valueOf(RessourcesAccess.class.getResource("css/style.css")));
-        stage.setScene(scene);
-        stage.show();
 
-
-        /////////// BOUTON ///////////
         Button retourMenu = new Button("Retour au menu");
         retourMenu.getStyleClass().add("buttonEcran");
         retourMenu.setLayoutX(325);
@@ -56,7 +50,6 @@ public class VueGagne {
         quitter.setLayoutX(740);
         quitter.setLayoutY(570);
 
-        /////////// LABEL ///////////
         Label nameGame = new Label("Vous avez gagné");
         nameGame.getStyleClass().add("nameGame");
         nameGame.setLayoutX(226);
@@ -68,18 +61,13 @@ public class VueGagne {
         imageView.setFitHeight(720);
         imageView.setFitWidth(1280);
         menuScreen.setGraphic(imageView);
-        pane.getChildren().add(menuScreen);
 
         Label scoreLabel = new Label("Score : " + scoreProperty.getValue());
         scoreLabel.getStyleClass().add("Score_Vie");
         scoreLabel.setLayoutX(565);
         scoreLabel.setLayoutY(200);
 
-        pane.getChildren().addAll(menuScreen, recommencer, quitter, nameGame, scoreLabel, retourMenu);
-
-/**
- * Action du bouton recommencer
- */
+        // Recommencer la partie
         recommencer.setOnMouseClicked(event -> {
             try {
                 vueJeu.demarrerJeu(stage, vueJeu.getMode());
@@ -87,14 +75,20 @@ public class VueGagne {
                 e.printStackTrace();
             }
         });
+
+        // Quitter le jeu
         quitter.setOnMouseClicked(event -> {
             stage.close();
             System.exit(0);
         });
+
+        // Retour au menu
         retourMenu.setOnMouseClicked(event -> {
             VueMenu vueMenu = new VueMenu();
             vueMenu.demarrerMenu(stage);
         });
+
+        // Lors du click sur le bouton quitter de la fenetre (affichage confirmation)
         stage.setOnCloseRequest(event -> {
             event.consume();
             Label alerte = new Label("Voulez vous vraiment \n" + "quitter le jeu ?");
@@ -132,5 +126,12 @@ public class VueGagne {
             });
             pane.getChildren().addAll(rectangle, alerte, oui, non);
         });
+
+        pane.getChildren().addAll(menuScreen, recommencer, quitter, nameGame, scoreLabel, retourMenu);
+
+        stage.setTitle("Koala Rock");
+        stage.setResizable(false);
+        stage.setScene(scene);
+        stage.show();
     }
 }
