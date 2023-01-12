@@ -14,7 +14,11 @@ public class Score {
     private IntegerProperty score;
     private Timestamp horodatage;
     private String login;
-    private static final String gameCode = "DK"; //CodeJeu: Motron: 'TRON' | Tetris : 'TETRIS' | DonkeyKong : 'DK'
+    private static String gameCode = "DK"; //CodeJeu: Motron: 'TRON' | Tetris : 'TETRIS' | DonkeyKong : 'DK' | Brick breaker : 'CB'
+    private static String gameCodeTRON = "TRON";
+    private static String gameCodeTETRIS = "TETRIS";
+    private static String gameCodeCB = "CB";
+
 
     private Score() {
         this.score = new SimpleIntegerProperty(0);
@@ -72,5 +76,17 @@ public class Score {
 
     public static String getGameCode() {
         return gameCode;
+    }
+
+    public static String getGameCodeTETRIS() {
+        return gameCodeTETRIS;
+    }
+
+    public static String getGameCodeCB() {
+        return gameCodeCB;
+    }
+
+    public static String getGameCodeTRON() {
+        return gameCodeTRON;
     }
 }

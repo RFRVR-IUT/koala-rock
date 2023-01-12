@@ -4,8 +4,10 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
+import javafx.scene.control.ScrollPane;
 import javafx.scene.effect.DropShadow;
 import javafx.scene.layout.Pane;
+import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Line;
 import javafx.scene.shape.Rectangle;
@@ -17,15 +19,68 @@ import start.structure.metier.manager.ScoreManager;
 import start.structure.stockage.Session;
 
 import java.io.IOException;
+import java.util.List;
 import java.util.Objects;
 
 public class VueCompte {
 
     public void affichageVueCompte(Stage stage) throws IOException {
-        int varScore = 0;
         Pane pane = new Pane();
         Scene scene = new Scene(pane, 1280, 720);
         scene.getStylesheets().add(String.valueOf(RessourcesAccess.class.getResource("css/style.css")));
+
+        ScrollPane scrollPaneDK = new ScrollPane();
+        scrollPaneDK.setPrefSize(350, 300);
+        scrollPaneDK.setLayoutX(450);
+        scrollPaneDK.setLayoutY(175);
+
+        scrollPaneDK.setStyle("-fx-border-color: grey ; -fx-border-width: 10px ; -fx-background: black ;");
+
+        VBox contentVDK = new VBox();
+
+
+        ScrollPane scrollPaneTRON = new ScrollPane();
+        scrollPaneTRON.setPrefSize(350, 100);
+        scrollPaneTRON.setLayoutX(850);
+        scrollPaneTRON.setLayoutY(175);
+
+        scrollPaneTRON.setStyle("-fx-border-color: grey ; -fx-border-width: 10px ; -fx-background: black ;");
+
+        VBox contentVTRON = new VBox();
+
+
+        ScrollPane scrollPaneCB = new ScrollPane();
+        scrollPaneCB.setPrefSize(350, 100);
+        scrollPaneCB.setLayoutX(450);
+        scrollPaneCB.setLayoutY(550);
+
+        scrollPaneCB.setStyle("-fx-border-color: grey ; -fx-border-width: 10px ; -fx-background: black ;");
+
+        VBox contentVCB = new VBox();
+
+
+        ScrollPane scrollPaneTETRIS = new ScrollPane();
+        scrollPaneTETRIS.setPrefSize(350, 100);
+        scrollPaneTETRIS.setLayoutX(850);
+        scrollPaneTETRIS.setLayoutY(355);
+
+        scrollPaneTETRIS.setStyle("-fx-border-color: grey ; -fx-border-width: 10px ; -fx-background: black ;");
+
+        VBox contentVTETRIS = new VBox();
+
+
+        Label label = new Label(Session.getInstance().getLogin());
+        System.out.println(Session.getInstance().getLogin());
+        label.getStyleClass().add("nomJeu");
+        label.setLayoutX(55);
+        label.setLayoutY(25);
+
+        //champ de modification du mot de passe avec un bouton de validation
+
+        Label labelModificationMDP = new Label("Modification du mot de passe");
+        labelModificationMDP.getStyleClass().add("LabelConnexionField");
+        labelModificationMDP.setLayoutX(50);
+        labelModificationMDP.setLayoutY(130);
 
         Line line = new Line();
         line.setStartX(400.0f);
@@ -34,16 +89,6 @@ public class VueCompte {
         line.setEndY(500.0f);
         line.setStrokeWidth(2);
         line.setStroke(Color.WHITE);
-
-        Label label = new Label(Session.getInstance().getLogin());
-        label.getStyleClass().add("nomJeu");
-        label.setLayoutX(55);
-        label.setLayoutY(25);
-
-        Label labelModificationMDP = new Label("Modification du mot de passe");
-        labelModificationMDP.getStyleClass().add("LabelConnexionField");
-        labelModificationMDP.setLayoutX(50);
-        labelModificationMDP.setLayoutY(130);
 
         Label labelMotDePasse = new Label("Mot de passe");
         labelMotDePasse.getStyleClass().add("LabelConnexionField");
@@ -54,6 +99,7 @@ public class VueCompte {
         passwordField.setLayoutX(110);
         passwordField.setLayoutY(225);
 
+
         Label labelMotDePasse2 = new Label("Confirmation");
         labelMotDePasse2.getStyleClass().add("LabelConnexionField");
         labelMotDePasse2.setLayoutX(110);
@@ -63,20 +109,15 @@ public class VueCompte {
         passwordField2.setLayoutX(110);
         passwordField2.setLayoutY(325);
 
-        Label labelErreur = new Label();
-        labelErreur.getStyleClass().add("LabelError");
-        labelErreur.setLayoutX(60);
-        labelErreur.setLayoutY(470);
-
-        Label labelMeilleurScore = new Label("Meilleurs scores");
-        labelMeilleurScore.getStyleClass().add("nomJeu");
-        labelMeilleurScore.setLayoutX(630);
-        labelMeilleurScore.setLayoutY(75);
-
         Button buttonModifPassword = new Button("Changer mot de passe");
         buttonModifPassword.getStyleClass().add("btnGrey");
         buttonModifPassword.setLayoutX(83);
         buttonModifPassword.setLayoutY(420);
+
+        Label labelErreur = new Label();
+        labelErreur.getStyleClass().add("LabelError");
+        labelErreur.setLayoutX(60);
+        labelErreur.setLayoutY(470);
 
         Button supprimerCompte = new Button("Supprimer Compte");
         supprimerCompte.getStyleClass().add("btnRed");
@@ -97,63 +138,232 @@ public class VueCompte {
         menu.getStyleClass().add("btnGrey");
         menu.setLayoutX(50);
         menu.setLayoutY(600);
-
-        // Retour sur le menu
         menu.setOnAction(event -> {
             VueMenu vueMenu = new VueMenu();
             vueMenu.demarrerMenu(stage);
         });
 
-        // Afficher vue parametre
         boutonRetour.setOnAction(event -> {
             VueParametre vueParametre = new VueParametre();
             try {
-                vueParametre.affichageVueParametre(stage);
-            } catch (IOException e) {
-                // TODO Auto-generated catch block
-                e.printStackTrace();
-            }
+				vueParametre.affichageVueParametre(stage);
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
         });
 
-        // Modification du mot de passe
+
         buttonModifPassword.setOnAction(event -> {
             if (!Objects.equals(passwordField.getText(), "") && !Objects.equals(passwordField2.getText(), "")) {
                 if (passwordField.getText().equals(passwordField2.getText())) {
                     PlayerManager.getInstance().updatePlayer(Session.getInstance().getLogin(), passwordField.getText());
                     labelErreur.setText("Mot de passe modifié");
                 } else {
-                    labelErreur.setText("Les mots de passe" + "\n" + "ne correspondent pas");
+                    labelErreur.setText("Les mots de passe" + "\n"  + "ne correspondent pas");
                 }
             } else {
                 labelErreur.setText("Veuillez remplir les champs");
             }
         });
 
-        // Affichage des 10 meilleurs joueurs avec date + Espacement entre les scores
-        for (Score score : ScoreManager.getInstance().getScores()) {
-            if (score.getLogin() != null && score.getLogin().equals(Session.getInstance().getLogin())) {
 
-                Label labelScore = new Label(score.getScore() + "");
-                labelScore.getStyleClass().add("LabelConnexionField");
-                labelScore.setLayoutX(450);
-                labelScore.setLayoutY(150 + varScore * 35);
+        //10 meilleurs score du joueurs avec la date
+        Label labelMeilleurScore = new Label("Meilleurs scores");
+        labelMeilleurScore.getStyleClass().add("nomJeu");
+        labelMeilleurScore.setLayoutX(600);
+        labelMeilleurScore.setLayoutY(25);
 
-                Label labelDate = new Label(score.getHorodatage().toLocalDateTime().getDayOfMonth() + "-" + score.getHorodatage().toLocalDateTime().getMonth() + "-" + score.getHorodatage().toLocalDateTime().getYear() + " " + score.getHorodatage().toLocalDateTime().getHour() + "h" + score.getHorodatage().toLocalDateTime().getMinute());
-                labelDate.getStyleClass().add("LabelConnexionField");
-                labelDate.setLayoutX(600);
-                labelDate.setLayoutY(150 + varScore * 35);
+        Label titreJeu = new Label("DK");
+        titreJeu.getStyleClass().add("nomJeu");
+        titreJeu.setLayoutX(575);
+        titreJeu.setLayoutY(100);
 
-                Label place = new Label((varScore + 1) + ".");
-                place.getStyleClass().add("LabelConnexionField");
-                place.setLayoutX(400);
-                place.setLayoutY(150 + varScore * 35);
-
-                pane.getChildren().addAll(labelScore, labelDate, place);
-                varScore++;
+        List<Score> scoresDK = ScoreManager.getInstance().getScores();
+        int i = 0;
+        for (Score scoreDK : scoresDK) {
+            if (scoreDK.getLogin() != null && scoreDK.getLogin().equals(Session.getInstance().getLogin())) {
+                Label labelScoreDK = new Label(scoreDK.getScore() + "");
+                labelScoreDK.getStyleClass().add("LabelConnexionField");
+                labelScoreDK.setLayoutX(450);
+                labelScoreDK.setLayoutY(150 + i * 35);
+                Label labelDateDK = new Label(scoreDK.getHorodatage().toLocalDateTime().getDayOfMonth() + "-" + scoreDK.getHorodatage().toLocalDateTime().getMonth() + "-" + scoreDK.getHorodatage().toLocalDateTime().getYear() + " ");
+                labelDateDK.getStyleClass().add("LabelConnexionField");
+                labelDateDK.setLayoutX(600);
+                labelDateDK.setLayoutY(150 + i * 35);
+                Label placeDK = new Label((i + 1) + ".");
+                placeDK.getStyleClass().add("LabelConnexionField");
+                placeDK.setLayoutX(400);
+                placeDK.setLayoutY(150 + i * 35);
+                contentVDK.getChildren().addAll(placeDK, labelScoreDK, labelDateDK);
+                scrollPaneDK.setContent(contentVDK);
+                i++;
             }
         }
 
-        // Suppression du compte
+        /**
+         *
+         *
+         * TRON
+         *
+         *
+         */
+
+        Label titreJeuTRON = new Label("TRON");
+        titreJeuTRON.getStyleClass().add("nomJeu");
+        titreJeuTRON.setLayoutX(925);
+        titreJeuTRON.setLayoutY(100);
+
+        List<Score> scoresTRON = ScoreManager.getInstance().getScoresTRON();
+        int j = 0;
+        int compteurTRON=0;
+        for (Score scoreTRON : scoresTRON) {
+            if(scoreTRON.getLogin() == null) {
+                Label tron = new Label("Aucun score dans ce jeu!");
+                tron.getStyleClass().add("LabelConnexionField");
+                tron.setLayoutX(450);
+                tron.setLayoutY(150);
+                contentVTRON.getChildren().addAll(tron);
+                scrollPaneTRON.setContent(contentVTRON);
+                break;
+            }
+            else if (scoreTRON.getLogin() != null && scoreTRON.getLogin().equals(Session.getInstance().getLogin())) {
+
+                    Label labelScoreTRON = new Label(scoreTRON.getScore() + "");
+                    labelScoreTRON.getStyleClass().add("LabelConnexionField");
+                    labelScoreTRON.setLayoutX(450);
+                    labelScoreTRON.setLayoutY(150 + j * 35);
+
+                    Label labelDateTRON = new Label(scoreTRON.getHorodatage().toLocalDateTime().getDayOfMonth() + "-" + scoreTRON.getHorodatage().toLocalDateTime().getMonth() + "-" + scoreTRON.getHorodatage().toLocalDateTime().getYear() + " ");
+                    labelDateTRON.getStyleClass().add("LabelConnexionField");
+                    labelDateTRON.setLayoutX(600);
+                    labelDateTRON.setLayoutY(150 + j * 35);
+
+                    Label placeTRON = new Label((j + 1) + ".");
+                    placeTRON.getStyleClass().add("LabelConnexionField");
+                    placeTRON.setLayoutX(400);
+                    placeTRON.setLayoutY(150 + j * 35);
+
+                    contentVTRON.getChildren().addAll(placeTRON, labelScoreTRON, labelDateTRON);
+                    scrollPaneTRON.setContent(contentVTRON);
+                    j++;
+                    compteurTRON++;
+            }
+            else if(compteurTRON==1) {
+                break;
+            }
+        }
+
+        /**
+         *
+         *
+         * CB
+         *
+         *
+         */
+
+        Label titreJeuCB = new Label("B.B.");
+        titreJeuCB.getStyleClass().add("nomJeu");
+        titreJeuCB.setLayoutX(575);
+        titreJeuCB.setLayoutY(485);
+
+        List<Score> scoresCB = ScoreManager.getInstance().getScoresCB();
+        int k = 0;
+        int compteurCB=0;
+        for (Score scoreCB : scoresCB) {
+            if(scoreCB.getLogin() == null) {
+                Label cb = new Label("Aucun score dans ce jeu!");
+                cb.getStyleClass().add("LabelConnexionField");
+                cb.setLayoutX(450);
+                cb.setLayoutY(150);
+                contentVCB.getChildren().addAll(cb);
+                scrollPaneCB.setContent(contentVCB);
+                break;
+            }
+            else if (scoreCB.getLogin() != null && scoreCB.getLogin().equals(Session.getInstance().getLogin())) {
+
+                Label labelScoreCB = new Label(scoreCB.getScore() + "");
+                labelScoreCB.getStyleClass().add("LabelConnexionField");
+                labelScoreCB.setLayoutX(450);
+                labelScoreCB.setLayoutY(150 + k * 35);
+
+                Label labelDateCB = new Label(scoreCB.getHorodatage().toLocalDateTime().getDayOfMonth() + "-" + scoreCB.getHorodatage().toLocalDateTime().getMonth() + "-" + scoreCB.getHorodatage().toLocalDateTime().getYear() + " ");
+                labelDateCB.getStyleClass().add("LabelConnexionField");
+                labelDateCB.setLayoutX(600);
+                labelDateCB.setLayoutY(150 + k * 35);
+
+                Label placeCB = new Label((k + 1) + ".");
+                placeCB.getStyleClass().add("LabelConnexionField");
+                placeCB.setLayoutX(400);
+                placeCB.setLayoutY(150 + k * 35);
+
+                contentVCB.getChildren().addAll(placeCB, labelScoreCB, labelDateCB);
+                scrollPaneCB.setContent(contentVCB);
+                k++;
+                compteurCB++;
+
+            }
+            else if(compteurCB==1) {
+                break;
+            }
+        }
+
+        /**
+         *
+         *
+         * TETRIS
+         *
+         *
+         */
+
+        Label titreJeuTETRIS = new Label("TETRIS");
+        titreJeuTETRIS.getStyleClass().add("nomJeu");
+        titreJeuTETRIS.setLayoutX(910);
+        titreJeuTETRIS.setLayoutY(285);
+
+        List<Score> scoresTETRIS = ScoreManager.getInstance().getScoresTETRIS();
+        int p = 0;
+        int compteurTETRIS=0;
+        for (Score scoreTETRIS : scoresTETRIS) {
+            if(scoreTETRIS.getLogin() == null) {
+                Label tetris = new Label("Aucun score dans ce jeu!");
+                tetris.getStyleClass().add("LabelConnexionField");
+                tetris.setLayoutX(450);
+                tetris.setLayoutY(150);
+                contentVTETRIS.getChildren().addAll(tetris);
+                scrollPaneTETRIS.setContent(contentVTETRIS);
+                break;
+            }
+            else if (scoreTETRIS.getLogin() != null && scoreTETRIS.getLogin().equals(Session.getInstance().getLogin())) {
+
+                Label labelScoreTETRIS = new Label(scoreTETRIS.getScore() + "");
+                labelScoreTETRIS.getStyleClass().add("LabelConnexionField");
+                labelScoreTETRIS.setLayoutX(450);
+                labelScoreTETRIS.setLayoutY(150 + p * 35);
+
+                Label labelDateTETRIS = new Label(scoreTETRIS.getHorodatage().toLocalDateTime().getDayOfMonth() + "-" + scoreTETRIS.getHorodatage().toLocalDateTime().getMonth() + "-" + scoreTETRIS.getHorodatage().toLocalDateTime().getYear() + " ");
+                labelDateTETRIS.getStyleClass().add("LabelConnexionField");
+                labelDateTETRIS.setLayoutX(600);
+                labelDateTETRIS.setLayoutY(150 + p * 35);
+
+                Label placeTETRIS = new Label((p + 1) + ".");
+                placeTETRIS.getStyleClass().add("LabelConnexionField");
+                placeTETRIS.setLayoutX(400);
+                placeTETRIS.setLayoutY(150 + p * 35);
+
+                contentVTETRIS.getChildren().addAll(placeTETRIS, labelScoreTETRIS, labelDateTETRIS);
+                scrollPaneTETRIS.setContent(contentVTETRIS);
+                p++;
+                compteurTETRIS++;
+            }
+            else if(compteurTETRIS==1) {
+                break;
+            }
+        }
+
+
+
+
         supprimerCompte.setOnMouseClicked(event -> {
             Label alerte = new Label("Voulez vous vraiment" + "\n" + "supprimer votre compte ?");
             alerte.getStyleClass().add("LabelError");
@@ -195,16 +405,34 @@ public class VueCompte {
             pane.getChildren().addAll(rectangle, oui, non, alerte);
         });
 
-        // Deconnection du compte
         deconnexion.setOnMouseClicked(event -> {
             Session.getInstance().disconnect();
             VueMenu vueMenu = new VueMenu();
             vueMenu.demarrerMenu(stage);
         });
 
-        // Lors du click sur le bouton quitter de la fenetre (affichage confirmation)
+        pane.getChildren().addAll(label, labelMotDePasse, passwordField, labelMotDePasse2, passwordField2, buttonModifPassword, labelMeilleurScore, boutonRetour, supprimerCompte, deconnexion, menu);
+        pane.getChildren().add(labelErreur);
+        pane.getChildren().add(labelModificationMDP);
+        pane.getChildren().add(line);
+
+        pane.getChildren().addAll(titreJeu, titreJeuTRON, titreJeuCB, titreJeuTETRIS);
+        pane.getChildren().add(scrollPaneDK);
+        pane.getChildren().add(scrollPaneTRON);
+        pane.getChildren().add(scrollPaneCB);
+        pane.getChildren().add(scrollPaneTETRIS);
+
+
+
+        stage.setTitle("Paramètre");
+        stage.setResizable(false);
+        stage.setScene(scene);
+        stage.show();
+
+        pane.setStyle("-fx-border-color: white ; -fx-border-width: 10px ; -fx-background-color: black ; -fx-background-radius: 10px ;");
         stage.setOnCloseRequest(event -> {
             event.consume();
+            System.out.println("Fermeture de Koala Rock");
             Label alerte = new Label("Voulez vous vraiment \n" + "quitter le jeu ?");
             alerte.getStyleClass().add("LabelError");
             alerte.setLayoutX(520);
@@ -232,7 +460,9 @@ public class VueCompte {
             non.setLayoutY(325);
 
             oui.setOnAction(e -> {
+                System.out.println("Deconnexion de l'utilisateur");
                 Session.getInstance().disconnect();
+                System.out.println("Fermeture du jeu");
                 System.exit(0);
             });
             non.setOnAction(e -> {
@@ -240,16 +470,5 @@ public class VueCompte {
             });
             pane.getChildren().addAll(rectangle, alerte, oui, non);
         });
-
-        pane.setStyle("-fx-border-color: white ; -fx-border-width: 10px ; -fx-background-color: black ; -fx-background-radius: 10px ;");
-        pane.getChildren().addAll(label, labelMotDePasse, passwordField, labelMotDePasse2, passwordField2, buttonModifPassword, labelMeilleurScore, boutonRetour, supprimerCompte, deconnexion, menu);
-        pane.getChildren().add(labelErreur);
-        pane.getChildren().add(labelModificationMDP);
-        pane.getChildren().add(line);
-
-        stage.setTitle("Paramètre");
-        stage.setResizable(false);
-        stage.setScene(scene);
-        stage.show();
     }
 }

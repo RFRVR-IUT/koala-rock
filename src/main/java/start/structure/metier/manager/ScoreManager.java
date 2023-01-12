@@ -57,12 +57,23 @@ public class ScoreManager {
         return stockage.getAll();
     }
 
+    public List<Score> getScoresTRON() {
+        return stockage.getAllTRON();
+    }
+    public List<Score> getScoresCB() {
+        return stockage.getAllCB();
+    }
+
+    public List<Score> getScoresTETRIS() {
+        return stockage.getAllTETRIS();
+    }
+
+
     public Map<Integer,Double> getScoresTemps(){ return stockage.getAllTemps(); }
 
     public String getLoginTemps(int id) {
         return stockage.getLoginTemps(id);
     }
-
     public int getDernierCode() {
         return stockage.getDernierCode();
     }
@@ -70,4 +81,6 @@ public class ScoreManager {
     public void addTemps(double temps,String login) {
         stockage.addTemps(temps,login);
     }
+
+
 }
