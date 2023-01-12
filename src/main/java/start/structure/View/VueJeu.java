@@ -32,7 +32,7 @@ import java.util.Objects;
 import static java.lang.Thread.sleep;
 
 public class VueJeu {
-    private final int compteur = 1;
+    private int compteur = 1;
     ArrayList<Echelle> echelles;
     ArrayList<EchelleBroken> echellesBrokens;
     ArrayList<Objet_Attaque> tonneaux;
@@ -409,8 +409,8 @@ public class VueJeu {
                         getScore().setValue(getScore().getValue() + 1000);
                         supprimerTonneaux(tonneaux);
                         creerTonneaux(coordonneesEchelles, dk);
-                        niveau.setText("Niveau : " + (compteur + 1));
-                        niveauAlerte.setText("Niveau : " + (compteur + 1));
+                        niveau.setText("Niveau : " + (compteur += 1));
+                        niveauAlerte.setText("Niveau : " + (compteur));
                         niveauAlerte.setVisible(true);
                         timeline.play();
                     } else {
