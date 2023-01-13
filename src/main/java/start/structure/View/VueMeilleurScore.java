@@ -179,7 +179,7 @@ public class VueMeilleurScore {
             } else {
                 labelPseudoTemps = new Label(ScoreManager.getInstance().getLoginTemps((Integer) scoresTemps.keySet().toArray()[j]));
             }
-            Label labelScoreTemps = new Label(String.valueOf(scoresTemps.values().toArray()[j]));
+            Label labelScoreTemps = new Label(String.valueOf(scoresTemps.values().toArray()[j] + " S"));
             Label placeTemps = new Label(j + 1 + ".");
             if (j == 0) {
                 labelScoreTemps.setTextFill(javafx.scene.paint.Color.GOLD);
