@@ -88,24 +88,21 @@ public class VueParametre {
         comboBoxFond.getItems().addAll("Basic");
         comboBoxFond.setValue("Basic");
         comboBoxFond.getItems().add("Nuit");
+        comboBoxFond.getItems().add("ville");
         comboBoxFond.getSelectionModel().selectedItemProperty().addListener((v, oldValue, newValue) -> {
             if (newValue.equals("Basic")) {
                 Fond.setChoixFond("BASIC");
             } else if (newValue.equals("Nuit")) {
                 Fond.setChoixFond("NUIT");
+            } else if (newValue.equals("ville")) {
+                Fond.setChoixFond("VILLE");
+
             }
         });
         comboBoxFond.setLayoutX(300);
         comboBoxFond.setLayoutY(300);
         comboBoxFond.getStyleClass().add("buttonEcran");
         comboBoxFond.setStyle("-fx-font-size: 12px; -fx-pref-width: 130px; -fx-pref-height: 20px;");
-        if (Session.getInstance().getLogin() != null) {
-            if (ScoreManager.getInstance().getHighScoreByLogin(Session.getInstance().getLogin()) != null) {
-                if (ScoreManager.getInstance().getHighScoreByLogin(Session.getInstance().getLogin()).getScore() > 10) {
-                    comboBoxFond.getItems().add("Forest");
-                }
-            }
-        }
 
         Label menuScreen = new Label();
         menuScreen.setGraphic(fond.getChoixFond());

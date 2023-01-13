@@ -47,6 +47,8 @@ public class Fond extends Group {
             return new ImagePattern(new Image(Objects.requireNonNull(RessourcesAccess.class.getResourceAsStream("fond/classic.png"))));
         } else if (choixFond.equals("NUIT")) {
             return new ImagePattern(new Image(Objects.requireNonNull(RessourcesAccess.class.getResourceAsStream("fond/night.jpeg"))));
+        } else if (choixFond.equals("VILLE")) {
+            return new ImagePattern(new Image(Objects.requireNonNull(RessourcesAccess.class.getResourceAsStream("fond/city.jpeg"))));
         }
         return null;
     }

@@ -67,7 +67,7 @@ public class VueJeu {
 
     public void demarrerJeu(Stage stage, String modeJeu) throws IOException, InterruptedException {
 
-        if(time.getValue() != 0){
+        if (time.getValue() != 0) {
             time.setValue(0);
         }
 
@@ -298,7 +298,7 @@ public class VueJeu {
         }
 
         // Fond
-        //  interfaceJeu.getChildren().add(menuScreen);
+        //interfaceJeu.getChildren().add(menuScreen);
         // panneau du jeu
         jeu.setPrefSize(600, 600);
         // Fond
@@ -432,7 +432,7 @@ public class VueJeu {
                         supprimerElements(jeu, tonneaux, echelles, echellesBrokens, personnePrincipale, dk);
                         primaryStage.close();
                         vueGagne.screenWin(personnePrincipale.getScore(), stage);
-                        if (modeJeu.equals("Normal")){
+                        if (modeJeu.equals("Normal")) {
                             if (Session.getInstance().getLogin() == null) {
                                 ScoreManager.getInstance().addTemps(time.getValue(), "");
                             } else {
