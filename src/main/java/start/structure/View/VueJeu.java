@@ -68,6 +68,7 @@ public class VueJeu {
 
         if (isPause) {
             isPause = false;
+            timer = null;
         }
 
         primaryStage = stage;
@@ -250,9 +251,9 @@ public class VueJeu {
              */
             @Override
             public void stop() {
+                fraction = System.currentTimeMillis() - timestamp;
                 super.stop();
                 // save leftover time not handled with the last update
-                fraction = System.currentTimeMillis() - timestamp;
             }
 
             /**

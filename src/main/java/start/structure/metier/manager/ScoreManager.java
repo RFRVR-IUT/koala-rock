@@ -82,5 +82,9 @@ public class ScoreManager {
         stockage.addTemps(temps,login);
     }
 
+    public List<Double> getTempsByLogin(String login) {
+        return stockage.getTempsByLogin(login);
+    }
+
 
 }

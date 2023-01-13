@@ -180,6 +180,27 @@ public class StockageScoreDatabase {
         return scoresList;
     }
 
+    public List<Double> getTempsByLogin(String login) {
+        List<Double> tempsList = new ArrayList<>();
+        SQLUtils utils = SQLUtils.getInstance();
+        Connection connection = utils.getConnection();
+        String req = "SELECT * FROM scoreTemps WHERE login = ?";
+        try (
+                PreparedStatement st = connection.prepareStatement(req)
+        ) {
+            st.setString(1, login);
+            try (ResultSet result = st.executeQuery()) {
+                while (result.next()) {
+                    double temps = result.getInt("temps");
+                    tempsList.add(temps);
+                }
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return tempsList;
+    }
+
     /**
      * Renvoie tous les scores de votre jeu.
      *
