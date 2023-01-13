@@ -21,20 +21,23 @@ import start.structure.stockage.Session;
 import java.io.IOException;
 import java.util.List;
 import java.util.Objects;
+import java.util.function.Function;
 
 public class VueCompte {
+
+    private int ScoreAffiche = 1;
 
     public void affichageVueCompte(Stage stage) throws IOException {
         Pane pane = new Pane();
         Scene scene = new Scene(pane, 1280, 720);
         scene.getStylesheets().add(String.valueOf(RessourcesAccess.class.getResource("css/style.css")));
 
-        ScrollPane scrollPaneDK = new ScrollPane();
-        scrollPaneDK.setPrefSize(350, 300);
-        scrollPaneDK.setLayoutX(450);
-        scrollPaneDK.setLayoutY(175);
+        ScrollPane paneDK = new ScrollPane();
+        paneDK.setPrefSize(350, 475);
+        paneDK.setLayoutX(450);
+        paneDK.setLayoutY(175);
 
-        scrollPaneDK.setStyle("-fx-border-color: grey ; -fx-border-width: 10px ; -fx-background: black ;");
+        paneDK.setStyle("-fx-border-color: grey ; -fx-border-width: 10px ; -fx-background: black ;");
 
         VBox contentVDK = new VBox();
 
@@ -51,7 +54,7 @@ public class VueCompte {
 
         ScrollPane scrollPaneCB = new ScrollPane();
         scrollPaneCB.setPrefSize(350, 100);
-        scrollPaneCB.setLayoutX(450);
+        scrollPaneCB.setLayoutX(850); 
         scrollPaneCB.setLayoutY(550);
 
         scrollPaneCB.setStyle("-fx-border-color: grey ; -fx-border-width: 10px ; -fx-background: black ;");
@@ -104,10 +107,16 @@ public class VueCompte {
         labelMotDePasse2.getStyleClass().add("LabelConnexionField");
         labelMotDePasse2.setLayoutX(110);
         labelMotDePasse2.setLayoutY(300);
+
         PasswordField passwordField2 = new PasswordField();
         passwordField2.getStyleClass().add("TextFieldConnexion");
         passwordField2.setLayoutX(110);
         passwordField2.setLayoutY(325);
+
+        Label modeDeJeu = new Label("(infini)");
+        modeDeJeu.getStyleClass().add("LabelConnexionField");
+        modeDeJeu.setLayoutX(650);
+        modeDeJeu.setLayoutY(150);
 
         Button buttonModifPassword = new Button("Changer mot de passe");
         buttonModifPassword.getStyleClass().add("btnGrey");
@@ -121,18 +130,23 @@ public class VueCompte {
 
         Button supprimerCompte = new Button("Supprimer Compte");
         supprimerCompte.getStyleClass().add("btnRed");
-        supprimerCompte.setLayoutX(1040);
-        supprimerCompte.setLayoutY(600);
+        supprimerCompte.setLayoutX(212);
+        supprimerCompte.setLayoutY(650);
 
         Button deconnexion = new Button("Deconnexion");
         deconnexion.getStyleClass().add("btnGrey");
-        deconnexion.setLayoutX(878);
-        deconnexion.setLayoutY(600);
+        deconnexion.setLayoutX(50);
+        deconnexion.setLayoutY(650);
 
         Button boutonRetour = new Button("Retour");
         boutonRetour.getStyleClass().add("btnGrey");
-        boutonRetour.setLayoutX(150);
+        boutonRetour.setLayoutX(212);
         boutonRetour.setLayoutY(600);
+
+        Button changerModeJeu = new Button("Changer le mode de jeu");
+        changerModeJeu.getStyleClass().add("btnGrey");
+        changerModeJeu.setLayoutX(520);
+        changerModeJeu.setLayoutY(655);
 
         Button menu = new Button("Menu");
         menu.getStyleClass().add("btnGrey");
@@ -153,6 +167,76 @@ public class VueCompte {
 			}
         });
 
+        changerModeJeu.setOnAction(event -> {
+            if (ScoreAffiche == 0){
+                modeDeJeu.setText("(infini)");
+                contentVDK.getChildren().clear();
+                List<Score> scoresDK = ScoreManager.getInstance().getScores();
+                int i = 0;
+                if (!scoresDK.isEmpty()){
+                    for (Score scoreDK : scoresDK) {
+                        if (scoreDK.getLogin() != null && scoreDK.getLogin().equals(Session.getInstance().getLogin())) {
+                            Label labelScoreDK = new Label(scoreDK.getScore() + "");
+                            labelScoreDK.getStyleClass().add("LabelConnexionField");
+                            labelScoreDK.setLayoutX(450);
+                            labelScoreDK.setLayoutY(150 + i * 35);
+                            Label labelDateDK = new Label(scoreDK.getHorodatage().toLocalDateTime().getDayOfMonth() + "-"
+                                    + scoreDK.getHorodatage().toLocalDateTime().getMonth() + "-"
+                                    + scoreDK.getHorodatage().toLocalDateTime().getYear() + " ");
+                            labelDateDK.getStyleClass().add("LabelConnexionField");
+                            labelDateDK.setLayoutX(600);
+                            labelDateDK.setLayoutY(150 + i * 35);
+                            Label placeDK = new Label((i + 1) + ".");
+                            placeDK.getStyleClass().add("LabelConnexionField");
+                            placeDK.setLayoutX(400);
+                            placeDK.setLayoutY(150 + i * 35);
+                            contentVDK.getChildren().addAll(placeDK, labelScoreDK, labelDateDK);
+                            paneDK.setContent(contentVDK);
+                            i++;
+                        }
+                    }
+                } else {
+                    Label labelScoreDK = new Label("Aucun score");
+                    labelScoreDK.getStyleClass().add("LabelConnexionField");
+                    labelScoreDK.setLayoutX(450);
+                    labelScoreDK.setLayoutY(150 + i * 35);
+                    contentVDK.getChildren().addAll(labelScoreDK);
+                    paneDK.setContent(contentVDK);
+                }
+                ScoreAffiche = 1;
+            } else {
+                modeDeJeu.setText("(classic)");
+                contentVDK.getChildren().clear();
+                List<Double> scoresDK = ScoreManager.getInstance().getTempsByLogin(Session.getInstance().getLogin());
+                int i = 0;
+                if (!scoresDK.isEmpty()){
+                    for (Double scoreDK : scoresDK) {
+                        if (scoreDK != null) {
+                            Label labelScoreDK = new Label(scoreDK + " S");
+                            labelScoreDK.getStyleClass().add("LabelConnexionField");
+                            labelScoreDK.setLayoutX(450);
+                            labelScoreDK.setLayoutY(150 + i * 35);
+                            Label placeDK = new Label((i + 1) + ".");
+                            placeDK.getStyleClass().add("LabelConnexionField");
+                            placeDK.setLayoutX(400);
+                            placeDK.setLayoutY(150 + i * 35);
+                            contentVDK.getChildren().addAll(placeDK, labelScoreDK);
+                            paneDK.setContent(contentVDK);
+                            i++;
+                        }
+                    }
+                } else {
+                    Label labelScoreDK = new Label("Aucun score");
+                    labelScoreDK.getStyleClass().add("LabelConnexionField");
+                    labelScoreDK.setLayoutX(450);
+                    labelScoreDK.setLayoutY(150 + i * 35);
+                    contentVDK.getChildren().addAll(labelScoreDK);
+                    paneDK.setContent(contentVDK);
+                }
+                ScoreAffiche = 0;
+            }
+        });
+
 
         buttonModifPassword.setOnAction(event -> {
             if (!Objects.equals(passwordField.getText(), "") && !Objects.equals(passwordField2.getText(), "")) {
@@ -169,16 +253,6 @@ public class VueCompte {
 
 
         //10 meilleurs score du joueurs avec la date
-        Label labelMeilleurScore = new Label("Meilleurs scores");
-        labelMeilleurScore.getStyleClass().add("nomJeu");
-        labelMeilleurScore.setLayoutX(600);
-        labelMeilleurScore.setLayoutY(25);
-
-        Label titreJeu = new Label("DK");
-        titreJeu.getStyleClass().add("nomJeu");
-        titreJeu.setLayoutX(575);
-        titreJeu.setLayoutY(100);
-
         List<Score> scoresDK = ScoreManager.getInstance().getScores();
         int i = 0;
         for (Score scoreDK : scoresDK) {
@@ -187,7 +261,9 @@ public class VueCompte {
                 labelScoreDK.getStyleClass().add("LabelConnexionField");
                 labelScoreDK.setLayoutX(450);
                 labelScoreDK.setLayoutY(150 + i * 35);
-                Label labelDateDK = new Label(scoreDK.getHorodatage().toLocalDateTime().getDayOfMonth() + "-" + scoreDK.getHorodatage().toLocalDateTime().getMonth() + "-" + scoreDK.getHorodatage().toLocalDateTime().getYear() + " ");
+                Label labelDateDK = new Label(scoreDK.getHorodatage().toLocalDateTime().getDayOfMonth() + "-"
+                        + scoreDK.getHorodatage().toLocalDateTime().getMonth() + "-"
+                        + scoreDK.getHorodatage().toLocalDateTime().getYear() + " ");
                 labelDateDK.getStyleClass().add("LabelConnexionField");
                 labelDateDK.setLayoutX(600);
                 labelDateDK.setLayoutY(150 + i * 35);
@@ -196,10 +272,20 @@ public class VueCompte {
                 placeDK.setLayoutX(400);
                 placeDK.setLayoutY(150 + i * 35);
                 contentVDK.getChildren().addAll(placeDK, labelScoreDK, labelDateDK);
-                scrollPaneDK.setContent(contentVDK);
+                paneDK.setContent(contentVDK);
                 i++;
             }
         }
+
+        Label labelMeilleurScore = new Label("Meilleurs scores");
+        labelMeilleurScore.getStyleClass().add("nomJeu");
+        labelMeilleurScore.setLayoutX(600);
+        labelMeilleurScore.setLayoutY(25);
+
+        Label titreJeu = new Label("DK");
+        titreJeu.getStyleClass().add("nomJeu");
+        titreJeu.setLayoutX(575);
+        titreJeu.setLayoutY(100);    
 
         /**
          *
@@ -223,7 +309,7 @@ public class VueCompte {
                 tron.getStyleClass().add("LabelConnexionField");
                 tron.setLayoutX(450);
                 tron.setLayoutY(150);
-                contentVTRON.getChildren().addAll(tron);
+                contentVTRON.getChildren().add(tron);
                 scrollPaneTRON.setContent(contentVTRON);
                 break;
             }
@@ -264,8 +350,8 @@ public class VueCompte {
 
         Label titreJeuCB = new Label("B.B.");
         titreJeuCB.getStyleClass().add("nomJeu");
-        titreJeuCB.setLayoutX(575);
-        titreJeuCB.setLayoutY(485);
+        titreJeuCB.setLayoutX(925);
+        titreJeuCB.setLayoutY(470);
 
         List<Score> scoresCB = ScoreManager.getInstance().getScoresCB();
         int k = 0;
@@ -274,7 +360,7 @@ public class VueCompte {
             if(scoreCB.getLogin() == null) {
                 Label cb = new Label("Aucun score dans ce jeu!");
                 cb.getStyleClass().add("LabelConnexionField");
-                cb.setLayoutX(450);
+                cb.setLayoutX(925);
                 cb.setLayoutY(150);
                 contentVCB.getChildren().addAll(cb);
                 scrollPaneCB.setContent(contentVCB);
@@ -284,17 +370,17 @@ public class VueCompte {
 
                 Label labelScoreCB = new Label(scoreCB.getScore() + "");
                 labelScoreCB.getStyleClass().add("LabelConnexionField");
-                labelScoreCB.setLayoutX(450);
+                labelScoreCB.setLayoutX(925);
                 labelScoreCB.setLayoutY(150 + k * 35);
 
                 Label labelDateCB = new Label(scoreCB.getHorodatage().toLocalDateTime().getDayOfMonth() + "-" + scoreCB.getHorodatage().toLocalDateTime().getMonth() + "-" + scoreCB.getHorodatage().toLocalDateTime().getYear() + " ");
                 labelDateCB.getStyleClass().add("LabelConnexionField");
-                labelDateCB.setLayoutX(600);
+                labelDateCB.setLayoutX(925);
                 labelDateCB.setLayoutY(150 + k * 35);
 
                 Label placeCB = new Label((k + 1) + ".");
                 placeCB.getStyleClass().add("LabelConnexionField");
-                placeCB.setLayoutX(400);
+                placeCB.setLayoutX(925);
                 placeCB.setLayoutY(150 + k * 35);
 
                 contentVCB.getChildren().addAll(placeCB, labelScoreCB, labelDateCB);
@@ -411,13 +497,13 @@ public class VueCompte {
             vueMenu.demarrerMenu(stage);
         });
 
-        pane.getChildren().addAll(label, labelMotDePasse, passwordField, labelMotDePasse2, passwordField2, buttonModifPassword, labelMeilleurScore, boutonRetour, supprimerCompte, deconnexion, menu);
+        pane.getChildren().addAll(modeDeJeu, changerModeJeu, label, labelMotDePasse, passwordField, labelMotDePasse2, passwordField2, buttonModifPassword, labelMeilleurScore, boutonRetour, supprimerCompte, deconnexion, menu);
         pane.getChildren().add(labelErreur);
         pane.getChildren().add(labelModificationMDP);
         pane.getChildren().add(line);
 
         pane.getChildren().addAll(titreJeu, titreJeuTRON, titreJeuCB, titreJeuTETRIS);
-        pane.getChildren().add(scrollPaneDK);
+        pane.getChildren().add(paneDK);
         pane.getChildren().add(scrollPaneTRON);
         pane.getChildren().add(scrollPaneCB);
         pane.getChildren().add(scrollPaneTETRIS);
