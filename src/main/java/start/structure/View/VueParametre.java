@@ -32,6 +32,18 @@ public class VueParametre {
         ComboBox<String> comboBoxJoueurPrincipale = new ComboBox<>();
         comboBoxJoueurPrincipale.getItems().addAll("Panda");
         comboBoxJoueurPrincipale.setValue("Panda");
+        comboBoxJoueurPrincipale.getSelectionModel().selectedItemProperty().addListener((v, oldValue, newValue) -> {
+            choixPersonnage = newValue;
+            if (choixPersonnage.equals("Panda")) {
+                PersonnePrincipale.setPersonnePrincipale("PANDA");
+            } else if (choixPersonnage.equals("Samurai")) {
+                PersonnePrincipale.setPersonnePrincipale("SAMURAI");
+            }
+        });
+        comboBoxJoueurPrincipale.setLayoutX(300);
+        comboBoxJoueurPrincipale.setLayoutY(100);
+        comboBoxJoueurPrincipale.getStyleClass().add("buttonEcran");
+        comboBoxJoueurPrincipale.setStyle("-fx-font-size: 12px; -fx-pref-width: 130px; -fx-pref-height: 20px;");
         if (Session.getInstance().getLogin() != null) {
             if (ScoreManager.getInstance().getHighScoreByLogin(Session.getInstance().getLogin()) != null) {
                 if (ScoreManager.getInstance().getHighScoreByLogin(Session.getInstance().getLogin()).getScore() > 10) {
@@ -43,24 +55,6 @@ public class VueParametre {
         ComboBox<String> comboBoxPersonnageEnnemie = new ComboBox<>();
         comboBoxPersonnageEnnemie.getItems().addAll("Koala");
         comboBoxPersonnageEnnemie.setValue("Koala");
-
-        comboBoxJoueurPrincipale.getSelectionModel().selectedItemProperty().addListener((v, oldValue, newValue) -> {
-            choixPersonnage = newValue;
-            if (choixPersonnage.equals("Panda")) {
-                PersonnePrincipale.setPersonnePrincipale("PANDA");
-            } else if (choixPersonnage.equals("Samurai")) {
-                PersonnePrincipale.setPersonnePrincipale("SAMURAI");
-            }
-        });
-
-        if (Session.getInstance().getLogin() != null) {
-            if (ScoreManager.getInstance().getHighScoreByLogin(Session.getInstance().getLogin()) != null) {
-                if (ScoreManager.getInstance().getHighScoreByLogin(Session.getInstance().getLogin()).getScore() > 10) {
-                    comboBoxPersonnageEnnemie.getItems().add("Ninja");
-                }
-            }
-        }
-
         comboBoxPersonnageEnnemie.getSelectionModel().selectedItemProperty().addListener((v, oldValue, newValue) -> {
             choixEnnemi = newValue;
             if (choixEnnemi.equals("Koala")) {
@@ -77,28 +71,56 @@ public class VueParametre {
                 Objet_Attaque.setChoixObjet("SHURIKANE");
             }
         });
-
-        comboBoxJoueurPrincipale.setLayoutX(300);
-        comboBoxJoueurPrincipale.setLayoutY(100);
-
         comboBoxPersonnageEnnemie.setLayoutX(300);
         comboBoxPersonnageEnnemie.setLayoutY(200);
-
-        comboBoxJoueurPrincipale.getStyleClass().add("buttonEcran");
-        comboBoxJoueurPrincipale.setStyle("-fx-font-size: 12px; -fx-pref-width: 130px; -fx-pref-height: 20px;");
         comboBoxPersonnageEnnemie.getStyleClass().add("buttonEcran");
         comboBoxPersonnageEnnemie.setStyle("-fx-font-size: 12px; -fx-pref-width: 130px; -fx-pref-height: 20px;");
+        if (Session.getInstance().getLogin() != null) {
+            if (ScoreManager.getInstance().getHighScoreByLogin(Session.getInstance().getLogin()) != null) {
+                if (ScoreManager.getInstance().getHighScoreByLogin(Session.getInstance().getLogin()).getScore() > 10) {
+                    comboBoxPersonnageEnnemie.getItems().add("Ninja");
+                }
+            }
+        }
+
+        ComboBox<String> comboBoxFond = new ComboBox<>();
+        comboBoxFond.getItems().addAll("Basic");
+        comboBoxFond.setValue("Basic");
+        comboBoxFond.getSelectionModel().selectedItemProperty().addListener((v, oldValue, newValue) -> {
+            if (newValue.equals("Basic")) {
+                Fond.setChoixFond("BASIC");
+            } else if (newValue.equals("Forest")) {
+                Fond.setChoixFond("FOREST");
+            }
+        });
+        comboBoxFond.setLayoutX(300);
+        comboBoxFond.setLayoutY(300);
+        comboBoxFond.getStyleClass().add("buttonEcran");
+        comboBoxFond.setStyle("-fx-font-size: 12px; -fx-pref-width: 130px; -fx-pref-height: 20px;");
+        if (Session.getInstance().getLogin() != null) {
+            if (ScoreManager.getInstance().getHighScoreByLogin(Session.getInstance().getLogin()) != null) {
+                if (ScoreManager.getInstance().getHighScoreByLogin(Session.getInstance().getLogin()).getScore() > 10) {
+                    comboBoxFond.getItems().add("Forest");
+                }
+            }
+        }
+
 
         Label labelJoueurPrincipale = new Label("Personnage principal : ");
         labelJoueurPrincipale.setLayoutX(100);
         labelJoueurPrincipale.setLayoutY(110);
+        labelJoueurPrincipale.getStyleClass().add("LabelUnderButton");
+
 
         Label labelPersonnageEnnemie = new Label("Personnage ennemie : ");
         labelPersonnageEnnemie.setLayoutX(100);
         labelPersonnageEnnemie.setLayoutY(210);
-
-        labelJoueurPrincipale.getStyleClass().add("LabelUnderButton");
         labelPersonnageEnnemie.getStyleClass().add("LabelUnderButton");
+
+        Label labelFond = new Label("Fond : ");
+        labelFond.setLayoutX(230);
+        labelFond.setLayoutY(310);
+        labelFond.getStyleClass().add("LabelUnderButton");
 
         Label button_Bas = new Label();
         ImageView image_Bas = new ImageView(new Image(Objects.requireNonNull(RessourcesAccess.class.getResourceAsStream("Button/Button_Bas.png"))));
@@ -207,8 +229,8 @@ public class VueParametre {
         pane.getChildren().addAll(buttonHide, meilleurScore);
         pane.getChildren().addAll(button_Bas, button_Haut, button_Gauche, button_Droite, button_Espace);
         pane.getChildren().addAll(texte_Bas, texte_Haut, texte_Gauche, texte_Droite, texte_Espace);
-        pane.getChildren().addAll(comboBoxPersonnageEnnemie, comboBoxJoueurPrincipale);
-        pane.getChildren().addAll(labelJoueurPrincipale, labelPersonnageEnnemie);
+        pane.getChildren().addAll(comboBoxPersonnageEnnemie, comboBoxJoueurPrincipale, comboBoxFond);
+        pane.getChildren().addAll(labelJoueurPrincipale, labelPersonnageEnnemie, labelFond);
         pane.getChildren().add(labelError);
 
         // Retour menu
