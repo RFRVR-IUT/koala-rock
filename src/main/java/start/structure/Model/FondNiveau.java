@@ -31,11 +31,12 @@ public class FondNiveau extends Group {
      * @return
      */
     public Paint setChoixFond_Img(String choixFond) {
-        if (choixFond.equals("KOALA")) {
-            return new ImagePattern(new Image(Objects.requireNonNull(RessourcesAccess.class.getResourceAsStream("fondNiveau/fondKoala.png"))));
-        } else if (choixFond.equals("NINJA")) {
-            return new ImagePattern(new Image(Objects.requireNonNull(RessourcesAccess.class.getResourceAsStream("fondNiveau/fondNinja.png"))));
-        }
-        return null;
+        return switch (choixFond) {
+            case "KOALA" ->
+                    new ImagePattern(new Image(Objects.requireNonNull(RessourcesAccess.class.getResourceAsStream("fondNiveau/fondkoala.png"))));
+            case "NINJA" ->
+                    new ImagePattern(new Image(Objects.requireNonNull(RessourcesAccess.class.getResourceAsStream("fondNiveau/fondninja.png"))));
+            default -> null;
+        };
     }
 }

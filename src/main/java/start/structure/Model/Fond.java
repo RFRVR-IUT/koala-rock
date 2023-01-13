@@ -43,13 +43,20 @@ public class Fond extends Group {
      * @return
      */
     public Paint setChoixFond_Img(String choixFond) {
-        if (choixFond.equals("CLASSIC")) {
-            return new ImagePattern(new Image(Objects.requireNonNull(RessourcesAccess.class.getResourceAsStream("fond/classic.png"))));
-        } else if (choixFond.equals("NUIT")) {
-            return new ImagePattern(new Image(Objects.requireNonNull(RessourcesAccess.class.getResourceAsStream("fond/night.jpeg"))));
-        } else if (choixFond.equals("VILLE")) {
-            return new ImagePattern(new Image(Objects.requireNonNull(RessourcesAccess.class.getResourceAsStream("fond/city.jpeg"))));
-        }
-        return null;
+        return switch (choixFond) {
+            case "CLASSIC" ->
+                    new ImagePattern(new Image(Objects.requireNonNull(RessourcesAccess.class.getResourceAsStream("fond/star.jpeg"))));
+            case "NUIT" ->
+                    new ImagePattern(new Image(Objects.requireNonNull(RessourcesAccess.class.getResourceAsStream("fond/night.jpeg"))));
+            case "NUIT2" ->
+                    new ImagePattern(new Image(Objects.requireNonNull(RessourcesAccess.class.getResourceAsStream("fond/night2.jpeg"))));
+            case "VILLE" ->
+                    new ImagePattern(new Image(Objects.requireNonNull(RessourcesAccess.class.getResourceAsStream("fond/city.jpeg"))));
+            case "FORET" ->
+                    new ImagePattern(new Image(Objects.requireNonNull(RessourcesAccess.class.getResourceAsStream("fond/forest.jpeg"))));
+            case "STAR" ->
+                    new ImagePattern(new Image(Objects.requireNonNull(RessourcesAccess.class.getResourceAsStream("fond/star2.jpeg"))));
+            default -> null;
+        };
     }
 }

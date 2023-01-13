@@ -85,18 +85,15 @@ public class VueParametre {
         }
 
         ComboBox<String> comboBoxFond = new ComboBox<>();
-        comboBoxFond.getItems().addAll("Basic");
-        comboBoxFond.setValue("Basic");
-        comboBoxFond.getItems().add("Nuit");
-        comboBoxFond.getItems().add("ville");
+        comboBoxFond.getItems().addAll("Basic", "Nuit", "NuitBis", "Ville", "Foret", "Star");
         comboBoxFond.getSelectionModel().selectedItemProperty().addListener((v, oldValue, newValue) -> {
-            if (newValue.equals("Basic")) {
-                Fond.setChoixFond("BASIC");
-            } else if (newValue.equals("Nuit")) {
-                Fond.setChoixFond("NUIT");
-            } else if (newValue.equals("ville")) {
-                Fond.setChoixFond("VILLE");
-
+            switch (newValue) {
+                case "Basic" -> Fond.setChoixFond("BASIC");
+                case "Nuit" -> Fond.setChoixFond("NUIT");
+                case "Nuit2" -> Fond.setChoixFond("NUIT2");
+                case "Ville" -> Fond.setChoixFond("VILLE");
+                case "Foret" -> Fond.setChoixFond("FORET");
+                case "Star" -> Fond.setChoixFond("STAR");
             }
         });
         comboBoxFond.setLayoutX(300);

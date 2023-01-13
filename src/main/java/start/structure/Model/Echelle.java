@@ -41,11 +41,12 @@ public class Echelle extends Group {
      * @return
      */
     public Paint setChoixEchelle_Img(String choixEchelle) {
-        if (choixEchelle.equals("KOALA")) {
-            return new ImagePattern(new Image(Objects.requireNonNull(RessourcesAccess.class.getResourceAsStream("echelle/echelle_koala.png"))));
-        } else if (choixEchelle.equals("NINJA")) {
-            return new ImagePattern(new Image(Objects.requireNonNull(RessourcesAccess.class.getResourceAsStream("echelle/echelle_ninja.png"))));
-        }
-        return null;
+        return switch (choixEchelle) {
+            case "KOALA" ->
+                    new ImagePattern(new Image(Objects.requireNonNull(RessourcesAccess.class.getResourceAsStream("echelle/echelle_koala.png"))));
+            case "NINJA" ->
+                    new ImagePattern(new Image(Objects.requireNonNull(RessourcesAccess.class.getResourceAsStream("echelle/echelle_ninja.png"))));
+            default -> null;
+        };
     }
 }

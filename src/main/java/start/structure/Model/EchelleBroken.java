@@ -44,11 +44,12 @@ public class EchelleBroken extends Group {
      * @return
      */
     public Paint setChoixEchelleBroken_Img(String choixEchelleBroken) {
-        if (choixEchelleBroken.equals("KOALA")) {
-            return new ImagePattern(new Image(Objects.requireNonNull(RessourcesAccess.class.getResourceAsStream("echelle/broken/echelle_broken_koala.png"))));
-        } else if (choixEchelleBroken.equals("NINJA")) {
-            return new ImagePattern(new Image(Objects.requireNonNull(RessourcesAccess.class.getResourceAsStream("echelle/broken/echelle_broken_ninja.png"))));
-        }
-        return null;
+        return switch (choixEchelleBroken) {
+            case "KOALA" ->
+                    new ImagePattern(new Image(Objects.requireNonNull(RessourcesAccess.class.getResourceAsStream("echelle/broken/echelle_broken_koala.png"))));
+            case "NINJA" ->
+                    new ImagePattern(new Image(Objects.requireNonNull(RessourcesAccess.class.getResourceAsStream("echelle/broken/echelle_broken_ninja.png"))));
+            default -> null;
+        };
     }
 }

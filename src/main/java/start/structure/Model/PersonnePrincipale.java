@@ -40,12 +40,13 @@ public class PersonnePrincipale extends Group {
      * @return
      */
     public Paint setChoixPersonnage_IDLE(String choixPersonnage) {
-        if (choixPersonnage.equals("PANDA")) {
-            return new ImagePattern(new Image(Objects.requireNonNull(RessourcesAccess.class.getResourceAsStream("personnagePrincipale/Panda_Idle.png"))));
-        } else if (choixPersonnage.equals("SAMURAI")) {
-            return new ImagePattern(new Image(Objects.requireNonNull(RessourcesAccess.class.getResourceAsStream("personnagePrincipale/Samurai_Idle.png"))));
-        }
-        return null;
+        return switch (choixPersonnage) {
+            case "PANDA" ->
+                    new ImagePattern(new Image(Objects.requireNonNull(RessourcesAccess.class.getResourceAsStream("personnagePrincipale/Panda_Idle.png"))));
+            case "SAMURAI" ->
+                    new ImagePattern(new Image(Objects.requireNonNull(RessourcesAccess.class.getResourceAsStream("personnagePrincipale/Samurai_Idle.png"))));
+            default -> null;
+        };
     }
 
     /**
@@ -55,12 +56,13 @@ public class PersonnePrincipale extends Group {
      * @return
      */
     public Paint setChoixPersonnage_RUN(String choixPersonnage) {
-        if (choixPersonnage.equals("PANDA")) {
-            return new ImagePattern(new Image(Objects.requireNonNull(RessourcesAccess.class.getResourceAsStream("personnagePrincipale/Panda_Idle.png"))));
-        } else if (choixPersonnage.equals("SAMURAI")) {
-            return new ImagePattern(new Image(Objects.requireNonNull(RessourcesAccess.class.getResourceAsStream("personnagePrincipale/run/Samurai_Run.png"))));
-        }
-        return null;
+        return switch (choixPersonnage) {
+            case "PANDA" ->
+                    new ImagePattern(new Image(Objects.requireNonNull(RessourcesAccess.class.getResourceAsStream("personnagePrincipale/Panda_Idle.png"))));
+            case "SAMURAI" ->
+                    new ImagePattern(new Image(Objects.requireNonNull(RessourcesAccess.class.getResourceAsStream("personnagePrincipale/run/Samurai_Run.png"))));
+            default -> null;
+        };
     }
 
 
@@ -71,12 +73,13 @@ public class PersonnePrincipale extends Group {
      * @return
      */
     public Paint setChoixPersonnage_JUMP(String choixPersonnage) {
-        if (choixPersonnage.equals("PANDA")) {
-            return new ImagePattern(new Image(Objects.requireNonNull(RessourcesAccess.class.getResourceAsStream("personnagePrincipale/Panda_Idle.png"))));
-        } else if (choixPersonnage.equals("SAMURAI")) {
-            return new ImagePattern(new Image(Objects.requireNonNull(RessourcesAccess.class.getResourceAsStream("personnagePrincipale/run/Samurai_Run2.png"))));
-        }
-        return null;
+        return switch (choixPersonnage) {
+            case "PANDA" ->
+                    new ImagePattern(new Image(Objects.requireNonNull(RessourcesAccess.class.getResourceAsStream("personnagePrincipale/Panda_Idle.png"))));
+            case "SAMURAI" ->
+                    new ImagePattern(new Image(Objects.requireNonNull(RessourcesAccess.class.getResourceAsStream("personnagePrincipale/run/Samurai_Run2.png"))));
+            default -> null;
+        };
     }
 
     /**
@@ -86,12 +89,13 @@ public class PersonnePrincipale extends Group {
      * @return
      */
     public Paint setChoixPersonnage_CLIMB(String choixPersonnage) {
-        if (choixPersonnage.equals("PANDA")) {
-            return new ImagePattern(new Image(Objects.requireNonNull(RessourcesAccess.class.getResourceAsStream("personnagePrincipale/climb/Panda_Climb.png"))));
-        } else if (choixPersonnage.equals("SAMURAI")) {
-            return new ImagePattern(new Image(Objects.requireNonNull(RessourcesAccess.class.getResourceAsStream("personnagePrincipale/climb/Samurai_Climb.png"))));
-        }
-        return null;
+        return switch (choixPersonnage) {
+            case "PANDA" ->
+                    new ImagePattern(new Image(Objects.requireNonNull(RessourcesAccess.class.getResourceAsStream("personnagePrincipale/climb/Panda_Climb.png"))));
+            case "SAMURAI" ->
+                    new ImagePattern(new Image(Objects.requireNonNull(RessourcesAccess.class.getResourceAsStream("personnagePrincipale/climb/Samurai_Climb.png"))));
+            default -> null;
+        };
     }
 //////////////////////////////////////////////////////////////////////////
 

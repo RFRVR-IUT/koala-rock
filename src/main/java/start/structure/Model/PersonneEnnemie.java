@@ -25,12 +25,13 @@ public class PersonneEnnemie extends Group {
      * @return
      */
     public Paint setChoixPersonnage_IDLE(String choixPersonnage) {
-        if (choixPersonnage.equals("KOALA")) {
-            return new ImagePattern(new Image(Objects.requireNonNull(RessourcesAccess.class.getResourceAsStream("personnageEnnemie/koala.png"))));
-        } else if (choixPersonnage.equals("NINJA")) {
-            return new ImagePattern(new Image(Objects.requireNonNull(RessourcesAccess.class.getResourceAsStream("personnageEnnemie/Ninja.png"))));
-        }
-        return null;
+        return switch (choixPersonnage) {
+            case "KOALA" ->
+                    new ImagePattern(new Image(Objects.requireNonNull(RessourcesAccess.class.getResourceAsStream("personnageEnnemie/Koala.png"))));
+            case "NINJA" ->
+                    new ImagePattern(new Image(Objects.requireNonNull(RessourcesAccess.class.getResourceAsStream("personnageEnnemie/Ninja.png"))));
+            default -> null;
+        };
     }
 
     /**
@@ -40,12 +41,13 @@ public class PersonneEnnemie extends Group {
      * @return
      */
     public Paint setChoixPersonnage_LANCE(String choixPersonnage) {
-        if (choixPersonnage.equals("KOALA")) {
-            return new ImagePattern(new Image(Objects.requireNonNull(RessourcesAccess.class.getResourceAsStream("personnageEnnemie/koala-2.png"))));
-        } else if (choixPersonnage.equals("NINJA")) {
-            return new ImagePattern(new Image(Objects.requireNonNull(RessourcesAccess.class.getResourceAsStream("personnageEnnemie/Ninja-2.png"))));
-        }
-        return null;
+        return switch (choixPersonnage) {
+            case "KOALA" ->
+                    new ImagePattern(new Image(Objects.requireNonNull(RessourcesAccess.class.getResourceAsStream("personnageEnnemie/Koala-2.png"))));
+            case "NINJA" ->
+                    new ImagePattern(new Image(Objects.requireNonNull(RessourcesAccess.class.getResourceAsStream("personnageEnnemie/Ninja-2.png"))));
+            default -> null;
+        };
     }
 /////////////////////////////////////////////////////////////////////////
 

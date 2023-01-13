@@ -43,12 +43,13 @@ public class ObjetAttaque extends Group {
      * @return
      */
     public static Paint setChoixObjet_IDLE(String choixPersonnage) {
-        if (choixPersonnage.equals("ROCHER")) {
-            return new ImagePattern(new Image(Objects.requireNonNull(RessourcesAccess.class.getResourceAsStream("objectAttaque/Rocher.png"))));
-        } else if (choixPersonnage.equals("SHURIKANE")) {
-            return new ImagePattern(new Image(Objects.requireNonNull(RessourcesAccess.class.getResourceAsStream("objectAttaque/Shurikane.png"))));
-        }
-        return null;
+        return switch (choixPersonnage) {
+            case "ROCHER" ->
+                    new ImagePattern(new Image(Objects.requireNonNull(RessourcesAccess.class.getResourceAsStream("objetAttaque/Rocher.png"))));
+            case "SHURIKANE" ->
+                    new ImagePattern(new Image(Objects.requireNonNull(RessourcesAccess.class.getResourceAsStream("objetAttaque/Shurikane.png"))));
+            default -> null;
+        };
     }
     /////////////////////////////////////////////////////////////////////////
 

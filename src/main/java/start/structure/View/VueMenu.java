@@ -4,9 +4,11 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.effect.DropShadow;
+import javafx.scene.image.Image;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
+import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Rectangle;
 import javafx.stage.Stage;
 import start.structure.Model.Fond;
@@ -14,6 +16,7 @@ import start.structure.RessourcesAccess;
 import start.structure.stockage.Session;
 
 import java.io.IOException;
+import java.util.Objects;
 
 public class VueMenu {
     private final VueChoixModeJeu vueChoixModeJeu = new VueChoixModeJeu();
@@ -48,6 +51,12 @@ public class VueMenu {
         quitter.setLayoutX(585);
         quitter.setLayoutY(480);
 
+        Label menuScreenPremierPlan = new Label();
+        ImagePattern fondPremierPlan = new ImagePattern(new Image(Objects.requireNonNull(RessourcesAccess.class.getResourceAsStream("fond/classic.png"))));
+        Rectangle rectangleImg = new Rectangle(1280, 720);
+        rectangleImg.setFill(fondPremierPlan);
+        menuScreenPremierPlan.setGraphic(rectangleImg);
+
         Label menuScreen = new Label();
         menuScreen.setGraphic(fond.getChoixFond());
 
@@ -67,6 +76,7 @@ public class VueMenu {
         copyRightName.setLayoutY(620);
 
         pane.getChildren().add(menuScreen);
+        pane.getChildren().add(menuScreenPremierPlan);
         pane.getChildren().add(labelError);
         pane.getChildren().addAll(demarrerPartie);
         pane.getChildren().addAll(parametre, quitter);

@@ -78,6 +78,7 @@ public class VueJeu {
 
         primaryStage = stage;
         Pane interfaceJeu = new Pane();
+        // add border to interfaceJeu to 20px
         jeu = new Pane();
         BorderPane root = new BorderPane();
         personnePrincipale = new PersonnePrincipale(20, -10, 30, 30);
@@ -310,6 +311,9 @@ public class VueJeu {
         // Perso
         jeu.getChildren().addAll(personnePrincipale, dk);
         // Tonneaux
+        Rectangle tour = new Rectangle(335, 105, 610, 610);
+        tour.setFill(Color.LIGHTGRAY);
+        interfaceJeu.getChildren().add(tour);
 
         // Score
         // Placement du jeu dans le panneau
