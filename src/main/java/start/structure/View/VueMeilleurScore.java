@@ -216,8 +216,9 @@ public class VueMeilleurScore {
             j++;
         }
 
+        // pane.getChildren().add(menuScreen);
         pane.setStyle("-fx-border-color: white ; -fx-border-width: 10px ; -fx-background-color: black ; -fx-background-radius: 10px ;");
-        pane.getChildren().addAll(menuScreen, labelMeilleurScore, buttonRetour, menu, labelClassic, labelInfini, line);
+        pane.getChildren().addAll(labelMeilleurScore, buttonRetour, menu, labelClassic, labelInfini, line);
         stage.setScene(scene);
         stage.setTitle("Meilleurs scores");
         stage.show();
