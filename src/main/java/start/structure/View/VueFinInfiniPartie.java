@@ -11,6 +11,7 @@ import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 import javafx.stage.Stage;
+import start.structure.Model.Fond;
 import start.structure.RessourcesAccess;
 import start.structure.stockage.Session;
 
@@ -22,6 +23,7 @@ public class VueFinInfiniPartie {
 
 
     public void screenLose(int scoreGame, Stage stage) {
+        Fond fond = new Fond(1280, 720);
 
         if (vueJeu == null) {
             vueJeu = new VueJeu();
@@ -34,6 +36,8 @@ public class VueFinInfiniPartie {
         Scene scene = new Scene(borderPane, 1280, 720);
         scene.getStylesheets().add(String.valueOf(RessourcesAccess.class.getResource("css/style.css")));
 
+        Label menuScreen = new Label();
+        menuScreen.setGraphic(fond.getChoixFond());
 
         Label nameGame = new Label("Fin de la partie");
         nameGame.getStyleClass().add("nameGame");
@@ -46,7 +50,7 @@ public class VueFinInfiniPartie {
         score.setLayoutY(180);
 
         Label deadScreen = new Label();
-        Image image = new Image(Objects.requireNonNull(RessourcesAccess.class.getResourceAsStream("menu/ImageMenu.png")));
+        Image image = new Image(Objects.requireNonNull(RessourcesAccess.class.getResourceAsStream("menu/classic.png")));
         ImageView imageView = new ImageView(image);
         imageView.setFitHeight(720);
         imageView.setFitWidth(1280);
@@ -126,7 +130,7 @@ public class VueFinInfiniPartie {
             pane.getChildren().addAll(rectangle, alerte, oui, non);
         });
 
-        pane.getChildren().addAll(deadScreen, nameGame, score, recommencer, quitter, retourMenu);
+        pane.getChildren().addAll(menuScreen, deadScreen, nameGame, score, recommencer, quitter, retourMenu);
 
         stage.setTitle("Koala Rock");
         stage.setResizable(false);

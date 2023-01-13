@@ -10,6 +10,7 @@ import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 import javafx.stage.Stage;
+import start.structure.Model.Fond;
 import start.structure.RessourcesAccess;
 import start.structure.metier.entite.AuthPlayer;
 import start.structure.metier.manager.PlayerManager;
@@ -26,8 +27,12 @@ public class VueConnexion {
     public void affichageVueConnexion(Stage stage) throws IOException {
 
         Pane pane = new Pane();
+        Fond fond = new Fond(1280, 720);
         Scene scene = new Scene(pane, 1280, 720);
         scene.getStylesheets().add(String.valueOf(RessourcesAccess.class.getResource("css/style.css")));
+
+        Label menuScreen = new Label();
+        menuScreen.setGraphic(fond.getChoixFond());
 
         // CONNEXION //
         Label label = new Label("Connexion");
@@ -233,7 +238,7 @@ public class VueConnexion {
         });
 
         pane.setStyle("-fx-border-color: white ; -fx-border-width: 10px ; -fx-background-color: black ; -fx-background-radius: 10px ;");
-        pane.getChildren().addAll(label, labelPseudo, labelMotDePasse, textFieldPseudo, passwordField, buttonConnexion, labelInscription, labelPseudoInscription, labelMotDePasseInscription, labelMotDePasseInscription2, textFieldPseudoInscription, passwordFieldInscription, passwordFieldInscription2, buttonInscription, buttonRetour, labelErreur, menu);
+        pane.getChildren().addAll(menuScreen, label, labelPseudo, labelMotDePasse, textFieldPseudo, passwordField, buttonConnexion, labelInscription, labelPseudoInscription, labelMotDePasseInscription, labelMotDePasseInscription2, textFieldPseudoInscription, passwordFieldInscription, passwordFieldInscription2, buttonInscription, buttonRetour, labelErreur, menu);
         stage.setTitle("Connexion");
         stage.setResizable(false);
         stage.setScene(scene);

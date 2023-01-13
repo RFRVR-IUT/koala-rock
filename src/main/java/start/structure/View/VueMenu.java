@@ -4,21 +4,20 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.effect.DropShadow;
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 import javafx.stage.Stage;
+import start.structure.Model.Fond;
 import start.structure.RessourcesAccess;
 import start.structure.stockage.Session;
 
 import java.io.IOException;
-import java.util.Objects;
 
 public class VueMenu {
     private final VueChoixModeJeu vueChoixModeJeu = new VueChoixModeJeu();
+    private final Fond fond = new Fond(1280, 720);
 
     public void demarrerMenu(Stage stage) {
 
@@ -50,11 +49,7 @@ public class VueMenu {
         quitter.setLayoutY(480);
 
         Label menuScreen = new Label();
-        Image image = new Image(Objects.requireNonNull(RessourcesAccess.class.getResourceAsStream("menu/ImageMenu.png")));
-        ImageView imageView = new ImageView(image);
-        imageView.setFitHeight(720);
-        imageView.setFitWidth(1280);
-        menuScreen.setGraphic(imageView);
+        menuScreen.setGraphic(fond.getChoixFond());
 
         Label labelError = new Label();
         labelError.getStyleClass().add("LabelError");

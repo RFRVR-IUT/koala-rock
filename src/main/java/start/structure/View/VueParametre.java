@@ -26,6 +26,7 @@ public class VueParametre {
     public void affichageVueParametre(Stage stage) throws IOException {
 
         Pane pane = new Pane();
+        Fond fond = new Fond(1280, 720);
         Scene scene = new Scene(pane, 1280, 720);
         scene.getStylesheets().add(String.valueOf(RessourcesAccess.class.getResource("css/style.css")));
 
@@ -59,16 +60,16 @@ public class VueParametre {
             choixEnnemi = newValue;
             if (choixEnnemi.equals("Koala")) {
                 PersonneEnnemie.setChoixPersonnage("KOALA");
-                Fond.setChoixFond("KOALA");
+                FondNiveau.setChoixFondNiveau("KOALA");
                 Echelle.setChoixEchelle("KOALA");
                 EchelleBroken.setChoixEchelleBroken("KOALA");
-                Objet_Attaque.setChoixObjet("ROCHER");
+                ObjetAttaque.setChoixObjet("ROCHER");
             } else if (choixEnnemi.equals("Ninja")) {
                 PersonneEnnemie.setChoixPersonnage("NINJA");
-                Fond.setChoixFond("NINJA");
+                FondNiveau.setChoixFondNiveau("NINJA");
                 Echelle.setChoixEchelle("NINJA");
                 EchelleBroken.setChoixEchelleBroken("NINJA");
-                Objet_Attaque.setChoixObjet("SHURIKANE");
+                ObjetAttaque.setChoixObjet("SHURIKANE");
             }
         });
         comboBoxPersonnageEnnemie.setLayoutX(300);
@@ -86,11 +87,12 @@ public class VueParametre {
         ComboBox<String> comboBoxFond = new ComboBox<>();
         comboBoxFond.getItems().addAll("Basic");
         comboBoxFond.setValue("Basic");
+        comboBoxFond.getItems().add("Nuit");
         comboBoxFond.getSelectionModel().selectedItemProperty().addListener((v, oldValue, newValue) -> {
             if (newValue.equals("Basic")) {
                 Fond.setChoixFond("BASIC");
-            } else if (newValue.equals("Forest")) {
-                Fond.setChoixFond("FOREST");
+            } else if (newValue.equals("Nuit")) {
+                Fond.setChoixFond("NUIT");
             }
         });
         comboBoxFond.setLayoutX(300);
@@ -105,6 +107,8 @@ public class VueParametre {
             }
         }
 
+        Label menuScreen = new Label();
+        menuScreen.setGraphic(fond.getChoixFond());
 
         Label labelJoueurPrincipale = new Label("Personnage principal : ");
         labelJoueurPrincipale.setLayoutX(100);
@@ -218,6 +222,8 @@ public class VueParametre {
         buttonHide.setLayoutX(540);
         buttonHide.setLayoutY(620);
 
+        pane.getChildren().add(menuScreen);
+
         if (Session.getInstance().isConnected()) {
             pane.getChildren().add(monCompte);
             pane.getChildren().remove(connexionRegister);
@@ -249,7 +255,7 @@ public class VueParametre {
             }
         });
 
-        // Ouvrir la fenêtre de meilleur score
+        // Ouvrir la fenêtre de meillur score
         meilleurScore.setOnMouseClicked(event -> {
             VueMeilleurScore vueMeilleurScore = new VueMeilleurScore();
             try {

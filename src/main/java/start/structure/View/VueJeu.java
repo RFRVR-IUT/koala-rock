@@ -35,7 +35,7 @@ public class VueJeu {
     private int compteur = 1;
     ArrayList<Echelle> echelles;
     ArrayList<EchelleBroken> echellesBrokens;
-    ArrayList<Objet_Attaque> tonneaux;
+    ArrayList<ObjetAttaque> tonneaux;
     PersonnePrincipale personnePrincipale;
     private boolean isPause = false;
     private Scene scene;
@@ -51,6 +51,7 @@ public class VueJeu {
     private ImageView image_Bas, image_Haut, image_Gauche, image_Droite, image_Espace;
     private AnimationTimer timer, collisionTimer;
     private Timeline timelineTonneaux = new Timeline();
+    Fond fond = new Fond(1280, 720);
 
     public IntegerProperty getScore() {
         return personnePrincipale.getScore();
@@ -91,13 +92,16 @@ public class VueJeu {
         EchelleBroken echelleBroken2 = new EchelleBroken(240, 177, 25, 80);
 
         PersonneEnnemie dk = new PersonneEnnemie(60, 80, 100, 100);
-        Fond fond = new Fond(0, 0, 600, 600);
+        FondNiveau fondNiveau = new FondNiveau(0, 0, 600, 600);
 
 
         personnePrincipale.setLayoutX(20 * 10);
         personnePrincipale.setLayoutY(545);
 
         //////////////// Label ///////////////////////
+        Label menuScreen = new Label();
+        menuScreen.setGraphic(fond.getChoixFond());
+
         Label score = new Label("Score : 0");
         score.getStyleClass().add("Score_Vie");
         score.setLayoutX(900);
@@ -293,10 +297,12 @@ public class VueJeu {
             getVie().setValue(3);
         }
 
+        // Fond
+        //  interfaceJeu.getChildren().add(menuScreen);
         // panneau du jeu
         jeu.setPrefSize(600, 600);
         // Fond
-        jeu.getChildren().add(fond);
+        jeu.getChildren().add(fondNiveau);
         // Echelle
         jeu.getChildren().addAll(echelle1, echelle2, echelle3, echelle4, echelle5, echelle6);
         // EchelleBroken
@@ -385,7 +391,7 @@ public class VueJeu {
                         personnePrincipale.setLayoutX(20 * 10);
                         personnePrincipale.setLayoutY(545);
                         //replacer les tonneaux
-                        for (Objet_Attaque tonneau : tonneaux) {
+                        for (ObjetAttaque tonneau : tonneaux) {
                             tonneau.setLayoutX(0);
                             tonneau.setLayoutY(-30);
                         }
@@ -496,7 +502,7 @@ public class VueJeu {
     }
 
     // Méthode qui permet de supprimer les éléments du jeu
-    public void supprimerElements(Pane jeu, ArrayList<Objet_Attaque> tonneaux, ArrayList<Echelle> echelles, ArrayList<EchelleBroken> echellesBrokens, PersonnePrincipale personnePrincipale, PersonneEnnemie dk) {
+    public void supprimerElements(Pane jeu, ArrayList<ObjetAttaque> tonneaux, ArrayList<Echelle> echelles, ArrayList<EchelleBroken> echellesBrokens, PersonnePrincipale personnePrincipale, PersonneEnnemie dk) {
         supprimerTonneaux(tonneaux);
         echelles = null;
         echellesBrokens = null;
@@ -506,8 +512,8 @@ public class VueJeu {
     }
 
     // Méthode qui permet de supprimer les tonneaux
-    public void supprimerTonneaux(ArrayList<Objet_Attaque> tonneaux) {
-        for (Objet_Attaque tonneau : tonneaux) {
+    public void supprimerTonneaux(ArrayList<ObjetAttaque> tonneaux) {
+        for (ObjetAttaque tonneau : tonneaux) {
             jeu.getChildren().remove(tonneau);
         }
         timelineTonneaux.stop();
@@ -516,11 +522,11 @@ public class VueJeu {
 
     // Méthode qui permet de créer les tonneaux
     public void creerTonneaux(ArrayList<ArrayList<Double>> coordonneesEchelles, PersonneEnnemie dk) {
-        Objet_Attaque tonneau1 = new Objet_Attaque(20, -10, 20, 20);
-        Objet_Attaque tonneau2 = new Objet_Attaque(20, -10, 20, 20);
-        Objet_Attaque tonneau3 = new Objet_Attaque(20, -10, 20, 20);
-        Objet_Attaque tonneau4 = new Objet_Attaque(20, -10, 20, 20);
-        Objet_Attaque tonneau5 = new Objet_Attaque(20, -10, 20, 20);
+        ObjetAttaque tonneau1 = new ObjetAttaque(20, -10, 20, 20);
+        ObjetAttaque tonneau2 = new ObjetAttaque(20, -10, 20, 20);
+        ObjetAttaque tonneau3 = new ObjetAttaque(20, -10, 20, 20);
+        ObjetAttaque tonneau4 = new ObjetAttaque(20, -10, 20, 20);
+        ObjetAttaque tonneau5 = new ObjetAttaque(20, -10, 20, 20);
         tonneau1.setLayoutY(-30);
         tonneau2.setLayoutY(-30);
         tonneau3.setLayoutY(-30);

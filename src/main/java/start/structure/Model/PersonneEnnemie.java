@@ -70,7 +70,7 @@ public class PersonneEnnemie extends Group {
      *
      * @param objetAttaque
      */
-    public void lance(Objet_Attaque objetAttaque) {
+    public void lance(ObjetAttaque objetAttaque) {
         this.donkey.setFill(setChoixPersonnage_LANCE(choixPersonnage));
         this.donkey.setScaleX(-1);
         gauche();
