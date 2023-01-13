@@ -399,6 +399,7 @@ public class VueJeu {
                                 ScoreManager.getInstance().createScore(saveScore, Session.getInstance().getLogin());
                             }
                         } else {
+                            System.out.println("perdu classique");
                             vuesPerdu.screenLose(stage);
                         }
                     }

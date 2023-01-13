@@ -59,7 +59,7 @@ public class VuePerdre {
         quitter.setLayoutX(800);
         quitter.setLayoutY(570);
 
-        pane.getChildren().addAll(nameGame, recommencer, quitter, retourMenu, deadScreen);
+        pane.getChildren().addAll(deadScreen,nameGame, recommencer, quitter, retourMenu);
 
         // Bouton recommencer
         recommencer.setOnMouseClicked(event -> {
