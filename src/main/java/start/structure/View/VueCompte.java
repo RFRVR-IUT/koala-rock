@@ -12,6 +12,7 @@ import javafx.scene.paint.Color;
 import javafx.scene.shape.Line;
 import javafx.scene.shape.Rectangle;
 import javafx.stage.Stage;
+import start.structure.Model.Fond;
 import start.structure.RessourcesAccess;
 import start.structure.metier.entite.Score;
 import start.structure.metier.manager.PlayerManager;
@@ -30,6 +31,7 @@ public class VueCompte {
     public void affichageVueCompte(Stage stage) throws IOException {
         Pane pane = new Pane();
         Scene scene = new Scene(pane, 1280, 720);
+        Fond fond = new Fond(1280, 720);
         scene.getStylesheets().add(String.valueOf(RessourcesAccess.class.getResource("css/style.css")));
 
         ScrollPane paneDK = new ScrollPane();
@@ -41,7 +43,6 @@ public class VueCompte {
 
         VBox contentVDK = new VBox();
 
-
         ScrollPane scrollPaneTRON = new ScrollPane();
         scrollPaneTRON.setPrefSize(350, 100);
         scrollPaneTRON.setLayoutX(850);
@@ -51,7 +52,6 @@ public class VueCompte {
 
         VBox contentVTRON = new VBox();
 
-
         ScrollPane scrollPaneCB = new ScrollPane();
         scrollPaneCB.setPrefSize(350, 100);
         scrollPaneCB.setLayoutX(850); 
@@ -60,7 +60,6 @@ public class VueCompte {
         scrollPaneCB.setStyle("-fx-border-color: grey ; -fx-border-width: 10px ; -fx-background: black ;");
 
         VBox contentVCB = new VBox();
-
 
         ScrollPane scrollPaneTETRIS = new ScrollPane();
         scrollPaneTETRIS.setPrefSize(350, 100);
@@ -78,7 +77,8 @@ public class VueCompte {
         label.setLayoutX(55);
         label.setLayoutY(25);
 
-        //champ de modification du mot de passe avec un bouton de validation
+        Label menuScreen = new Label();
+        menuScreen.setGraphic(fond.getChoixFond());
 
         Label labelModificationMDP = new Label("Modification du mot de passe");
         labelModificationMDP.getStyleClass().add("LabelConnexionField");
@@ -160,11 +160,10 @@ public class VueCompte {
         boutonRetour.setOnAction(event -> {
             VueParametre vueParametre = new VueParametre();
             try {
-				vueParametre.affichageVueParametre(stage);
-			} catch (IOException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
+                vueParametre.affichageVueParametre(stage);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
         });
 
         changerModeJeu.setOnAction(event -> {
@@ -244,7 +243,7 @@ public class VueCompte {
                     PlayerManager.getInstance().updatePlayer(Session.getInstance().getLogin(), passwordField.getText());
                     labelErreur.setText("Mot de passe modifié");
                 } else {
-                    labelErreur.setText("Les mots de passe" + "\n"  + "ne correspondent pas");
+                    labelErreur.setText("Les mots de passe" + "\n" + "ne correspondent pas");
                 }
             } else {
                 labelErreur.setText("Veuillez remplir les champs");
@@ -302,9 +301,9 @@ public class VueCompte {
 
         List<Score> scoresTRON = ScoreManager.getInstance().getScoresTRON();
         int j = 0;
-        int compteurTRON=0;
+        int compteurTRON = 0;
         for (Score scoreTRON : scoresTRON) {
-            if(scoreTRON.getLogin() == null) {
+            if (scoreTRON.getLogin() == null) {
                 Label tron = new Label("Aucun score dans ce jeu!");
                 tron.getStyleClass().add("LabelConnexionField");
                 tron.setLayoutX(450);
@@ -312,30 +311,28 @@ public class VueCompte {
                 contentVTRON.getChildren().add(tron);
                 scrollPaneTRON.setContent(contentVTRON);
                 break;
-            }
-            else if (scoreTRON.getLogin() != null && scoreTRON.getLogin().equals(Session.getInstance().getLogin())) {
+            } else if (scoreTRON.getLogin() != null && scoreTRON.getLogin().equals(Session.getInstance().getLogin())) {
 
-                    Label labelScoreTRON = new Label(scoreTRON.getScore() + "");
-                    labelScoreTRON.getStyleClass().add("LabelConnexionField");
-                    labelScoreTRON.setLayoutX(450);
-                    labelScoreTRON.setLayoutY(150 + j * 35);
+                Label labelScoreTRON = new Label(scoreTRON.getScore() + "");
+                labelScoreTRON.getStyleClass().add("LabelConnexionField");
+                labelScoreTRON.setLayoutX(450);
+                labelScoreTRON.setLayoutY(150 + j * 35);
 
-                    Label labelDateTRON = new Label(scoreTRON.getHorodatage().toLocalDateTime().getDayOfMonth() + "-" + scoreTRON.getHorodatage().toLocalDateTime().getMonth() + "-" + scoreTRON.getHorodatage().toLocalDateTime().getYear() + " ");
-                    labelDateTRON.getStyleClass().add("LabelConnexionField");
-                    labelDateTRON.setLayoutX(600);
-                    labelDateTRON.setLayoutY(150 + j * 35);
+                Label labelDateTRON = new Label(scoreTRON.getHorodatage().toLocalDateTime().getDayOfMonth() + "-" + scoreTRON.getHorodatage().toLocalDateTime().getMonth() + "-" + scoreTRON.getHorodatage().toLocalDateTime().getYear() + " ");
+                labelDateTRON.getStyleClass().add("LabelConnexionField");
+                labelDateTRON.setLayoutX(600);
+                labelDateTRON.setLayoutY(150 + j * 35);
 
-                    Label placeTRON = new Label((j + 1) + ".");
-                    placeTRON.getStyleClass().add("LabelConnexionField");
-                    placeTRON.setLayoutX(400);
-                    placeTRON.setLayoutY(150 + j * 35);
+                Label placeTRON = new Label((j + 1) + ".");
+                placeTRON.getStyleClass().add("LabelConnexionField");
+                placeTRON.setLayoutX(400);
+                placeTRON.setLayoutY(150 + j * 35);
 
-                    contentVTRON.getChildren().addAll(placeTRON, labelScoreTRON, labelDateTRON);
-                    scrollPaneTRON.setContent(contentVTRON);
-                    j++;
-                    compteurTRON++;
-            }
-            else if(compteurTRON==1) {
+                contentVTRON.getChildren().addAll(placeTRON, labelScoreTRON, labelDateTRON);
+                scrollPaneTRON.setContent(contentVTRON);
+                j++;
+                compteurTRON++;
+            } else if (compteurTRON == 1) {
                 break;
             }
         }
@@ -355,9 +352,9 @@ public class VueCompte {
 
         List<Score> scoresCB = ScoreManager.getInstance().getScoresCB();
         int k = 0;
-        int compteurCB=0;
+        int compteurCB = 0;
         for (Score scoreCB : scoresCB) {
-            if(scoreCB.getLogin() == null) {
+            if (scoreCB.getLogin() == null) {
                 Label cb = new Label("Aucun score dans ce jeu!");
                 cb.getStyleClass().add("LabelConnexionField");
                 cb.setLayoutX(925);
@@ -365,8 +362,7 @@ public class VueCompte {
                 contentVCB.getChildren().addAll(cb);
                 scrollPaneCB.setContent(contentVCB);
                 break;
-            }
-            else if (scoreCB.getLogin() != null && scoreCB.getLogin().equals(Session.getInstance().getLogin())) {
+            } else if (scoreCB.getLogin() != null && scoreCB.getLogin().equals(Session.getInstance().getLogin())) {
 
                 Label labelScoreCB = new Label(scoreCB.getScore() + "");
                 labelScoreCB.getStyleClass().add("LabelConnexionField");
@@ -388,8 +384,7 @@ public class VueCompte {
                 k++;
                 compteurCB++;
 
-            }
-            else if(compteurCB==1) {
+            } else if (compteurCB == 1) {
                 break;
             }
         }
@@ -409,9 +404,9 @@ public class VueCompte {
 
         List<Score> scoresTETRIS = ScoreManager.getInstance().getScoresTETRIS();
         int p = 0;
-        int compteurTETRIS=0;
+        int compteurTETRIS = 0;
         for (Score scoreTETRIS : scoresTETRIS) {
-            if(scoreTETRIS.getLogin() == null) {
+            if (scoreTETRIS.getLogin() == null) {
                 Label tetris = new Label("Aucun score dans ce jeu!");
                 tetris.getStyleClass().add("LabelConnexionField");
                 tetris.setLayoutX(450);
@@ -419,8 +414,7 @@ public class VueCompte {
                 contentVTETRIS.getChildren().addAll(tetris);
                 scrollPaneTETRIS.setContent(contentVTETRIS);
                 break;
-            }
-            else if (scoreTETRIS.getLogin() != null && scoreTETRIS.getLogin().equals(Session.getInstance().getLogin())) {
+            } else if (scoreTETRIS.getLogin() != null && scoreTETRIS.getLogin().equals(Session.getInstance().getLogin())) {
 
                 Label labelScoreTETRIS = new Label(scoreTETRIS.getScore() + "");
                 labelScoreTETRIS.getStyleClass().add("LabelConnexionField");
@@ -441,13 +435,10 @@ public class VueCompte {
                 scrollPaneTETRIS.setContent(contentVTETRIS);
                 p++;
                 compteurTETRIS++;
-            }
-            else if(compteurTETRIS==1) {
+            } else if (compteurTETRIS == 1) {
                 break;
             }
         }
-
-
 
 
         supprimerCompte.setOnMouseClicked(event -> {
@@ -497,7 +488,7 @@ public class VueCompte {
             vueMenu.demarrerMenu(stage);
         });
 
-        pane.getChildren().addAll(modeDeJeu, changerModeJeu, label, labelMotDePasse, passwordField, labelMotDePasse2, passwordField2, buttonModifPassword, labelMeilleurScore, boutonRetour, supprimerCompte, deconnexion, menu);
+        pane.getChildren().addAll(menuScreen, modeDeJeu, changerModeJeu, label, labelMotDePasse, passwordField, labelMotDePasse2, passwordField2, buttonModifPassword, labelMeilleurScore, boutonRetour, supprimerCompte, deconnexion, menu);
         pane.getChildren().add(labelErreur);
         pane.getChildren().add(labelModificationMDP);
         pane.getChildren().add(line);
@@ -507,7 +498,6 @@ public class VueCompte {
         pane.getChildren().add(scrollPaneTRON);
         pane.getChildren().add(scrollPaneCB);
         pane.getChildren().add(scrollPaneTETRIS);
-
 
 
         stage.setTitle("Paramètre");

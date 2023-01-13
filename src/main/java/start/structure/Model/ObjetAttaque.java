@@ -14,7 +14,7 @@ import start.structure.RessourcesAccess;
 import java.util.ArrayList;
 import java.util.Objects;
 
-public class Objet_Attaque extends Group {
+public class ObjetAttaque extends Group {
     protected final static double LARGEUR_MOITIE_TONNEAUX = 5;
     protected final static double LARGEUR_TONNEAUX = LARGEUR_MOITIE_TONNEAUX * 2;
     private final Rectangle corps;
@@ -27,7 +27,7 @@ public class Objet_Attaque extends Group {
     private static String choixObjet = "ROCHER";
 
     public static void setChoixObjet(String choixObjet) {
-        Objet_Attaque.choixObjet = choixObjet;
+        ObjetAttaque.choixObjet = choixObjet;
     }
 
     /**
@@ -60,7 +60,7 @@ public class Objet_Attaque extends Group {
      * @param width
      * @param height
      */
-    public Objet_Attaque(int x, int y, int width, int height) {
+    public ObjetAttaque(int x, int y, int width, int height) {
         corps = new Rectangle(x, y, width, height);
         Rectangle collision = new Rectangle(x, y, width, height);
         collisionHaut = new Rectangle(x, y - 20, width, height - 10);

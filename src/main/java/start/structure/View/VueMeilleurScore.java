@@ -9,6 +9,7 @@ import javafx.scene.paint.Color;
 import javafx.scene.shape.Line;
 import javafx.scene.shape.Rectangle;
 import javafx.stage.Stage;
+import start.structure.Model.Fond;
 import start.structure.RessourcesAccess;
 import start.structure.metier.entite.Score;
 import start.structure.metier.manager.ScoreManager;
@@ -19,12 +20,15 @@ import java.util.List;
 import java.util.Map;
 
 public class VueMeilleurScore {
-    Pane pane = new Pane();
 
     public void affichageVueMeilleurScore(Stage stage) throws IOException {
         Pane pane = new Pane();
+        Fond fond = new Fond(1280, 720);
         Scene scene = new Scene(pane, 1280, 720);
         scene.getStylesheets().add(String.valueOf(RessourcesAccess.class.getResource("css/style.css")));
+
+        Label menuScreen = new Label();
+        menuScreen.setGraphic(fond.getChoixFond());
 
         Label labelMeilleurScore = new Label("Meilleurs scores");
         labelMeilleurScore.setLayoutX(480);
@@ -212,6 +216,7 @@ public class VueMeilleurScore {
             j++;
         }
 
+        // pane.getChildren().add(menuScreen);
         pane.setStyle("-fx-border-color: white ; -fx-border-width: 10px ; -fx-background-color: black ; -fx-background-radius: 10px ;");
         pane.getChildren().addAll(labelMeilleurScore, buttonRetour, menu, labelClassic, labelInfini, line);
         stage.setScene(scene);

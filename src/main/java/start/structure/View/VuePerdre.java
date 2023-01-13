@@ -11,6 +11,7 @@ import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 import javafx.stage.Stage;
+import start.structure.Model.Fond;
 import start.structure.RessourcesAccess;
 import start.structure.stockage.Session;
 
@@ -19,6 +20,7 @@ import java.util.Objects;
 
 public class VuePerdre {
     private VueJeu vueJeu;
+    Fond fond = new Fond(1280, 720);
 
     public void screenLose(Stage stage) {
 
@@ -32,13 +34,16 @@ public class VuePerdre {
         Scene scene = new Scene(borderPane, 1280, 720);
         scene.getStylesheets().add(String.valueOf(RessourcesAccess.class.getResource("css/style.css")));
 
+        Label menuScreen = new Label();
+        menuScreen.setGraphic(fond.getChoixFond());
+
         Label nameGame = new Label("Vous avez perdu");
         nameGame.getStyleClass().add("nameGame");
         nameGame.setLayoutX(226);
         nameGame.setLayoutY(80);
 
         Label deadScreen = new Label();
-        Image image = new Image(Objects.requireNonNull(RessourcesAccess.class.getResourceAsStream("menu/ImageMenu.png")));
+        Image image = new Image(Objects.requireNonNull(RessourcesAccess.class.getResourceAsStream("menu/classic.png")));
         ImageView imageView = new ImageView(image);
         imageView.setFitHeight(720);
         imageView.setFitWidth(1280);
@@ -59,7 +64,7 @@ public class VuePerdre {
         quitter.setLayoutX(800);
         quitter.setLayoutY(570);
 
-        pane.getChildren().addAll(deadScreen,nameGame, recommencer, quitter, retourMenu);
+        pane.getChildren().addAll(menuScreen, deadScreen, nameGame, recommencer, quitter, retourMenu);
 
         // Bouton recommencer
         recommencer.setOnMouseClicked(event -> {

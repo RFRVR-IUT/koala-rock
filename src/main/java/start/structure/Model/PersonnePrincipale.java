@@ -409,9 +409,9 @@ public class PersonnePrincipale extends Group {
      * @param tonneaus
      * @return
      */
-    public int collisionTonneaux(ArrayList<Objet_Attaque> tonneaus) {
+    public int collisionTonneaux(ArrayList<ObjetAttaque> tonneaus) {
         int res = 0;
-        for (Objet_Attaque t : tonneaus) {
+        for (ObjetAttaque t : tonneaus) {
             if (this.getBoundsInParent().intersects(t.getBoundsInParent())) {
                 if (this.isEstEnSaut() && !aEuSonScore) {
                     ajouterScore(100);

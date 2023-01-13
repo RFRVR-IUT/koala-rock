@@ -8,6 +8,7 @@ import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 import javafx.stage.Stage;
+import start.structure.Model.Fond;
 import start.structure.RessourcesAccess;
 import start.structure.stockage.Session;
 
@@ -20,6 +21,7 @@ public class VueChoixModeJeu {
     public void affichageVueChoixModeJeu(Stage stage) throws IOException {
         Pane pane = new Pane();
         Scene scene = new Scene(pane, 1280, 720);
+        Fond fond = new Fond(1280, 720);
         scene.getStylesheets().add(String.valueOf(RessourcesAccess.class.getResource("css/style.css")));
 
         Label labelChoixModeJeu = new Label("Choix du mode de jeu");
@@ -28,6 +30,9 @@ public class VueChoixModeJeu {
         labelChoixModeJeu.setLayoutY(40);
         labelChoixModeJeu.setFont(new javafx.scene.text.Font("Goldman", 40));
         labelChoixModeJeu.setTextFill(javafx.scene.paint.Color.WHITE);
+
+        Label menuScreen = new Label();
+        menuScreen.setGraphic(fond.getChoixFond());
 
         Button demarrerPartie = new Button("Mode Classic");
         demarrerPartie.getStyleClass().add("buttonEcran");
@@ -107,7 +112,7 @@ public class VueChoixModeJeu {
             pane.getChildren().addAll(rectangle, oui, non, alerte);
         });
 
-        pane.getChildren().addAll(demarrerPartie, demarrerInfinit, buttonRetour, labelChoixModeJeu);
+        pane.getChildren().addAll(menuScreen, demarrerPartie, demarrerInfinit, buttonRetour, labelChoixModeJeu);
         pane.setStyle("-fx-border-color: white ; -fx-border-width: 10px ; -fx-background-color: black ; -fx-background-radius: 10px ;");
         stage.setScene(scene);
         stage.show();

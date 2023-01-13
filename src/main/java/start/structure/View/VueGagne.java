@@ -5,21 +5,20 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.effect.DropShadow;
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 import javafx.stage.Stage;
+import start.structure.Model.Fond;
 import start.structure.RessourcesAccess;
 import start.structure.stockage.Session;
 
 import java.io.IOException;
-import java.util.Objects;
 
 public class VueGagne {
 
+    Fond fond = new Fond(1280, 720);
     private VueJeu vueJeu;
 
     public void screenWin(IntegerProperty scoreProperty, Stage stage) {
@@ -31,6 +30,9 @@ public class VueGagne {
         BorderPane borderPane = new BorderPane();
         Pane pane = new Pane();
         borderPane.setCenter(pane);
+
+        Label menuScreen = new Label();
+        menuScreen.setGraphic(fond.getChoixFond());
 
         Scene scene = new Scene(borderPane, 1280, 720);
         scene.getStylesheets().add(String.valueOf(RessourcesAccess.class.getResource("css/style.css")));
@@ -54,13 +56,6 @@ public class VueGagne {
         nameGame.getStyleClass().add("nameGame");
         nameGame.setLayoutX(226);
         nameGame.setLayoutY(80);
-
-        Label menuScreen = new Label();
-        Image image = new Image(Objects.requireNonNull(RessourcesAccess.class.getResourceAsStream("menu/ImageMenu.png")));
-        ImageView imageView = new ImageView(image);
-        imageView.setFitHeight(720);
-        imageView.setFitWidth(1280);
-        menuScreen.setGraphic(imageView);
 
         Label scoreLabel = new Label("Score : " + scoreProperty.getValue());
         scoreLabel.getStyleClass().add("Score_Vie");
