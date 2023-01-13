@@ -66,6 +66,10 @@ public class VueJeu {
 
     public void demarrerJeu(Stage stage, String modeJeu) throws IOException, InterruptedException {
 
+        if(time.getValue() != 0){
+            time.setValue(0);
+        }
+
         if (isPause) {
             isPause = false;
             timer = null;
