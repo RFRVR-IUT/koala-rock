@@ -241,7 +241,6 @@ public class StockageScoreDatabase {
         try (PreparedStatement st = connection.prepareStatement(req)){
             try(ResultSet result = st.executeQuery()){
                 while (result.next()){
-                    System.out.println(result);
                     int id = result.getInt("codeScore");
                     double temps = result.getDouble("temps");
                     String login = result.getString("login");

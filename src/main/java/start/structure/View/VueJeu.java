@@ -382,7 +382,6 @@ public class VueJeu {
             public void handle(long now) {
 
                 if (personnePrincipale.collisionTonneaux(tonneaux) == -1 && !isPause) {
-                    System.out.println("boom tapé");
                     if (getVie().getValue() > 1) {
                         personnePrincipale.setLayoutX(20 * 10);
                         personnePrincipale.setLayoutY(545);
@@ -413,7 +412,6 @@ public class VueJeu {
                                 ScoreManager.getInstance().createScore(saveScore, Session.getInstance().getLogin());
                             }
                         } else {
-                            System.out.println("perdu classique");
                             vuesPerdu.screenLose(stage);
                         }
                     }
@@ -447,7 +445,6 @@ public class VueJeu {
                 }
             }
         };
-        System.out.println(collisionTimer);
         // Fin Start Game //
         collisionTimer.start();
         root.setCenter(interfaceJeu);

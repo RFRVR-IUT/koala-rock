@@ -24,7 +24,6 @@ public class Fond extends Group {
     public Fond(int width, int height) {
         Rectangle fond = new Rectangle(width, height);
         fond.setFill(setChoixFond_Img(choixFond));
-        System.out.println(choixFond);
         this.getChildren().add(fond);
     }
 
