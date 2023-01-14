@@ -20,10 +20,14 @@
 
 ## Le projet
 
-Nous sommes une équipe de 5 étudiants en 2e année de BUT informatique à l'Université de Montpellier-Séte. Nous avons réalisé ce projet dans le cadre d'une SAE. Ce projet a pour but de nous faire découvrir le langage Java et de nous faire travailler en équipe.
-## Comment l'utiliser
+Nous sommes une équipe de 5 étudiants en 2e année de BUT informatique à l'Université de Montpellier-Séte. Nous avons
+réalisé ce projet dans le cadre d'une SAE. Ce projet a pour but de nous faire découvrir le langage Java et de nous faire
+travailler en équipe.
+
+## Installation
 
 Pour mettre en route cette application vous aurez besoin d'exécuter les commandes suivante :
+
 ```bash
 # Cloner ce dépôt
 $ git clone https://github.com/DK-Project-IUT/DK-Project
@@ -35,6 +39,22 @@ $ cd DK-Project
 > **Note**
 > : Vous pouvez utiliser directement votre IDE pour cloner ce  [dépot](https://github.com/DK-Project-IUT/DK-Project).
 
+<!-- Description utilisation release -->
+
+Vous pouvez aussi lancer le jeu en utilisant le fichier ``.sh`` disponible dans le dossier [release]() :
+
+```bash
+# Dezipper Koala Rock.jar
+
+# Placer le dossier sur votre bureau
+# Allez dans le dossier Koala Rock
+$ KoalaRock.sh
+
+# Si pas sur votre bureau
+# Grâce au terminal ou à l'invite de commande
+# Allez dans le dossier Koala Rock puis exécuter la commande suivante :
+$ ./KoalaRockNoDesk.sh
+```
 
 ## Credits
 
@@ -46,8 +66,3 @@ $ cd DK-Project
 <div align="center">
 <img src="src/main/resources/start/structure/readMe/LogoIUT.png" alt="Logo_IUT" width="400" height="150" />
 </div>
-
-<!--
-* liste
-    - sous-liste
--->
