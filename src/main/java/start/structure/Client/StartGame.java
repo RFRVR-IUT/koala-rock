@@ -2,6 +2,7 @@ package start.structure.Client;
 
 import javafx.application.Application;
 import javafx.stage.Stage;
+import start.structure.Sound.Son;
 import start.structure.View.VueDemarrage;
 
 import java.io.IOException;
