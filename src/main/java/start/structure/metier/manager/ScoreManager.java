@@ -86,5 +86,13 @@ public class ScoreManager {
         return stockage.getTempsByLogin(login);
     }
 
+    public Map<Integer,Double> getAllTempsByDepartement(String login) {
+        return stockage.getAllTempsByDepartement(login);
+    }
+
+    public List<Score> getAllByDepartement(String login) {
+        return stockage.getAllByDepartement(login);
+    }
+
 
 }

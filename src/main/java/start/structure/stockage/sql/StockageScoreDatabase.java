@@ -285,7 +285,6 @@ public class StockageScoreDatabase {
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
-        System.out.println(res);
         return res;
     }
 
@@ -675,4 +674,53 @@ public class StockageScoreDatabase {
         return score;
     }
 
+    public List<Score> getAllByDepartement(String numDepartement){
+        ArrayList<Score> scores = new ArrayList<>();
+        SQLUtils utils = SQLUtils.getInstance();
+        Connection connection = utils.getConnection();
+        String req = "SELECT * FROM scores WHERE codeJeu = ? AND login IN (SELECT login FROM Joueurs WHERE numDepartement = ?) ORDER BY score DESC";
+        try (
+                PreparedStatement st = connection.prepareStatement(req);
+        ) {
+            st.setString(1, Score.getGameCode());
+            st.setString(2, numDepartement);
+            try (ResultSet result = st.executeQuery();) {
+                while (result.next()) {
+                    int id = result.getInt("codeScore");
+                    int scoreValue = result.getInt("score");
+                    Timestamp time = result.getTimestamp("horodatage");
+                    String login = result.getString("login");
+                    Score score = new Score(scoreValue, time);
+                    score.setId(id);
+                    score.setLogin(login);
+                    scores.add(score);
+                }
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return scores;
+    }
+
+    public Map<Integer,Double> getAllTempsByDepartement(String numDepartement){
+        Map<Integer,Double> temps = new HashMap<>();
+        SQLUtils utils = SQLUtils.getInstance();
+        Connection connection = utils.getConnection();
+        String req = "SELECT * FROM scoreTemps WHERE login IN (SELECT login FROM Joueurs WHERE numDepartement = ?) ORDER BY temps";
+        try (
+                PreparedStatement st = connection.prepareStatement(req);
+        ) {
+            st.setString(1, numDepartement);
+            try (ResultSet result = st.executeQuery();) {
+                while (result.next()) {
+                    int id = result.getInt("codeScore");
+                    double tempsValue = result.getDouble("temps");
+                    temps.put(id,tempsValue);
+                }
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+    }
+        return temps;
+    }
 }
