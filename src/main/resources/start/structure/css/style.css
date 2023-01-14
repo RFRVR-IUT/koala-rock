@@ -155,3 +155,10 @@
     -fx-font-size: 10px;
     -fx-font-weight: bold;
 }
+
+.labelJeu {
+    -fx-text-fill: white;
+    -fx-font-family: 'Goldman', sans-serif;
+    -fx-font-weight: bold;
+    -fx-font-size: 20px;
+}
