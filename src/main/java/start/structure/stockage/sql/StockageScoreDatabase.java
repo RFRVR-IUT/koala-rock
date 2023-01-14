@@ -447,10 +447,10 @@ public class StockageScoreDatabase {
     }
 
     public Map<Integer,Double> getAllTempsByDepartement(String numDepartement){
-        Map<Integer,Double> temps = new HashMap<>();
+        Map<Integer,Double> temps = new LinkedHashMap<>();
         SQLUtils utils = SQLUtils.getInstance();
         Connection connection = utils.getConnection();
-        String req = "SELECT * FROM scoreTemps WHERE login IN (SELECT login FROM Joueurs WHERE numDepartement = ?) ORDER BY temps";
+        String req = "SELECT * FROM scoreTemps WHERE login IN (SELECT login FROM Joueurs WHERE numDepartement = ?) ORDER BY temps ASC";
         try (
                 PreparedStatement st = connection.prepareStatement(req);
         ) {
@@ -459,12 +459,15 @@ public class StockageScoreDatabase {
                 while (result.next()) {
                     int id = result.getInt("codeScore");
                     double tempsValue = result.getDouble("temps");
+                    System.out.println("temps : "+tempsValue);
+                    System.out.println("id : "+id);
                     temps.put(id,tempsValue);
                 }
             }
         } catch (SQLException e) {
             e.printStackTrace();
     }
+        System.out.println(temps);
         return temps;
     }
 }

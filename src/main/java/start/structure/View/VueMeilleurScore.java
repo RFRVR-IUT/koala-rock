@@ -229,6 +229,7 @@ public class VueMeilleurScore {
 
                 int j = 0;
                 Map<Integer, Double> scoresTemps = ScoreManager.getInstance().getAllTempsByDepartement(departement);
+                System.out.println(scoresTemps);
                 while (j < 10 && j < scoresTemps.size()) {
                     Label labelPseudoTemps;
                     if (ScoreManager.getInstance().getLoginTemps((Integer) scoresTemps.keySet().toArray()[j]) == null) {
