@@ -42,7 +42,7 @@ public class VueParametre {
             }
         });
         comboBoxJoueurPrincipale.setLayoutX(300);
-        comboBoxJoueurPrincipale.setLayoutY(100);
+        comboBoxJoueurPrincipale.setLayoutY(50);
         comboBoxJoueurPrincipale.getStyleClass().add("buttonEcran");
         comboBoxJoueurPrincipale.setStyle("-fx-font-size: 12px; -fx-pref-width: 130px; -fx-pref-height: 20px;");
         if (Session.getInstance().getLogin() != null) {
@@ -73,7 +73,7 @@ public class VueParametre {
             }
         });
         comboBoxPersonnageEnnemie.setLayoutX(300);
-        comboBoxPersonnageEnnemie.setLayoutY(200);
+        comboBoxPersonnageEnnemie.setLayoutY(160);
         comboBoxPersonnageEnnemie.getStyleClass().add("buttonEcran");
         comboBoxPersonnageEnnemie.setStyle("-fx-font-size: 12px; -fx-pref-width: 130px; -fx-pref-height: 20px;");
         if (Session.getInstance().getLogin() != null) {
@@ -97,9 +97,8 @@ public class VueParametre {
             }
         });
         comboBoxFond.setLayoutX(300);
-        comboBoxFond.setLayoutY(300);
+        comboBoxFond.setLayoutY(270);
         comboBoxFond.getStyleClass().add("buttonEcran");
-        //comboBoxFond.setValue("Classic");
         comboBoxFond.setValue(fond.getNomChoixFond());
         comboBoxFond.setStyle("-fx-font-size: 12px; -fx-pref-width: 130px; -fx-pref-height: 20px;");
 
@@ -108,18 +107,18 @@ public class VueParametre {
 
         Label labelJoueurPrincipale = new Label("Personnage principal : ");
         labelJoueurPrincipale.setLayoutX(100);
-        labelJoueurPrincipale.setLayoutY(110);
+        labelJoueurPrincipale.setLayoutY(60);
         labelJoueurPrincipale.getStyleClass().add("LabelUnderButton");
 
 
         Label labelPersonnageEnnemie = new Label("Personnage ennemie : ");
         labelPersonnageEnnemie.setLayoutX(100);
-        labelPersonnageEnnemie.setLayoutY(210);
+        labelPersonnageEnnemie.setLayoutY(170);
         labelPersonnageEnnemie.getStyleClass().add("LabelUnderButton");
 
         Label labelFond = new Label("Fond : ");
         labelFond.setLayoutX(230);
-        labelFond.setLayoutY(310);
+        labelFond.setLayoutY(280);
         labelFond.getStyleClass().add("LabelUnderButton");
 
         Label button_Bas = new Label();

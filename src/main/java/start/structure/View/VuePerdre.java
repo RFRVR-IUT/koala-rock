@@ -4,8 +4,6 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.effect.DropShadow;
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
@@ -16,7 +14,6 @@ import start.structure.RessourcesAccess;
 import start.structure.stockage.Session;
 
 import java.io.IOException;
-import java.util.Objects;
 
 public class VuePerdre {
     private VueJeu vueJeu;
@@ -42,13 +39,6 @@ public class VuePerdre {
         nameGame.setLayoutX(226);
         nameGame.setLayoutY(80);
 
-        Label deadScreen = new Label();
-        Image image = new Image(Objects.requireNonNull(RessourcesAccess.class.getResourceAsStream("menu/classic.png")));
-        ImageView imageView = new ImageView(image);
-        imageView.setFitHeight(720);
-        imageView.setFitWidth(1280);
-        deadScreen.setGraphic(imageView);
-
         Button retourMenu = new Button("Retour au menu");
         retourMenu.getStyleClass().add("buttonEcran");
         retourMenu.setLayoutX(325);
@@ -64,7 +54,7 @@ public class VuePerdre {
         quitter.setLayoutX(800);
         quitter.setLayoutY(570);
 
-        pane.getChildren().addAll(menuScreen, deadScreen, nameGame, recommencer, quitter, retourMenu);
+        pane.getChildren().addAll(menuScreen, nameGame, recommencer, quitter, retourMenu);
 
         // Bouton recommencer
         recommencer.setOnMouseClicked(event -> {

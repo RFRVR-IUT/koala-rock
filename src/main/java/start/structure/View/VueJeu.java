@@ -9,6 +9,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.effect.DropShadow;
+import javafx.scene.effect.GaussianBlur;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyEvent;
@@ -313,6 +314,9 @@ public class VueJeu {
         // Tonneaux
         Rectangle tour = new Rectangle(335, 105, 610, 610);
         tour.setFill(Color.LIGHTGRAY);
+        tour.setEffect(new DropShadow(20, Color.WHITE));
+        tour.setEffect(new GaussianBlur(10));
+
         interfaceJeu.getChildren().add(tour);
 
         // Score
