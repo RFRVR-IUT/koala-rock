@@ -30,10 +30,7 @@ Pour mettre en route cette application vous aurez besoin d'exécuter les command
 
 ```bash
 # Cloner ce dépôt
-$ git clone https://github.com/DK-Project-IUT/DK-Project
-
-# Allez dans ce dépôt
-$ cd DK-Project
+$ git clone https://github.com/RFRVR-IUT/Koala-Rock.git
 ```
 
 > **Note**

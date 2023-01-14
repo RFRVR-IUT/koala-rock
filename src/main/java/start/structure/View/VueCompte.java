@@ -3,7 +3,6 @@ package start.structure.View;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.effect.DropShadow;
-import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
@@ -22,7 +21,6 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
-import java.util.function.Function;
 
 public class VueCompte {
 
@@ -31,7 +29,6 @@ public class VueCompte {
     public void affichageVueCompte(Stage stage) throws IOException {
         Pane pane = new Pane();
         Scene scene = new Scene(pane, 1280, 720);
-        Fond fond = new Fond(1280, 720);
         scene.getStylesheets().add(String.valueOf(RessourcesAccess.class.getResource("css/style.css")));
 
         ScrollPane paneDK = new ScrollPane();
@@ -83,7 +80,7 @@ public class VueCompte {
         label.setLayoutY(25);
 
         Label menuScreen = new Label();
-        menuScreen.setGraphic(fond.getChoixFond());
+        menuScreen.setGraphic(Fond.getChoixFond());
 
         Label labelModificationMDP = new Label("Modification du mot de passe");
         labelModificationMDP.getStyleClass().add("LabelConnexionField");

@@ -26,7 +26,6 @@ public class VueParametre {
     public void affichageVueParametre(Stage stage) throws IOException {
 
         Pane pane = new Pane();
-        Fond fond = new Fond(1280, 720);
         Scene scene = new Scene(pane, 1280, 720);
         scene.getStylesheets().add(String.valueOf(RessourcesAccess.class.getResource("css/style.css")));
 
@@ -99,11 +98,11 @@ public class VueParametre {
         comboBoxFond.setLayoutX(300);
         comboBoxFond.setLayoutY(270);
         comboBoxFond.getStyleClass().add("buttonEcran");
-        comboBoxFond.setValue(fond.getNomChoixFond());
+        comboBoxFond.setValue(Fond.getNomChoixFond());
         comboBoxFond.setStyle("-fx-font-size: 12px; -fx-pref-width: 130px; -fx-pref-height: 20px;");
 
         Label menuScreen = new Label();
-        menuScreen.setGraphic(fond.getChoixFond());
+        menuScreen.setGraphic(Fond.getChoixFond());
 
         Label labelJoueurPrincipale = new Label("Personnage principal : ");
         labelJoueurPrincipale.setLayoutX(100);

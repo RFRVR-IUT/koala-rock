@@ -52,7 +52,6 @@ public class VueJeu {
     private ImageView image_Bas, image_Haut, image_Gauche, image_Droite, image_Espace;
     private AnimationTimer timer, collisionTimer;
     private Timeline timelineTonneaux = new Timeline();
-    Fond fond = new Fond(1280, 720);
 
     public IntegerProperty getScore() {
         return personnePrincipale.getScore();
@@ -102,7 +101,7 @@ public class VueJeu {
 
         //////////////// Label ///////////////////////
         Label menuScreen = new Label();
-        menuScreen.setGraphic(fond.getChoixFond());
+        menuScreen.setGraphic(Fond.getChoixFond());
 
         Label score = new Label("Score : 0");
         score.getStyleClass().add("Score_Vie");
@@ -300,7 +299,7 @@ public class VueJeu {
         }
 
         // Fond
-        //interfaceJeu.getChildren().add(menuScreen);
+        interfaceJeu.getChildren().add(menuScreen);
         // panneau du jeu
         jeu.setPrefSize(600, 600);
         // Fond
@@ -649,7 +648,7 @@ public class VueJeu {
                     button_Espace.setGraphic(image_Espace_Click);
                     if (!personnePrincipale.isEstEnSaut()) {
                         Son.jump();
-                        PauseTransition pause = new PauseTransition(javafx.util.Duration.seconds(0.8));
+                        PauseTransition pause = new PauseTransition(Duration.seconds(0.8));
                         personnePrincipale.jump();
                         personnePrincipale.setaEuSonScore(false);
                         pause.play();

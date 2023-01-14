@@ -23,8 +23,6 @@ public class VueFinInfiniPartie {
 
 
     public void screenLose(int scoreGame, Stage stage) {
-        Fond fond = new Fond(1280, 720);
-
         if (vueJeu == null) {
             vueJeu = new VueJeu();
         }
@@ -37,7 +35,7 @@ public class VueFinInfiniPartie {
         scene.getStylesheets().add(String.valueOf(RessourcesAccess.class.getResource("css/style.css")));
 
         Label menuScreen = new Label();
-        menuScreen.setGraphic(fond.getChoixFond());
+        menuScreen.setGraphic(Fond.getChoixFond());
 
         Label nameGame = new Label("Fin de la partie");
         nameGame.getStyleClass().add("nameGame");

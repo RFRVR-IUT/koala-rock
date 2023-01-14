@@ -20,7 +20,6 @@ import java.util.Objects;
 
 public class VueMenu {
     private final VueChoixModeJeu vueChoixModeJeu = new VueChoixModeJeu();
-    private final Fond fond = new Fond(1280, 720);
 
     public void demarrerMenu(Stage stage) {
 
@@ -58,7 +57,7 @@ public class VueMenu {
         menuScreenPremierPlan.setGraphic(rectangleImg);
 
         Label menuScreen = new Label();
-        menuScreen.setGraphic(fond.getChoixFond());
+        menuScreen.setGraphic(Fond.getChoixFond());
 
         Label labelError = new Label();
         labelError.getStyleClass().add("LabelError");
@@ -69,6 +68,11 @@ public class VueMenu {
         copyRight.getStyleClass().add("copyRight");
         copyRight.setLayoutX(880);
         copyRight.setLayoutY(590);
+
+        Label client = new Label("Arcadia Games");
+        client.getStyleClass().add("copyRight");
+        client.setLayoutX(1080);
+        client.setLayoutY(560);
 
         Label copyRightName = new Label("Réalisé par : Célyan, Joris, Killian, Simon, Valentin");
         copyRightName.getStyleClass().add("copyRightName");
@@ -81,7 +85,7 @@ public class VueMenu {
         pane.getChildren().addAll(demarrerPartie);
         pane.getChildren().addAll(parametre, quitter);
         pane.getChildren().add(nameGame);
-        pane.getChildren().addAll(copyRight, copyRightName);
+        pane.getChildren().addAll(client, copyRight, copyRightName);
 
         // Permet de lancer le jeu en mode classique
         demarrerPartie.setOnMouseClicked(event -> {
