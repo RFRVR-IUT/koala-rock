@@ -109,8 +109,6 @@ public class StockageScoreDatabase {
                     int scoreValue = result.getInt("score");
                     Timestamp time = result.getTimestamp("horodatage");
                     int id = result.getInt("codeScore");
-                    System.out.println(login);
-                    System.out.println(scoreValue);
                     score = new Score(scoreValue, time);
                     score.setId(id);
                     score.setLogin(login);
