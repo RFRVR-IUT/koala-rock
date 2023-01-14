@@ -275,7 +275,7 @@ public class StockageScoreDatabase {
         int res = 0;
         SQLUtils utils = SQLUtils.getInstance();
         Connection connection = utils.getConnection();
-        String req = "SELECT * FROM scoreTemps ORDER BY codeScore DESC LIMIT 1";
+        String req = "SELECT * FROM scoreTemps ORDER BY codeScore DESC";
         try (PreparedStatement st = connection.prepareStatement(req)){
             try(ResultSet result = st.executeQuery()){
                 if (result.next()){
@@ -285,6 +285,7 @@ public class StockageScoreDatabase {
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
+        System.out.println(res);
         return res;
     }
 
