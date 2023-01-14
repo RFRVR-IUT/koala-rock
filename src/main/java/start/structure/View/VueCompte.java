@@ -113,7 +113,7 @@ public class VueCompte {
         passwordField2.setLayoutX(110);
         passwordField2.setLayoutY(325);
 
-        Label modeDeJeu = new Label("(infini)");
+        Label modeDeJeu = new Label("Infini");
         modeDeJeu.getStyleClass().add("LabelConnexionField");
         modeDeJeu.setLayoutX(650);
         modeDeJeu.setLayoutY(150);
@@ -168,7 +168,7 @@ public class VueCompte {
 
         changerModeJeu.setOnAction(event -> {
             if (ScoreAffiche == 0){
-                modeDeJeu.setText("(infini)");
+                modeDeJeu.setText("Infini");
                 contentVDK.getChildren().clear();
                 List<Score> scoresDK = ScoreManager.getInstance().getScores();
                 int i = 0;
@@ -204,7 +204,7 @@ public class VueCompte {
                 }
                 ScoreAffiche = 1;
             } else {
-                modeDeJeu.setText("(classic)");
+                modeDeJeu.setText("Classique");
                 contentVDK.getChildren().clear();
                 List<Double> scoresDK = ScoreManager.getInstance().getTempsByLogin(Session.getInstance().getLogin());
                 int i = 0;
