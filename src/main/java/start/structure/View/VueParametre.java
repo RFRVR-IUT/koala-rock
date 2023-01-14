@@ -85,21 +85,22 @@ public class VueParametre {
         }
 
         ComboBox<String> comboBoxFond = new ComboBox<>();
-        comboBoxFond.getItems().addAll("Classique", "Nuit", "NuitBis", "Ville", "Foret", "Star");
+        comboBoxFond.getItems().addAll("Défaut", "Nuit", "NuitBis", "Ville", "Foret", "Star");
         comboBoxFond.getSelectionModel().selectedItemProperty().addListener((v, oldValue, newValue) -> {
             switch (newValue) {
-                case "Classique" -> Fond.setChoixFond("CLASSIC");
-                case "Nuit" -> Fond.setChoixFond("NUIT");
-                case "Nuit2" -> Fond.setChoixFond("NUIT2");
-                case "Ville" -> Fond.setChoixFond("VILLE");
-                case "Foret" -> Fond.setChoixFond("FORET");
-                case "Star" -> Fond.setChoixFond("STAR");
+                case "Défaut" -> Fond.setChoixFond("Défaut");
+                case "Nuit" -> Fond.setChoixFond("Nuit");
+                case "NuitBis" -> Fond.setChoixFond("NuitBis");
+                case "Ville" -> Fond.setChoixFond("Ville");
+                case "Foret" -> Fond.setChoixFond("Foret");
+                case "Star" -> Fond.setChoixFond("Star");
             }
         });
         comboBoxFond.setLayoutX(300);
         comboBoxFond.setLayoutY(300);
         comboBoxFond.getStyleClass().add("buttonEcran");
-        comboBoxFond.setValue("Classic");
+        //comboBoxFond.setValue("Classic");
+        comboBoxFond.setValue(fond.getNomChoixFond());
         comboBoxFond.setStyle("-fx-font-size: 12px; -fx-pref-width: 130px; -fx-pref-height: 20px;");
 
         Label menuScreen = new Label();

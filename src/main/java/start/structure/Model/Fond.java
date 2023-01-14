@@ -19,12 +19,16 @@ import start.structure.RessourcesAccess;
 import java.util.Objects;
 
 public class Fond extends Group {
-    private static String choixFond = "CLASSIC";
+    private static String choixFond = "Défaut";
 
     public Fond(int width, int height) {
         Rectangle fond = new Rectangle(width, height);
         fond.setFill(setChoixFond_Img(choixFond));
         this.getChildren().add(fond);
+    }
+
+    public String getNomChoixFond() {
+        return choixFond;
     }
 
     public static void setChoixFond(String choixFond) {
@@ -43,17 +47,17 @@ public class Fond extends Group {
      */
     public Paint setChoixFond_Img(String choixFond) {
         return switch (choixFond) {
-            case "CLASSIC" ->
+            case "Défaut" ->
                     new ImagePattern(new Image(Objects.requireNonNull(RessourcesAccess.class.getResourceAsStream("fond/star.jpeg"))));
-            case "NUIT" ->
+            case "Nuit" ->
                     new ImagePattern(new Image(Objects.requireNonNull(RessourcesAccess.class.getResourceAsStream("fond/night.jpeg"))));
-            case "NUIT2" ->
+            case "NuitBis" ->
                     new ImagePattern(new Image(Objects.requireNonNull(RessourcesAccess.class.getResourceAsStream("fond/night2.jpeg"))));
-            case "VILLE" ->
+            case "Ville" ->
                     new ImagePattern(new Image(Objects.requireNonNull(RessourcesAccess.class.getResourceAsStream("fond/city.jpeg"))));
-            case "FORET" ->
+            case "Foret" ->
                     new ImagePattern(new Image(Objects.requireNonNull(RessourcesAccess.class.getResourceAsStream("fond/forest.jpeg"))));
-            case "STAR" ->
+            case "Star" ->
                     new ImagePattern(new Image(Objects.requireNonNull(RessourcesAccess.class.getResourceAsStream("fond/star2.jpeg"))));
             default -> null;
         };
