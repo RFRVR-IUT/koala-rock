@@ -99,6 +99,7 @@ public class VueParametre {
         comboBoxFond.setLayoutX(300);
         comboBoxFond.setLayoutY(300);
         comboBoxFond.getStyleClass().add("buttonEcran");
+        comboBoxFond.setValue("Basic");
         comboBoxFond.setStyle("-fx-font-size: 12px; -fx-pref-width: 130px; -fx-pref-height: 20px;");
 
         Label menuScreen = new Label();

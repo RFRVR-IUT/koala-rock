@@ -11,15 +11,17 @@ import java.security.NoSuchAlgorithmException;
 public class AuthPlayer extends Player {
     private String hashedPassword;
     private byte[] salt;
+    private String numDepartement;
 
     public AuthPlayer(String login) {
         super(login);
     }
 
-    public AuthPlayer(String login, String hashedPassword, byte[] salt) {
+    public AuthPlayer(String login, String hashedPassword, byte[] salt, String numDepartement) {
         this(login);
         this.salt = salt;
         this.hashedPassword = hashedPassword;
+        this.numDepartement = numDepartement;
     }
 
     public String getLogin() {
@@ -32,6 +34,14 @@ public class AuthPlayer extends Player {
 
     public String getHashedPassword() {
         return hashedPassword;
+    }
+
+    public String getDepartement() {
+        return this.numDepartement;
+    }
+
+    public void setDepartement(String numDepartement) {
+        this.numDepartement = numDepartement;
     }
 
     /**

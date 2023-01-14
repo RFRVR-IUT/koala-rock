@@ -20,19 +20,21 @@ public class PlayerManager {
         return instance;
     }
 
-    public void createPlayer(String login, String password) {
+    public void createPlayer(String login, String password, String departement) {
         AuthPlayer p = new AuthPlayer(login);
         byte[] salt = Security.getSalt(); //Génération d'un sel de hachage
         p.setSalt(salt); //Application du sel au nouveau joueur.
         p.setPassword(password); //Hachage du mot de passe avec le sel.
+        p.setDepartement(departement);
         stockage.create(p);
     }
 
-    public void updatePlayer(String login, String password) {
+    public void updatePlayer(String login, String password/*, String departement*/) {
         AuthPlayer p = stockage.getByLogin(login);
         byte[] salt = Security.getSalt();
         p.setSalt(salt);
         p.setPassword(password);
+        //p.setDepartement(departement);
         stockage.update(p);
     }
 

@@ -14,13 +14,14 @@ public class StockagePlayerDatabase {
     public void create(AuthPlayer element) {
         SQLUtils utils = SQLUtils.getInstance();
         Connection connection = utils.getConnection();
-        String req = "INSERT INTO JOUEURS(login, mdpHache, selHachage) VALUES (?, ?, ?)";
+        String req = "INSERT INTO JOUEURS(login, mdpHache, selHachage, numDepartement) VALUES (?, ?, ?, ?)";
         try (
                 PreparedStatement st = connection.prepareStatement(req)
         ) {
             st.setString(1, element.getLogin());
             st.setString(2, element.getHashedPassword());
             st.setBytes(3, element.getSalt());
+            st.setString(4, element.getDepartement());
             st.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();
@@ -30,13 +31,14 @@ public class StockagePlayerDatabase {
     public void update(AuthPlayer element) {
         SQLUtils utils = SQLUtils.getInstance();
         Connection connection = utils.getConnection();
-        String req = "UPDATE JOUEURS SET mdpHache = ?, selHachage = ? WHERE login = ?";
+        String req = "UPDATE JOUEURS SET mdpHache = ?, selHachage = ?, numDepartement = ? WHERE login = ?";
         try (
                 PreparedStatement st = connection.prepareStatement(req)
         ) {
-            st.setString(3, element.getLogin());
+            st.setString(4, element.getLogin());
             st.setString(1, element.getHashedPassword());
             st.setBytes(2, element.getSalt());
+            st.setString(3, element.getDepartement());
             st.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();
@@ -70,7 +72,8 @@ public class StockagePlayerDatabase {
                 if (result.next()) {
                     String password = result.getString("mdpHache");
                     byte[] salt = result.getBytes("selHachage");
-                    player = new AuthPlayer(login, password, salt);
+                    String numDepartement = result.getString("numDepartement");
+                    player = new AuthPlayer(login, password, salt, numDepartement);
                 }
             }
         } catch (SQLException e) {
@@ -92,7 +95,8 @@ public class StockagePlayerDatabase {
                 String login = result.getString("login");
                 String password = result.getString("mdpHache");
                 byte[] salt = result.getBytes("selHachage");
-                AuthPlayer player = new AuthPlayer(login, password, salt);
+                String numDepartement = result.getString("numDepartement");
+                AuthPlayer player = new AuthPlayer(login, password, salt, numDepartement);
                 playerList.add(player);
             }
         } catch (SQLException e) {
