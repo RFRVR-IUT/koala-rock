@@ -1,10 +1,7 @@
 package start.structure.View;
 
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.PasswordField;
-import javafx.scene.control.ScrollPane;
+import javafx.scene.control.*;
 import javafx.scene.effect.DropShadow;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
@@ -113,15 +110,24 @@ public class VueCompte {
         passwordField2.setLayoutX(110);
         passwordField2.setLayoutY(325);
 
+        ComboBox<String> comboBoxDepartement = new ComboBox<>();
+        comboBoxDepartement.setLayoutX(110);
+        comboBoxDepartement.setLayoutY(375);
+        comboBoxDepartement.getItems().addAll("01 - Ain", "02 - Aisne", "03 - Allier", "04 - Alpes-de-Haute-Provence", "05 - Hautes-Alpes", "06 - Alpes-Maritimes", "07 - Ardèche", "08 - Ardennes", "09 - Ariège", "10 - Aube", "11 - Aude", "12 - Aveyron", "13 - Bouches-du-Rhône", "14 - Calvados", "15 - Cantal", "16 - Charente", "17 - Charente-Maritime", "18 - Cher", "19 - Corrèze", "2A - Corse-du-Sud", "2B - Haute-Corse", "21 - Côte-d'Or", "22 - Côtes-d'Armor", "23 - Creuse", "24 - Dordogne", "25 - Doubs", "26 - Drôme", "27 - Eure", "28 - Eure-et-Loir", "29 - Finistère", "30 - Gard", "31 - Haute-Garonne", "32 - Gers", "33 - Gironde", "34 - Hérault", "35 - Ille-et-Vilaine", "36 - Indre", "37 - Indre-et-Loire", "38 - Isère", "39 - Jura", "40 - Landes", "41 - Loir-et-Cher", "42 - Loire", "43 - Haute-Loire", "44 - Loire-Atlantique", "45 - Loiret", "46 - Lot", "47 - Lot-et-Garonne", "48 - Lozère", "49 - Maine-et-Loire", "50 - Manche", "51 - Marne", "52 - Haute-Marne", "53 - Mayenne", "54 - Meurthe-et-Moselle", "55 - Meuse", "56 - Morbihan", "57 - Moselle", "58 - Nièvre", "59 - Nord", "60 - Oise", "61 - Orne", "62 - Pas-de-Calais", "63 - Puy-de-Dôme", "64 - Pyrénées-Atlantiques", "65 - Hautes-Pyrénées", "66 - Pyrénées-Orientales", "67 - Bas-Rhin", "68 - Haut-Rhin", "69 - Rhône", "70 - Haute-Saône", "71 - Saône-et-Loire", "72 - Sarthe", "73 - Savoie", "74 - Haute-Savoie", "75 - Paris", "76 - Seine-Maritime", "77 - Seine-et-Marne", "78 - Yvelines", "79 - Deux-Sèvres", "80 - Somme", "81 - Tarn", "82 - Tarn-et-Garonne", "83 - Var", "84 - Vaucluse", "85 - Vendée", "86 - Vienne", "87 - Haute-Vienne", "88 - Vosges", "89 - Yonne", "90 - Territoire de Belfort", "91 - Essonne","92 - Hauts-de-Seine", "93 - Seine-Saint-Denis", "94 - Val-de-Marne", "95 - Val-d'Oise", "971 - Guadeloupe", "972 - Martinique", "973 - Guyane", "974 - La Réunion", "976 - Mayotte");
+        comboBoxDepartement.setValue("01 - Ain");
+        System.out.println(comboBoxDepartement.getValue());
+        comboBoxDepartement.getStyleClass().add("buttonEcran");
+        comboBoxDepartement.setStyle("-fx-font-size: 12px; -fx-pref-width: 130px; -fx-pref-height: 20px;");
+
         Label modeDeJeu = new Label("Infini");
         modeDeJeu.getStyleClass().add("LabelConnexionField");
         modeDeJeu.setLayoutX(650);
         modeDeJeu.setLayoutY(150);
 
-        Button buttonModifPassword = new Button("Changer mot de passe");
+        Button buttonModifPassword = new Button("Mettre à jour le compte");
         buttonModifPassword.getStyleClass().add("btnGrey");
         buttonModifPassword.setLayoutX(83);
-        buttonModifPassword.setLayoutY(420);
+        buttonModifPassword.setLayoutY(450);
 
         Label labelErreur = new Label();
         labelErreur.getStyleClass().add("LabelError");
@@ -488,7 +494,7 @@ public class VueCompte {
             vueMenu.demarrerMenu(stage);
         });
 
-        pane.getChildren().addAll(menuScreen, modeDeJeu, changerModeJeu, label, labelMotDePasse, passwordField, labelMotDePasse2, passwordField2, buttonModifPassword, labelMeilleurScore, boutonRetour, supprimerCompte, deconnexion, menu);
+        pane.getChildren().addAll(menuScreen, modeDeJeu, changerModeJeu, label, labelMotDePasse, passwordField, labelMotDePasse2, passwordField2, buttonModifPassword, comboBoxDepartement, labelMeilleurScore, boutonRetour, supprimerCompte, deconnexion, menu);
         pane.getChildren().add(labelErreur);
         pane.getChildren().add(labelModificationMDP);
         pane.getChildren().add(line);
