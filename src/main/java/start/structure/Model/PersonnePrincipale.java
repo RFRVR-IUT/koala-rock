@@ -10,6 +10,7 @@ import javafx.scene.shape.Rectangle;
 import start.structure.RessourcesAccess;
 import start.structure.Sound.Son;
 
+import java.net.URISyntaxException;
 import java.util.ArrayList;
 import java.util.Objects;
 
@@ -413,7 +414,7 @@ public class PersonnePrincipale extends Group {
      * @param tonneaus
      * @return
      */
-    public int collisionTonneaux(ArrayList<ObjetAttaque> tonneaus) {
+    public int collisionTonneaux(ArrayList<ObjetAttaque> tonneaus) throws URISyntaxException {
         int res = 0;
         for (ObjetAttaque t : tonneaus) {
             if (this.getBoundsInParent().intersects(t.getBoundsInParent())) {

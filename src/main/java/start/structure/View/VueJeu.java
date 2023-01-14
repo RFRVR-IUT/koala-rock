@@ -26,6 +26,7 @@ import start.structure.metier.manager.ScoreManager;
 import start.structure.stockage.Session;
 
 import java.io.IOException;
+import java.net.URISyntaxException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Objects;
@@ -384,40 +385,44 @@ public class VueJeu {
             @Override
             public void handle(long now) {
 
-                if (personnePrincipale.collisionTonneaux(tonneaux) == -1 && !isPause) {
-                    if (getVie().getValue() > 1) {
-                        personnePrincipale.setLayoutX(20 * 10);
-                        personnePrincipale.setLayoutY(545);
-                        getVie().setValue(getVie().getValue() - 1);
-                        supprimerTonneaux(tonneaux);
-                        creerTonneaux(coordonneesEchelles, dk);
-                    } else {
-                        timer.stop();
-                        isPause = true;
-                        personnePrincipale.setLayoutX(20 * 10);
-                        personnePrincipale.setLayoutY(545);
-                        //replacer les tonneaux
-                        for (ObjetAttaque tonneau : tonneaux) {
-                            tonneau.setLayoutX(0);
-                            tonneau.setLayoutY(-30);
-                        }
-                        int saveScore = getScore().getValue();
-
-                        supprimerElements(jeu, tonneaux, echelles, echellesBrokens, personnePrincipale, dk);
-                        //empecher le jeu de continuer
-                        timelineTonneaux.stop();
-                        primaryStage.close();
-                        if (mode.equals("Infini")) {
-                            vueFinInfiniPartie.screenLose(saveScore, stage);
-                            if (Session.getInstance().getLogin() == null) {
-                                ScoreManager.getInstance().createScore(saveScore, "");
-                            } else {
-                                ScoreManager.getInstance().createScore(saveScore, Session.getInstance().getLogin());
-                            }
+                try {
+                    if (personnePrincipale.collisionTonneaux(tonneaux) == -1 && !isPause) {
+                        if (getVie().getValue() > 1) {
+                            personnePrincipale.setLayoutX(20 * 10);
+                            personnePrincipale.setLayoutY(545);
+                            getVie().setValue(getVie().getValue() - 1);
+                            supprimerTonneaux(tonneaux);
+                            creerTonneaux(coordonneesEchelles, dk);
                         } else {
-                            vuesPerdu.screenLose(stage);
+                            timer.stop();
+                            isPause = true;
+                            personnePrincipale.setLayoutX(20 * 10);
+                            personnePrincipale.setLayoutY(545);
+                            //replacer les tonneaux
+                            for (ObjetAttaque tonneau : tonneaux) {
+                                tonneau.setLayoutX(0);
+                                tonneau.setLayoutY(-30);
+                            }
+                            int saveScore = getScore().getValue();
+
+                            supprimerElements(jeu, tonneaux, echelles, echellesBrokens, personnePrincipale, dk);
+                            //empecher le jeu de continuer
+                            timelineTonneaux.stop();
+                            primaryStage.close();
+                            if (mode.equals("Infini")) {
+                                vueFinInfiniPartie.screenLose(saveScore, stage);
+                                if (Session.getInstance().getLogin() == null) {
+                                    ScoreManager.getInstance().createScore(saveScore, "");
+                                } else {
+                                    ScoreManager.getInstance().createScore(saveScore, Session.getInstance().getLogin());
+                                }
+                            } else {
+                                vuesPerdu.screenLose(stage);
+                            }
                         }
                     }
+                } catch (URISyntaxException e) {
+                    throw new RuntimeException(e);
                 }
                 if (personnePrincipale.getLayoutX() == 305 && personnePrincipale.getLayoutY() == 94 || personnePrincipale.getLayoutX() == 300 && personnePrincipale.getLayoutY() == 94 || personnePrincipale.getLayoutX() == 295 && personnePrincipale.getLayoutY() == 94 || personnePrincipale.getLayoutX() == 290 && personnePrincipale.getLayoutY() == 94) {
                     if (getVie().getValue() > 1) {
@@ -647,7 +652,11 @@ public class VueJeu {
                     button_Droite.setGraphic(image_Droite);
                     button_Espace.setGraphic(image_Espace_Click);
                     if (!personnePrincipale.isEstEnSaut()) {
-                        Son.jump();
+                        try {
+                            Son.jump();
+                        } catch (URISyntaxException e) {
+                            throw new RuntimeException(e);
+                        }
                         PauseTransition pause = new PauseTransition(Duration.seconds(0.8));
                         personnePrincipale.jump();
                         personnePrincipale.setaEuSonScore(false);
