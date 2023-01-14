@@ -340,92 +340,6 @@ public class StockageScoreDatabase {
         return scoreList;
     }
 
-    public List<Score> getByLoginTRON(String login) {
-        List<Score> scoresList = new ArrayList<>();
-        SQLUtils utils = SQLUtils.getInstance();
-        Connection connection = utils.getConnection();
-        String req = "SELECT * FROM SCORES WHERE login = ? AND codeJeu = ?";
-        try (
-                PreparedStatement st = connection.prepareStatement(req);
-        ) {
-            st.setString(1, login);
-            st.setString(2, Score.getGameCodeTRON());
-            try (ResultSet result = st.executeQuery();) {
-                while (result.next()) {
-                    int id = result.getInt("codeScore");
-                    int scoreValue = result.getInt("score");
-                    Timestamp time = result.getTimestamp("horodatage");
-                    Score score = new Score(scoreValue, time);
-                    score.setId(id);
-                    score.setLogin(login);
-                    scoresList.add(score);
-                }
-            }
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-        return scoresList;
-    }
-
-    public void createTRON(Score element) {
-        SQLUtils utils = SQLUtils.getInstance();
-        Connection connection = utils.getConnection();
-        String req = "INSERT INTO SCORES(score, horodatage, codeJeu, login) VALUES (?, ?, ?, ?)";
-        try (
-                PreparedStatement st = connection.prepareStatement(req);
-        ) {
-            st.setInt(1, element.getScore());
-            st.setTimestamp(2, element.getHorodatage());
-            st.setString(3, Score.getGameCodeTRON());
-            if (!element.getLogin().isEmpty()) st.setString(4, element.getLogin());
-            else st.setNull(4, Types.VARCHAR);
-            st.executeUpdate();
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-    }
-
-    public void deleteByLoginTRON(String login) {
-        SQLUtils utils = SQLUtils.getInstance();
-        Connection connection = utils.getConnection();
-        String req = "DELETE FROM SCORES WHERE login = ? AND codeJeu = ?";
-        try (
-                PreparedStatement st = connection.prepareStatement(req);
-        ) {
-            st.setString(1, login);
-            st.setString(2, Score.getGameCodeTRON());
-            st.executeUpdate();
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-    }
-
-    public Score getHighScoreTRON(String login) {
-        Score score = null;
-        SQLUtils utils = SQLUtils.getInstance();
-        Connection connection = utils.getConnection();
-        String req = "SELECT * FROM SCORES WHERE login = ? AND codeJeu = ? ORDER BY score";
-        try (
-                PreparedStatement st = connection.prepareStatement(req);
-        ) {
-            st.setString(1, login);
-            st.setString(2, Score.getGameCodeTRON());
-            try (ResultSet result = st.executeQuery();) {
-                if (result.next()) {
-                    int scoreValue = result.getInt("score");
-                    Timestamp time = result.getTimestamp("horodatage");
-                    int id = result.getInt("codeScore");
-                    score = new Score(scoreValue, time);
-                    score.setId(id);
-                    score.setLogin(login);
-                }
-            }
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-        return score;
-    }
-
     /**
      *
      *
@@ -464,92 +378,6 @@ public class StockageScoreDatabase {
         return scoreList;
     }
 
-    public List<Score> getByLoginCB(String login) {
-        List<Score> scoresList = new ArrayList<>();
-        SQLUtils utils = SQLUtils.getInstance();
-        Connection connection = utils.getConnection();
-        String req = "SELECT * FROM SCORES WHERE login = ? AND codeJeu = ?";
-        try (
-                PreparedStatement st = connection.prepareStatement(req);
-        ) {
-            st.setString(1, login);
-            st.setString(2, Score.getGameCodeCB());
-            try (ResultSet result = st.executeQuery();) {
-                while (result.next()) {
-                    int id = result.getInt("codeScore");
-                    int scoreValue = result.getInt("score");
-                    Timestamp time = result.getTimestamp("horodatage");
-                    Score score = new Score(scoreValue, time);
-                    score.setId(id);
-                    score.setLogin(login);
-                    scoresList.add(score);
-                }
-            }
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-        return scoresList;
-    }
-
-    public void createCB(Score element) {
-        SQLUtils utils = SQLUtils.getInstance();
-        Connection connection = utils.getConnection();
-        String req = "INSERT INTO SCORES(score, horodatage, codeJeu, login) VALUES (?, ?, ?, ?)";
-        try (
-                PreparedStatement st = connection.prepareStatement(req);
-        ) {
-            st.setInt(1, element.getScore());
-            st.setTimestamp(2, element.getHorodatage());
-            st.setString(3, Score.getGameCodeCB());
-            if (!element.getLogin().isEmpty()) st.setString(4, element.getLogin());
-            else st.setNull(4, Types.VARCHAR);
-            st.executeUpdate();
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-    }
-
-    public void deleteByLoginCB(String login) {
-        SQLUtils utils = SQLUtils.getInstance();
-        Connection connection = utils.getConnection();
-        String req = "DELETE FROM SCORES WHERE login = ? AND codeJeu = ?";
-        try (
-                PreparedStatement st = connection.prepareStatement(req);
-        ) {
-            st.setString(1, login);
-            st.setString(2, Score.getGameCodeCB());
-            st.executeUpdate();
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-    }
-
-    public Score getHighScoreCB(String login) {
-        Score score = null;
-        SQLUtils utils = SQLUtils.getInstance();
-        Connection connection = utils.getConnection();
-        String req = "SELECT * FROM SCORES WHERE login = ? AND codeJeu = ? ORDER BY score";
-        try (
-                PreparedStatement st = connection.prepareStatement(req);
-        ) {
-            st.setString(1, login);
-            st.setString(2, Score.getGameCodeCB());
-            try (ResultSet result = st.executeQuery();) {
-                if (result.next()) {
-                    int scoreValue = result.getInt("score");
-                    Timestamp time = result.getTimestamp("horodatage");
-                    int id = result.getInt("codeScore");
-                    score = new Score(scoreValue, time);
-                    score.setId(id);
-                    score.setLogin(login);
-                }
-            }
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-        return score;
-    }
-
     /**
      *
      *
@@ -561,6 +389,7 @@ public class StockageScoreDatabase {
      *
      *
      */
+
     public List<Score> getAllTETRIS() {
         List<Score> scoreList = new ArrayList<>();
         SQLUtils utils = SQLUtils.getInstance();
@@ -588,91 +417,6 @@ public class StockageScoreDatabase {
         return scoreList;
     }
 
-    public List<Score> getByLoginTETRIS(String login) {
-        List<Score> scoresList = new ArrayList<>();
-        SQLUtils utils = SQLUtils.getInstance();
-        Connection connection = utils.getConnection();
-        String req = "SELECT * FROM SCORES WHERE login = ? AND codeJeu = ?";
-        try (
-                PreparedStatement st = connection.prepareStatement(req);
-        ) {
-            st.setString(1, login);
-            st.setString(2, Score.getGameCodeTETRIS());
-            try (ResultSet result = st.executeQuery();) {
-                while (result.next()) {
-                    int id = result.getInt("codeScore");
-                    int scoreValue = result.getInt("score");
-                    Timestamp time = result.getTimestamp("horodatage");
-                    Score score = new Score(scoreValue, time);
-                    score.setId(id);
-                    score.setLogin(login);
-                    scoresList.add(score);
-                }
-            }
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-        return scoresList;
-    }
-
-    public void createTETRIS(Score element) {
-        SQLUtils utils = SQLUtils.getInstance();
-        Connection connection = utils.getConnection();
-        String req = "INSERT INTO SCORES(score, horodatage, codeJeu, login) VALUES (?, ?, ?, ?)";
-        try (
-                PreparedStatement st = connection.prepareStatement(req);
-        ) {
-            st.setInt(1, element.getScore());
-            st.setTimestamp(2, element.getHorodatage());
-            st.setString(3, Score.getGameCodeTETRIS());
-            if (!element.getLogin().isEmpty()) st.setString(4, element.getLogin());
-            else st.setNull(4, Types.VARCHAR);
-            st.executeUpdate();
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-    }
-
-    public void deleteByLoginTETRIS(String login) {
-        SQLUtils utils = SQLUtils.getInstance();
-        Connection connection = utils.getConnection();
-        String req = "DELETE FROM SCORES WHERE login = ? AND codeJeu = ?";
-        try (
-                PreparedStatement st = connection.prepareStatement(req);
-        ) {
-            st.setString(1, login);
-            st.setString(2, Score.getGameCodeTETRIS());
-            st.executeUpdate();
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-    }
-
-    public Score getHighScoreTETRIS(String login) {
-        Score score = null;
-        SQLUtils utils = SQLUtils.getInstance();
-        Connection connection = utils.getConnection();
-        String req = "SELECT * FROM SCORES WHERE login = ? AND codeJeu = ? ORDER BY score";
-        try (
-                PreparedStatement st = connection.prepareStatement(req);
-        ) {
-            st.setString(1, login);
-            st.setString(2, Score.getGameCodeTETRIS());
-            try (ResultSet result = st.executeQuery();) {
-                if (result.next()) {
-                    int scoreValue = result.getInt("score");
-                    Timestamp time = result.getTimestamp("horodatage");
-                    int id = result.getInt("codeScore");
-                    score = new Score(scoreValue, time);
-                    score.setId(id);
-                    score.setLogin(login);
-                }
-            }
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-        return score;
-    }
 
     public List<Score> getAllByDepartement(String numDepartement){
         ArrayList<Score> scores = new ArrayList<>();
