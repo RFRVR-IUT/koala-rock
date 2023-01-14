@@ -69,6 +69,11 @@ public class VueMenu {
         copyRight.setLayoutX(880);
         copyRight.setLayoutY(590);
 
+        Label client = new Label("Arcadia Games");
+        client.getStyleClass().add("copyRight");
+        client.setLayoutX(1080);
+        client.setLayoutY(560);
+
         Label copyRightName = new Label("Réalisé par : Célyan, Joris, Killian, Simon, Valentin");
         copyRightName.getStyleClass().add("copyRightName");
         copyRightName.setLayoutX(922);
@@ -80,7 +85,7 @@ public class VueMenu {
         pane.getChildren().addAll(demarrerPartie);
         pane.getChildren().addAll(parametre, quitter);
         pane.getChildren().add(nameGame);
-        pane.getChildren().addAll(copyRight, copyRightName);
+        pane.getChildren().addAll(client, copyRight, copyRightName);
 
         // Permet de lancer le jeu en mode classique
         demarrerPartie.setOnMouseClicked(event -> {
