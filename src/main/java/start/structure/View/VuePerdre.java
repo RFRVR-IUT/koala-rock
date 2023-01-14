@@ -43,7 +43,7 @@ public class VuePerdre {
         nameGame.setLayoutY(80);
 
         Label deadScreen = new Label();
-        Image image = new Image(Objects.requireNonNull(RessourcesAccess.class.getResourceAsStream("menu/classic.png")));
+        Image image = new Image(Objects.requireNonNull(RessourcesAccess.class.getResourceAsStream("fond/classic.png")));
         ImageView imageView = new ImageView(image);
         imageView.setFitHeight(720);
         imageView.setFitWidth(1280);
