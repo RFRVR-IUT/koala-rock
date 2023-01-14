@@ -459,15 +459,12 @@ public class StockageScoreDatabase {
                 while (result.next()) {
                     int id = result.getInt("codeScore");
                     double tempsValue = result.getDouble("temps");
-                    System.out.println("temps : "+tempsValue);
-                    System.out.println("id : "+id);
                     temps.put(id,tempsValue);
                 }
             }
         } catch (SQLException e) {
             e.printStackTrace();
     }
-        System.out.println(temps);
         return temps;
     }
 }
