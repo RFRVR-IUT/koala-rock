@@ -356,13 +356,13 @@ public class VueCompte {
         int j = 0;
         int compteurTRON = 0;
         for (Score scoreTRON : scoresTRON) {
-            if (scoreTRON.getLogin() == null) {
+            if (scoresTRON.isEmpty()) {
                 Label tron = new Label("Aucun score dans ce jeu putain!");
                 tron.getStyleClass().add("LabelConnexionField");
                 //tron.setLayoutX(450);
                 //tron.setLayoutY(150);
                 contentVTRON.getChildren().add(tron);
-                scrollPaneTRON.setContent(contentVTRON);
+                scrollPaneTRON.setContent(tron);
                 break;
             } else if (scoreTRON.getLogin() != null && scoreTRON.getLogin().equals(Session.getInstance().getLogin())) {
 
@@ -381,14 +381,20 @@ public class VueCompte {
                 placeTRON.setLayoutX(400);
                 placeTRON.setLayoutY(150 + j * 35);
 
-                contentVTRON.getChildren().addAll(placeTRON, labelScoreTRON, labelDateTRON);
-                scrollPaneTRON.setContent(contentVTRON);
+                Label labeltronScore = new Label();
+                labeltronScore.getStyleClass().add("LabelConnexionField");
+                labeltronScore.setText(placeTRON.getText() + " " + labelScoreTRON.getText() + " " + labelDateTRON.getText());
+
+
+                contentVTRON.getChildren().addAll(labeltronScore);
+
                 j++;
                 compteurTRON++;
-            } else if (compteurTRON == 1) {
+            } else if (compteurTRON == 3) {
                 break;
             }
         }
+        scrollPaneTRON.setContent(contentVTRON);
 
         /**
          *
@@ -407,13 +413,13 @@ public class VueCompte {
         int k = 0;
         int compteurCB = 0;
         for (Score scoreCB : scoresCB) {
-            if (scoreCB.getLogin() == null) {
+            if (scoresCB.isEmpty()) {
                 Label cb = new Label("Aucun score dans ce jeu!");
                 cb.getStyleClass().add("LabelConnexionField");
                 //cb.setLayoutX(925);
                 //cb.setLayoutY(150);
                 contentVCB.getChildren().addAll(cb);
-                scrollPaneCB.setContent(contentVCB);
+                scrollPaneCB.setContent(cb);
                 break;
             } else if (scoreCB.getLogin() != null && scoreCB.getLogin().equals(Session.getInstance().getLogin())) {
 
@@ -432,15 +438,20 @@ public class VueCompte {
                 placeCB.setLayoutX(925);
                 placeCB.setLayoutY(150 + k * 35);
 
-                contentVCB.getChildren().addAll(placeCB, labelScoreCB, labelDateCB);
-                scrollPaneCB.setContent(contentVCB);
+                Label labelcbScore = new Label();
+                labelcbScore.getStyleClass().add("LabelConnexionField");
+                labelcbScore.setText(placeCB.getText() + " " + labelScoreCB.getText() + " " + labelDateCB.getText());
+
+                contentVCB.getChildren().addAll(labelcbScore);
+
                 k++;
                 compteurCB++;
 
-            } else if (compteurCB == 1) {
+            } else if (compteurCB == 3) {
                 break;
             }
         }
+        scrollPaneCB.setContent(contentVCB);
 
         /**
          *
@@ -459,13 +470,13 @@ public class VueCompte {
         int p = 0;
         int compteurTETRIS = 0;
         for (Score scoreTETRIS : scoresTETRIS) {
-            if (scoreTETRIS.getLogin() == null) {
+            if (scoresTETRIS.isEmpty()) {
                 Label tetris = new Label("Aucun score dans ce jeu!");
                 tetris.getStyleClass().add("LabelConnexionField");
                 //tetris.setLayoutX(450);
                 //tetris.setLayoutY(150);
                 contentVTETRIS.getChildren().addAll(tetris);
-                scrollPaneTETRIS.setContent(contentVTETRIS);
+                scrollPaneTETRIS.setContent(tetris);
                 break;
             } else if (scoreTETRIS.getLogin() != null && scoreTETRIS.getLogin().equals(Session.getInstance().getLogin())) {
 
@@ -484,14 +495,19 @@ public class VueCompte {
                 placeTETRIS.setLayoutX(400);
                 placeTETRIS.setLayoutY(150 + p * 35);
 
-                contentVTETRIS.getChildren().addAll(placeTETRIS, labelScoreTETRIS, labelDateTETRIS);
-                scrollPaneTETRIS.setContent(contentVTETRIS);
+                Label labeltetrisScore = new Label();
+                labeltetrisScore.getStyleClass().add("LabelConnexionField");
+                labeltetrisScore.setText(placeTETRIS.getText() + " " + labelScoreTETRIS.getText() + " " + labelDateTETRIS.getText());
+
+                contentVTETRIS.getChildren().addAll(labeltetrisScore);
+
                 p++;
                 compteurTETRIS++;
-            } else if (compteurTETRIS == 1) {
+            } else if (compteurTETRIS == 3) {
                 break;
             }
         }
+        scrollPaneTETRIS.setContent(contentVTETRIS);
 
 
         supprimerCompte.setOnMouseClicked(event -> {
