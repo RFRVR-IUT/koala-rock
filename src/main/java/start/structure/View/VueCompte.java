@@ -134,7 +134,7 @@ public class VueCompte {
         Label labelErreur = new Label();
         labelErreur.getStyleClass().add("LabelError");
         labelErreur.setLayoutX(60);
-        labelErreur.setLayoutY(470);
+        labelErreur.setLayoutY(500);
 
         Button supprimerCompte = new Button("Supprimer Compte");
         supprimerCompte.getStyleClass().add("btnRed");
