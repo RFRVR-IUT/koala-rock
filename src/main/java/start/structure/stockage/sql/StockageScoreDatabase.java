@@ -186,7 +186,7 @@ public class StockageScoreDatabase {
         List<Double> tempsList = new ArrayList<>();
         SQLUtils utils = SQLUtils.getInstance();
         Connection connection = utils.getConnection();
-        String req = "SELECT * FROM scoreTemps WHERE login = ?";
+        String req = "SELECT * FROM scoreTemps WHERE login = ? ORDER BY temps ASC";
         try (
                 PreparedStatement st = connection.prepareStatement(req)
         ) {
