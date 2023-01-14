@@ -18,6 +18,6 @@ public class StartGame extends Application {
     @Override
     public void start(Stage stage) throws IOException, InterruptedException {
         vueDemarrage.screenStart();
-       // Son.playMusic();
+        Son.playMusic();
     }
 }
