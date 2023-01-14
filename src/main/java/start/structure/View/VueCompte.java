@@ -17,6 +17,8 @@ import start.structure.metier.manager.ScoreManager;
 import start.structure.stockage.Session;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
 import java.util.function.Function;
@@ -246,7 +248,14 @@ public class VueCompte {
         buttonModifPassword.setOnAction(event -> {
             if (!Objects.equals(passwordField.getText(), "") && !Objects.equals(passwordField2.getText(), "")) {
                 if (passwordField.getText().equals(passwordField2.getText())) {
-                    PlayerManager.getInstance().updatePlayer(Session.getInstance().getLogin(), passwordField.getText());
+                    String departement;
+                    ArrayList<String> listeDrom = new ArrayList<>(Arrays.asList("971 - Guadeloupe", "972 - Martinique", "973 - Guyane", "974 - La Réunion", "976 - Mayotte"));
+                    if (listeDrom.contains(comboBoxDepartement.getValue())){
+                        departement = comboBoxDepartement.getValue().substring(0,3);
+                    }else {
+                        departement = comboBoxDepartement.getValue().substring(0,2);
+                    }
+                    PlayerManager.getInstance().updatePlayer(Session.getInstance().getLogin(), passwordField.getText(),departement);
                     labelErreur.setText("Mot de passe modifié");
                 } else {
                     labelErreur.setText("Les mots de passe" + "\n" + "ne correspondent pas");

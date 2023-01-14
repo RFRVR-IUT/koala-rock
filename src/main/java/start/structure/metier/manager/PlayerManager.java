@@ -29,12 +29,12 @@ public class PlayerManager {
         stockage.create(p);
     }
 
-    public void updatePlayer(String login, String password/*, String departement*/) {
+    public void updatePlayer(String login, String password, String departement) {
         AuthPlayer p = stockage.getByLogin(login);
         byte[] salt = Security.getSalt();
         p.setSalt(salt);
         p.setPassword(password);
-        //p.setDepartement(departement);
+        p.setDepartement(departement);
         stockage.update(p);
     }
 
