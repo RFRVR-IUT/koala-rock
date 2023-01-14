@@ -17,7 +17,6 @@ import java.io.IOException;
 
 public class VuePerdre {
     private VueJeu vueJeu;
-    Fond fond = new Fond(1280, 720);
 
     public void screenLose(Stage stage) {
 
@@ -32,7 +31,7 @@ public class VuePerdre {
         scene.getStylesheets().add(String.valueOf(RessourcesAccess.class.getResource("css/style.css")));
 
         Label menuScreen = new Label();
-        menuScreen.setGraphic(fond.getChoixFond());
+        menuScreen.setGraphic(Fond.getChoixFond());
 
         Label nameGame = new Label("Vous avez perdu");
         nameGame.getStyleClass().add("nameGame");

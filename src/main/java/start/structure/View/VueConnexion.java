@@ -26,12 +26,11 @@ public class VueConnexion {
     public void affichageVueConnexion(Stage stage) throws IOException {
 
         Pane pane = new Pane();
-        Fond fond = new Fond(1280, 720);
         Scene scene = new Scene(pane, 1280, 720);
         scene.getStylesheets().add(String.valueOf(RessourcesAccess.class.getResource("css/style.css")));
 
         Label menuScreen = new Label();
-        menuScreen.setGraphic(fond.getChoixFond());
+        menuScreen.setGraphic(Fond.getChoixFond());
 
         // CONNEXION //
         Label label = new Label("Connexion");

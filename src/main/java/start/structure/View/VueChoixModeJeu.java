@@ -21,7 +21,6 @@ public class VueChoixModeJeu {
     public void affichageVueChoixModeJeu(Stage stage) throws IOException {
         Pane pane = new Pane();
         Scene scene = new Scene(pane, 1280, 720);
-        Fond fond = new Fond(1280, 720);
         scene.getStylesheets().add(String.valueOf(RessourcesAccess.class.getResource("css/style.css")));
 
         Label labelChoixModeJeu = new Label("Choix du mode de jeu");
@@ -29,10 +28,10 @@ public class VueChoixModeJeu {
         labelChoixModeJeu.setLayoutX(125);
         labelChoixModeJeu.setLayoutY(40);
         labelChoixModeJeu.setFont(new javafx.scene.text.Font("Goldman", 40));
-        labelChoixModeJeu.setTextFill(javafx.scene.paint.Color.WHITE);
+        labelChoixModeJeu.setTextFill(Color.WHITE);
 
         Label menuScreen = new Label();
-        menuScreen.setGraphic(fond.getChoixFond());
+        menuScreen.setGraphic(Fond.getChoixFond());
 
         Button demarrerPartie = new Button("Mode Classic");
         demarrerPartie.getStyleClass().add("buttonEcran");

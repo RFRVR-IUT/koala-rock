@@ -20,7 +20,6 @@ import java.util.Objects;
 
 public class VueMenu {
     private final VueChoixModeJeu vueChoixModeJeu = new VueChoixModeJeu();
-    private final Fond fond = new Fond(1280, 720);
 
     public void demarrerMenu(Stage stage) {
 
@@ -58,7 +57,7 @@ public class VueMenu {
         menuScreenPremierPlan.setGraphic(rectangleImg);
 
         Label menuScreen = new Label();
-        menuScreen.setGraphic(fond.getChoixFond());
+        menuScreen.setGraphic(Fond.getChoixFond());
 
         Label labelError = new Label();
         labelError.getStyleClass().add("LabelError");

@@ -26,31 +26,30 @@ public class VueMeilleurScore {
 
     public void affichageVueMeilleurScore(Stage stage) throws IOException {
         Pane pane = new Pane();
-        Fond fond = new Fond(1280, 720);
         Scene scene = new Scene(pane, 1280, 720);
         scene.getStylesheets().add(String.valueOf(RessourcesAccess.class.getResource("css/style.css")));
 
         Label menuScreen = new Label();
-        menuScreen.setGraphic(fond.getChoixFond());
+        menuScreen.setGraphic(Fond.getChoixFond());
 
         Label labelMeilleurScore = new Label("Meilleurs scores");
         labelMeilleurScore.setLayoutX(480);
         labelMeilleurScore.setLayoutY(40);
         labelMeilleurScore.setFont(new javafx.scene.text.Font("Goldman", 40));
-        labelMeilleurScore.setTextFill(javafx.scene.paint.Color.WHITE);
+        labelMeilleurScore.setTextFill(Color.WHITE);
         labelMeilleurScore.setUnderline(true);
 
         Label labelClassic = new Label("Classic");
         labelClassic.setLayoutX(250);
         labelClassic.setLayoutY(120);
         labelClassic.setFont(new javafx.scene.text.Font("Goldman", 25));
-        labelClassic.setTextFill(javafx.scene.paint.Color.WHITE);
+        labelClassic.setTextFill(Color.WHITE);
 
         Label labelInfini = new Label("Infini");
         labelInfini.setLayoutX(900);
         labelInfini.setLayoutY(120);
         labelInfini.setFont(new javafx.scene.text.Font("Goldman", 25));
-        labelInfini.setTextFill(javafx.scene.paint.Color.WHITE);
+        labelInfini.setTextFill(Color.WHITE);
 
         Line line = new Line();
         line.setStartX(640.0f);
@@ -92,21 +91,21 @@ public class VueMeilleurScore {
                     Label placeInfini = new Label(i + 1 + ".");
 
                     if (i == 0) {
-                        labelScoreInfini.setTextFill(javafx.scene.paint.Color.GOLD);
-                        labelPseudoInfini.setTextFill(javafx.scene.paint.Color.GOLD);
-                        placeInfini.setTextFill(javafx.scene.paint.Color.GOLD);
+                        labelScoreInfini.setTextFill(Color.GOLD);
+                        labelPseudoInfini.setTextFill(Color.GOLD);
+                        placeInfini.setTextFill(Color.GOLD);
                     } else if (i == 1) {
-                        labelScoreInfini.setTextFill(javafx.scene.paint.Color.GRAY);
-                        labelPseudoInfini.setTextFill(javafx.scene.paint.Color.GRAY);
-                        placeInfini.setTextFill(javafx.scene.paint.Color.GRAY);
+                        labelScoreInfini.setTextFill(Color.GRAY);
+                        labelPseudoInfini.setTextFill(Color.GRAY);
+                        placeInfini.setTextFill(Color.GRAY);
                     } else if (i == 2) {
-                        labelScoreInfini.setTextFill(javafx.scene.paint.Color.BROWN);
-                        labelPseudoInfini.setTextFill(javafx.scene.paint.Color.BROWN);
-                        placeInfini.setTextFill(javafx.scene.paint.Color.BROWN);
+                        labelScoreInfini.setTextFill(Color.BROWN);
+                        labelPseudoInfini.setTextFill(Color.BROWN);
+                        placeInfini.setTextFill(Color.BROWN);
                     } else {
-                        labelScoreInfini.setTextFill(javafx.scene.paint.Color.WHITE);
-                        labelPseudoInfini.setTextFill(javafx.scene.paint.Color.WHITE);
-                        placeInfini.setTextFill(javafx.scene.paint.Color.WHITE);
+                        labelScoreInfini.setTextFill(Color.WHITE);
+                        labelPseudoInfini.setTextFill(Color.WHITE);
+                        placeInfini.setTextFill(Color.WHITE);
                     }
 
                     labelScoreInfini.getStyleClass().add("LabelScore");
@@ -138,21 +137,21 @@ public class VueMeilleurScore {
                     Label labelScoreTemps = new Label(String.valueOf(scoresTemps.values().toArray()[j] + " S"));
                     Label placeTemps = new Label(j + 1 + ".");
                     if (j == 0) {
-                        labelScoreTemps.setTextFill(javafx.scene.paint.Color.GOLD);
-                        labelPseudoTemps.setTextFill(javafx.scene.paint.Color.GOLD);
-                        placeTemps.setTextFill(javafx.scene.paint.Color.GOLD);
+                        labelScoreTemps.setTextFill(Color.GOLD);
+                        labelPseudoTemps.setTextFill(Color.GOLD);
+                        placeTemps.setTextFill(Color.GOLD);
                     } else if (j == 1) {
-                        labelScoreTemps.setTextFill(javafx.scene.paint.Color.GRAY);
-                        labelPseudoTemps.setTextFill(javafx.scene.paint.Color.GRAY);
-                        placeTemps.setTextFill(javafx.scene.paint.Color.GRAY);
+                        labelScoreTemps.setTextFill(Color.GRAY);
+                        labelPseudoTemps.setTextFill(Color.GRAY);
+                        placeTemps.setTextFill(Color.GRAY);
                     } else if (j == 2) {
-                        labelScoreTemps.setTextFill(javafx.scene.paint.Color.BROWN);
-                        labelPseudoTemps.setTextFill(javafx.scene.paint.Color.BROWN);
-                        placeTemps.setTextFill(javafx.scene.paint.Color.BROWN);
+                        labelScoreTemps.setTextFill(Color.BROWN);
+                        labelPseudoTemps.setTextFill(Color.BROWN);
+                        placeTemps.setTextFill(Color.BROWN);
                     } else {
-                        labelScoreTemps.setTextFill(javafx.scene.paint.Color.WHITE);
-                        labelPseudoTemps.setTextFill(javafx.scene.paint.Color.WHITE);
-                        placeTemps.setTextFill(javafx.scene.paint.Color.WHITE);
+                        labelScoreTemps.setTextFill(Color.WHITE);
+                        labelPseudoTemps.setTextFill(Color.WHITE);
+                        placeTemps.setTextFill(Color.WHITE);
                     }
 
                     labelScoreTemps.getStyleClass().add("LabelScore");
@@ -192,21 +191,21 @@ public class VueMeilleurScore {
                     Label placeInfini = new Label(i + 1 + ".");
 
                     if (i == 0) {
-                        labelScoreInfini.setTextFill(javafx.scene.paint.Color.GOLD);
-                        labelPseudoInfini.setTextFill(javafx.scene.paint.Color.GOLD);
-                        placeInfini.setTextFill(javafx.scene.paint.Color.GOLD);
+                        labelScoreInfini.setTextFill(Color.GOLD);
+                        labelPseudoInfini.setTextFill(Color.GOLD);
+                        placeInfini.setTextFill(Color.GOLD);
                     } else if (i == 1) {
-                        labelScoreInfini.setTextFill(javafx.scene.paint.Color.GRAY);
-                        labelPseudoInfini.setTextFill(javafx.scene.paint.Color.GRAY);
-                        placeInfini.setTextFill(javafx.scene.paint.Color.GRAY);
+                        labelScoreInfini.setTextFill(Color.GRAY);
+                        labelPseudoInfini.setTextFill(Color.GRAY);
+                        placeInfini.setTextFill(Color.GRAY);
                     } else if (i == 2) {
-                        labelScoreInfini.setTextFill(javafx.scene.paint.Color.BROWN);
-                        labelPseudoInfini.setTextFill(javafx.scene.paint.Color.BROWN);
-                        placeInfini.setTextFill(javafx.scene.paint.Color.BROWN);
+                        labelScoreInfini.setTextFill(Color.BROWN);
+                        labelPseudoInfini.setTextFill(Color.BROWN);
+                        placeInfini.setTextFill(Color.BROWN);
                     } else {
-                        labelScoreInfini.setTextFill(javafx.scene.paint.Color.WHITE);
-                        labelPseudoInfini.setTextFill(javafx.scene.paint.Color.WHITE);
-                        placeInfini.setTextFill(javafx.scene.paint.Color.WHITE);
+                        labelScoreInfini.setTextFill(Color.WHITE);
+                        labelPseudoInfini.setTextFill(Color.WHITE);
+                        placeInfini.setTextFill(Color.WHITE);
                     }
 
                     labelScoreInfini.getStyleClass().add("LabelScore");
@@ -238,21 +237,21 @@ public class VueMeilleurScore {
                     Label labelScoreTemps = new Label(String.valueOf(scoresTemps.values().toArray()[j] + " S"));
                     Label placeTemps = new Label(j + 1 + ".");
                     if (j == 0) {
-                        labelScoreTemps.setTextFill(javafx.scene.paint.Color.GOLD);
-                        labelPseudoTemps.setTextFill(javafx.scene.paint.Color.GOLD);
-                        placeTemps.setTextFill(javafx.scene.paint.Color.GOLD);
+                        labelScoreTemps.setTextFill(Color.GOLD);
+                        labelPseudoTemps.setTextFill(Color.GOLD);
+                        placeTemps.setTextFill(Color.GOLD);
                     } else if (j == 1) {
-                        labelScoreTemps.setTextFill(javafx.scene.paint.Color.GRAY);
-                        labelPseudoTemps.setTextFill(javafx.scene.paint.Color.GRAY);
-                        placeTemps.setTextFill(javafx.scene.paint.Color.GRAY);
+                        labelScoreTemps.setTextFill(Color.GRAY);
+                        labelPseudoTemps.setTextFill(Color.GRAY);
+                        placeTemps.setTextFill(Color.GRAY);
                     } else if (j == 2) {
-                        labelScoreTemps.setTextFill(javafx.scene.paint.Color.BROWN);
-                        labelPseudoTemps.setTextFill(javafx.scene.paint.Color.BROWN);
-                        placeTemps.setTextFill(javafx.scene.paint.Color.BROWN);
+                        labelScoreTemps.setTextFill(Color.BROWN);
+                        labelPseudoTemps.setTextFill(Color.BROWN);
+                        placeTemps.setTextFill(Color.BROWN);
                     } else {
-                        labelScoreTemps.setTextFill(javafx.scene.paint.Color.WHITE);
-                        labelPseudoTemps.setTextFill(javafx.scene.paint.Color.WHITE);
-                        placeTemps.setTextFill(javafx.scene.paint.Color.WHITE);
+                        labelScoreTemps.setTextFill(Color.WHITE);
+                        labelPseudoTemps.setTextFill(Color.WHITE);
+                        placeTemps.setTextFill(Color.WHITE);
                     }
 
                     labelScoreTemps.getStyleClass().add("LabelScore");
@@ -346,21 +345,21 @@ public class VueMeilleurScore {
             Label placeInfini = new Label(i + 1 + ".");
 
             if (i == 0) {
-                labelScoreInfini.setTextFill(javafx.scene.paint.Color.GOLD);
-                labelPseudoInfini.setTextFill(javafx.scene.paint.Color.GOLD);
-                placeInfini.setTextFill(javafx.scene.paint.Color.GOLD);
+                labelScoreInfini.setTextFill(Color.GOLD);
+                labelPseudoInfini.setTextFill(Color.GOLD);
+                placeInfini.setTextFill(Color.GOLD);
             } else if (i == 1) {
-                labelScoreInfini.setTextFill(javafx.scene.paint.Color.GRAY);
-                labelPseudoInfini.setTextFill(javafx.scene.paint.Color.GRAY);
-                placeInfini.setTextFill(javafx.scene.paint.Color.GRAY);
+                labelScoreInfini.setTextFill(Color.GRAY);
+                labelPseudoInfini.setTextFill(Color.GRAY);
+                placeInfini.setTextFill(Color.GRAY);
             } else if (i == 2) {
-                labelScoreInfini.setTextFill(javafx.scene.paint.Color.BROWN);
-                labelPseudoInfini.setTextFill(javafx.scene.paint.Color.BROWN);
-                placeInfini.setTextFill(javafx.scene.paint.Color.BROWN);
+                labelScoreInfini.setTextFill(Color.BROWN);
+                labelPseudoInfini.setTextFill(Color.BROWN);
+                placeInfini.setTextFill(Color.BROWN);
             } else {
-                labelScoreInfini.setTextFill(javafx.scene.paint.Color.WHITE);
-                labelPseudoInfini.setTextFill(javafx.scene.paint.Color.WHITE);
-                placeInfini.setTextFill(javafx.scene.paint.Color.WHITE);
+                labelScoreInfini.setTextFill(Color.WHITE);
+                labelPseudoInfini.setTextFill(Color.WHITE);
+                placeInfini.setTextFill(Color.WHITE);
             }
 
             labelScoreInfini.getStyleClass().add("LabelScore");
@@ -392,21 +391,21 @@ public class VueMeilleurScore {
             Label labelScoreTemps = new Label(String.valueOf(scoresTemps.values().toArray()[j] + " S"));
             Label placeTemps = new Label(j + 1 + ".");
             if (j == 0) {
-                labelScoreTemps.setTextFill(javafx.scene.paint.Color.GOLD);
-                labelPseudoTemps.setTextFill(javafx.scene.paint.Color.GOLD);
-                placeTemps.setTextFill(javafx.scene.paint.Color.GOLD);
+                labelScoreTemps.setTextFill(Color.GOLD);
+                labelPseudoTemps.setTextFill(Color.GOLD);
+                placeTemps.setTextFill(Color.GOLD);
             } else if (j == 1) {
-                labelScoreTemps.setTextFill(javafx.scene.paint.Color.GRAY);
-                labelPseudoTemps.setTextFill(javafx.scene.paint.Color.GRAY);
-                placeTemps.setTextFill(javafx.scene.paint.Color.GRAY);
+                labelScoreTemps.setTextFill(Color.GRAY);
+                labelPseudoTemps.setTextFill(Color.GRAY);
+                placeTemps.setTextFill(Color.GRAY);
             } else if (j == 2) {
-                labelScoreTemps.setTextFill(javafx.scene.paint.Color.BROWN);
-                labelPseudoTemps.setTextFill(javafx.scene.paint.Color.BROWN);
-                placeTemps.setTextFill(javafx.scene.paint.Color.BROWN);
+                labelScoreTemps.setTextFill(Color.BROWN);
+                labelPseudoTemps.setTextFill(Color.BROWN);
+                placeTemps.setTextFill(Color.BROWN);
             } else {
-                labelScoreTemps.setTextFill(javafx.scene.paint.Color.WHITE);
-                labelPseudoTemps.setTextFill(javafx.scene.paint.Color.WHITE);
-                placeTemps.setTextFill(javafx.scene.paint.Color.WHITE);
+                labelScoreTemps.setTextFill(Color.WHITE);
+                labelPseudoTemps.setTextFill(Color.WHITE);
+                placeTemps.setTextFill(Color.WHITE);
             }
 
             labelScoreTemps.getStyleClass().add("LabelScore");

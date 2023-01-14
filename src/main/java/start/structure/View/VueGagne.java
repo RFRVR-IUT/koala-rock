@@ -17,8 +17,6 @@ import start.structure.stockage.Session;
 import java.io.IOException;
 
 public class VueGagne {
-
-    Fond fond = new Fond(1280, 720);
     private VueJeu vueJeu;
 
     public void screenWin(IntegerProperty scoreProperty, Stage stage) {
@@ -32,7 +30,7 @@ public class VueGagne {
         borderPane.setCenter(pane);
 
         Label menuScreen = new Label();
-        menuScreen.setGraphic(fond.getChoixFond());
+        menuScreen.setGraphic(Fond.getChoixFond());
 
         Scene scene = new Scene(borderPane, 1280, 720);
         scene.getStylesheets().add(String.valueOf(RessourcesAccess.class.getResource("css/style.css")));

@@ -20,23 +20,35 @@ import java.util.Objects;
 
 public class Fond extends Group {
     private static String choixFond = "Défaut";
+    private static Fond instance = null;
 
-    public Fond(int width, int height) {
-        Rectangle fond = new Rectangle(width, height);
-        fond.setFill(setChoixFond_Img(choixFond));
-        this.getChildren().add(fond);
+    public Fond() {
     }
 
-    public String getNomChoixFond() {
+    public static Fond getInstance() {
+        if (instance == null) {
+            instance = new Fond();
+        }
+        return instance;
+    }
+
+    public static String getNomChoixFond() {
         return choixFond;
     }
 
     public static void setChoixFond(String choixFond) {
+        Rectangle fond = new Rectangle(1280, 720);
+        fond.setFill(setChoixFond_Img(choixFond));
+        Fond.getInstance().getChildren().add(fond);
         Fond.choixFond = choixFond;
     }
 
-    public Node getChoixFond() {
-        return this.getChildren().get(0);
+    public static Node getChoixFond() {
+        if (Fond.getInstance().getChildren().isEmpty()) {
+            Fond.setChoixFond(Fond.getNomChoixFond());
+        }
+        return Fond.getInstance().getChildren().get(0);
+
     }
 
     /**
@@ -45,7 +57,7 @@ public class Fond extends Group {
      * @param choixFond
      * @return
      */
-    public Paint setChoixFond_Img(String choixFond) {
+    public static Paint setChoixFond_Img(String choixFond) {
         return switch (choixFond) {
             case "Défaut" ->
                     new ImagePattern(new Image(Objects.requireNonNull(RessourcesAccess.class.getResourceAsStream("fond/star.jpeg"))));
