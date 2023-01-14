@@ -98,7 +98,7 @@ public class StockageScoreDatabase {
         Score score = null;
         SQLUtils utils = SQLUtils.getInstance();
         Connection connection = utils.getConnection();
-        String req = "SELECT * FROM SCORES WHERE login = ? AND codeJeu = ? ORDER BY score";
+        String req = "SELECT * FROM SCORES WHERE login = ? AND codeJeu = ? ORDER BY score DESC";
         try (
                 PreparedStatement st = connection.prepareStatement(req)
         ) {
@@ -109,6 +109,8 @@ public class StockageScoreDatabase {
                     int scoreValue = result.getInt("score");
                     Timestamp time = result.getTimestamp("horodatage");
                     int id = result.getInt("codeScore");
+                    System.out.println(login);
+                    System.out.println(scoreValue);
                     score = new Score(scoreValue, time);
                     score.setId(id);
                     score.setLogin(login);
