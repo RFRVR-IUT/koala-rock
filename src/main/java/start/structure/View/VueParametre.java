@@ -210,9 +210,8 @@ public class VueParametre {
         labelError.setLayoutX(510);
         labelError.setLayoutY(250);
 
-        Button buttonHide = new Button("quitter et sauvegarder");
-        buttonHide.getStyleClass().add("buttonEcran");
-        buttonHide.setStyle("-fx-font-size: 12px; -fx-pref-width: 200px; -fx-pref-height: 30px;");
+        Button buttonHide = new Button("Quitter / Sauvegarder");
+        buttonHide.getStyleClass().add("btnGrey");
         buttonHide.setLayoutX(540);
         buttonHide.setLayoutY(620);
 

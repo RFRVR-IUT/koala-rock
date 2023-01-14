@@ -447,10 +447,10 @@ public class StockageScoreDatabase {
     }
 
     public Map<Integer,Double> getAllTempsByDepartement(String numDepartement){
-        Map<Integer,Double> temps = new HashMap<>();
+        Map<Integer,Double> temps = new LinkedHashMap<>();
         SQLUtils utils = SQLUtils.getInstance();
         Connection connection = utils.getConnection();
-        String req = "SELECT * FROM scoreTemps WHERE login IN (SELECT login FROM Joueurs WHERE numDepartement = ?) ORDER BY temps";
+        String req = "SELECT * FROM scoreTemps WHERE login IN (SELECT login FROM Joueurs WHERE numDepartement = ?) ORDER BY temps ASC";
         try (
                 PreparedStatement st = connection.prepareStatement(req);
         ) {
