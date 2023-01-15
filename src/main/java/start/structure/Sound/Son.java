@@ -2,10 +2,15 @@ package start.structure.Sound;
 
 import start.structure.RessourcesAccess;
 
-import javax.print.attribute.standard.Media;
+
 import javax.sound.sampled.AudioInputStream;
 import javax.sound.sampled.AudioSystem;
 import javax.sound.sampled.Clip;
+
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
+import javafx.util.Duration;
+
 import java.io.File;
 import java.net.URISyntaxException;
 import java.util.Objects;

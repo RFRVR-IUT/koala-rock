@@ -5,6 +5,7 @@ module start.structure.Client {
     requires javafx.fxml;
     requires java.desktop;
     requires java.sql;
+    requires javafx.media;
 
 
     opens start.structure.Client to javafx.fxml;
