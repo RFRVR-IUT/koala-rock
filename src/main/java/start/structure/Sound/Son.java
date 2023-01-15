@@ -2,6 +2,7 @@ package start.structure.Sound;
 
 import start.structure.RessourcesAccess;
 
+import javax.print.attribute.standard.Media;
 import javax.sound.sampled.AudioInputStream;
 import javax.sound.sampled.AudioSystem;
 import javax.sound.sampled.Clip;
@@ -10,15 +11,18 @@ import java.net.URISyntaxException;
 import java.util.Objects;
 
 public class Son {
-
+    private static Media gameMusic;
 
     public static void playMusic() {
         try {
             File musicPath;
             if (OsCheck.getOperatingSystemType() == OsCheck.OSType.MacOS || OsCheck.getOperatingSystemType() == OsCheck.OSType.Linux) {
                 musicPath = new File(Objects.requireNonNull(RessourcesAccess.class.getResource("son/fond.wav")).toURI());
+                // gameMusic = new Media(Objects.requireNonNull(String.valueOf(RessourcesAccess.class.getResource("son/fond.wav"))));
+
             } else {
-                musicPath = new File("src\\main\\java\\start\\structure\\Sound\\fond.wav");
+                musicPath = new File(Objects.requireNonNull(RessourcesAccess.class.getResource("son\\fond.wav")).toURI());
+
             }
             if (musicPath.exists()) {
                 AudioInputStream audioInput = AudioSystem.getAudioInputStream(musicPath);
@@ -26,7 +30,6 @@ public class Son {
                 clip.open(audioInput);
                 clip.start();
                 clip.loop(Clip.LOOP_CONTINUOUSLY);
-            } else {
             }
         } catch (Exception e) {
             e.printStackTrace();
@@ -38,7 +41,7 @@ public class Son {
         if (OsCheck.getOperatingSystemType() == OsCheck.OSType.MacOS || OsCheck.getOperatingSystemType() == OsCheck.OSType.Linux) {
             soundFile = new File(Objects.requireNonNull(RessourcesAccess.class.getResource("son/jump.wav")).toURI());
         } else {
-            soundFile = new File("src\\main\\java\\start\\structure\\Sound\\jump.wav");
+            soundFile = new File(Objects.requireNonNull(RessourcesAccess.class.getResource("son\\jump.wav")).toURI());
         }
         try {
             AudioInputStream audioIn = AudioSystem.getAudioInputStream(soundFile);
@@ -55,7 +58,7 @@ public class Son {
         if (OsCheck.getOperatingSystemType() == OsCheck.OSType.MacOS || OsCheck.getOperatingSystemType() == OsCheck.OSType.Linux) {
             soundFile = new File(Objects.requireNonNull(RessourcesAccess.class.getResource("son/point.wav")).toURI());
         } else {
-            soundFile = new File("src\\main\\java\\start\\structure\\Sound\\point.wav");
+            soundFile = new File(Objects.requireNonNull(RessourcesAccess.class.getResource("son\\point.wav")).toURI());
         }
         try {
             AudioInputStream audioIn = AudioSystem.getAudioInputStream(soundFile);

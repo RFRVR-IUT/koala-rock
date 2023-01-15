@@ -9,12 +9,12 @@ import javafx.scene.paint.Color;
 import javafx.scene.shape.Line;
 import javafx.scene.shape.Rectangle;
 import javafx.stage.Stage;
+import start.structure.Metier.entite.Score;
+import start.structure.Metier.manager.PlayerManager;
+import start.structure.Metier.manager.ScoreManager;
 import start.structure.Model.Fond;
 import start.structure.RessourcesAccess;
-import start.structure.metier.entite.Score;
-import start.structure.metier.manager.PlayerManager;
-import start.structure.metier.manager.ScoreManager;
-import start.structure.stockage.Session;
+import start.structure.Stockage.Session;
 
 import java.io.IOException;
 import java.util.ArrayList;

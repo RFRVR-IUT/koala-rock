@@ -1,6 +1,6 @@
-package start.structure.stockage.sql; //Votre package ici.
+package start.structure.Stockage.sql; //Votre package ici.
 
-import start.structure.metier.entite.AuthPlayer;
+import start.structure.Metier.entite.AuthPlayer;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;

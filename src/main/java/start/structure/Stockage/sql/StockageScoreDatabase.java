@@ -1,9 +1,12 @@
-package start.structure.stockage.sql; //Votre package ici.
+package start.structure.Stockage.sql; //Votre package ici.
 
-import start.structure.metier.entite.Score;
+import start.structure.Metier.entite.Score;
 
 import java.sql.*;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.LinkedHashMap;
+import java.util.List;
+import java.util.Map;
 
 public class StockageScoreDatabase {
 

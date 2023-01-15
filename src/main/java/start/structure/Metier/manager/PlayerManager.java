@@ -1,9 +1,9 @@
-package start.structure.metier.manager; //Votre package ici.
+package start.structure.Metier.manager; //Votre package ici.
 
 
-import start.structure.metier.entite.AuthPlayer;
-import start.structure.stockage.Security;
-import start.structure.stockage.sql.StockagePlayerDatabase;
+import start.structure.Metier.entite.AuthPlayer;
+import start.structure.Stockage.Security;
+import start.structure.Stockage.sql.StockagePlayerDatabase;
 
 import java.util.List;
 

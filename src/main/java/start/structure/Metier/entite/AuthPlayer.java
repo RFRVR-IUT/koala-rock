@@ -1,6 +1,6 @@
-package start.structure.metier.entite; //Votre package ici.
+package start.structure.Metier.entite; //Votre package ici.
 
-import start.structure.stockage.Security;
+import start.structure.Stockage.Security;
 
 import java.security.InvalidKeyException;
 import java.security.NoSuchAlgorithmException;

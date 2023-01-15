@@ -1,4 +1,4 @@
-package start.structure.stockage; //Votre package ici.
+package start.structure.Stockage; //Votre package ici.
 
 import javax.crypto.Mac;
 import javax.crypto.spec.SecretKeySpec;

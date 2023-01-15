@@ -12,7 +12,7 @@ import javafx.scene.shape.Rectangle;
 import javafx.stage.Stage;
 import start.structure.Model.Fond;
 import start.structure.RessourcesAccess;
-import start.structure.stockage.Session;
+import start.structure.Stockage.Session;
 
 import java.io.IOException;
 

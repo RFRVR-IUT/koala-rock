@@ -1,4 +1,4 @@
-package start.structure.metier.entite; //Votre package ici.
+package start.structure.Metier.entite; //Votre package ici.
 
 import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.SimpleIntegerProperty;

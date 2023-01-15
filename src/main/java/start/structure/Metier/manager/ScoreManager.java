@@ -1,7 +1,7 @@
-package start.structure.metier.manager; //Votre package ici.
+package start.structure.Metier.manager; //Votre package ici.
 
-import start.structure.metier.entite.Score;
-import start.structure.stockage.sql.StockageScoreDatabase;
+import start.structure.Metier.entite.Score;
+import start.structure.Stockage.sql.StockageScoreDatabase;
 
 import java.util.List;
 import java.util.Map;

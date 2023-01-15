@@ -7,12 +7,12 @@ import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 import javafx.stage.Stage;
+import start.structure.Metier.entite.AuthPlayer;
+import start.structure.Metier.manager.PlayerManager;
 import start.structure.Model.Fond;
 import start.structure.RessourcesAccess;
-import start.structure.metier.entite.AuthPlayer;
-import start.structure.metier.manager.PlayerManager;
-import start.structure.stockage.Security;
-import start.structure.stockage.Session;
+import start.structure.Stockage.Security;
+import start.structure.Stockage.Session;
 
 import java.io.IOException;
 import java.security.InvalidKeyException;

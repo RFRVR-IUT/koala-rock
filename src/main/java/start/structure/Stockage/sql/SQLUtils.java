@@ -1,4 +1,4 @@
-package start.structure.stockage.sql;
+package start.structure.Stockage.sql;
 
 import java.sql.*;
 
