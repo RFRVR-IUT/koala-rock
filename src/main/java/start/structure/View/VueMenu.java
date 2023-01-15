@@ -69,9 +69,9 @@ public class VueMenu {
         copyRight.setLayoutX(880);
         copyRight.setLayoutY(590);
 
-        Label client = new Label("Arcadia Games");
+        Label client = new Label("CG games project");
         client.getStyleClass().add("copyRight");
-        client.setLayoutX(1080);
+        client.setLayoutX(1060);
         client.setLayoutY(560);
 
         Label copyRightName = new Label("Réalisé par : Célyan, Joris, Killian, Simon, Valentin");
