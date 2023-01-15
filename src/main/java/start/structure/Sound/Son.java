@@ -1,75 +1,72 @@
 package start.structure.Sound;
 
-import start.structure.RessourcesAccess;
-
-
-import javax.sound.sampled.AudioInputStream;
-import javax.sound.sampled.AudioSystem;
-import javax.sound.sampled.Clip;
-
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
-import javafx.util.Duration;
+import start.structure.RessourcesAccess;
 
-import java.io.File;
-import java.net.URISyntaxException;
 import java.util.Objects;
 
 public class Son {
     private static Media gameMusic;
+    private static Media jumpMusic;
+    private static Media pointMusic;
+    private static MediaPlayer mediaPlayer;
 
     public static void playMusic() {
         try {
-            File musicPath;
             if (OsCheck.getOperatingSystemType() == OsCheck.OSType.MacOS || OsCheck.getOperatingSystemType() == OsCheck.OSType.Linux) {
-                musicPath = new File(Objects.requireNonNull(RessourcesAccess.class.getResource("son/fond.wav")).toURI());
-                // gameMusic = new Media(Objects.requireNonNull(String.valueOf(RessourcesAccess.class.getResource("son/fond.wav"))));
-
+                gameMusic = new Media(Objects.requireNonNull(String.valueOf(RessourcesAccess.class.getResource("son/fond.wav"))));
+                mediaPlayer = new MediaPlayer(gameMusic);
             } else {
-                musicPath = new File(Objects.requireNonNull(RessourcesAccess.class.getResource("son\\fond.wav")).toURI());
-
+                gameMusic = new Media(Objects.requireNonNull(String.valueOf(RessourcesAccess.class.getResource("son\\fond.wav"))));
+                mediaPlayer = new MediaPlayer(gameMusic);
             }
-            if (musicPath.exists()) {
-                AudioInputStream audioInput = AudioSystem.getAudioInputStream(musicPath);
-                Clip clip = AudioSystem.getClip();
-                clip.open(audioInput);
-                clip.start();
-                clip.loop(Clip.LOOP_CONTINUOUSLY);
+            if (gameMusic != null) {
+                mediaPlayer.setAutoPlay(true);
+                mediaPlayer.setCycleCount(MediaPlayer.INDEFINITE);
+                mediaPlayer.setVolume(0.1);
+                mediaPlayer.play();
             }
         } catch (Exception e) {
             e.printStackTrace();
         }
     }
 
-    public static void jump() throws URISyntaxException {
-        File soundFile;
-        if (OsCheck.getOperatingSystemType() == OsCheck.OSType.MacOS || OsCheck.getOperatingSystemType() == OsCheck.OSType.Linux) {
-            soundFile = new File(Objects.requireNonNull(RessourcesAccess.class.getResource("son/jump.wav")).toURI());
-        } else {
-            soundFile = new File(Objects.requireNonNull(RessourcesAccess.class.getResource("son\\jump.wav")).toURI());
-        }
+    public static void jump() {
         try {
-            AudioInputStream audioIn = AudioSystem.getAudioInputStream(soundFile);
-            Clip clip = AudioSystem.getClip();
-            clip.open(audioIn);
-            clip.start();
+            if (OsCheck.getOperatingSystemType() == OsCheck.OSType.MacOS || OsCheck.getOperatingSystemType() == OsCheck.OSType.Linux) {
+                jumpMusic = new Media(Objects.requireNonNull(String.valueOf(RessourcesAccess.class.getResource("son/jump.wav"))));
+                mediaPlayer = new MediaPlayer(jumpMusic);
+            } else {
+                jumpMusic = new Media(Objects.requireNonNull(String.valueOf(RessourcesAccess.class.getResource("son\\jump.wav"))));
+                mediaPlayer = new MediaPlayer(jumpMusic);
+            }
+            if (jumpMusic != null) {
+                mediaPlayer.setAutoPlay(true);
+                mediaPlayer.setCycleCount(1);
+                mediaPlayer.setVolume(0.1);
+                mediaPlayer.play();
+            }
         } catch (Exception e) {
             e.printStackTrace();
         }
     }
 
-    public static void point() throws URISyntaxException {
-        File soundFile;
-        if (OsCheck.getOperatingSystemType() == OsCheck.OSType.MacOS || OsCheck.getOperatingSystemType() == OsCheck.OSType.Linux) {
-            soundFile = new File(Objects.requireNonNull(RessourcesAccess.class.getResource("son/point.wav")).toURI());
-        } else {
-            soundFile = new File(Objects.requireNonNull(RessourcesAccess.class.getResource("son\\point.wav")).toURI());
-        }
+    public static void point() {
         try {
-            AudioInputStream audioIn = AudioSystem.getAudioInputStream(soundFile);
-            Clip clip = AudioSystem.getClip();
-            clip.open(audioIn);
-            clip.start();
+            if (OsCheck.getOperatingSystemType() == OsCheck.OSType.MacOS || OsCheck.getOperatingSystemType() == OsCheck.OSType.Linux) {
+                pointMusic = new Media(Objects.requireNonNull(String.valueOf(RessourcesAccess.class.getResource("son/point.wav"))));
+                mediaPlayer = new MediaPlayer(pointMusic);
+            } else {
+                pointMusic = new Media(Objects.requireNonNull(String.valueOf(RessourcesAccess.class.getResource("son\\jump.wav"))));
+                mediaPlayer = new MediaPlayer(pointMusic);
+            }
+            if (pointMusic != null) {
+                mediaPlayer.setAutoPlay(true);
+                mediaPlayer.setCycleCount(1);
+                mediaPlayer.setVolume(0.1);
+                mediaPlayer.play();
+            }
         } catch (Exception e) {
             e.printStackTrace();
         }
