@@ -14,8 +14,8 @@ public class Son {
 
     public static void playMusic() {
         try {
-                gameMusic = new Media(Objects.requireNonNull(String.valueOf(RessourcesAccess.class.getResource("son/fond.wav"))));
-                mediaPlayer = new MediaPlayer(gameMusic);
+            gameMusic = new Media(Objects.requireNonNull(String.valueOf(RessourcesAccess.class.getResource("son/fond.wav"))));
+            mediaPlayer = new MediaPlayer(gameMusic);
             if (gameMusic != null) {
                 mediaPlayer.setAutoPlay(true);
                 mediaPlayer.setCycleCount(MediaPlayer.INDEFINITE);
@@ -29,8 +29,8 @@ public class Son {
 
     public static void jump() {
         try {
-                jumpMusic = new Media(Objects.requireNonNull(String.valueOf(RessourcesAccess.class.getResource("son/jump.wav"))));
-                mediaPlayer = new MediaPlayer(jumpMusic);
+            jumpMusic = new Media(Objects.requireNonNull(String.valueOf(RessourcesAccess.class.getResource("son/jump.wav"))));
+            mediaPlayer = new MediaPlayer(jumpMusic);
             if (jumpMusic != null) {
                 mediaPlayer.setAutoPlay(true);
                 mediaPlayer.setCycleCount(1);
@@ -44,8 +44,8 @@ public class Son {
 
     public static void point() {
         try {
-                pointMusic = new Media(Objects.requireNonNull(String.valueOf(RessourcesAccess.class.getResource("son/point.wav"))));
-                mediaPlayer = new MediaPlayer(pointMusic);
+            pointMusic = new Media(Objects.requireNonNull(String.valueOf(RessourcesAccess.class.getResource("son/point.wav"))));
+            mediaPlayer = new MediaPlayer(pointMusic);
             if (pointMusic != null) {
                 mediaPlayer.setAutoPlay(true);
                 mediaPlayer.setCycleCount(1);

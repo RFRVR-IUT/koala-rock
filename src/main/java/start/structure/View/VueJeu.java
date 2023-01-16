@@ -652,7 +652,7 @@ public class VueJeu {
                     button_Droite.setGraphic(image_Droite);
                     button_Espace.setGraphic(image_Espace_Click);
                     if (!personnePrincipale.isEstEnSaut()) {
-                            Son.jump();
+                        Son.jump();
                         PauseTransition pause = new PauseTransition(Duration.seconds(0.8));
                         personnePrincipale.jump();
                         personnePrincipale.setaEuSonScore(false);

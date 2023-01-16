@@ -60,6 +60,7 @@ public class ScoreManager {
     public List<Score> getScoresTRON() {
         return stockage.getAllTRON();
     }
+
     public List<Score> getScoresCB() {
         return stockage.getAllCB();
     }
@@ -69,24 +70,27 @@ public class ScoreManager {
     }
 
 
-    public Map<Integer,Double> getScoresTemps(){ return stockage.getAllTemps(); }
+    public Map<Integer, Double> getScoresTemps() {
+        return stockage.getAllTemps();
+    }
 
     public String getLoginTemps(int id) {
         return stockage.getLoginTemps(id);
     }
+
     public int getDernierCode() {
         return stockage.getDernierCode();
     }
 
-    public void addTemps(double temps,String login) {
-        stockage.addTemps(temps,login);
+    public void addTemps(double temps, String login) {
+        stockage.addTemps(temps, login);
     }
 
     public List<Double> getTempsByLogin(String login) {
         return stockage.getTempsByLogin(login);
     }
 
-    public Map<Integer,Double> getAllTempsByDepartement(String departement) {
+    public Map<Integer, Double> getAllTempsByDepartement(String departement) {
         return stockage.getAllTempsByDepartement(departement);
     }
 

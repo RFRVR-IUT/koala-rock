@@ -46,7 +46,7 @@ public class VueParametre {
         comboBoxJoueurPrincipale.setStyle("-fx-font-size: 12px; -fx-pref-width: 130px; -fx-pref-height: 20px;");
         if (Session.getInstance().getLogin() != null) {
             if (ScoreManager.getInstance().getHighScoreByLogin(Session.getInstance().getLogin()) != null) {
-                if (ScoreManager.getInstance().getHighScoreByLogin(Session.getInstance().getLogin()).getScore()> 10) {
+                if (ScoreManager.getInstance().getHighScoreByLogin(Session.getInstance().getLogin()).getScore() > 10) {
                     comboBoxJoueurPrincipale.getItems().add("Samurai");
                 }
             }

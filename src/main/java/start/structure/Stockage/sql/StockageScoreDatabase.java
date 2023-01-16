@@ -236,52 +236,52 @@ public class StockageScoreDatabase {
         return scoreList;
     }
 
-    public Map<Integer,Double> getAllTemps() {
-        Map<Integer,Double> scoreList = new LinkedHashMap<>();
+    public Map<Integer, Double> getAllTemps() {
+        Map<Integer, Double> scoreList = new LinkedHashMap<>();
         SQLUtils utils = SQLUtils.getInstance();
         Connection connection = utils.getConnection();
         String req = "SELECT * FROM scoreTemps ORDER BY temps ASC";
-        try (PreparedStatement st = connection.prepareStatement(req)){
-            try(ResultSet result = st.executeQuery()){
-                while (result.next()){
+        try (PreparedStatement st = connection.prepareStatement(req)) {
+            try (ResultSet result = st.executeQuery()) {
+                while (result.next()) {
                     int id = result.getInt("codeScore");
                     double temps = result.getDouble("temps");
                     String login = result.getString("login");
-                    scoreList.put(id,temps);
+                    scoreList.put(id, temps);
                 }
             }
-        }catch (SQLException e){
+        } catch (SQLException e) {
             e.printStackTrace();
         }
         return scoreList;
     }
 
-    public String getLoginTemps(int id){
+    public String getLoginTemps(int id) {
         String res = "";
         SQLUtils utils = SQLUtils.getInstance();
         Connection connection = utils.getConnection();
         String req = "SELECT * FROM scoreTemps WHERE codeScore = ?";
-        try (PreparedStatement st = connection.prepareStatement(req)){
-            st.setInt(1,id);
-            try(ResultSet result = st.executeQuery()){
-                if (result.next()){
+        try (PreparedStatement st = connection.prepareStatement(req)) {
+            st.setInt(1, id);
+            try (ResultSet result = st.executeQuery()) {
+                if (result.next()) {
                     res = result.getString("login");
                 }
             }
         } catch (SQLException e) {
-                throw new RuntimeException(e);
+            throw new RuntimeException(e);
         }
         return res;
     }
 
-    public int getDernierCode(){
+    public int getDernierCode() {
         int res = 0;
         SQLUtils utils = SQLUtils.getInstance();
         Connection connection = utils.getConnection();
         String req = "SELECT * FROM scoreTemps ORDER BY codeScore DESC";
-        try (PreparedStatement st = connection.prepareStatement(req)){
-            try(ResultSet result = st.executeQuery()){
-                if (result.next()){
+        try (PreparedStatement st = connection.prepareStatement(req)) {
+            try (ResultSet result = st.executeQuery()) {
+                if (result.next()) {
                     res = result.getInt("codeScore");
                 }
             }
@@ -291,14 +291,14 @@ public class StockageScoreDatabase {
         return res;
     }
 
-    public void addTemps(double temps, String login){
+    public void addTemps(double temps, String login) {
         SQLUtils utils = SQLUtils.getInstance();
         Connection connection = utils.getConnection();
         String req = "INSERT INTO scoreTemps (codeScore,temps,login) VALUES (?,?,?)";
-        try (PreparedStatement st = connection.prepareStatement(req)){
-            st.setInt(1,getDernierCode()+1);
-            st.setDouble(2,temps);
-            st.setString(3,login);
+        try (PreparedStatement st = connection.prepareStatement(req)) {
+            st.setInt(1, getDernierCode() + 1);
+            st.setDouble(2, temps);
+            st.setString(3, login);
             st.executeUpdate();
         } catch (SQLException e) {
             throw new RuntimeException(e);
@@ -306,15 +306,7 @@ public class StockageScoreDatabase {
     }
 
     /**
-     *
-     *
-     *
-     *
      * TRON
-     *
-     *
-     *
-     *
      */
     public List<Score> getAllTRON() {
         List<Score> scoreList = new ArrayList<>();
@@ -322,10 +314,10 @@ public class StockageScoreDatabase {
         Connection connection = utils.getConnection();
         String req = "SELECT * FROM SCORES WHERE codeJeu = ? ORDER BY score DESC";
         try (
-                PreparedStatement st = connection.prepareStatement(req);
+                PreparedStatement st = connection.prepareStatement(req)
         ) {
             st.setString(1, Score.getGameCodeTRON());
-            try (ResultSet result = st.executeQuery();) {
+            try (ResultSet result = st.executeQuery()) {
                 while (result.next()) {
                     int id = result.getInt("codeScore");
                     int scoreValue = result.getInt("score");
@@ -344,15 +336,7 @@ public class StockageScoreDatabase {
     }
 
     /**
-     *
-     *
-     *
-     *
      * CB
-     *
-     *
-     *
-     *
      */
     public List<Score> getAllCB() {
         List<Score> scoreList = new ArrayList<>();
@@ -360,10 +344,10 @@ public class StockageScoreDatabase {
         Connection connection = utils.getConnection();
         String req = "SELECT * FROM SCORES WHERE codeJeu = ? ORDER BY score DESC";
         try (
-                PreparedStatement st = connection.prepareStatement(req);
+                PreparedStatement st = connection.prepareStatement(req)
         ) {
             st.setString(1, Score.getGameCodeCB());
-            try (ResultSet result = st.executeQuery();) {
+            try (ResultSet result = st.executeQuery()) {
                 while (result.next()) {
                     int id = result.getInt("codeScore");
                     int scoreValue = result.getInt("score");
@@ -382,15 +366,7 @@ public class StockageScoreDatabase {
     }
 
     /**
-     *
-     *
-     *
-     *
      * TETRIS
-     *
-     *
-     *
-     *
      */
 
     public List<Score> getAllTETRIS() {
@@ -399,10 +375,10 @@ public class StockageScoreDatabase {
         Connection connection = utils.getConnection();
         String req = "SELECT * FROM SCORES WHERE codeJeu = ? ORDER BY score DESC";
         try (
-                PreparedStatement st = connection.prepareStatement(req);
+                PreparedStatement st = connection.prepareStatement(req)
         ) {
             st.setString(1, Score.getGameCodeTETRIS());
-            try (ResultSet result = st.executeQuery();) {
+            try (ResultSet result = st.executeQuery()) {
                 while (result.next()) {
                     int id = result.getInt("codeScore");
                     int scoreValue = result.getInt("score");
@@ -421,17 +397,17 @@ public class StockageScoreDatabase {
     }
 
 
-    public List<Score> getAllByDepartement(String numDepartement){
+    public List<Score> getAllByDepartement(String numDepartement) {
         ArrayList<Score> scores = new ArrayList<>();
         SQLUtils utils = SQLUtils.getInstance();
         Connection connection = utils.getConnection();
         String req = "SELECT * FROM scores WHERE codeJeu = ? AND login IN (SELECT login FROM Joueurs WHERE numDepartement = ?) ORDER BY score DESC";
         try (
-                PreparedStatement st = connection.prepareStatement(req);
+                PreparedStatement st = connection.prepareStatement(req)
         ) {
             st.setString(1, Score.getGameCode());
             st.setString(2, numDepartement);
-            try (ResultSet result = st.executeQuery();) {
+            try (ResultSet result = st.executeQuery()) {
                 while (result.next()) {
                     int id = result.getInt("codeScore");
                     int scoreValue = result.getInt("score");
@@ -449,25 +425,25 @@ public class StockageScoreDatabase {
         return scores;
     }
 
-    public Map<Integer,Double> getAllTempsByDepartement(String numDepartement){
-        Map<Integer,Double> temps = new LinkedHashMap<>();
+    public Map<Integer, Double> getAllTempsByDepartement(String numDepartement) {
+        Map<Integer, Double> temps = new LinkedHashMap<>();
         SQLUtils utils = SQLUtils.getInstance();
         Connection connection = utils.getConnection();
         String req = "SELECT * FROM scoreTemps WHERE login IN (SELECT login FROM Joueurs WHERE numDepartement = ?) ORDER BY temps ASC";
         try (
-                PreparedStatement st = connection.prepareStatement(req);
+                PreparedStatement st = connection.prepareStatement(req)
         ) {
             st.setString(1, numDepartement);
-            try (ResultSet result = st.executeQuery();) {
+            try (ResultSet result = st.executeQuery()) {
                 while (result.next()) {
                     int id = result.getInt("codeScore");
                     double tempsValue = result.getDouble("temps");
-                    temps.put(id,tempsValue);
+                    temps.put(id, tempsValue);
                 }
             }
         } catch (SQLException e) {
             e.printStackTrace();
-    }
+        }
         return temps;
     }
 }
