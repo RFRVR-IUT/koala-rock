@@ -425,7 +425,7 @@ public class VueJeu {
                     throw new RuntimeException(e);
                 }
                 if (personnePrincipale.getLayoutX() == 305 && personnePrincipale.getLayoutY() == 94 || personnePrincipale.getLayoutX() == 300 && personnePrincipale.getLayoutY() == 94 || personnePrincipale.getLayoutX() == 295 && personnePrincipale.getLayoutY() == 94 || personnePrincipale.getLayoutX() == 290 && personnePrincipale.getLayoutY() == 94) {
-                    if (getVie().getValue() > 1) {
+                    if (getVie().getValue() > 0) {
                         personnePrincipale.setLayoutX(20 * 10);
                         personnePrincipale.setLayoutY(545);
                         getScore().setValue(getScore().getValue() + 1000);
