@@ -1,6 +1,9 @@
 package start.structure.View;
 
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
+import javafx.scene.control.Label;
+import javafx.scene.control.TextField;
 import javafx.scene.control.*;
 import javafx.scene.effect.DropShadow;
 import javafx.scene.layout.Pane;
@@ -14,6 +17,8 @@ import start.structure.RessourcesAccess;
 import start.structure.Stockage.Security;
 import start.structure.Stockage.Session;
 
+import java.awt.*;
+import java.io.File;
 import java.io.IOException;
 import java.security.InvalidKeyException;
 import java.security.NoSuchAlgorithmException;
@@ -110,8 +115,8 @@ public class VueConnexion {
 
         Button buttonInscription = new Button("S'inscrire");
         buttonInscription.getStyleClass().add("btnGrey");
-        buttonInscription.setLayoutX(810);
-        buttonInscription.setLayoutY(500);
+        buttonInscription.setLayoutX(800);
+        buttonInscription.setLayoutY(540);
 
         Button buttonRetour = new Button("Retour");
         buttonRetour.getStyleClass().add("btnGrey");
@@ -120,8 +125,22 @@ public class VueConnexion {
 
         Label labelErreur = new Label();
         labelErreur.getStyleClass().add("LabelConnexionField");
-        labelErreur.setLayoutX(340);
+        labelErreur.setLayoutX(350);
         labelErreur.setLayoutY(580);
+
+        Label cgu = new Label("En cliquant sur l'inscrire vous acceptez les conditions générales d'utilisation");
+        cgu.getStyleClass().add("LabelCgu");
+        cgu.setStyle("-fx-font-size: 12px; -fx-pref-width: 500px; -fx-pref-height: 20px;");
+        cgu.setUnderline(true);
+        cgu.setLayoutX(630);
+        cgu.setLayoutY(490);
+        cgu.setOnMouseClicked(event1 -> {
+            try {
+                Desktop.getDesktop().open(new File("document/CGU.pdf"));
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        });
 
         Button menu = new Button("Menu");
         menu.getStyleClass().add("btnGrey");
@@ -252,7 +271,7 @@ public class VueConnexion {
         });
 
         pane.setStyle("-fx-border-color: white ; -fx-border-width: 10px ; -fx-background-color: black ; -fx-background-radius: 10px ;");
-        pane.getChildren().addAll(menuScreen, label, labelPseudo, labelMotDePasse, textFieldPseudo, passwordField, buttonConnexion, labelInscription, labelPseudoInscription, labelMotDePasseInscription, labelMotDePasseInscription2, textFieldPseudoInscription, passwordFieldInscription, passwordFieldInscription2, buttonInscription, comboBoxDepartement, buttonRetour, labelErreur, menu);
+        pane.getChildren().addAll(menuScreen, label, labelPseudo, labelMotDePasse, textFieldPseudo, passwordField, buttonConnexion, labelInscription, labelPseudoInscription, labelMotDePasseInscription, labelMotDePasseInscription2, textFieldPseudoInscription, passwordFieldInscription, passwordFieldInscription2, buttonInscription, comboBoxDepartement, buttonRetour, labelErreur, menu, cgu);
         stage.setTitle("Connexion");
         stage.setResizable(false);
         stage.setScene(scene);
