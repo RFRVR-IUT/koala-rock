@@ -162,3 +162,9 @@
     -fx-font-weight: bold;
     -fx-font-size: 20px;
 }
+
+.LabelCgu {
+    -fx-text-fill: white;
+    -fx-font-family: 'Goldman', sans-serif;
+    -fx-font-size: 15px;
+}
