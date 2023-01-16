@@ -14,7 +14,7 @@ import java.net.URISyntaxException;
 import java.util.ArrayList;
 import java.util.Objects;
 
-public class PersonnePrincipale extends Group {
+public class PersonnagePrincipale extends Group {
     protected final static double LARGEUR_MOITIE_PERSONNAGE = 5;
     protected final static double LARGEUR_PERSONNAGE = LARGEUR_MOITIE_PERSONNAGE * 2;
     private final Rectangle corps;
@@ -108,7 +108,7 @@ public class PersonnePrincipale extends Group {
      * @param width
      * @param height
      */
-    public PersonnePrincipale(int x, int y, int width, int height) {
+    public PersonnagePrincipale(int x, int y, int width, int height) {
         corps = new Rectangle(x, y, width, height);
         corps.setFill(setChoixPersonnage_IDLE(choixPersonnage));
 
@@ -117,7 +117,7 @@ public class PersonnePrincipale extends Group {
         direction = "droite";
     }
 
-    public PersonnePrincipale() {
+    public PersonnagePrincipale() {
         corps = new Rectangle(0, 0, 0, 0);
         corps.setFill(setChoixPersonnage_IDLE(choixPersonnage));
 
