@@ -163,7 +163,7 @@ public class ObjetAttaque extends Group {
      * @param coordonneesEchelles
      * @param dk
      */
-    public void moveTonneaux(ArrayList<ArrayList<Double>> coordonneesEchelles, PersonneEnnemie dk) {
+    public void moveTonneaux(ArrayList<ArrayList<Double>> coordonneesEchelles, PersonnageEnnemi dk) {
         PauseTransition pause = new PauseTransition();
         pause.setDuration(javafx.util.Duration.seconds(0.01));
         pause.play();

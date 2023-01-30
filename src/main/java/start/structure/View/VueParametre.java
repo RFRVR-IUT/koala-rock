@@ -35,9 +35,9 @@ public class VueParametre {
         comboBoxJoueurPrincipale.getSelectionModel().selectedItemProperty().addListener((v, oldValue, newValue) -> {
             choixPersonnage = newValue;
             if (choixPersonnage.equals("Panda")) {
-                PersonnePrincipale.setPersonnePrincipale("PANDA");
+                PersonnagePrincipale.setPersonnePrincipale("PANDA");
             } else if (choixPersonnage.equals("Samurai")) {
-                PersonnePrincipale.setPersonnePrincipale("SAMURAI");
+                PersonnagePrincipale.setPersonnePrincipale("SAMURAI");
             }
         });
         comboBoxJoueurPrincipale.setLayoutX(300);
@@ -58,13 +58,13 @@ public class VueParametre {
         comboBoxPersonnageEnnemie.getSelectionModel().selectedItemProperty().addListener((v, oldValue, newValue) -> {
             choixEnnemi = newValue;
             if (choixEnnemi.equals("Koala")) {
-                PersonneEnnemie.setChoixPersonnage("KOALA");
+                PersonnageEnnemi.setChoixPersonnage("KOALA");
                 FondNiveau.setChoixFondNiveau("KOALA");
                 Echelle.setChoixEchelle("KOALA");
                 EchelleBroken.setChoixEchelleBroken("KOALA");
                 ObjetAttaque.setChoixObjet("ROCHER");
             } else if (choixEnnemi.equals("Ninja")) {
-                PersonneEnnemie.setChoixPersonnage("NINJA");
+                PersonnageEnnemi.setChoixPersonnage("NINJA");
                 FondNiveau.setChoixFondNiveau("NINJA");
                 Echelle.setChoixEchelle("NINJA");
                 EchelleBroken.setChoixEchelleBroken("NINJA");

@@ -11,7 +11,7 @@ import start.structure.RessourcesAccess;
 
 import java.util.Objects;
 
-public class PersonneEnnemie extends Group {
+public class PersonnageEnnemi extends Group {
 
     private final Rectangle donkey;
 
@@ -60,7 +60,7 @@ public class PersonneEnnemie extends Group {
      * @param width
      * @param height
      */
-    public PersonneEnnemie(int x, int y, int width, int height) {
+    public PersonnageEnnemi(int x, int y, int width, int height) {
         this.donkey = new Rectangle(x, y, width, height);
         donkey.setFill(setChoixPersonnage_IDLE(choixPersonnage));
         this.getChildren().add(donkey);
@@ -113,6 +113,6 @@ public class PersonneEnnemie extends Group {
     }
 
     public static void setChoixPersonnage(String choixPersonnage) {
-        PersonneEnnemie.choixPersonnage = choixPersonnage;
+        PersonnageEnnemi.choixPersonnage = choixPersonnage;
     }
 }

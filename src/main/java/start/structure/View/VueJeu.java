@@ -38,11 +38,11 @@ public class VueJeu {
     ArrayList<Echelle> echelles;
     ArrayList<EchelleBroken> echellesBrokens;
     ArrayList<ObjetAttaque> tonneaux;
-    PersonnePrincipale personnePrincipale;
+    PersonnagePrincipale personnagePrincipale;
     private boolean isPause = false;
     private Scene scene;
     private Stage primaryStage;
-    private PersonneEnnemie dk;
+    private PersonnageEnnemi dk;
     private Pane jeu;
     private final VueGagne vueGagne = new VueGagne();
     private final VuePerdre vuesPerdu = new VuePerdre();
@@ -55,7 +55,7 @@ public class VueJeu {
     private Timeline timelineTonneaux = new Timeline();
 
     public IntegerProperty getScore() {
-        return personnePrincipale.getScore();
+        return personnagePrincipale.getScore();
     }
 
     public String getMode() {
@@ -63,7 +63,7 @@ public class VueJeu {
     }
 
     public IntegerProperty getVie() {
-        return personnePrincipale.getVie();
+        return personnagePrincipale.getVie();
     }
 
     public void demarrerJeu(Stage stage, String modeJeu) throws IOException, InterruptedException {
@@ -82,7 +82,7 @@ public class VueJeu {
         // add border to interfaceJeu to 20px
         jeu = new Pane();
         BorderPane root = new BorderPane();
-        personnePrincipale = new PersonnePrincipale(20, -10, 30, 30);
+        personnagePrincipale = new PersonnagePrincipale(20, -10, 30, 30);
         Echelle echelle1 = new Echelle(400, 485, 25, 80);
         Echelle echelle2 = new Echelle(200, 408, 25, 80);
         Echelle echelle3 = new Echelle(500, 331, 25, 80);
@@ -93,12 +93,12 @@ public class VueJeu {
         EchelleBroken echelleBroken1 = new EchelleBroken(300, 331, 25, 80);
         EchelleBroken echelleBroken2 = new EchelleBroken(240, 177, 25, 80);
 
-        PersonneEnnemie dk = new PersonneEnnemie(60, 80, 100, 100);
+        PersonnageEnnemi dk = new PersonnageEnnemi(60, 80, 100, 100);
         FondNiveau fondNiveau = new FondNiveau(0, 0, 600, 600);
 
 
-        personnePrincipale.setLayoutX(20 * 10);
-        personnePrincipale.setLayoutY(545);
+        personnagePrincipale.setLayoutX(20 * 10);
+        personnagePrincipale.setLayoutY(545);
 
         //////////////// Label ///////////////////////
         Label menuScreen = new Label();
@@ -225,7 +225,7 @@ public class VueJeu {
             non.setLayoutY(275);
 
             oui.setOnAction(e -> {
-                supprimerElements(jeu, tonneaux, echelles, echellesBrokens, personnePrincipale, dk);
+                supprimerElements(jeu, tonneaux, echelles, echellesBrokens, personnagePrincipale, dk);
                 collisionTimer.stop();
                 timer.stop();
                 VueMenu vueMenu = new VueMenu();
@@ -283,8 +283,8 @@ public class VueJeu {
         };
 
         //////////////// Listener score,vie,chrono ///////////////////////
-        personnePrincipale.getScore().addListener((observableValue, number, t1) -> score.setText("Score : " + personnePrincipale.getScore().getValue().toString()));
-        personnePrincipale.getVie().addListener((observableValue, number, t1) -> vie.setText("Vie : " + personnePrincipale.getVie().getValue().toString()));
+        personnagePrincipale.getScore().addListener((observableValue, number, t1) -> score.setText("Score : " + personnagePrincipale.getScore().getValue().toString()));
+        personnagePrincipale.getVie().addListener((observableValue, number, t1) -> vie.setText("Vie : " + personnagePrincipale.getVie().getValue().toString()));
         time.addListener((observableValue, number, t1) -> chrono.setText("Chrono : " + time.getValue().toString() + "s"));
 
 
@@ -310,7 +310,7 @@ public class VueJeu {
         // EchelleBroken
         jeu.getChildren().addAll(echelleBroken1, echelleBroken2);
         // Perso
-        jeu.getChildren().addAll(personnePrincipale, dk);
+        jeu.getChildren().addAll(personnagePrincipale, dk);
         // Tonneaux
         Rectangle tour = new Rectangle(335, 105, 610, 610);
         tour.setFill(Color.LIGHTGRAY);
@@ -386,18 +386,18 @@ public class VueJeu {
             public void handle(long now) {
 
                 try {
-                    if (personnePrincipale.collisionTonneaux(tonneaux) == -1 && !isPause) {
+                    if (personnagePrincipale.collisionTonneaux(tonneaux) == -1 && !isPause) {
                         if (getVie().getValue() > 1) {
-                            personnePrincipale.setLayoutX(20 * 10);
-                            personnePrincipale.setLayoutY(545);
+                            personnagePrincipale.setLayoutX(20 * 10);
+                            personnagePrincipale.setLayoutY(545);
                             getVie().setValue(getVie().getValue() - 1);
                             supprimerTonneaux(tonneaux);
                             creerTonneaux(coordonneesEchelles, dk);
                         } else {
                             timer.stop();
                             isPause = true;
-                            personnePrincipale.setLayoutX(20 * 10);
-                            personnePrincipale.setLayoutY(545);
+                            personnagePrincipale.setLayoutX(20 * 10);
+                            personnagePrincipale.setLayoutY(545);
                             //replacer les tonneaux
                             for (ObjetAttaque tonneau : tonneaux) {
                                 tonneau.setLayoutX(0);
@@ -405,7 +405,7 @@ public class VueJeu {
                             }
                             int saveScore = getScore().getValue();
 
-                            supprimerElements(jeu, tonneaux, echelles, echellesBrokens, personnePrincipale, dk);
+                            supprimerElements(jeu, tonneaux, echelles, echellesBrokens, personnagePrincipale, dk);
                             //empecher le jeu de continuer
                             timelineTonneaux.stop();
                             primaryStage.close();
@@ -424,10 +424,10 @@ public class VueJeu {
                 } catch (URISyntaxException e) {
                     throw new RuntimeException(e);
                 }
-                if (personnePrincipale.getLayoutX() == 305 && personnePrincipale.getLayoutY() == 94 || personnePrincipale.getLayoutX() == 300 && personnePrincipale.getLayoutY() == 94 || personnePrincipale.getLayoutX() == 295 && personnePrincipale.getLayoutY() == 94 || personnePrincipale.getLayoutX() == 290 && personnePrincipale.getLayoutY() == 94) {
-                    if (getVie().getValue() > 1) {
-                        personnePrincipale.setLayoutX(20 * 10);
-                        personnePrincipale.setLayoutY(545);
+                if (personnagePrincipale.getLayoutX() == 305 && personnagePrincipale.getLayoutY() == 94 || personnagePrincipale.getLayoutX() == 300 && personnagePrincipale.getLayoutY() == 94 || personnagePrincipale.getLayoutX() == 295 && personnagePrincipale.getLayoutY() == 94 || personnagePrincipale.getLayoutX() == 290 && personnagePrincipale.getLayoutY() == 94) {
+                    if (getVie().getValue() > 1 || getVie().getValue() > 0 && mode.equals("Infini")) {
+                        personnagePrincipale.setLayoutX(20 * 10);
+                        personnagePrincipale.setLayoutY(545);
                         getScore().setValue(getScore().getValue() + 1000);
                         supprimerTonneaux(tonneaux);
                         creerTonneaux(coordonneesEchelles, dk);
@@ -437,11 +437,11 @@ public class VueJeu {
                         timeline.play();
                     } else {
                         isPause = true;
-                        personnePrincipale.setLayoutX(20 * 10);
-                        personnePrincipale.setLayoutY(545);
-                        supprimerElements(jeu, tonneaux, echelles, echellesBrokens, personnePrincipale, dk);
+                        personnagePrincipale.setLayoutX(20 * 10);
+                        personnagePrincipale.setLayoutY(545);
+                        supprimerElements(jeu, tonneaux, echelles, echellesBrokens, personnagePrincipale, dk);
                         primaryStage.close();
-                        vueGagne.screenWin(personnePrincipale.getScore(), stage);
+                        vueGagne.screenWin(personnagePrincipale.getScore(), stage);
                         if (modeJeu.equals("Normal")) {
                             if (Session.getInstance().getLogin() == null) {
                                 ScoreManager.getInstance().addTemps(time.getValue(), "");
@@ -458,7 +458,7 @@ public class VueJeu {
         root.setCenter(interfaceJeu);
         scene = new Scene(root);
         scene.getStylesheets().add(String.valueOf(RessourcesAccess.class.getResource("css/style.css")));
-        move(personnePrincipale, echelles, echellesBrokens, coordonneesEchelles);
+        move(personnagePrincipale, echelles, echellesBrokens, coordonneesEchelles);
         stage.setScene(scene);
         stage.show();
 
@@ -504,18 +504,18 @@ public class VueJeu {
     // Méthode qui permet de retourner la scène du jeu
     public void restartGame(Stage stage) throws InterruptedException {
         stage.close();
-        supprimerElements(jeu, tonneaux, echelles, echellesBrokens, personnePrincipale, dk);
-        personnePrincipale.setLayoutX(20 * 10);
-        personnePrincipale.setLayoutY(545);
+        supprimerElements(jeu, tonneaux, echelles, echellesBrokens, personnagePrincipale, dk);
+        personnagePrincipale.setLayoutX(20 * 10);
+        personnagePrincipale.setLayoutY(545);
         sleep(1000);
     }
 
     // Méthode qui permet de supprimer les éléments du jeu
-    public void supprimerElements(Pane jeu, ArrayList<ObjetAttaque> tonneaux, ArrayList<Echelle> echelles, ArrayList<EchelleBroken> echellesBrokens, PersonnePrincipale personnePrincipale, PersonneEnnemie dk) {
+    public void supprimerElements(Pane jeu, ArrayList<ObjetAttaque> tonneaux, ArrayList<Echelle> echelles, ArrayList<EchelleBroken> echellesBrokens, PersonnagePrincipale personnagePrincipale, PersonnageEnnemi dk) {
         supprimerTonneaux(tonneaux);
         echelles = null;
         echellesBrokens = null;
-        personnePrincipale = null;
+        personnagePrincipale = null;
         dk = null;
         jeu = null;
     }
@@ -530,7 +530,7 @@ public class VueJeu {
     }
 
     // Méthode qui permet de créer les tonneaux
-    public void creerTonneaux(ArrayList<ArrayList<Double>> coordonneesEchelles, PersonneEnnemie dk) {
+    public void creerTonneaux(ArrayList<ArrayList<Double>> coordonneesEchelles, PersonnageEnnemi dk) {
         ObjetAttaque tonneau1 = new ObjetAttaque(20, -10, 20, 20);
         ObjetAttaque tonneau2 = new ObjetAttaque(20, -10, 20, 20);
         ObjetAttaque tonneau3 = new ObjetAttaque(20, -10, 20, 20);
@@ -569,7 +569,7 @@ public class VueJeu {
     }
 
     // Méthode qui permet le mouvement
-    private void move(PersonnePrincipale personnePrincipale, ArrayList<Echelle> echelles, ArrayList<EchelleBroken> echellesBrokens, ArrayList<ArrayList<Double>> coordonneesEchelles) {
+    private void move(PersonnagePrincipale personnagePrincipale, ArrayList<Echelle> echelles, ArrayList<EchelleBroken> echellesBrokens, ArrayList<ArrayList<Double>> coordonneesEchelles) {
         ImageView image_Haut_Click = new ImageView(new Image(Objects.requireNonNull(RessourcesAccess.class.getResourceAsStream("Button/Button_Haut_Click.png"))));
         image_Haut_Click.setFitHeight(50);
         image_Haut_Click.setFitWidth(50);
@@ -592,7 +592,7 @@ public class VueJeu {
 
 
         scene.setOnKeyPressed((KeyEvent event) -> {
-            personnePrincipale.tomberEtage();
+            personnagePrincipale.tomberEtage();
             switch (event.getCode()) {
                 case UP:
                     button_Haut.setGraphic(image_Haut_Click);
@@ -600,13 +600,13 @@ public class VueJeu {
                     button_Gauche.setGraphic(image_Gauche);
                     button_Droite.setGraphic(image_Droite);
                     button_Espace.setGraphic(image_Espace);
-                    if (personnePrincipale.collisionEchelle(echelles) && !(personnePrincipale.estEn(coordonneesEchelles))) {
-                        personnePrincipale.directionHaut();
-                        personnePrincipale.setEstSurEchelle(true);
+                    if (personnagePrincipale.collisionEchelle(echelles) && !(personnagePrincipale.estEn(coordonneesEchelles))) {
+                        personnagePrincipale.directionHaut();
+                        personnagePrincipale.setEstSurEchelle(true);
                     }
-                    if (personnePrincipale.collisionEchelleBroken(echellesBrokens) && !(personnePrincipale.estEnBroken(coordonneesEchelles))) {
-                        personnePrincipale.directionHaut();
-                        personnePrincipale.setEstSurEchelle(true);
+                    if (personnagePrincipale.collisionEchelleBroken(echellesBrokens) && !(personnagePrincipale.estEnBroken(coordonneesEchelles))) {
+                        personnagePrincipale.directionHaut();
+                        personnagePrincipale.setEstSurEchelle(true);
                     }
                     break;
                 case LEFT:
@@ -615,9 +615,9 @@ public class VueJeu {
                     button_Gauche.setGraphic(image_Gauche_Click);
                     button_Droite.setGraphic(image_Droite);
                     button_Espace.setGraphic(image_Espace);
-                    if (!personnePrincipale.estDansEchelle(coordonneesEchelles)) {
-                        personnePrincipale.directionGauche();
-                        personnePrincipale.setEstSurEchelle(false);
+                    if (!personnagePrincipale.estDansEchelle(coordonneesEchelles)) {
+                        personnagePrincipale.directionGauche();
+                        personnagePrincipale.setEstSurEchelle(false);
                     }
                     break;
                 case RIGHT:
@@ -626,9 +626,9 @@ public class VueJeu {
                     button_Gauche.setGraphic(image_Gauche);
                     button_Droite.setGraphic(image_Droite_Click);
                     button_Espace.setGraphic(image_Espace);
-                    if (!personnePrincipale.estDansEchelle(coordonneesEchelles)) {
-                        personnePrincipale.directionDroite(scene.getWidth());
-                        personnePrincipale.setEstSurEchelle(false);
+                    if (!personnagePrincipale.estDansEchelle(coordonneesEchelles)) {
+                        personnagePrincipale.directionDroite(scene.getWidth());
+                        personnagePrincipale.setEstSurEchelle(false);
                     }
                     break;
                 case DOWN:
@@ -637,13 +637,13 @@ public class VueJeu {
                     button_Gauche.setGraphic(image_Gauche);
                     button_Droite.setGraphic(image_Droite);
                     button_Espace.setGraphic(image_Espace);
-                    if (personnePrincipale.collisionEchelle(echelles) && !(personnePrincipale.estDansBasEchelle(coordonneesEchelles))) {
-                        personnePrincipale.directionBas(scene.getHeight());
+                    if (personnagePrincipale.collisionEchelle(echelles) && !(personnagePrincipale.estDansBasEchelle(coordonneesEchelles))) {
+                        personnagePrincipale.directionBas(scene.getHeight());
                     }
-                    if (personnePrincipale.collisionEchelleBroken(echellesBrokens) && !(personnePrincipale.estDansBasEchelle(coordonneesEchelles))) {
-                        personnePrincipale.directionBas(scene.getHeight());
+                    if (personnagePrincipale.collisionEchelleBroken(echellesBrokens) && !(personnagePrincipale.estDansBasEchelle(coordonneesEchelles))) {
+                        personnagePrincipale.directionBas(scene.getHeight());
                     }
-                    personnePrincipale.setEstSurEchelle(false);
+                    personnagePrincipale.setEstSurEchelle(false);
                     break;
                 case SPACE:
                     button_Haut.setGraphic(image_Haut);
@@ -651,13 +651,13 @@ public class VueJeu {
                     button_Gauche.setGraphic(image_Gauche);
                     button_Droite.setGraphic(image_Droite);
                     button_Espace.setGraphic(image_Espace_Click);
-                    if (!personnePrincipale.isEstEnSaut()) {
+                    if (!personnagePrincipale.isEstEnSaut()) {
                         Son.jump();
                         PauseTransition pause = new PauseTransition(Duration.seconds(0.8));
-                        personnePrincipale.jump();
-                        personnePrincipale.setaEuSonScore(false);
+                        personnagePrincipale.jump();
+                        personnagePrincipale.setaEuSonScore(false);
                         pause.play();
-                        pause.setOnFinished(event1 -> personnePrincipale.atterir());
+                        pause.setOnFinished(event1 -> personnagePrincipale.atterir());
                         break;
                     }
                 default:
