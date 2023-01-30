@@ -1,7 +1,7 @@
 module start.structure.Client {
     requires javafx.base;
     requires javafx.controls;
-    requires javafx.graphics;
+    requires transitive javafx.graphics;
     requires javafx.fxml;
     requires java.desktop;
     requires java.sql;

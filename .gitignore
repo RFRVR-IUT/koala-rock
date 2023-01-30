@@ -100,3 +100,6 @@ nbdist/
 .nb-gradle/
 
 .idea/
+.DS_Store
+MANIFEST.MF
+personal file

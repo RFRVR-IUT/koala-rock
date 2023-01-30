@@ -660,6 +660,8 @@ public class VueJeu {
                         pause.setOnFinished(event1 -> personnePrincipale.atterir());
                         break;
                     }
+                default:
+                    break;
             }
         });
 

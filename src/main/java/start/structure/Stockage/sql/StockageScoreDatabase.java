@@ -246,7 +246,6 @@ public class StockageScoreDatabase {
                 while (result.next()) {
                     int id = result.getInt("codeScore");
                     double temps = result.getDouble("temps");
-                    String login = result.getString("login");
                     scoreList.put(id, temps);
                 }
             }

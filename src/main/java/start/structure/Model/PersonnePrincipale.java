@@ -252,7 +252,6 @@ public class PersonnePrincipale extends Group {
         ySave = getLayoutY();
         if (getLayoutY() >= LARGEUR_PERSONNAGE) {
             // making jump
-            double y = getLayoutY();
             for (int i = 0; i < 3; i++) {
                 setLayoutY(getLayoutY() - (0.7 * LARGEUR_PERSONNAGE));
             }
